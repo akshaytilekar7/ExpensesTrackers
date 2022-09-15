@@ -36,6 +36,7 @@ namespace PatternForCore.Web.Extensions
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient(typeof(IExpenseServices), typeof(ExpenseServices));
+            services.AddTransient(typeof(ICategoryServices), typeof(CategoryServices));
             services.AddTransient<IContextFactory, ContextFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }

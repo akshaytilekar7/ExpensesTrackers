@@ -2,6 +2,6 @@
 {
     public class ConnectionSettings
     {
-        public string DefaultConnection { get; set; }
+        public string DefaultConnection = "Server=localhost;Database=ExpenseTracker;Trusted_Connection=True;";
     }
 }
