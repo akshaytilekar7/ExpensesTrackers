@@ -7,3 +7,6 @@ namespace PatternForCore.Models
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }
+
+
+

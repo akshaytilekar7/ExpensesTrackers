@@ -10,7 +10,7 @@ using PatternForCore.Core.EFContext;
 namespace PatternForCore.Core.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220916131445_InitialTables")]
+    [Migration("20220916142108_InitialTables")]
     partial class InitialTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -247,6 +247,9 @@ namespace PatternForCore.Core.Migrations
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");

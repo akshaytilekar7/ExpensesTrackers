@@ -19,8 +19,4 @@
     <ProjectReference Include="..\PatternForCore.Models\PatternForCore.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

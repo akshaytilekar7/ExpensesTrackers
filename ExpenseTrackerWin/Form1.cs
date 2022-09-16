@@ -18,7 +18,6 @@ namespace ExpenseTrackerWin
             ExpenseServices = expenseServices;
         }
 
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -36,7 +35,9 @@ namespace ExpenseTrackerWin
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            dgvExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             LoadCombobox();
+
         }
 
         private void LoadCombobox()
@@ -60,6 +61,7 @@ namespace ExpenseTrackerWin
                 var date = Convert.ToDateTime(DatePicker.Text);
                 expense.Date = new DateTime(date.Year, date.Month, day); 
                 expense.Amount = Convert.ToInt32(row.Cells[2].Value);
+                expense.Comment = Convert.ToString(row.Cells[3].Value);
                 list.Add(expense);
             }
             ExpenseServices.Add(list);
@@ -68,6 +70,9 @@ namespace ExpenseTrackerWin
         private void btnClear_Click(object sender, EventArgs e)
         {
             list.Clear();
+            dgvExpenses.Rows.Clear();
+            dgvExpenses.Refresh();
         }
+       
     }
 }
