@@ -44,13 +44,15 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
-            this.expenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblError = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblError = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.txtTotalAmount = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -175,6 +177,7 @@
             // 
             // dgvFilter
             // 
+            this.dgvFilter.AllowUserToOrderColumns = true;
             this.dgvFilter.AutoGenerateColumns = false;
             this.dgvFilter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFilter.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -189,18 +192,6 @@
             this.dgvFilter.RowTemplate.Height = 25;
             this.dgvFilter.Size = new System.Drawing.Size(684, 293);
             this.dgvFilter.TabIndex = 14;
-            // 
-            // expenseBindingSource
-            // 
-            this.expenseBindingSource.DataSource = typeof(PatternForCore.Models.Expense);
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(164, 5);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 15);
-            this.lblError.TabIndex = 15;
             // 
             // Date
             // 
@@ -232,11 +223,42 @@
             this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
             this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
             // 
+            // expenseBindingSource
+            // 
+            this.expenseBindingSource.DataSource = typeof(PatternForCore.Models.Expense);
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Location = new System.Drawing.Point(164, 5);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 15);
+            this.lblError.TabIndex = 15;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(906, 286);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(79, 15);
+            this.lblTotal.TabIndex = 16;
+            this.lblTotal.Text = "Total Amount";
+            // 
+            // txtTotalAmount
+            // 
+            this.txtTotalAmount.Location = new System.Drawing.Point(895, 314);
+            this.txtTotalAmount.Multiline = true;
+            this.txtTotalAmount.Name = "txtTotalAmount";
+            this.txtTotalAmount.Size = new System.Drawing.Size(149, 140);
+            this.txtTotalAmount.TabIndex = 17;
+            // 
             // FilterData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1086, 599);
+            this.Controls.Add(this.txtTotalAmount);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.dgvFilter);
             this.Controls.Add(this.btnClear);
@@ -290,5 +312,7 @@
         private DataGridViewTextBoxColumn ExpenseType;
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
+        private Label lblTotal;
+        private TextBox txtTotalAmount;
     }
 }

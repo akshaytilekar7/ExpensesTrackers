@@ -57,6 +57,8 @@ namespace ExpenseTrackerWin
             if (!string.IsNullOrEmpty(comment))
                 dbList = dbList.Where(x => x.Comment.Contains(comment));
 
+            SetTotalAmount(dbList.ToList());
+
             if (!dbList.Any())
                 lblError.Text = "No Data Fount";
             dgvFilter.DataSource = dbList.ToList();
@@ -77,14 +79,26 @@ namespace ExpenseTrackerWin
             dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
 
+            SetTotalAmount(dbList);
             LoadCombobox();
+        }
+
+        private void SetTotalAmount(List<DtoExpense> dbList)
+        {
+            string Total = string.Empty;
+            foreach (var item in dbList.DistinctBy(x => x.ExpenseType).Select(x => x.ExpenseType))
+            {
+                Total += "\n";
+                var sum = Convert.ToString(dbList.Where(x => x.ExpenseType == item).Sum(x => x.Amount));
+                Total += item + " : " + sum;
+                Total += "\n";
+            }
+            txtTotalAmount.Text = Total;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblError.Text = string.Empty;
-            dgvFilter.Rows.Clear();
-            dgvFilter.Refresh();
         }
 
         private void LoadCombobox()
