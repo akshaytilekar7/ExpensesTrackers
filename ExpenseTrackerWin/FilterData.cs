@@ -44,8 +44,8 @@ namespace ExpenseTrackerWin
                 Comment = s.Comment
             });
 
-            //if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
-            //    dbList = dbList.Where(x => x.Date <= startDate && x.Date >= endDate);
+            if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
+                dbList = dbList.Where(x => x.Date >= startDate && x.Date <= endDate);
 
             if (amount >= 1)
                 dbList = dbList.Where(x => x.Amount == amount);
