@@ -38,6 +38,16 @@ namespace PatternForCore.Services
             return result;
         }
 
+        public void Add(List<Expense> lst)
+        {
+            var movieRepository = _unitOfWork.GetRepository<Expense>();
+            foreach (var item in lst)
+            {
+                movieRepository.Add(item);
+                _unitOfWork.Commit();
+            }
+        }
+
         public IList<Expense> GetAll()
         {
             var movieRepository = _unitOfWork.GetRepository<Expense>();

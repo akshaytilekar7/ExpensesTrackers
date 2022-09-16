@@ -5,7 +5,8 @@ namespace PatternForCore.Services.Base.Contracts
 {
     public interface IExpenseServices
     {
-        bool Add(Expense movieItem);
+        bool Add(Expense expense);
+        void Add(List<Expense> lst);
         IList<Expense> GetAll();
     }
 }
