@@ -41,7 +41,7 @@ namespace PatternForCore.Services
         public IList<Category> GetAll()
         {
             var movieRepository = _unitOfWork.GetRepository<Category>();
-            return movieRepository.GetAll().ToList();
+            return movieRepository.GetAll().OrderBy(x => x.CategoryName).ToList();
         }
     }
 }

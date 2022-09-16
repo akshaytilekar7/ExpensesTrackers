@@ -66,7 +66,7 @@ namespace PatternForCore.Core.Repositories.Base
         {
             return dbSet.Include(include);
         }
-        
+
         public IQueryable<T> RawSql(string query, params object[] parameters)
         {
             return dbSet.FromSqlRaw(query, parameters);
