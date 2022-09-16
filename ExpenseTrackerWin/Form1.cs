@@ -76,3 +76,7 @@ namespace ExpenseTrackerWin
        
     }
 }
+
+//SELECT CAST(ex.Date AS DATE) as Date, ct.CategoryName, ct.ExpensesType, ex.Amount
+//  FROM[dbo].[Expense] as ex join[dbo].[Category] as ct
+//  on ex.CategoryId = ct.Id
