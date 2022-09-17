@@ -1,6 +1,8 @@
+using PatternForCore.Core.ExcelUtility;
 using PatternForCore.Models;
 using PatternForCore.Services;
 using PatternForCore.Services.Base.Contracts;
+using System.Data;
 
 namespace ExpenseTrackerWin
 {
@@ -8,14 +10,16 @@ namespace ExpenseTrackerWin
     {
         public ICategoryServices CategoryServices { get; }
         public IExpenseServices ExpenseServices { get; }
+        public IExcelService ExcelService { get; }
 
         List<Expense> list = new List<Expense>();
 
-        public Form1(ICategoryServices categoryServices, IExpenseServices expenseServices)
+        public Form1(ICategoryServices categoryServices, IExpenseServices expenseServices, IExcelService excelService)
         {
             InitializeComponent();
             CategoryServices = categoryServices;
             ExpenseServices = expenseServices;
+            ExcelService = excelService;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -104,9 +108,28 @@ namespace ExpenseTrackerWin
 
         private void btnFilterPage_Click(object sender, EventArgs e)
         {
-            FilterData Check = new FilterData(CategoryServices, ExpenseServices);
+            FilterData Check = new FilterData(CategoryServices, ExpenseServices, ExcelService);
             Check.Show();
             Hide();
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var path = "D:\\100.xlsx";
+                DataTable dt = ExcelService.LoadDataTable(path);
+                var lstExpense = dt.DatatableToClass<DtoExpense>();
+
+                foreach (var item in lstExpense)
+                {
+                    this.dgvExpenses.Rows.Add(item.Date.Day, item.CategoryName, item.Amount, string.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

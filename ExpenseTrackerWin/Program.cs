@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PatternForCore.Core.EFContext;
+using PatternForCore.Core.ExcelUtility;
 using PatternForCore.Core.Factory;
 using PatternForCore.Core.Repositories.Base;
 using PatternForCore.Core.Repositories.Interfaces;
@@ -45,6 +46,7 @@ namespace ExpenseTrackerWin
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient(typeof(IExpenseServices), typeof(ExpenseServices));
             services.AddTransient(typeof(ICategoryServices), typeof(CategoryServices));
+            services.AddTransient(typeof(IExcelService), typeof(ExcelService));
             services.AddTransient<IContextFactory, ContextFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }

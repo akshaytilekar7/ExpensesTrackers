@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Date = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.dgvExpenses = new System.Windows.Forms.DataGridView();
@@ -44,6 +44,7 @@
             this.lblError = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btnFilterPage = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenses)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,14 +79,14 @@
             this.CategoryCombo,
             this.amountDataGridViewTextBoxColumn,
             this.Comment});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvExpenses.Location = new System.Drawing.Point(49, 193);
             this.dgvExpenses.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvExpenses.Name = "dgvExpenses";
@@ -98,8 +99,8 @@
             // 
             this.DayOne.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.DayOne.DataPropertyName = "Day";
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DayOne.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.DayOne.DefaultCellStyle = dataGridViewCellStyle5;
             this.DayOne.HeaderText = "Day";
             this.DayOne.MinimumWidth = 8;
             this.DayOne.Name = "DayOne";
@@ -107,8 +108,8 @@
             // CategoryCombo
             // 
             this.CategoryCombo.DataPropertyName = "Category";
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CategoryCombo.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CategoryCombo.DefaultCellStyle = dataGridViewCellStyle6;
             this.CategoryCombo.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.CategoryCombo.HeaderText = "Category";
             this.CategoryCombo.MaxDropDownItems = 10;
@@ -121,8 +122,8 @@
             // amountDataGridViewTextBoxColumn
             // 
             this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.amountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.amountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.amountDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
@@ -187,11 +188,23 @@
             this.btnFilterPage.UseVisualStyleBackColor = true;
             this.btnFilterPage.Click += new System.EventHandler(this.btnFilterPage_Click);
             // 
+            // btnUpload
+            // 
+            this.btnUpload.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnUpload.Location = new System.Drawing.Point(1121, 1083);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(292, 92);
+            this.btnUpload.TabIndex = 8;
+            this.btnUpload.Text = "Upload Data";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1487, 1195);
+            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.btnFilterPage);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblError);
@@ -225,5 +238,6 @@
         private Label lblError;
         private Button button1;
         private Button btnFilterPage;
+        private Button btnUpload;
     }
 }

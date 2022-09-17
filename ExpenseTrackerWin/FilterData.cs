@@ -1,4 +1,5 @@
-﻿using PatternForCore.Models;
+﻿using PatternForCore.Core.ExcelUtility;
+using PatternForCore.Models;
 using PatternForCore.Services.Base.Contracts;
 using System.Data;
 
@@ -8,11 +9,14 @@ namespace ExpenseTrackerWin
     {
         public ICategoryServices CategoryServices { get; }
         public IExpenseServices ExpenseServices { get; }
-        public FilterData(ICategoryServices categoryServices, IExpenseServices expenseServices)
+        public IExcelService ExcelService { get; }
+
+        public FilterData(ICategoryServices categoryServices, IExpenseServices expenseServices, IExcelService excelService)
         {
             InitializeComponent();
             CategoryServices = categoryServices;
             ExpenseServices = expenseServices;
+            ExcelService = excelService;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -196,7 +200,7 @@ namespace ExpenseTrackerWin
 
         private void btnForm1_Click(object sender, EventArgs e)
         {
-            Form1 Check = new Form1(CategoryServices, ExpenseServices);
+            Form1 Check = new Form1(CategoryServices, ExpenseServices, ExcelService);
             Check.Show();
             Hide();
         }
