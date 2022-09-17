@@ -26,7 +26,7 @@ namespace ExpenseTrackerWin
             var host = CreateHostBuilder().Build();
             ServiceProvider = host.Services;
 
-            Application.Run(ServiceProvider.GetRequiredService<FilterData>()); //Form1
+            Application.Run(ServiceProvider.GetRequiredService<Form1>()); 
         }
         public static IServiceProvider ServiceProvider { get; private set; }
         static IHostBuilder CreateHostBuilder()
@@ -34,7 +34,7 @@ namespace ExpenseTrackerWin
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) => {
                     services.AddInjections();
-                    services.AddTransient<FilterData>();//Form1
+                    services.AddTransient<Form1>();
                 });
         }
 

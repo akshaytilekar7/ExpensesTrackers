@@ -1,14 +1,6 @@
 ﻿using PatternForCore.Models;
 using PatternForCore.Services.Base.Contracts;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ExpenseTrackerWin
 {
@@ -25,75 +17,97 @@ namespace ExpenseTrackerWin
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            lblError.Text = string.Empty;
-
-            DateTime startDate = dateStart.Value.Date;
-            DateTime endDate = dateEnd.Value.Date;
-            int amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToInt32(txtAmount.Text);
-
-            string category = cmbCategory.Text == "Please select" ? string.Empty : cmbCategory.Text;
-            string expenseType = cmbExpensesType.Text == "Please select" ? string.Empty : cmbExpensesType.Text;
-            string comment = txtComment.Text;
-
-            var dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            try
             {
-                CategoryName = s.Category.CategoryName,
-                Date = s.Date,
-                Amount = s.Amount,
-                ExpenseType = s.Category.ExpensesType,
-                Comment = s.Comment
-            });
+                lblError.Text = string.Empty;
 
-            if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
-                dbList = dbList.Where(x => x.Date >= startDate && x.Date <= endDate);
+                DateTime startDate = dateStart.Value.Date;
+                DateTime endDate = dateEnd.Value.Date;
+                int amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToInt32(txtAmount.Text);
 
-            if (amount >= 1)
-                dbList = dbList.Where(x => x.Amount == amount);
+                string category = cmbCategory.Text == "Please select" ? string.Empty : cmbCategory.Text;
+                string expenseType = cmbExpensesType.Text == "Please select" ? string.Empty : cmbExpensesType.Text;
+                string comment = txtComment.Text;
 
-            if (!string.IsNullOrEmpty(category))
-                dbList = dbList.Where(x => x.CategoryName.Contains(category));
-            if (!string.IsNullOrEmpty(expenseType))
-                dbList = dbList.Where(x => x.ExpenseType.Contains(expenseType));
-            if (!string.IsNullOrEmpty(comment))
-                dbList = dbList.Where(x => x.Comment.Contains(comment));
+                var dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+                {
+                    CategoryName = s.Category.CategoryName,
+                    Date = s.Date,
+                    Amount = s.Amount,
+                    ExpenseType = s.Category.ExpensesType,
+                    Comment = s.Comment
+                });
 
-            SetTotalAmount(dbList.ToList());
+                if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
+                    dbList = dbList.Where(x => x.Date >= startDate && x.Date <= endDate);
 
-            if (!dbList.Any())
-                lblError.Text = "No Data Fount";
-            dgvFilter.DataSource = dbList.ToList();
+                if (amount >= 1)
+                    dbList = dbList.Where(x => x.Amount == amount);
+
+                if (!string.IsNullOrEmpty(category))
+                    dbList = dbList.Where(x => x.CategoryName.Contains(category));
+                if (!string.IsNullOrEmpty(expenseType))
+                    dbList = dbList.Where(x => x.ExpenseType.Contains(expenseType));
+                if (!string.IsNullOrEmpty(comment))
+                    dbList = dbList.Where(x => x.Comment.Contains(comment));
+
+                SetTotalAmount(dbList.OrderBy(x => x.ExpenseType).ToList());
+
+                if (!dbList.Any())
+                    lblError.Text = "No Data Fount";
+                dgvFilter.DataSource = dbList.ToList();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnSearch_Click : " + ex.Message;
+            }
         }
 
         private void FilterData_Load(object sender, EventArgs e)
         {
-            List<DtoExpense> dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            try
             {
-                CategoryName = s.Category.CategoryName,
-                Date = s.Date,
-                Amount = s.Amount,
-                ExpenseType = s.Category.ExpensesType,
-                Comment = s.Comment
-            }).ToList();
-            dgvFilter.DataSource = dbList;
+                List<DtoExpense> dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+                {
+                    CategoryName = s.Category.CategoryName,
+                    Date = s.Date,
+                    Amount = s.Amount,
+                    ExpenseType = s.Category.ExpensesType,
+                    Comment = s.Comment
+                }).OrderBy(x => x.ExpenseType).ToList();
+                dgvFilter.DataSource = dbList;
 
-            dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+                dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
 
-            SetTotalAmount(dbList);
-            LoadCombobox();
+                SetTotalAmount(dbList);
+                LoadCombobox();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "FilterData_Load : " + ex.Message;
+            }
+
         }
 
         private void SetTotalAmount(List<DtoExpense> dbList)
         {
-            string Total = string.Empty;
-            foreach (var item in dbList.DistinctBy(x => x.ExpenseType).Select(x => x.ExpenseType))
+            try
             {
-                Total += "\n";
-                var sum = Convert.ToString(dbList.Where(x => x.ExpenseType == item).Sum(x => x.Amount));
-                Total += item + " : " + sum;
-                Total += "\n";
+                string Total = string.Empty;
+                foreach (var item in dbList.DistinctBy(x => x.ExpenseType).Select(x => x.ExpenseType))
+                {
+                    Total += "\n";
+                    var sum = Convert.ToString(dbList.Where(x => x.ExpenseType == item).Sum(x => x.Amount));
+                    Total += item + " : " + sum;
+                    Total += "\n";
+                }
+                txtTotalAmount.Text = Total;
             }
-            txtTotalAmount.Text = Total;
+            catch (Exception ex)
+            {
+                lblError.Text = "SetTotalAmount : " + ex.Message;
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -103,18 +117,82 @@ namespace ExpenseTrackerWin
 
         private void LoadCombobox()
         {
-            var data = CategoryServices.GetAll();
-            data.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
-            cmbCategory.DisplayMember = "CategoryName";
-            cmbCategory.ValueMember = "Id";
-            cmbCategory.DataSource = data;
+            try
+            {
+                var data = CategoryServices.GetAll();
+                data.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
+                cmbCategory.DisplayMember = "CategoryName";
+                cmbCategory.ValueMember = "Id";
+                cmbCategory.DataSource = data;
 
+                IList<Category> data2 = data.DistinctBy(x => x.ExpensesType).OrderBy(x => x.ExpensesType).ToList();
+                data2.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
+                cmbExpensesType.DisplayMember = "ExpensesType";
+                cmbExpensesType.ValueMember = "Id";
+                cmbExpensesType.DataSource = data2;
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "LoadCombobox : " + ex.Message;
+            }
 
-            IList<Category> data2 = data.DistinctBy(x => x.ExpensesType).OrderBy(x => x.ExpensesType).ToList();
-            data2.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
-            cmbExpensesType.DisplayMember = "ExpensesType";
-            cmbExpensesType.ValueMember = "Id";
-            cmbExpensesType.DataSource = data2;
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog savefile = new SaveFileDialog();
+                savefile.FileName = "Response.xls";
+                savefile.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+                if (dgvFilter.Rows.Count > 0)
+                {
+                    if (savefile.ShowDialog() == DialogResult.OK)
+                    {
+                        StreamWriter wr = new StreamWriter(savefile.FileName);
+                        for (int i = 0; i < dgvFilter.Columns.Count; i++)
+                        {
+                            wr.Write(dgvFilter.Columns[i].Name.ToString().ToUpper() + "\t");
+                        }
+
+                        wr.WriteLine();
+
+                        foreach (DataGridViewRow row in dgvFilter.Rows)
+                        {
+                            foreach (DataGridViewCell cell in row.Cells)
+                            {
+                                if (cell != null)
+                                {
+                                    wr.Write(Convert.ToString(cell.Value) + "\t");
+                                }
+                                else
+                                {
+                                    wr.Write("\t");
+                                }
+                            }
+                            wr.WriteLine();
+                        }
+
+                        wr.Close();
+                    }
+                    MessageBox.Show("Data saved in Excel format at location " + savefile.FileName + "Successfully Saved");
+                }
+                else
+                {
+                    MessageBox.Show("Zero record to export , perform a operation first" + "Can't export file");
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnExcel_Click : " + ex.Message;
+            }
+        }
+
+        private void btnForm1_Click(object sender, EventArgs e)
+        {
+            Form1 Check = new Form1(CategoryServices, ExpenseServices);
+            Check.Show();
+            Hide();
         }
     }
 }

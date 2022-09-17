@@ -47,12 +47,14 @@
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblError = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
+            this.btnExcel = new System.Windows.Forms.Button();
+            this.btnForm1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -60,106 +62,119 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(161, 41);
+            this.lblDate.Location = new System.Drawing.Point(230, 68);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(35, 15);
+            this.lblDate.Size = new System.Drawing.Size(54, 25);
             this.lblDate.TabIndex = 0;
             this.lblDate.Text = "From";
             // 
             // dateStart
             // 
-            this.dateStart.Location = new System.Drawing.Point(219, 35);
+            this.dateStart.Location = new System.Drawing.Point(313, 58);
+            this.dateStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateStart.Name = "dateStart";
-            this.dateStart.Size = new System.Drawing.Size(200, 23);
+            this.dateStart.Size = new System.Drawing.Size(284, 31);
             this.dateStart.TabIndex = 1;
             // 
             // dateEnd
             // 
-            this.dateEnd.Location = new System.Drawing.Point(572, 35);
+            this.dateEnd.Location = new System.Drawing.Point(817, 58);
+            this.dateEnd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateEnd.Name = "dateEnd";
-            this.dateEnd.Size = new System.Drawing.Size(200, 23);
+            this.dateEnd.Size = new System.Drawing.Size(284, 31);
             this.dateEnd.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(481, 41);
+            this.label1.Location = new System.Drawing.Point(687, 68);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(19, 15);
+            this.label1.Size = new System.Drawing.Size(30, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "To";
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(161, 95);
+            this.lblCategory.Location = new System.Drawing.Point(230, 158);
+            this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(55, 15);
+            this.lblCategory.Size = new System.Drawing.Size(84, 25);
             this.lblCategory.TabIndex = 4;
             this.lblCategory.Text = "Category";
             // 
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(227, 92);
+            this.cmbCategory.Location = new System.Drawing.Point(324, 153);
+            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(121, 23);
+            this.cmbCategory.Size = new System.Drawing.Size(171, 33);
             this.cmbCategory.TabIndex = 5;
             // 
             // cmbExpensesType
             // 
             this.cmbExpensesType.FormattingEnabled = true;
-            this.cmbExpensesType.Location = new System.Drawing.Point(572, 92);
+            this.cmbExpensesType.Location = new System.Drawing.Point(817, 153);
+            this.cmbExpensesType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbExpensesType.Name = "cmbExpensesType";
-            this.cmbExpensesType.Size = new System.Drawing.Size(121, 23);
+            this.cmbExpensesType.Size = new System.Drawing.Size(171, 33);
             this.cmbExpensesType.TabIndex = 7;
             // 
             // lblExpensesType
             // 
             this.lblExpensesType.AutoSize = true;
-            this.lblExpensesType.Location = new System.Drawing.Point(473, 98);
+            this.lblExpensesType.Location = new System.Drawing.Point(676, 163);
+            this.lblExpensesType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExpensesType.Name = "lblExpensesType";
-            this.lblExpensesType.Size = new System.Drawing.Size(82, 15);
+            this.lblExpensesType.Size = new System.Drawing.Size(126, 25);
             this.lblExpensesType.TabIndex = 6;
             this.lblExpensesType.Text = "Expenses Type";
             // 
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(161, 148);
+            this.lblAmount.Location = new System.Drawing.Point(230, 247);
+            this.lblAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(51, 15);
+            this.lblAmount.Size = new System.Drawing.Size(77, 25);
             this.lblAmount.TabIndex = 8;
             this.lblAmount.Text = "Amount";
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(226, 147);
+            this.txtAmount.Location = new System.Drawing.Point(323, 245);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(100, 23);
+            this.txtAmount.Size = new System.Drawing.Size(141, 31);
             this.txtAmount.TabIndex = 9;
             // 
             // txtComment
             // 
-            this.txtComment.Location = new System.Drawing.Point(572, 146);
+            this.txtComment.Location = new System.Drawing.Point(817, 243);
+            this.txtComment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(100, 23);
+            this.txtComment.Size = new System.Drawing.Size(141, 31);
             this.txtComment.TabIndex = 11;
             // 
             // lblComment
             // 
             this.lblComment.AutoSize = true;
-            this.lblComment.Location = new System.Drawing.Point(474, 149);
+            this.lblComment.Location = new System.Drawing.Point(677, 248);
+            this.lblComment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(61, 15);
+            this.lblComment.Size = new System.Drawing.Size(91, 25);
             this.lblComment.TabIndex = 10;
             this.lblComment.Text = "Comment";
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(344, 213);
+            this.btnSearch.Location = new System.Drawing.Point(491, 355);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(107, 38);
             this.btnSearch.TabIndex = 12;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -167,9 +182,10 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(462, 213);
+            this.btnClear.Location = new System.Drawing.Point(660, 355);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.Size = new System.Drawing.Size(107, 38);
             this.btnClear.TabIndex = 13;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -184,44 +200,56 @@
             this.Date,
             this.CategoryName,
             this.ExpenseType,
-            this.amountDataGridViewTextBoxColumn,
-            this.commentDataGridViewTextBoxColumn});
+            this.Amount,
+            this.Comment});
             this.dgvFilter.DataSource = this.expenseBindingSource;
-            this.dgvFilter.Location = new System.Drawing.Point(161, 266);
+            this.dgvFilter.Location = new System.Drawing.Point(230, 443);
+            this.dgvFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvFilter.Name = "dgvFilter";
+            this.dgvFilter.RowHeadersWidth = 62;
             this.dgvFilter.RowTemplate.Height = 25;
-            this.dgvFilter.Size = new System.Drawing.Size(684, 293);
+            this.dgvFilter.Size = new System.Drawing.Size(977, 488);
             this.dgvFilter.TabIndex = 14;
             // 
             // Date
             // 
             this.Date.DataPropertyName = "Date";
             this.Date.HeaderText = "Date";
+            this.Date.MinimumWidth = 8;
             this.Date.Name = "Date";
+            this.Date.Width = 150;
             // 
             // CategoryName
             // 
             this.CategoryName.DataPropertyName = "CategoryName";
             this.CategoryName.HeaderText = "CategoryName";
+            this.CategoryName.MinimumWidth = 8;
             this.CategoryName.Name = "CategoryName";
+            this.CategoryName.Width = 150;
             // 
             // ExpenseType
             // 
             this.ExpenseType.DataPropertyName = "ExpenseType";
             this.ExpenseType.HeaderText = "ExpenseType";
+            this.ExpenseType.MinimumWidth = 8;
             this.ExpenseType.Name = "ExpenseType";
+            this.ExpenseType.Width = 150;
             // 
-            // amountDataGridViewTextBoxColumn
+            // Amount
             // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Amount";
+            this.Amount.MinimumWidth = 8;
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 150;
             // 
-            // commentDataGridViewTextBoxColumn
+            // Comment
             // 
-            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
-            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
-            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.MinimumWidth = 8;
+            this.Comment.Name = "Comment";
+            this.Comment.Width = 150;
             // 
             // expenseBindingSource
             // 
@@ -230,33 +258,58 @@
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(164, 5);
+            this.lblError.Location = new System.Drawing.Point(234, 8);
+            this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 15);
+            this.lblError.Size = new System.Drawing.Size(0, 25);
             this.lblError.TabIndex = 15;
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(906, 286);
+            this.lblTotal.Location = new System.Drawing.Point(1294, 477);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(79, 15);
+            this.lblTotal.Size = new System.Drawing.Size(119, 25);
             this.lblTotal.TabIndex = 16;
             this.lblTotal.Text = "Total Amount";
             // 
             // txtTotalAmount
             // 
-            this.txtTotalAmount.Location = new System.Drawing.Point(895, 314);
+            this.txtTotalAmount.Location = new System.Drawing.Point(1279, 523);
+            this.txtTotalAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTotalAmount.Multiline = true;
             this.txtTotalAmount.Name = "txtTotalAmount";
-            this.txtTotalAmount.Size = new System.Drawing.Size(149, 140);
+            this.txtTotalAmount.Size = new System.Drawing.Size(211, 231);
             this.txtTotalAmount.TabIndex = 17;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.Location = new System.Drawing.Point(833, 360);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(112, 34);
+            this.btnExcel.TabIndex = 18;
+            this.btnExcel.Text = "Export to Excel";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // btnForm1
+            // 
+            this.btnForm1.Location = new System.Drawing.Point(1006, 360);
+            this.btnForm1.Name = "btnForm1";
+            this.btnForm1.Size = new System.Drawing.Size(112, 34);
+            this.btnForm1.TabIndex = 19;
+            this.btnForm1.Text = "Home Page";
+            this.btnForm1.UseVisualStyleBackColor = true;
+            this.btnForm1.Click += new System.EventHandler(this.btnForm1_Click);
             // 
             // FilterData
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1086, 599);
+            this.ClientSize = new System.Drawing.Size(1551, 998);
+            this.Controls.Add(this.btnForm1);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.txtTotalAmount);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblError);
@@ -275,6 +328,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateStart);
             this.Controls.Add(this.lblDate);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FilterData";
             this.Text = "FilterData";
             this.Load += new System.EventHandler(this.FilterData_Load);
@@ -314,5 +368,9 @@
         private DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
         private Label lblTotal;
         private TextBox txtTotalAmount;
+        private Button btnExcel;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn Comment;
+        private Button btnForm1;
     }
 }
