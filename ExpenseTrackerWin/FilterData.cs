@@ -45,11 +45,11 @@ namespace ExpenseTrackerWin
                     dbList = dbList.Where(x => x.Amount == amount);
 
                 if (!string.IsNullOrEmpty(category))
-                    dbList = dbList.Where(x => x.CategoryName.Contains(category));
+                    dbList = dbList.Where(x => x.CategoryName.ToLower().Contains(category.ToLower()));
                 if (!string.IsNullOrEmpty(expenseType))
-                    dbList = dbList.Where(x => x.ExpenseType.Contains(expenseType));
+                    dbList = dbList.Where(x => x.ExpenseType.ToLower().Contains(expenseType.ToLower()));
                 if (!string.IsNullOrEmpty(comment))
-                    dbList = dbList.Where(x => x.Comment.Contains(comment));
+                    dbList = dbList.Where(x => x.Comment.ToLower().Contains(comment.ToLower()));
 
                 SetTotalAmount(dbList.OrderBy(x => x.ExpenseType).ToList());
 
@@ -94,16 +94,17 @@ namespace ExpenseTrackerWin
         {
             try
             {
+                txtTotalAmount.Clear();
                 string Total = string.Empty;
                 foreach (var item in dbList.DistinctBy(x => x.ExpenseType).Select(x => x.ExpenseType))
                 {
-                    Total += "\n";
                     var sum = Convert.ToString(dbList.Where(x => x.ExpenseType == item).Sum(x => x.Amount));
-                    Total += item + " : " + sum;
-                    Total += "\n";
+                    txtTotalAmount.AppendText(item + " : " + sum);
+                    txtTotalAmount.AppendText(Environment.NewLine);
                 }
-                txtTotalAmount.Text = Total;
+                txtTotalAmount.AppendText("Total Expenses : " + Convert.ToString(dbList.Sum(x => x.Amount)));
             }
+
             catch (Exception ex)
             {
                 lblError.Text = "SetTotalAmount : " + ex.Message;
@@ -113,6 +114,11 @@ namespace ExpenseTrackerWin
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblError.Text = string.Empty;
+            txtAmount.Clear();
+            txtComment.Clear();
+            txtTotalAmount.Clear();
+            cmbCategory.ResetText();
+            cmbExpensesType.ResetText();
         }
 
         private void LoadCombobox()
