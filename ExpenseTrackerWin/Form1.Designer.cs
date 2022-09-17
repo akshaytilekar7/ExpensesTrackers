@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Date = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.dgvExpenses = new System.Windows.Forms.DataGridView();
-            this.DayOne = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryCombo = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Day = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -52,18 +52,20 @@
             // 
             this.Date.AutoSize = true;
             this.Date.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Date.Location = new System.Drawing.Point(103, 70);
+            this.Date.Location = new System.Drawing.Point(72, 42);
+            this.Date.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(101, 50);
+            this.Date.Size = new System.Drawing.Size(67, 33);
             this.Date.TabIndex = 0;
             this.Date.Text = "Date";
             // 
             // DatePicker
             // 
             this.DatePicker.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DatePicker.Location = new System.Drawing.Point(249, 83);
+            this.DatePicker.Location = new System.Drawing.Point(174, 50);
+            this.DatePicker.Margin = new System.Windows.Forms.Padding(2);
             this.DatePicker.Name = "DatePicker";
-            this.DatePicker.Size = new System.Drawing.Size(400, 57);
+            this.DatePicker.Size = new System.Drawing.Size(281, 40);
             this.DatePicker.TabIndex = 1;
             this.DatePicker.ValueChanged += new System.EventHandler(this.DatePicker_ValueChanged);
             // 
@@ -75,74 +77,72 @@
             this.dgvExpenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvExpenses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DayOne,
-            this.CategoryCombo,
-            this.amountDataGridViewTextBoxColumn,
+            this.Day,
+            this.Category,
+            this.Amount,
             this.Comment});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvExpenses.Location = new System.Drawing.Point(49, 193);
-            this.dgvExpenses.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvExpenses.Location = new System.Drawing.Point(34, 116);
             this.dgvExpenses.Name = "dgvExpenses";
             this.dgvExpenses.RowHeadersWidth = 62;
             this.dgvExpenses.RowTemplate.Height = 25;
-            this.dgvExpenses.Size = new System.Drawing.Size(1399, 853);
+            this.dgvExpenses.Size = new System.Drawing.Size(979, 512);
             this.dgvExpenses.TabIndex = 2;
             // 
-            // DayOne
+            // Day
             // 
-            this.DayOne.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DayOne.DataPropertyName = "Day";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DayOne.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DayOne.HeaderText = "Day";
-            this.DayOne.MinimumWidth = 8;
-            this.DayOne.Name = "DayOne";
+            this.Day.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Day.DataPropertyName = "Day";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Day.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Day.HeaderText = "Day";
+            this.Day.MinimumWidth = 8;
+            this.Day.Name = "Day";
             // 
-            // CategoryCombo
+            // Category
             // 
-            this.CategoryCombo.DataPropertyName = "Category";
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CategoryCombo.DefaultCellStyle = dataGridViewCellStyle6;
-            this.CategoryCombo.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.CategoryCombo.HeaderText = "Category";
-            this.CategoryCombo.MaxDropDownItems = 10;
-            this.CategoryCombo.MinimumWidth = 25;
-            this.CategoryCombo.Name = "CategoryCombo";
-            this.CategoryCombo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CategoryCombo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.CategoryCombo.Width = 120;
+            this.Category.DataPropertyName = "Category";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Category.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Category.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Category.HeaderText = "Category";
+            this.Category.MaxDropDownItems = 10;
+            this.Category.MinimumWidth = 25;
+            this.Category.Name = "Category";
+            this.Category.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Category.Width = 80;
             // 
-            // amountDataGridViewTextBoxColumn
+            // Amount
             // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.amountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            this.amountDataGridViewTextBoxColumn.Width = 113;
+            this.Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Amount.HeaderText = "Amount";
+            this.Amount.MinimumWidth = 8;
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 76;
             // 
             // Comment
             // 
             this.Comment.HeaderText = "Comment";
             this.Comment.MinimumWidth = 8;
             this.Comment.Name = "Comment";
-            this.Comment.Width = 127;
+            this.Comment.Width = 86;
             // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(491, 1083);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSave.Location = new System.Drawing.Point(344, 650);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(129, 92);
+            this.btnSave.Size = new System.Drawing.Size(90, 55);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -151,10 +151,9 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClear.Location = new System.Drawing.Point(647, 1083);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClear.Location = new System.Drawing.Point(453, 650);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(126, 92);
+            this.btnClear.Size = new System.Drawing.Size(88, 55);
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -163,16 +162,20 @@
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(127, 13);
+            this.lblError.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(89, 8);
+            this.lblError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 25);
+            this.lblError.Size = new System.Drawing.Size(0, 15);
             this.lblError.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(900, 32);
+            this.button1.Location = new System.Drawing.Point(630, 19);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(8, 8);
+            this.button1.Size = new System.Drawing.Size(6, 5);
             this.button1.TabIndex = 6;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -180,9 +183,10 @@
             // btnFilterPage
             // 
             this.btnFilterPage.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnFilterPage.Location = new System.Drawing.Point(796, 1083);
+            this.btnFilterPage.Location = new System.Drawing.Point(557, 650);
+            this.btnFilterPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnFilterPage.Name = "btnFilterPage";
-            this.btnFilterPage.Size = new System.Drawing.Size(292, 92);
+            this.btnFilterPage.Size = new System.Drawing.Size(204, 55);
             this.btnFilterPage.TabIndex = 7;
             this.btnFilterPage.Text = "FilterPage";
             this.btnFilterPage.UseVisualStyleBackColor = true;
@@ -191,9 +195,10 @@
             // btnUpload
             // 
             this.btnUpload.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnUpload.Location = new System.Drawing.Point(1121, 1083);
+            this.btnUpload.Location = new System.Drawing.Point(785, 650);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(292, 92);
+            this.btnUpload.Size = new System.Drawing.Size(204, 55);
             this.btnUpload.TabIndex = 8;
             this.btnUpload.Text = "Upload Data";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -201,9 +206,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1487, 1195);
+            this.ClientSize = new System.Drawing.Size(1041, 709);
             this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.btnFilterPage);
             this.Controls.Add(this.button1);
@@ -213,6 +218,7 @@
             this.Controls.Add(this.dgvExpenses);
             this.Controls.Add(this.DatePicker);
             this.Controls.Add(this.Date);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -229,15 +235,13 @@
         private DataGridView dgvExpenses;
         private Button btnSave;
         private Button btnClear;
-        private DataGridViewTextBoxColumn dayDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn Day;
-        private DataGridViewTextBoxColumn DayOne;
-        private DataGridViewComboBoxColumn CategoryCombo;
-        private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn Comment;
         private Label lblError;
         private Button button1;
         private Button btnFilterPage;
         private Button btnUpload;
+        private DataGridViewTextBoxColumn Day;
+        private DataGridViewComboBoxColumn Category;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn Comment;
     }
 }

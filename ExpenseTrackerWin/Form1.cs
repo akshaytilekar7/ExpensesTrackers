@@ -48,9 +48,9 @@ namespace ExpenseTrackerWin
             try
             {
                 var data = CategoryServices.GetAll();
-                CategoryCombo.DisplayMember = "CategoryName";
-                CategoryCombo.ValueMember = "Id";
-                CategoryCombo.DataSource = data;
+                Category.DisplayMember = "CategoryName";
+                Category.ValueMember = "Id";
+                Category.DataSource = data;
             }
             catch (Exception ex)
             {
@@ -119,11 +119,36 @@ namespace ExpenseTrackerWin
             {
                 var path = "D:\\100.xlsx";
                 DataTable dt = ExcelService.LoadDataTable(path);
-                var lstExpense = dt.DatatableToClass<DtoExpense>();
+                var lstExpense = dt.DatatableToClass<DtoExpense>().Take(2);
 
+                int index = 0;
                 foreach (var item in lstExpense)
                 {
-                    this.dgvExpenses.Rows.Add(item.Date.Day, item.CategoryName, item.Amount, string.Empty);
+
+                    DataGridViewRow row = new DataGridViewRow();
+                    
+                    DataGridViewTextBoxCell cDay = new DataGridViewTextBoxCell();
+                    cDay.Value = item.Date.Day;
+
+                    DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
+                    var data = CategoryServices.GetAll();
+                    cCategory.DisplayMember = "CategoryName";
+                    cCategory.ValueMember = "Id";
+                    cCategory.DataSource = data;
+
+                    DataGridViewTextBoxCell cAmount = new DataGridViewTextBoxCell();
+                    cAmount.Value = item.Amount;
+
+                    DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
+                    cComment.Value = string.Empty;
+
+                    row.Cells.Add(cDay);
+                    row.Cells.Add(cCategory);
+                    row.Cells.Add(cAmount);
+                    row.Cells.Add(cComment);
+
+                    this.dgvExpenses.Rows.Add(row);
+                    index++;
                 }
             }
             catch (Exception ex)
