@@ -128,9 +128,9 @@ namespace ExpenseTrackerWin
 
                 string workingDirectory = Environment.CurrentDirectory;
                 string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-                projectDirectory += "\\ExcelFiles\\Input\\" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xlsx";
+                projectDirectory += "\\ExcelFiles\\Input\\" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
                 DataTable dt = ExcelService.LoadDataTable(projectDirectory);
-                var lstExpense = dt.DatatableToClass<DtoExpense>().Take(2);
+                var lstExpense = dt.DatatableToClass<DtoExpense>();
 
                 int index = 0;
                 foreach (var item in lstExpense)
@@ -177,6 +177,21 @@ namespace ExpenseTrackerWin
             dgvExpenses.Refresh();
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //if (dgvExpenses.SelectedRows.Count > 0)
+            //{
+            //    dgvExpenses.Rows.Remove(dgvExpenses.SelectedRows[0]);
+
+            //    // Don't call this if you have a DB to update.
+            //    // (myGridView.DataSource as DataTable).AcceptChanges();
+            //}
+
+            foreach (DataGridViewRow row in dgvExpenses.SelectedRows)
+            {
+                dgvExpenses.Rows.Remove(row);
+            }
+        }
     }
 }
 
