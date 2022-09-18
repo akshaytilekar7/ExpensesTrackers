@@ -44,11 +44,6 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblError = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -58,6 +53,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.lblSort = new System.Windows.Forms.Label();
             this.cmbSort = new System.Windows.Forms.ComboBox();
+            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -200,6 +201,7 @@
             this.dgvFilter.AutoGenerateColumns = false;
             this.dgvFilter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFilter.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SrNo,
             this.Date,
             this.CategoryName,
             this.ExpenseType,
@@ -213,46 +215,6 @@
             this.dgvFilter.RowTemplate.Height = 25;
             this.dgvFilter.Size = new System.Drawing.Size(977, 488);
             this.dgvFilter.TabIndex = 14;
-            // 
-            // Date
-            // 
-            this.Date.DataPropertyName = "Date";
-            this.Date.HeaderText = "Date";
-            this.Date.MinimumWidth = 8;
-            this.Date.Name = "Date";
-            this.Date.Width = 150;
-            // 
-            // CategoryName
-            // 
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "CategoryName";
-            this.CategoryName.MinimumWidth = 8;
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.Width = 150;
-            // 
-            // ExpenseType
-            // 
-            this.ExpenseType.DataPropertyName = "ExpenseType";
-            this.ExpenseType.HeaderText = "ExpenseType";
-            this.ExpenseType.MinimumWidth = 8;
-            this.ExpenseType.Name = "ExpenseType";
-            this.ExpenseType.Width = 150;
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "Amount";
-            this.Amount.HeaderText = "Amount";
-            this.Amount.MinimumWidth = 8;
-            this.Amount.Name = "Amount";
-            this.Amount.Width = 150;
-            // 
-            // Comment
-            // 
-            this.Comment.DataPropertyName = "Comment";
-            this.Comment.HeaderText = "Comment";
-            this.Comment.MinimumWidth = 8;
-            this.Comment.Name = "Comment";
-            this.Comment.Width = 150;
             // 
             // expenseBindingSource
             // 
@@ -333,6 +295,55 @@
             this.cmbSort.TabIndex = 22;
             this.cmbSort.SelectedIndexChanged += new System.EventHandler(this.cmbSort_SelectedIndexChanged);
             // 
+            // SrNo
+            // 
+            this.SrNo.DataPropertyName = "Id";
+            this.SrNo.HeaderText = "SrNo";
+            this.SrNo.MinimumWidth = 8;
+            this.SrNo.Name = "SrNo";
+            this.SrNo.ReadOnly = true;
+            this.SrNo.Width = 150;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.HeaderText = "Date";
+            this.Date.MinimumWidth = 8;
+            this.Date.Name = "Date";
+            this.Date.Width = 150;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "CategoryName";
+            this.CategoryName.MinimumWidth = 8;
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.Width = 150;
+            // 
+            // ExpenseType
+            // 
+            this.ExpenseType.DataPropertyName = "ExpenseType";
+            this.ExpenseType.HeaderText = "ExpenseType";
+            this.ExpenseType.MinimumWidth = 8;
+            this.ExpenseType.Name = "ExpenseType";
+            this.ExpenseType.Width = 150;
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Amount";
+            this.Amount.MinimumWidth = 8;
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 150;
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.MinimumWidth = 8;
+            this.Comment.Name = "Comment";
+            this.Comment.Width = 150;
+            // 
             // FilterData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -408,5 +419,6 @@
         private Button button1;
         private Label lblSort;
         private ComboBox cmbSort;
+        private DataGridViewTextBoxColumn SrNo;
     }
 }

@@ -1,0 +1,33 @@
+SRNO	DATE	CATEGORYNAME	EXPENSETYPE	AMOUNT	COMMENT	
+1	12-09-2022 00:00:00	Cloths	Lifestyle	80	BB	
+2	12-09-2022 00:00:00	Electricity	Home expenses	80		
+3	12-09-2022 00:00:00	Axis	Investment	80	654	
+4	12-09-2022 00:00:00	Health insurance	Family security	80	20	
+5	19-09-2022 00:00:00	Salon/Parolor	Lifestyle	80	Akshay	
+6	22-09-2022 00:00:00	Salon/Parolor	Lifestyle	100		
+7	06-09-2022 00:00:00	Snacks	Lifestyle	350		
+8	17-09-2022 00:00:00	Salon/Parolor	Lifestyle	350	Pragati	
+9	13-09-2022 00:00:00	Snacks	Lifestyle	350	chandra vilas	
+10	01-09-2022 00:00:00	Axis	Investment	520	extra amount	
+11	28-09-2022 00:00:00	Medical	Home expenses	650	aai medicine	
+12	28-09-2022 00:00:00	Medical	Home expenses	650	babycare	
+13	25-09-2022 00:00:00	Mobile recharge	Home expenses	650	akshay mobile	
+14	02-09-2022 00:00:00	Internet	Home expenses	900		
+15	18-09-2022 00:00:00	Hoteling	Lifestyle	950	Pragati birthday	
+16	02-09-2022 00:00:00	Hoteling	Lifestyle	950	Tushar	
+17	21-09-2022 00:00:00	Electricity	Home expenses	980		
+18	20-09-2022 00:00:00	Gas	Home expenses	1200		
+19	07-09-2022 00:00:00	Hoteling	Lifestyle	1200	Toshinwal	
+20	16-09-2022 00:00:00	Groceries (kirana)	Home expenses	4200		
+21	15-09-2022 00:00:00	Cloths	Lifestyle	5002	Pragati	
+22	03-09-2022 00:00:00	Trip	Lifestyle	6500	Goa	
+23	05-09-2022 00:00:00	Others	Lifestyle	6542	Pragati Pizza	
+24	23-09-2022 00:00:00	SIP	Investment	8000		
+25	18-09-2022 00:00:00	Axis	Investment	8500	AA	
+26	18-09-2022 00:00:00	Cash aai papa   	Home expenses	8500		
+27	18-09-2022 00:00:00	Groceries (kirana)	Home expenses	8500	AA	
+28	18-09-2022 00:00:00	Cash aai papa   	Home expenses	8500	654	
+29	18-09-2022 00:00:00	Cash aai papa   	Home expenses	8500	55	
+30	04-09-2022 00:00:00	Hosiptal RD	Investment	10000		
+31	05-09-2022 00:00:00	Cash aai papa   	Home expenses	12000		
+32	22-09-2022 00:00:00	Home cash	Home expenses	22000		

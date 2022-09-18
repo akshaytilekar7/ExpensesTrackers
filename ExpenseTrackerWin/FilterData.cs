@@ -27,41 +27,8 @@ namespace ExpenseTrackerWin
             {
                 lblError.Text = string.Empty;
 
-                DateTime startDate = dateStart.Value.Date;
-                DateTime endDate = dateEnd.Value.Date;
-                int amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToInt32(txtAmount.Text);
-
-                string category = cmbCategory.Text == "Please select" ? string.Empty : cmbCategory.Text;
-                string expenseType = cmbExpensesType.Text == "Please select" ? string.Empty : cmbExpensesType.Text;
-                string comment = txtComment.Text;
-
-                var dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
-                {
-                    CategoryName = s.Category.CategoryName,
-                    Date = s.Date,
-                    Amount = s.Amount,
-                    ExpenseType = s.Category.ExpensesType,
-                    Comment = s.Comment
-                });
-
-                if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
-                    dbList = dbList.Where(x => x.Date >= startDate && x.Date <= endDate);
-
-                if (amount >= 1)
-                    dbList = dbList.Where(x => x.Amount == amount);
-
-                if (!string.IsNullOrEmpty(category))
-                    dbList = dbList.Where(x => x.CategoryName.ToLower().Contains(category.ToLower()));
-                if (!string.IsNullOrEmpty(expenseType))
-                    dbList = dbList.Where(x => x.ExpenseType.ToLower().Contains(expenseType.ToLower()));
-                if (!string.IsNullOrEmpty(comment))
-                    dbList = dbList.Where(x => x.Comment.ToLower().Contains(comment.ToLower()));
-
-                SetTotalAmount(dbList.OrderBy(x => x.ExpenseType).ToList());
-
-                if (!dbList.Any())
-                    lblError.Text = "No Data Fount";
-                dgvFilter.DataSource = dbList.ToList();
+                IEnumerable<DtoExpense> dbList = GetSearchData();
+                dgvFilter.DataSource = dbList.ToList().GenereateSrNo();
             }
             catch (Exception ex)
             {
@@ -72,12 +39,51 @@ namespace ExpenseTrackerWin
             }
         }
 
+        private IEnumerable<DtoExpense> GetSearchData()
+        {
+            DateTime startDate = dateStart.Value.Date;
+            DateTime endDate = dateEnd.Value.Date;
+            int amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToInt32(txtAmount.Text);
+
+            string category = cmbCategory.Text == "Please select" ? string.Empty : cmbCategory.Text;
+            string expenseType = cmbExpensesType.Text == "Please select" ? string.Empty : cmbExpensesType.Text;
+            string comment = txtComment.Text;
+
+            var dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            {
+                CategoryName = s.Category.CategoryName,
+                Date = s.Date,
+                Amount = s.Amount,
+                ExpenseType = s.Category.ExpensesType,
+                Comment = s.Comment
+            });
+
+            if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
+                dbList = dbList.Where(x => x.Date >= startDate && x.Date <= endDate);
+
+            if (amount >= 1)
+                dbList = dbList.Where(x => x.Amount == amount);
+
+            if (!string.IsNullOrEmpty(category))
+                dbList = dbList.Where(x => x.CategoryName.ToLower().Contains(category.ToLower()));
+            if (!string.IsNullOrEmpty(expenseType))
+                dbList = dbList.Where(x => x.ExpenseType.ToLower().Contains(expenseType.ToLower()));
+            if (!string.IsNullOrEmpty(comment))
+                dbList = dbList.Where(x => x.Comment.ToLower().Contains(comment.ToLower()));
+
+            SetTotalAmount(dbList.OrderBy(x => x.ExpenseType).ToList());
+
+            if (!dbList.Any())
+                lblError.Text = "No Data Fount";
+            return dbList;
+        }
+
         private void FilterData_Load(object sender, EventArgs e)
         {
             try
             {
                 List<DtoExpense> dbList = LoadGrid();
-                dgvFilter.DataSource = dbList;
+                dgvFilter.DataSource = dbList.GenereateSrNo();
 
                 dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
@@ -183,7 +189,7 @@ namespace ExpenseTrackerWin
 
                 string workingDirectory = Environment.CurrentDirectory;
                 string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-                projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
+                projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
 
                 if (dgvFilter.Rows.Count > 0)
                 {
@@ -238,12 +244,12 @@ namespace ExpenseTrackerWin
         private void cmbSort_SelectedIndexChanged(object sender, EventArgs e)
         {
             IOrderedEnumerable<DtoExpense>? res = null;
-            List<DtoExpense> dbList = LoadGrid();
+            var dbList = GetSearchData();
             var sortOn = cmbSort.Text;
             switch (sortOn)
             {
                 case "CategoryName":
-                    res =dbList.OrderBy(d => d.CategoryName);
+                    res = dbList.OrderBy(d => d.CategoryName);
                     break;
                 case "ExpensesType":
                     res = dbList.OrderBy(d => d.ExpenseType);
@@ -261,7 +267,7 @@ namespace ExpenseTrackerWin
                     break;
             }
 
-            dgvFilter.DataSource = res.ToList();
+            dgvFilter.DataSource = res.ToList().GenereateSrNo();
         }
     }
 }
