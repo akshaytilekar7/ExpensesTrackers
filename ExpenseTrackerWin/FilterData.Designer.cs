@@ -55,6 +55,9 @@
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.btnExcel = new System.Windows.Forms.Button();
             this.btnForm1 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblSort = new System.Windows.Forms.Label();
+            this.cmbSort = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +65,7 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(230, 68);
+            this.lblDate.Location = new System.Drawing.Point(141, 66);
             this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(54, 25);
@@ -71,7 +74,7 @@
             // 
             // dateStart
             // 
-            this.dateStart.Location = new System.Drawing.Point(313, 58);
+            this.dateStart.Location = new System.Drawing.Point(224, 56);
             this.dateStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateStart.Name = "dateStart";
             this.dateStart.Size = new System.Drawing.Size(284, 31);
@@ -79,7 +82,7 @@
             // 
             // dateEnd
             // 
-            this.dateEnd.Location = new System.Drawing.Point(817, 58);
+            this.dateEnd.Location = new System.Drawing.Point(704, 56);
             this.dateEnd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Size = new System.Drawing.Size(284, 31);
@@ -88,7 +91,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(687, 68);
+            this.label1.Location = new System.Drawing.Point(574, 66);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 25);
@@ -98,7 +101,7 @@
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(230, 158);
+            this.lblCategory.Location = new System.Drawing.Point(141, 156);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(84, 25);
@@ -108,7 +111,7 @@
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(324, 153);
+            this.cmbCategory.Location = new System.Drawing.Point(235, 151);
             this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(171, 33);
@@ -117,7 +120,7 @@
             // cmbExpensesType
             // 
             this.cmbExpensesType.FormattingEnabled = true;
-            this.cmbExpensesType.Location = new System.Drawing.Point(817, 153);
+            this.cmbExpensesType.Location = new System.Drawing.Point(704, 151);
             this.cmbExpensesType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbExpensesType.Name = "cmbExpensesType";
             this.cmbExpensesType.Size = new System.Drawing.Size(171, 33);
@@ -126,7 +129,7 @@
             // lblExpensesType
             // 
             this.lblExpensesType.AutoSize = true;
-            this.lblExpensesType.Location = new System.Drawing.Point(676, 163);
+            this.lblExpensesType.Location = new System.Drawing.Point(563, 161);
             this.lblExpensesType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExpensesType.Name = "lblExpensesType";
             this.lblExpensesType.Size = new System.Drawing.Size(126, 25);
@@ -136,7 +139,7 @@
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(230, 247);
+            this.lblAmount.Location = new System.Drawing.Point(141, 245);
             this.lblAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(77, 25);
@@ -145,7 +148,7 @@
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(323, 245);
+            this.txtAmount.Location = new System.Drawing.Point(234, 243);
             this.txtAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(141, 31);
@@ -153,7 +156,7 @@
             // 
             // txtComment
             // 
-            this.txtComment.Location = new System.Drawing.Point(817, 243);
+            this.txtComment.Location = new System.Drawing.Point(704, 241);
             this.txtComment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComment.Name = "txtComment";
             this.txtComment.Size = new System.Drawing.Size(141, 31);
@@ -162,7 +165,7 @@
             // lblComment
             // 
             this.lblComment.AutoSize = true;
-            this.lblComment.Location = new System.Drawing.Point(677, 248);
+            this.lblComment.Location = new System.Drawing.Point(564, 246);
             this.lblComment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblComment.Name = "lblComment";
             this.lblComment.Size = new System.Drawing.Size(91, 25);
@@ -303,11 +306,41 @@
             this.btnForm1.UseVisualStyleBackColor = true;
             this.btnForm1.Click += new System.EventHandler(this.btnForm1_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1026, 162);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(9, 8);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // lblSort
+            // 
+            this.lblSort.AutoSize = true;
+            this.lblSort.Location = new System.Drawing.Point(1039, 61);
+            this.lblSort.Name = "lblSort";
+            this.lblSort.Size = new System.Drawing.Size(45, 25);
+            this.lblSort.TabIndex = 21;
+            this.lblSort.Text = "Sort";
+            // 
+            // cmbSort
+            // 
+            this.cmbSort.FormattingEnabled = true;
+            this.cmbSort.Location = new System.Drawing.Point(1117, 58);
+            this.cmbSort.Name = "cmbSort";
+            this.cmbSort.Size = new System.Drawing.Size(182, 33);
+            this.cmbSort.TabIndex = 22;
+            this.cmbSort.SelectedIndexChanged += new System.EventHandler(this.cmbSort_SelectedIndexChanged);
+            // 
             // FilterData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1551, 998);
+            this.Controls.Add(this.cmbSort);
+            this.Controls.Add(this.lblSort);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnForm1);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.txtTotalAmount);
@@ -372,5 +405,8 @@
         private DataGridViewTextBoxColumn Amount;
         private DataGridViewTextBoxColumn Comment;
         private Button btnForm1;
+        private Button button1;
+        private Label lblSort;
+        private ComboBox cmbSort;
     }
 }

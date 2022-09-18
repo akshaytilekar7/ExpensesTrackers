@@ -2,6 +2,7 @@ using PatternForCore.Core.ExcelUtility;
 using PatternForCore.Models;
 using PatternForCore.Services;
 using PatternForCore.Services.Base.Contracts;
+using System.ComponentModel;
 using System.Data;
 
 namespace ExpenseTrackerWin
@@ -39,7 +40,7 @@ namespace ExpenseTrackerWin
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dgvExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dgvExpenses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             LoadCombobox();
         }
 
@@ -47,14 +48,17 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var data = CategoryServices.GetAll();
+                var Categories = CategoryServices.GetAll();
                 Category.DisplayMember = "CategoryName";
                 Category.ValueMember = "Id";
-                Category.DataSource = data;
+                Category.DataSource = Categories;
             }
             catch (Exception ex)
             {
-                lblError.Text = "LoadCombobox : " + ex.Message;
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "LoadCombobox : " + ex.Message + " " + st;
             }
         }
 
@@ -87,7 +91,10 @@ namespace ExpenseTrackerWin
             }
             catch (Exception ex)
             {
-                lblError.Text = "btnSave_Click : " + ex.Message;
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "btnSave_Click : " + ex.Message + " " + st;
             }
 
         }
@@ -117,8 +124,12 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var path = "D:\\100.xlsx";
-                DataTable dt = ExcelService.LoadDataTable(path);
+                ClearGrid();
+
+                string workingDirectory = Environment.CurrentDirectory;
+                string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+                projectDirectory += "\\ExcelFiles\\Input\\" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xlsx";
+                DataTable dt = ExcelService.LoadDataTable(projectDirectory);
                 var lstExpense = dt.DatatableToClass<DtoExpense>().Take(2);
 
                 int index = 0;
@@ -126,7 +137,7 @@ namespace ExpenseTrackerWin
                 {
 
                     DataGridViewRow row = new DataGridViewRow();
-                    
+
                     DataGridViewTextBoxCell cDay = new DataGridViewTextBoxCell();
                     cDay.Value = item.Date.Day;
 
@@ -153,9 +164,19 @@ namespace ExpenseTrackerWin
             }
             catch (Exception ex)
             {
-
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "btnUpload_Click : " + ex.Message + " " + st;
             }
         }
+
+        private void ClearGrid()
+        {
+            dgvExpenses.Rows.Clear();
+            dgvExpenses.Refresh();
+        }
+
     }
 }
 

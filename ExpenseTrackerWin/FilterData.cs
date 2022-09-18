@@ -1,4 +1,5 @@
-﻿using PatternForCore.Core.ExcelUtility;
+﻿using ExpenseTrackerWin.ExcelFiles;
+using PatternForCore.Core.ExcelUtility;
 using PatternForCore.Models;
 using PatternForCore.Services.Base.Contracts;
 using System.Data;
@@ -11,6 +12,7 @@ namespace ExpenseTrackerWin
         public IExpenseServices ExpenseServices { get; }
         public IExcelService ExcelService { get; }
 
+        public List<SortBy> lstSortBy = new SortBy().GetList();
         public FilterData(ICategoryServices categoryServices, IExpenseServices expenseServices, IExcelService excelService)
         {
             InitializeComponent();
@@ -63,7 +65,10 @@ namespace ExpenseTrackerWin
             }
             catch (Exception ex)
             {
-                lblError.Text = "btnSearch_Click : " + ex.Message;
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "btnSearch_Click : " + ex.Message + " " + st;
             }
         }
 
@@ -71,14 +76,7 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                List<DtoExpense> dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
-                {
-                    CategoryName = s.Category.CategoryName,
-                    Date = s.Date,
-                    Amount = s.Amount,
-                    ExpenseType = s.Category.ExpensesType,
-                    Comment = s.Comment
-                }).OrderBy(x => x.ExpenseType).ToList();
+                List<DtoExpense> dbList = LoadGrid();
                 dgvFilter.DataSource = dbList;
 
                 dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
@@ -89,9 +87,25 @@ namespace ExpenseTrackerWin
             }
             catch (Exception ex)
             {
-                lblError.Text = "FilterData_Load : " + ex.Message;
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "FilterData_Load : " + ex.Message + " " + st;
             }
 
+        }
+
+        private List<DtoExpense> LoadGrid()
+        {
+            List<DtoExpense> dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            {
+                CategoryName = s.Category.CategoryName,
+                Date = s.Date,
+                Amount = s.Amount,
+                ExpenseType = s.Category.ExpensesType,
+                Comment = s.Comment
+            }).OrderBy(x => x.Date).ToList();
+            return dbList;
         }
 
         private void SetTotalAmount(List<DtoExpense> dbList)
@@ -111,7 +125,10 @@ namespace ExpenseTrackerWin
 
             catch (Exception ex)
             {
-                lblError.Text = "SetTotalAmount : " + ex.Message;
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "SetTotalAmount : " + ex.Message + " " + st;
             }
         }
 
@@ -140,10 +157,18 @@ namespace ExpenseTrackerWin
                 cmbExpensesType.DisplayMember = "ExpensesType";
                 cmbExpensesType.ValueMember = "Id";
                 cmbExpensesType.DataSource = data2;
+
+
+                cmbSort.DisplayMember = "Name";
+                cmbSort.ValueMember = "Id";
+                cmbSort.DataSource = lstSortBy;
             }
             catch (Exception ex)
             {
-                lblError.Text = "LoadCombobox : " + ex.Message;
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "LoadCombobox : " + ex.Message + " " + st;
             }
 
         }
@@ -152,40 +177,42 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                SaveFileDialog savefile = new SaveFileDialog();
-                savefile.FileName = "Response.xls";
-                savefile.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+                //SaveFileDialog savefile = new SaveFileDialog();
+                //savefile.FileName = "Response.xls";
+                //savefile.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+
+                string workingDirectory = Environment.CurrentDirectory;
+                string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+                projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
+
                 if (dgvFilter.Rows.Count > 0)
                 {
-                    if (savefile.ShowDialog() == DialogResult.OK)
+                    StreamWriter wr = new StreamWriter(projectDirectory);
+                    for (int i = 0; i < dgvFilter.Columns.Count; i++)
                     {
-                        StreamWriter wr = new StreamWriter(savefile.FileName);
-                        for (int i = 0; i < dgvFilter.Columns.Count; i++)
-                        {
-                            wr.Write(dgvFilter.Columns[i].Name.ToString().ToUpper() + "\t");
-                        }
-
-                        wr.WriteLine();
-
-                        foreach (DataGridViewRow row in dgvFilter.Rows)
-                        {
-                            foreach (DataGridViewCell cell in row.Cells)
-                            {
-                                if (cell != null)
-                                {
-                                    wr.Write(Convert.ToString(cell.Value) + "\t");
-                                }
-                                else
-                                {
-                                    wr.Write("\t");
-                                }
-                            }
-                            wr.WriteLine();
-                        }
-
-                        wr.Close();
+                        wr.Write(dgvFilter.Columns[i].Name.ToString().ToUpper() + "\t");
                     }
-                    MessageBox.Show("Data saved in Excel format at location " + savefile.FileName + "Successfully Saved");
+
+                    wr.WriteLine();
+
+                    foreach (DataGridViewRow row in dgvFilter.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (cell != null)
+                            {
+                                wr.Write(Convert.ToString(cell.Value) + "\t");
+                            }
+                            else
+                            {
+                                wr.Write("\t");
+                            }
+                        }
+                        wr.WriteLine();
+                    }
+
+                    wr.Close();
+                    MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
                 }
                 else
                 {
@@ -194,7 +221,10 @@ namespace ExpenseTrackerWin
             }
             catch (Exception ex)
             {
-                lblError.Text = "btnExcel_Click : " + ex.Message;
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "btnExcel_Click : " + ex.Message + " " + st;
             }
         }
 
@@ -203,6 +233,35 @@ namespace ExpenseTrackerWin
             Form1 Check = new Form1(CategoryServices, ExpenseServices, ExcelService);
             Check.Show();
             Hide();
+        }
+
+        private void cmbSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IOrderedEnumerable<DtoExpense>? res = null;
+            List<DtoExpense> dbList = LoadGrid();
+            var sortOn = cmbSort.Text;
+            switch (sortOn)
+            {
+                case "CategoryName":
+                    res =dbList.OrderBy(d => d.CategoryName);
+                    break;
+                case "ExpensesType":
+                    res = dbList.OrderBy(d => d.ExpenseType);
+                    break;
+                case "Date":
+                    res = dbList.OrderBy(d => d.Date);
+                    break;
+                case "Amount":
+                    res = dbList.OrderBy(d => d.Amount);
+                    break;
+                case "Comment":
+                    res = dbList.OrderBy(d => d.Comment);
+                    break;
+                default:
+                    break;
+            }
+
+            dgvFilter.DataSource = res.ToList();
         }
     }
 }

@@ -47,7 +47,6 @@ namespace PatternForCore.Core.ExcelUtility
             var dataTable = new System.Data.DataTable();
             dataTable.Load(dr);
             return dataTable;
-
         }
 
         public System.Data.DataTable ConvertCsvToDataTable(string filePath)
