@@ -117,14 +117,19 @@ namespace ExpenseTrackerWin
             {
                 txtTotalAmount.Clear();
                 string Total = string.Empty;
-                foreach (var item in dbList.DistinctBy(x => x.ExpenseType).Select(x => x.ExpenseType))
+                var income = SetIncome(dbList);
+                int percent = 0;
+                foreach (var expenseType in dbList.DistinctBy(x => x.ExpenseType).Select(x => x.ExpenseType))
                 {
-                    var sum = Convert.ToString(dbList.Where(x => x.ExpenseType == item).Sum(x => x.Amount));
-                    txtTotalAmount.AppendText(item + " : " + sum);
+                    var expenseSum = dbList.Where(x => x.ExpenseType == expenseType).Sum(x => x.Amount);
+                    percent = (int)Math.Round((double)(100 * expenseSum) / income);
+                    txtTotalAmount.AppendText(expenseType + " : " + expenseSum + " (" + percent + "%)");
                     txtTotalAmount.AppendText(Environment.NewLine);
                 }
-                txtTotalAmount.AppendText("Total Expenses : " + Convert.ToString(dbList.Sum(x => x.Amount)));
-                SetIncome(dbList);
+
+                int amt = dbList.Sum(x => x.Amount);
+                percent = (int)Math.Round((double)(100 * amt) / income);
+                txtTotalAmount.AppendText("Total Expenses : " + amt + " (" + percent + "%)");
             }
 
             catch (Exception ex)
@@ -146,21 +151,32 @@ namespace ExpenseTrackerWin
             cmbExpensesType.ResetText();
         }
 
-        private void SetIncome(List<DtoExpense> dbList)
+        private int SetIncome(List<DtoExpense> dbList)
         {
+            int income = 0;
+            IEnumerable<DtoExpense>? result = null;
             try
             {
                 txtTotalIncome.Clear();
                 string Total = string.Empty;
-                var date = Convert.ToDateTime(dateStart.Text);
-                var dbIncomes = ServiceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month);
+                DateTime startDate = dateStart.Value.Date;
+                DateTime endDate = dateEnd.Value.Date;
+
+                if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
+                {
+                    result = dbList.Where(x => x.Date >= startDate && x.Date <= endDate);
+                }
+                var dbIncomes = ServiceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
                 foreach (var item in dbIncomes)
                 {
-                    txtTotalIncome.AppendText(item.Name + " : " + item.Amount);
+                    txtTotalIncome.AppendText(item.Date.ToShortDateString() + ": " + item.Name + " : " + item.Amount);
+                    txtTotalIncome.AppendText(Environment.NewLine);
                     txtTotalIncome.AppendText(Environment.NewLine);
                 }
-                var income = dbIncomes.Sum(x => x.Amount);
-                var expense = dbList.Sum(x => x.Amount);
+                txtTotalIncome.AppendText(Environment.NewLine);
+                txtTotalIncome.AppendText(Environment.NewLine);
+                income = dbIncomes.Sum(x => x.Amount);
+                var expense = result.Sum(x => x.Amount);
                 txtTotalIncome.AppendText("Total Income : " + Convert.ToString(income));
                 txtTotalIncome.AppendText(Environment.NewLine);
                 txtTotalIncome.AppendText("Total Expenses : " + expense);
@@ -168,7 +184,6 @@ namespace ExpenseTrackerWin
                 txtTotalIncome.AppendText("Balance : " + Convert.ToString(income - expense));
                 txtTotalIncome.AppendText(Environment.NewLine);
             }
-
             catch (Exception ex)
             {
                 var st = string.Empty;
@@ -176,6 +191,8 @@ namespace ExpenseTrackerWin
                     st = ex.InnerException.Message;
                 lblError.Text = "SetIncome : " + ex.Message + " " + st;
             }
+            return income;
+
         }
         private void LoadCombobox()
         {
@@ -300,6 +317,11 @@ namespace ExpenseTrackerWin
         }
 
         private void txtTotalIncome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblIncome_Click(object sender, EventArgs e)
         {
 
         }
