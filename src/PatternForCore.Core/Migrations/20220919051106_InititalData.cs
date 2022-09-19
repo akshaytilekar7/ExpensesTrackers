@@ -2,7 +2,7 @@
 
 namespace PatternForCore.Core.Migrations
 {
-    public partial class InitialData : Migration
+    public partial class InititalData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,5 +1,4 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -7,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace PatternForCore.Core.ExcelUtility
+namespace PatternForCore.Services
 {
 
     public interface IExcelService

@@ -1,6 +1,4 @@
-﻿// https://github.com/senvardarsemih/generic-for-core
-
-using System;
+﻿using System;
 
 namespace PatternForCore.Models
 {

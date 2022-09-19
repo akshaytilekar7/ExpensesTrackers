@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ExpenseTrackerWin.ExcelFiles
+namespace PatternForCore.Models.Dto
 {
     public class SortBy
     {

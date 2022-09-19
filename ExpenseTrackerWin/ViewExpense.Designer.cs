@@ -1,6 +1,6 @@
 ﻿namespace ExpenseTrackerWin
 {
-    partial class FilterData
+    partial class ViewExpense
     {
         /// <summary>
         /// Required designer variable.
@@ -44,6 +44,12 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
+            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblError = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -53,12 +59,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.lblSort = new System.Windows.Forms.Label();
             this.cmbSort = new System.Windows.Forms.ComboBox();
-            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblIncome = new System.Windows.Forms.Label();
+            this.txtTotalIncome = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -216,6 +218,55 @@
             this.dgvFilter.Size = new System.Drawing.Size(977, 488);
             this.dgvFilter.TabIndex = 14;
             // 
+            // SrNo
+            // 
+            this.SrNo.DataPropertyName = "Id";
+            this.SrNo.HeaderText = "SrNo";
+            this.SrNo.MinimumWidth = 8;
+            this.SrNo.Name = "SrNo";
+            this.SrNo.ReadOnly = true;
+            this.SrNo.Width = 150;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.HeaderText = "Date";
+            this.Date.MinimumWidth = 8;
+            this.Date.Name = "Date";
+            this.Date.Width = 150;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "CategoryName";
+            this.CategoryName.MinimumWidth = 8;
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.Width = 150;
+            // 
+            // ExpenseType
+            // 
+            this.ExpenseType.DataPropertyName = "ExpenseType";
+            this.ExpenseType.HeaderText = "ExpenseType";
+            this.ExpenseType.MinimumWidth = 8;
+            this.ExpenseType.Name = "ExpenseType";
+            this.ExpenseType.Width = 150;
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Amount";
+            this.Amount.MinimumWidth = 8;
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 150;
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.MinimumWidth = 8;
+            this.Comment.Name = "Comment";
+            this.Comment.Width = 150;
+            // 
             // expenseBindingSource
             // 
             this.expenseBindingSource.DataSource = typeof(PatternForCore.Models.Expense);
@@ -232,7 +283,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(1294, 477);
+            this.lblTotal.Location = new System.Drawing.Point(1296, 670);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(119, 25);
@@ -241,7 +292,7 @@
             // 
             // txtTotalAmount
             // 
-            this.txtTotalAmount.Location = new System.Drawing.Point(1279, 523);
+            this.txtTotalAmount.Location = new System.Drawing.Point(1281, 716);
             this.txtTotalAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTotalAmount.Multiline = true;
             this.txtTotalAmount.Name = "txtTotalAmount";
@@ -295,60 +346,33 @@
             this.cmbSort.TabIndex = 22;
             this.cmbSort.SelectedIndexChanged += new System.EventHandler(this.cmbSort_SelectedIndexChanged);
             // 
-            // SrNo
+            // lblIncome
             // 
-            this.SrNo.DataPropertyName = "Id";
-            this.SrNo.HeaderText = "SrNo";
-            this.SrNo.MinimumWidth = 8;
-            this.SrNo.Name = "SrNo";
-            this.SrNo.ReadOnly = true;
-            this.SrNo.Width = 150;
+            this.lblIncome.AutoSize = true;
+            this.lblIncome.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblIncome.Location = new System.Drawing.Point(1281, 360);
+            this.lblIncome.Name = "lblIncome";
+            this.lblIncome.Size = new System.Drawing.Size(153, 54);
+            this.lblIncome.TabIndex = 24;
+            this.lblIncome.Text = "Income";
             // 
-            // Date
+            // txtTotalIncome
             // 
-            this.Date.DataPropertyName = "Date";
-            this.Date.HeaderText = "Date";
-            this.Date.MinimumWidth = 8;
-            this.Date.Name = "Date";
-            this.Date.Width = 150;
+            this.txtTotalIncome.Location = new System.Drawing.Point(1281, 434);
+            this.txtTotalIncome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTotalIncome.Multiline = true;
+            this.txtTotalIncome.Name = "txtTotalIncome";
+            this.txtTotalIncome.Size = new System.Drawing.Size(211, 231);
+            this.txtTotalIncome.TabIndex = 23;
+            this.txtTotalIncome.TextChanged += new System.EventHandler(this.txtTotalIncome_TextChanged);
             // 
-            // CategoryName
-            // 
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "CategoryName";
-            this.CategoryName.MinimumWidth = 8;
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.Width = 150;
-            // 
-            // ExpenseType
-            // 
-            this.ExpenseType.DataPropertyName = "ExpenseType";
-            this.ExpenseType.HeaderText = "ExpenseType";
-            this.ExpenseType.MinimumWidth = 8;
-            this.ExpenseType.Name = "ExpenseType";
-            this.ExpenseType.Width = 150;
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "Amount";
-            this.Amount.HeaderText = "Amount";
-            this.Amount.MinimumWidth = 8;
-            this.Amount.Name = "Amount";
-            this.Amount.Width = 150;
-            // 
-            // Comment
-            // 
-            this.Comment.DataPropertyName = "Comment";
-            this.Comment.HeaderText = "Comment";
-            this.Comment.MinimumWidth = 8;
-            this.Comment.Name = "Comment";
-            this.Comment.Width = 150;
-            // 
-            // FilterData
+            // ViewExpense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1551, 998);
+            this.Controls.Add(this.lblIncome);
+            this.Controls.Add(this.txtTotalIncome);
             this.Controls.Add(this.cmbSort);
             this.Controls.Add(this.lblSort);
             this.Controls.Add(this.button1);
@@ -373,8 +397,8 @@
             this.Controls.Add(this.dateStart);
             this.Controls.Add(this.lblDate);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "FilterData";
-            this.Text = "FilterData";
+            this.Name = "ViewExpense";
+            this.Text = "View Expense";
             this.Load += new System.EventHandler(this.FilterData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).EndInit();
@@ -420,5 +444,7 @@
         private Label lblSort;
         private ComboBox cmbSort;
         private DataGridViewTextBoxColumn SrNo;
+        private Label lblIncome;
+        private TextBox txtTotalIncome;
     }
 }

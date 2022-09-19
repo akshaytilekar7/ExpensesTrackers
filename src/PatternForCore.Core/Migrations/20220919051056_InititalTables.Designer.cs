@@ -10,8 +10,8 @@ using PatternForCore.Core.EFContext;
 namespace PatternForCore.Core.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220919035721_InitialTables")]
-    partial class InitialTables
+    [Migration("20220919051056_InititalTables")]
+    partial class InititalTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -259,6 +259,27 @@ namespace PatternForCore.Core.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Expense");
+                });
+
+            modelBuilder.Entity("PatternForCore.Models.IncomeSource", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IncomeSource");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

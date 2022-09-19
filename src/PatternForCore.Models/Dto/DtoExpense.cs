@@ -1,4 +1,7 @@
-﻿namespace ExpenseTrackerWin
+﻿using System;
+using System.Collections.Generic;
+
+namespace PatternForCore.Models.Dto
 {
     public class DtoExpense
     {

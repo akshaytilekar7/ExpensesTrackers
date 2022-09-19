@@ -17,6 +17,7 @@ namespace PatternForCore.Core.EFContext
 
         public DbSet<Category> Category { get; set; }
         public DbSet<Expense> Expense { get; set; }
+        public DbSet<IncomeSource> IncomeSource { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

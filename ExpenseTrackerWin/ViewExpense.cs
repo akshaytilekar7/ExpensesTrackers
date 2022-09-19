@@ -1,24 +1,21 @@
-﻿using ExpenseTrackerWin.ExcelFiles;
-using PatternForCore.Core.ExcelUtility;
-using PatternForCore.Models;
+﻿using PatternForCore.Models;
+using PatternForCore.Models.Dto;
+using PatternForCore.Services;
 using PatternForCore.Services.Base.Contracts;
+using PatternForCore.Services.Factory;
 using System.Data;
 
 namespace ExpenseTrackerWin
 {
-    public partial class FilterData : Form
+    public partial class ViewExpense : Form
     {
-        public ICategoryServices CategoryServices { get; }
-        public IExpenseServices ExpenseServices { get; }
-        public IExcelService ExcelService { get; }
+        public IServiceFactory ServiceFactory { get; }
 
         public List<SortBy> lstSortBy = new SortBy().GetList();
-        public FilterData(ICategoryServices categoryServices, IExpenseServices expenseServices, IExcelService excelService)
+        public ViewExpense(IServiceFactory serviceFactory)
         {
             InitializeComponent();
-            CategoryServices = categoryServices;
-            ExpenseServices = expenseServices;
-            ExcelService = excelService;
+            ServiceFactory = serviceFactory;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -49,7 +46,7 @@ namespace ExpenseTrackerWin
             string expenseType = cmbExpensesType.Text == "Please select" ? string.Empty : cmbExpensesType.Text;
             string comment = txtComment.Text;
 
-            var dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            var dbList = ServiceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
             {
                 CategoryName = s.Category.CategoryName,
                 Date = s.Date,
@@ -103,7 +100,7 @@ namespace ExpenseTrackerWin
 
         private List<DtoExpense> LoadGrid()
         {
-            List<DtoExpense> dbList = ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            List<DtoExpense> dbList = ServiceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
             {
                 CategoryName = s.Category.CategoryName,
                 Date = s.Date,
@@ -127,6 +124,7 @@ namespace ExpenseTrackerWin
                     txtTotalAmount.AppendText(Environment.NewLine);
                 }
                 txtTotalAmount.AppendText("Total Expenses : " + Convert.ToString(dbList.Sum(x => x.Amount)));
+                SetIncome(dbList);
             }
 
             catch (Exception ex)
@@ -148,11 +146,42 @@ namespace ExpenseTrackerWin
             cmbExpensesType.ResetText();
         }
 
+        private void SetIncome(List<DtoExpense> dbList)
+        {
+            try
+            {
+                txtTotalIncome.Clear();
+                string Total = string.Empty;
+                var date = Convert.ToDateTime(dateStart.Text);
+                var dbIncomes = ServiceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month);
+                foreach (var item in dbIncomes)
+                {
+                    txtTotalIncome.AppendText(item.Name + " : " + item.Amount);
+                    txtTotalIncome.AppendText(Environment.NewLine);
+                }
+                var income = dbIncomes.Sum(x => x.Amount);
+                var expense = dbList.Sum(x => x.Amount);
+                txtTotalIncome.AppendText("Total Income : " + Convert.ToString(income));
+                txtTotalIncome.AppendText(Environment.NewLine);
+                txtTotalIncome.AppendText("Total Expenses : " + expense);
+                txtTotalIncome.AppendText(Environment.NewLine);
+                txtTotalIncome.AppendText("Balance : " + Convert.ToString(income - expense));
+                txtTotalIncome.AppendText(Environment.NewLine);
+            }
+
+            catch (Exception ex)
+            {
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "SetIncome : " + ex.Message + " " + st;
+            }
+        }
         private void LoadCombobox()
         {
             try
             {
-                var data = CategoryServices.GetAll();
+                var data = ServiceFactory.CategoryServices.GetAll();
                 data.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
                 cmbCategory.DisplayMember = "CategoryName";
                 cmbCategory.ValueMember = "Id";
@@ -236,7 +265,7 @@ namespace ExpenseTrackerWin
 
         private void btnForm1_Click(object sender, EventArgs e)
         {
-            Form1 Check = new Form1(CategoryServices, ExpenseServices, ExcelService);
+            HomePage Check = new HomePage(ServiceFactory);
             Check.Show();
             Hide();
         }
@@ -269,5 +298,11 @@ namespace ExpenseTrackerWin
 
             dgvFilter.DataSource = res.ToList().GenereateSrNo();
         }
+
+        private void txtTotalIncome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+

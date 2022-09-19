@@ -1,6 +1,4 @@
-﻿// https://github.com/senvardarsemih/generic-for-core
-
-namespace PatternForCore.Models
+﻿namespace PatternForCore.Models
 {
     public class Category
     {
