@@ -146,12 +146,16 @@ namespace ExpenseTrackerWin
             try
             {
                 ClearGrid();
-
                 string workingDirectory = Environment.CurrentDirectory;
                 string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
                 projectDirectory += "\\ExcelFiles\\Input\\" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
                 DataTable dt = ServiceFactory.ExcelService.LoadDataTable(projectDirectory);
                 var lstExpense = dt.DatatableToClass<DtoExpense>();
+
+                string projectDirectory2 = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+                projectDirectory2 += "\\ExcelFiles\\Input\\BankStatement_" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
+                DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
+                var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
 
                 int index = 0;
                 foreach (var item in lstExpense)
@@ -172,7 +176,8 @@ namespace ExpenseTrackerWin
                     cAmount.Value = item.Amount;
 
                     DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
-                    cComment.Value = string.Empty;
+                    var excelExpense = lstExpenseBankStatement.FirstOrDefault(x => x.Date.Day == item.Date.Day && x.Amount == item.Amount);
+                    cComment.Value = excelExpense == null ? string.Empty : excelExpense.Comment;
 
                     row.Cells.Add(cDay);
                     row.Cells.Add(cCategory);
@@ -200,18 +205,8 @@ namespace ExpenseTrackerWin
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //if (dgvExpenses.SelectedRows.Count > 0)
-            //{
-            //    dgvExpenses.Rows.Remove(dgvExpenses.SelectedRows[0]);
-
-            //    // Don't call this if you have a DB to update.
-            //    // (myGridView.DataSource as DataTable).AcceptChanges();
-            //}
-
             foreach (DataGridViewRow row in dgvExpenses.SelectedRows)
-            {
                 dgvExpenses.Rows.Remove(row);
-            }
         }
 
         private void txtTotalIcome_TextChanged(object sender, EventArgs e)
