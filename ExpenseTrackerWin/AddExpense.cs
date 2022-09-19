@@ -31,7 +31,7 @@ namespace ExpenseTrackerWin
 
         private void DatePicker_ValueChanged(object sender, EventArgs e)
         {
-
+            SetIncome();
         }
 
         private void SetIncome()
@@ -41,7 +41,7 @@ namespace ExpenseTrackerWin
                 txtTotalIncome.Clear();
                 string Total = string.Empty;
                 var date = Convert.ToDateTime(DatePicker.Text);
-                var dbIncomes = ServiceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month);
+                var dbIncomes = ServiceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month && s.Date.Year == date.Year);
                 foreach (var item in dbIncomes)
                 {
                     txtTotalIncome.AppendText(item.Name + " : " + item.Amount);

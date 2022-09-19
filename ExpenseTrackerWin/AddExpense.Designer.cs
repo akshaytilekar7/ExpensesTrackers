@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Date = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.dgvExpenses = new System.Windows.Forms.DataGridView();
@@ -55,20 +55,18 @@
             // 
             this.Date.AutoSize = true;
             this.Date.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Date.Location = new System.Drawing.Point(72, 42);
-            this.Date.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Date.Location = new System.Drawing.Point(103, 70);
             this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(67, 33);
+            this.Date.Size = new System.Drawing.Size(101, 50);
             this.Date.TabIndex = 0;
             this.Date.Text = "Date";
             // 
             // DatePicker
             // 
             this.DatePicker.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DatePicker.Location = new System.Drawing.Point(174, 50);
-            this.DatePicker.Margin = new System.Windows.Forms.Padding(2);
+            this.DatePicker.Location = new System.Drawing.Point(249, 83);
             this.DatePicker.Name = "DatePicker";
-            this.DatePicker.Size = new System.Drawing.Size(281, 40);
+            this.DatePicker.Size = new System.Drawing.Size(400, 57);
             this.DatePicker.TabIndex = 1;
             this.DatePicker.ValueChanged += new System.EventHandler(this.DatePicker_ValueChanged);
             // 
@@ -84,27 +82,28 @@
             this.Category,
             this.Amount,
             this.Comment});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvExpenses.Location = new System.Drawing.Point(34, 116);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvExpenses.Location = new System.Drawing.Point(49, 193);
+            this.dgvExpenses.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvExpenses.Name = "dgvExpenses";
             this.dgvExpenses.RowHeadersWidth = 62;
             this.dgvExpenses.RowTemplate.Height = 25;
-            this.dgvExpenses.Size = new System.Drawing.Size(979, 512);
+            this.dgvExpenses.Size = new System.Drawing.Size(1399, 853);
             this.dgvExpenses.TabIndex = 2;
             // 
             // Day
             // 
             this.Day.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Day.DataPropertyName = "Day";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Day.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Day.DefaultCellStyle = dataGridViewCellStyle1;
             this.Day.HeaderText = "Day";
             this.Day.MinimumWidth = 8;
             this.Day.Name = "Day";
@@ -112,8 +111,8 @@
             // Category
             // 
             this.Category.DataPropertyName = "Category";
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Category.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Category.DefaultCellStyle = dataGridViewCellStyle2;
             this.Category.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.Category.HeaderText = "Category";
             this.Category.MaxDropDownItems = 5;
@@ -121,31 +120,32 @@
             this.Category.Name = "Category";
             this.Category.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Category.Width = 80;
+            this.Category.Width = 120;
             // 
             // Amount
             // 
             this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle3;
             this.Amount.HeaderText = "Amount";
             this.Amount.MinimumWidth = 8;
             this.Amount.Name = "Amount";
-            this.Amount.Width = 76;
+            this.Amount.Width = 113;
             // 
             // Comment
             // 
             this.Comment.HeaderText = "Comment";
             this.Comment.MinimumWidth = 8;
             this.Comment.Name = "Comment";
-            this.Comment.Width = 86;
+            this.Comment.Width = 127;
             // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(175, 643);
+            this.btnSave.Location = new System.Drawing.Point(250, 1072);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(90, 55);
+            this.btnSave.Size = new System.Drawing.Size(129, 92);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -154,9 +154,10 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClear.Location = new System.Drawing.Point(284, 643);
+            this.btnClear.Location = new System.Drawing.Point(406, 1072);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(88, 55);
+            this.btnClear.Size = new System.Drawing.Size(126, 92);
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -167,18 +168,16 @@
             this.lblError.AutoSize = true;
             this.lblError.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(89, 8);
-            this.lblError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblError.Location = new System.Drawing.Point(127, 13);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 15);
+            this.lblError.Size = new System.Drawing.Size(0, 25);
             this.lblError.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(630, 19);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(900, 32);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(6, 5);
+            this.button1.Size = new System.Drawing.Size(9, 8);
             this.button1.TabIndex = 6;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -186,10 +185,9 @@
             // btnUpload
             // 
             this.btnUpload.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnUpload.Location = new System.Drawing.Point(393, 643);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUpload.Location = new System.Drawing.Point(561, 1072);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(204, 55);
+            this.btnUpload.Size = new System.Drawing.Size(291, 92);
             this.btnUpload.TabIndex = 8;
             this.btnUpload.Text = "Upload Data";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -198,10 +196,9 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(776, 42);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDelete.Location = new System.Drawing.Point(1109, 70);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(204, 55);
+            this.btnDelete.Size = new System.Drawing.Size(291, 92);
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete Selected";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -209,10 +206,11 @@
             // 
             // txtTotalIncome
             // 
-            this.txtTotalIncome.Location = new System.Drawing.Point(1128, 294);
+            this.txtTotalIncome.Location = new System.Drawing.Point(1611, 490);
+            this.txtTotalIncome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTotalIncome.Multiline = true;
             this.txtTotalIncome.Name = "txtTotalIncome";
-            this.txtTotalIncome.Size = new System.Drawing.Size(149, 140);
+            this.txtTotalIncome.Size = new System.Drawing.Size(211, 231);
             this.txtTotalIncome.TabIndex = 18;
             this.txtTotalIncome.TextChanged += new System.EventHandler(this.txtTotalIcome_TextChanged);
             // 
@@ -220,19 +218,19 @@
             // 
             this.lblIncome.AutoSize = true;
             this.lblIncome.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(1128, 250);
-            this.lblIncome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIncome.Location = new System.Drawing.Point(1611, 417);
             this.lblIncome.Name = "lblIncome";
-            this.lblIncome.Size = new System.Drawing.Size(104, 37);
+            this.lblIncome.Size = new System.Drawing.Size(153, 54);
             this.lblIncome.TabIndex = 19;
             this.lblIncome.Text = "Income";
             // 
             // btnHomePage
             // 
             this.btnHomePage.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnHomePage.Location = new System.Drawing.Point(617, 643);
+            this.btnHomePage.Location = new System.Drawing.Point(881, 1072);
+            this.btnHomePage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(181, 55);
+            this.btnHomePage.Size = new System.Drawing.Size(259, 92);
             this.btnHomePage.TabIndex = 20;
             this.btnHomePage.Text = "Home page";
             this.btnHomePage.UseVisualStyleBackColor = true;
@@ -240,9 +238,10 @@
             // 
             // AddExpense
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1339, 709);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1913, 1050);
             this.Controls.Add(this.btnHomePage);
             this.Controls.Add(this.lblIncome);
             this.Controls.Add(this.txtTotalIncome);
@@ -255,7 +254,6 @@
             this.Controls.Add(this.dgvExpenses);
             this.Controls.Add(this.DatePicker);
             this.Controls.Add(this.Date);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddExpense";
             this.Text = "Add Expense";
             this.Load += new System.EventHandler(this.Form1_Load);

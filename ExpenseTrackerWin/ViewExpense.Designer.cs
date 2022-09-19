@@ -165,9 +165,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(344, 213);
+            this.btnSearch.Location = new System.Drawing.Point(177, 214);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(87, 36);
             this.btnSearch.TabIndex = 12;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -175,9 +175,9 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(462, 213);
+            this.btnClear.Location = new System.Drawing.Point(283, 215);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.Size = new System.Drawing.Size(74, 36);
             this.btnClear.TabIndex = 13;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -202,6 +202,7 @@
             this.dgvFilter.RowTemplate.Height = 25;
             this.dgvFilter.Size = new System.Drawing.Size(705, 325);
             this.dgvFilter.TabIndex = 14;
+            this.dgvFilter.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellContentClick);
             // 
             // SrNo
             // 
@@ -270,25 +271,26 @@
             this.lblTotal.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTotal.Location = new System.Drawing.Point(1174, 217);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(163, 33);
+            this.lblTotal.Size = new System.Drawing.Size(175, 33);
             this.lblTotal.TabIndex = 16;
-            this.lblTotal.Text = "Total Amount";
+            this.lblTotal.Text = "Total Expenses";
             // 
             // txtTotalAmount
             // 
-            this.txtTotalAmount.Location = new System.Drawing.Point(1081, 270);
+            this.txtTotalAmount.Location = new System.Drawing.Point(1072, 260);
             this.txtTotalAmount.Multiline = true;
             this.txtTotalAmount.Name = "txtTotalAmount";
+            this.txtTotalAmount.ReadOnly = true;
             this.txtTotalAmount.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtTotalAmount.Size = new System.Drawing.Size(321, 315);
             this.txtTotalAmount.TabIndex = 17;
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(583, 216);
+            this.btnExcel.Location = new System.Drawing.Point(375, 215);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(78, 20);
+            this.btnExcel.Size = new System.Drawing.Size(118, 36);
             this.btnExcel.TabIndex = 18;
             this.btnExcel.Text = "Export to Excel";
             this.btnExcel.UseVisualStyleBackColor = true;
@@ -296,10 +298,10 @@
             // 
             // btnForm1
             // 
-            this.btnForm1.Location = new System.Drawing.Point(704, 216);
+            this.btnForm1.Location = new System.Drawing.Point(512, 216);
             this.btnForm1.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm1.Name = "btnForm1";
-            this.btnForm1.Size = new System.Drawing.Size(78, 20);
+            this.btnForm1.Size = new System.Drawing.Size(102, 34);
             this.btnForm1.TabIndex = 19;
             this.btnForm1.Text = "Home Page";
             this.btnForm1.UseVisualStyleBackColor = true;
@@ -339,12 +341,12 @@
             // 
             this.lblIncome.AutoSize = true;
             this.lblIncome.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(842, 213);
+            this.lblIncome.Location = new System.Drawing.Point(801, 217);
             this.lblIncome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIncome.Name = "lblIncome";
-            this.lblIncome.Size = new System.Drawing.Size(104, 37);
+            this.lblIncome.Size = new System.Drawing.Size(168, 37);
             this.lblIncome.TabIndex = 24;
-            this.lblIncome.Text = "Income";
+            this.lblIncome.Text = "Total Income";
             this.lblIncome.Click += new System.EventHandler(this.lblIncome_Click);
             // 
             // txtTotalIncome
@@ -352,6 +354,7 @@
             this.txtTotalIncome.Location = new System.Drawing.Point(741, 260);
             this.txtTotalIncome.Multiline = true;
             this.txtTotalIncome.Name = "txtTotalIncome";
+            this.txtTotalIncome.ReadOnly = true;
             this.txtTotalIncome.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtTotalIncome.Size = new System.Drawing.Size(297, 325);
             this.txtTotalIncome.TabIndex = 23;
@@ -361,7 +364,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1436, 689);
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1347, 630);
             this.Controls.Add(this.lblIncome);
             this.Controls.Add(this.txtTotalIncome);
             this.Controls.Add(this.cmbSort);

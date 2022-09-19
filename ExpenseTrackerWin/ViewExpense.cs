@@ -26,6 +26,8 @@ namespace ExpenseTrackerWin
 
                 IEnumerable<DtoExpense> dbList = GetSearchData();
                 dgvFilter.DataSource = dbList.ToList().GenereateSrNo();
+                dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             }
             catch (Exception ex)
             {
@@ -81,6 +83,8 @@ namespace ExpenseTrackerWin
             {
                 List<DtoExpense> dbList = LoadGrid();
                 dgvFilter.DataSource = dbList.GenereateSrNo();
+                dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
                 dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
@@ -123,13 +127,13 @@ namespace ExpenseTrackerWin
                 {
                     var expenseSum = dbList.Where(x => x.ExpenseType == expenseType).Sum(x => x.Amount);
                     percent = (int)Math.Round((double)(100 * expenseSum) / income);
-                    txtTotalAmount.AppendText(expenseType + " : " + expenseSum + " (" + percent + "%)");
+                    txtTotalAmount.AppendText(expenseType + " : " + expenseSum + "      (" + percent + "%)");
                     txtTotalAmount.AppendText(Environment.NewLine);
                 }
 
                 int amt = dbList.Sum(x => x.Amount);
                 percent = (int)Math.Round((double)(100 * amt) / income);
-                txtTotalAmount.AppendText("Total Expenses : " + amt + " (" + percent + "%)");
+                txtTotalAmount.AppendText("Total Expenses : " + amt + "      (" + percent + "%)");
             }
 
             catch (Exception ex)
@@ -145,6 +149,7 @@ namespace ExpenseTrackerWin
         {
             lblError.Text = string.Empty;
             txtAmount.Clear();
+            txtTotalIncome.Clear();
             txtComment.Clear();
             txtTotalAmount.Clear();
             cmbCategory.ResetText();
@@ -171,9 +176,7 @@ namespace ExpenseTrackerWin
                 {
                     txtTotalIncome.AppendText(item.Date.ToShortDateString() + ": " + item.Name + " : " + item.Amount);
                     txtTotalIncome.AppendText(Environment.NewLine);
-                    txtTotalIncome.AppendText(Environment.NewLine);
                 }
-                txtTotalIncome.AppendText(Environment.NewLine);
                 txtTotalIncome.AppendText(Environment.NewLine);
                 income = dbIncomes.Sum(x => x.Amount);
                 var expense = result.Sum(x => x.Amount);
@@ -262,7 +265,10 @@ namespace ExpenseTrackerWin
                         }
                         wr.WriteLine();
                     }
-
+                    
+                    wr.WriteLine();
+                    wr.WriteLine(txtTotalIncome.Text);
+                    wr.WriteLine(txtTotalAmount.Text);
                     wr.Close();
                     MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
                 }
@@ -314,6 +320,8 @@ namespace ExpenseTrackerWin
             }
 
             dgvFilter.DataSource = res.ToList().GenereateSrNo();
+            dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
         }
 
         private void txtTotalIncome_TextChanged(object sender, EventArgs e)
@@ -322,6 +330,11 @@ namespace ExpenseTrackerWin
         }
 
         private void lblIncome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvFilter_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

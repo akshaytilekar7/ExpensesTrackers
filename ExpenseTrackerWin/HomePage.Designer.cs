@@ -36,7 +36,7 @@
             // btnAddExpensed
             // 
             this.btnAddExpensed.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddExpensed.Location = new System.Drawing.Point(190, 191);
+            this.btnAddExpensed.Location = new System.Drawing.Point(476, 191);
             this.btnAddExpensed.Name = "btnAddExpensed";
             this.btnAddExpensed.Size = new System.Drawing.Size(278, 62);
             this.btnAddExpensed.TabIndex = 0;
@@ -46,10 +46,12 @@
             // 
             // btnAddIncome
             // 
+            this.btnAddIncome.AutoSize = true;
+            this.btnAddIncome.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAddIncome.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddIncome.Location = new System.Drawing.Point(508, 191);
+            this.btnAddIncome.Location = new System.Drawing.Point(176, 191);
             this.btnAddIncome.Name = "btnAddIncome";
-            this.btnAddIncome.Size = new System.Drawing.Size(259, 62);
+            this.btnAddIncome.Size = new System.Drawing.Size(227, 59);
             this.btnAddIncome.TabIndex = 1;
             this.btnAddIncome.Text = "Add Income";
             this.btnAddIncome.UseVisualStyleBackColor = true;
@@ -70,6 +72,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1435, 990);
             this.Controls.Add(this.btnViewExpense);
             this.Controls.Add(this.btnAddIncome);
@@ -78,6 +81,7 @@
             this.Text = "HomePage";
             this.Load += new System.EventHandler(this.HomePage_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
