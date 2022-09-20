@@ -1,6 +1,4 @@
 ﻿using PatternForCore.Models;
-using PatternForCore.Services;
-using PatternForCore.Services.Base.Contracts;
 using PatternForCore.Services.Factory;
 
 namespace ExpenseTrackerWin
@@ -17,7 +15,8 @@ namespace ExpenseTrackerWin
 
         private void AddIncome_Load(object sender, EventArgs e)
         {
-
+            var lst = ServiceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList();
+            dgvIncome.DataSource = lst;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

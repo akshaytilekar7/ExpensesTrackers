@@ -1,7 +1,5 @@
 ﻿using PatternForCore.Models;
 using PatternForCore.Models.Dto;
-using PatternForCore.Services;
-using PatternForCore.Services.Base.Contracts;
 using PatternForCore.Services.Factory;
 using System.Data;
 
@@ -265,7 +263,7 @@ namespace ExpenseTrackerWin
                         }
                         wr.WriteLine();
                     }
-                    
+
                     wr.WriteLine();
                     wr.WriteLine(txtTotalIncome.Text);
                     wr.WriteLine(txtTotalAmount.Text);

@@ -44,12 +44,6 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
-            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblError = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -61,6 +55,12 @@
             this.cmbSort = new System.Windows.Forms.ComboBox();
             this.lblIncome = new System.Windows.Forms.Label();
             this.txtTotalIncome = new System.Windows.Forms.TextBox();
+            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -165,7 +165,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(177, 214);
+            this.btnSearch.Location = new System.Drawing.Point(186, 188);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(87, 36);
             this.btnSearch.TabIndex = 12;
@@ -175,7 +175,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(283, 215);
+            this.btnClear.Location = new System.Drawing.Point(292, 189);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(74, 36);
             this.btnClear.TabIndex = 13;
@@ -203,55 +203,6 @@
             this.dgvFilter.Size = new System.Drawing.Size(705, 325);
             this.dgvFilter.TabIndex = 14;
             this.dgvFilter.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellContentClick);
-            // 
-            // SrNo
-            // 
-            this.SrNo.DataPropertyName = "Id";
-            this.SrNo.HeaderText = "SrNo";
-            this.SrNo.MinimumWidth = 8;
-            this.SrNo.Name = "SrNo";
-            this.SrNo.ReadOnly = true;
-            this.SrNo.Width = 150;
-            // 
-            // Date
-            // 
-            this.Date.DataPropertyName = "Date";
-            this.Date.HeaderText = "Date";
-            this.Date.MinimumWidth = 8;
-            this.Date.Name = "Date";
-            this.Date.Width = 150;
-            // 
-            // CategoryName
-            // 
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "CategoryName";
-            this.CategoryName.MinimumWidth = 8;
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.Width = 150;
-            // 
-            // ExpenseType
-            // 
-            this.ExpenseType.DataPropertyName = "ExpenseType";
-            this.ExpenseType.HeaderText = "ExpenseType";
-            this.ExpenseType.MinimumWidth = 8;
-            this.ExpenseType.Name = "ExpenseType";
-            this.ExpenseType.Width = 150;
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "Amount";
-            this.Amount.HeaderText = "Amount";
-            this.Amount.MinimumWidth = 8;
-            this.Amount.Name = "Amount";
-            this.Amount.Width = 150;
-            // 
-            // Comment
-            // 
-            this.Comment.DataPropertyName = "Comment";
-            this.Comment.HeaderText = "Comment";
-            this.Comment.MinimumWidth = 8;
-            this.Comment.Name = "Comment";
-            this.Comment.Width = 150;
             // 
             // expenseBindingSource
             // 
@@ -287,7 +238,7 @@
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(375, 215);
+            this.btnExcel.Location = new System.Drawing.Point(384, 189);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(118, 36);
@@ -298,7 +249,7 @@
             // 
             // btnForm1
             // 
-            this.btnForm1.Location = new System.Drawing.Point(512, 216);
+            this.btnForm1.Location = new System.Drawing.Point(521, 190);
             this.btnForm1.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm1.Name = "btnForm1";
             this.btnForm1.Size = new System.Drawing.Size(102, 34);
@@ -359,6 +310,55 @@
             this.txtTotalIncome.Size = new System.Drawing.Size(297, 325);
             this.txtTotalIncome.TabIndex = 23;
             this.txtTotalIncome.TextChanged += new System.EventHandler(this.txtTotalIncome_TextChanged);
+            // 
+            // SrNo
+            // 
+            this.SrNo.DataPropertyName = "Id";
+            this.SrNo.HeaderText = "SrNo";
+            this.SrNo.MinimumWidth = 8;
+            this.SrNo.Name = "SrNo";
+            this.SrNo.ReadOnly = true;
+            this.SrNo.Width = 150;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.HeaderText = "Date";
+            this.Date.MinimumWidth = 8;
+            this.Date.Name = "Date";
+            this.Date.Width = 150;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "CategoryName";
+            this.CategoryName.MinimumWidth = 8;
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.Width = 150;
+            // 
+            // ExpenseType
+            // 
+            this.ExpenseType.DataPropertyName = "ExpenseType";
+            this.ExpenseType.HeaderText = "ExpenseType";
+            this.ExpenseType.MinimumWidth = 8;
+            this.ExpenseType.Name = "ExpenseType";
+            this.ExpenseType.Width = 150;
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Amount";
+            this.Amount.MinimumWidth = 8;
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 150;
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.MinimumWidth = 8;
+            this.Comment.Name = "Comment";
+            this.Comment.Width = 150;
             // 
             // ViewExpense
             // 
@@ -424,22 +424,22 @@
         private DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
         private Label lblError;
         private DataGridViewTextBoxColumn Category;
-        private DataGridViewTextBoxColumn Date;
-        private DataGridViewTextBoxColumn CategoryName;
-        private DataGridViewTextBoxColumn ExpenseType;
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
         private Label lblTotal;
         private TextBox txtTotalAmount;
         private Button btnExcel;
-        private DataGridViewTextBoxColumn Amount;
-        private DataGridViewTextBoxColumn Comment;
         private Button btnForm1;
         private Button button1;
         private Label lblSort;
         private ComboBox cmbSort;
-        private DataGridViewTextBoxColumn SrNo;
         private Label lblIncome;
         private TextBox txtTotalIncome;
+        private DataGridViewTextBoxColumn SrNo;
+        private DataGridViewTextBoxColumn Date;
+        private DataGridViewTextBoxColumn CategoryName;
+        private DataGridViewTextBoxColumn ExpenseType;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn Comment;
     }
 }

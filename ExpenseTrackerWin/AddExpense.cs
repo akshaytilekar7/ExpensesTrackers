@@ -146,20 +146,11 @@ namespace ExpenseTrackerWin
             try
             {
                 ClearGrid();
-                string workingDirectory = Environment.CurrentDirectory;
-                string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-                projectDirectory += "\\ExcelFiles\\Input\\" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
-                DataTable dt = ServiceFactory.ExcelService.LoadDataTable(projectDirectory);
-                var lstExpense = dt.DatatableToClass<DtoExpense>();
-
-                string projectDirectory2 = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-                projectDirectory2 += "\\ExcelFiles\\Input\\W_" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
-                DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
-                var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
+                IList<DtoExpense> lstBankStatementData = GetBankStatementData();
+                IList<DtoExpense> lstWhatsAppData = GetWhatsAppData();
 
                 int index = 0;
-                var newLs =  lstExpense.Where(x => x.Amount > 0).ToList();
-                foreach (var item in newLs)
+                foreach (var item in lstBankStatementData)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     DataGridViewTextBoxCell cDay = new DataGridViewTextBoxCell();
@@ -169,9 +160,9 @@ namespace ExpenseTrackerWin
                     cAmount.Value = item.Amount;
 
                     DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
-                    var excelExpense = lstExpenseBankStatement.FirstOrDefault(x => x.Date.Day == item.Date.Day && x.Amount == item.Amount);
+                    var excelWhatsAppExpense = lstWhatsAppData.FirstOrDefault(x => x.Date.Day == item.Date.Day && x.Amount == item.Amount);
 
-                    var comment = excelExpense == null ? string.Empty : excelExpense.Comment;
+                    var comment = excelWhatsAppExpense == null ? string.Empty : excelWhatsAppExpense.Comment;
                     cComment.Value = comment;
 
                     DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
@@ -179,7 +170,7 @@ namespace ExpenseTrackerWin
                     cCategory.DisplayMember = "CategoryName";
                     cCategory.ValueMember = "Id";
                     cCategory.DataSource = dbCategories;
-                    
+
                     if (!string.IsNullOrEmpty(comment))
                     {
                         var dbCategory = dbCategories.FirstOrDefault(x => x.CategoryName.ToLower().Contains(comment.ToLower()));
@@ -203,6 +194,24 @@ namespace ExpenseTrackerWin
                     st = ex.InnerException.Message;
                 lblError.Text = "btnUpload_Click : " + ex.Message + " " + st;
             }
+        }
+
+        private IList<DtoExpense> GetWhatsAppData()
+        {
+            string projectDirectory2 = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            projectDirectory2 += "\\ExcelFiles\\Input\\W_" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
+            DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
+            var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
+            return lstExpenseBankStatement;
+        }
+
+        private List<DtoExpense> GetBankStatementData()
+        {
+            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            projectDirectory += "\\ExcelFiles\\Input\\" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
+            DataTable dt = ServiceFactory.ExcelService.LoadDataTable(projectDirectory);
+            var lstExpense = dt.DatatableToClass<DtoExpense>();
+            return lstExpense.Where(x => x.Amount > 0).ToList();
         }
 
         private void ClearGrid()
