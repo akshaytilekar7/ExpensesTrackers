@@ -153,31 +153,39 @@ namespace ExpenseTrackerWin
                 var lstExpense = dt.DatatableToClass<DtoExpense>();
 
                 string projectDirectory2 = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-                projectDirectory2 += "\\ExcelFiles\\Input\\BankStatement_" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
+                projectDirectory2 += "\\ExcelFiles\\Input\\W_" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
                 DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
                 var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
 
                 int index = 0;
-                foreach (var item in lstExpense)
+                var newLs =  lstExpense.Where(x => x.Amount > 0).ToList();
+                foreach (var item in newLs)
                 {
-
                     DataGridViewRow row = new DataGridViewRow();
-
                     DataGridViewTextBoxCell cDay = new DataGridViewTextBoxCell();
                     cDay.Value = item.Date.Day;
-
-                    DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
-                    var data = ServiceFactory.CategoryServices.GetAll();
-                    cCategory.DisplayMember = "CategoryName";
-                    cCategory.ValueMember = "Id";
-                    cCategory.DataSource = data;
 
                     DataGridViewTextBoxCell cAmount = new DataGridViewTextBoxCell();
                     cAmount.Value = item.Amount;
 
                     DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
                     var excelExpense = lstExpenseBankStatement.FirstOrDefault(x => x.Date.Day == item.Date.Day && x.Amount == item.Amount);
-                    cComment.Value = excelExpense == null ? string.Empty : excelExpense.Comment;
+
+                    var comment = excelExpense == null ? string.Empty : excelExpense.Comment;
+                    cComment.Value = comment;
+
+                    DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
+                    var dbCategories = ServiceFactory.CategoryServices.GetAll();
+                    cCategory.DisplayMember = "CategoryName";
+                    cCategory.ValueMember = "Id";
+                    cCategory.DataSource = dbCategories;
+                    
+                    if (!string.IsNullOrEmpty(comment))
+                    {
+                        var dbCategory = dbCategories.FirstOrDefault(x => x.CategoryName.ToLower().Contains(comment.ToLower()));
+                        if (dbCategory != null)
+                            cCategory.Value = dbCategory.Id;
+                    }
 
                     row.Cells.Add(cDay);
                     row.Cells.Add(cCategory);
@@ -219,6 +227,11 @@ namespace ExpenseTrackerWin
             HomePage Check = new HomePage(ServiceFactory);
             Check.Show();
             Hide();
+        }
+
+        private void dgvExpenses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

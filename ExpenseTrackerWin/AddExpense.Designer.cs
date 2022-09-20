@@ -74,7 +74,6 @@
             // 
             // dgvExpenses
             // 
-            this.dgvExpenses.AllowUserToDeleteRows = false;
             this.dgvExpenses.AllowUserToOrderColumns = true;
             this.dgvExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvExpenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -98,6 +97,7 @@
             this.dgvExpenses.RowTemplate.Height = 25;
             this.dgvExpenses.Size = new System.Drawing.Size(979, 512);
             this.dgvExpenses.TabIndex = 2;
+            this.dgvExpenses.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpenses_CellContentClick);
             // 
             // Day
             // 
