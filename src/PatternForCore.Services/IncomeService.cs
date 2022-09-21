@@ -38,6 +38,14 @@ namespace PatternForCore.Services
             return result;
         }
 
+        public void Delete(List<IncomeSource> lst)
+        {
+            var repository = _unitOfWork.GetRepository<IncomeSource>();
+            foreach (var item in lst)
+                repository.HardDelete(item);
+            _unitOfWork.Commit();
+        }
+
         public IList<IncomeSource> GetAll()
         {
             var movieRepository = _unitOfWork.GetRepository<IncomeSource>();

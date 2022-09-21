@@ -7,13 +7,13 @@ namespace ExpenseTrackerWin
 {
     public partial class ViewExpense : Form
     {
-        public IServiceFactory ServiceFactory { get; }
+        public IServiceFactory _serviceFactory { get; }
 
         public List<SortBy> lstSortBy = new SortBy().GetList();
         public ViewExpense(IServiceFactory serviceFactory)
         {
             InitializeComponent();
-            ServiceFactory = serviceFactory;
+            _serviceFactory = serviceFactory;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -21,9 +21,8 @@ namespace ExpenseTrackerWin
             try
             {
                 lblError.Text = string.Empty;
-
-                IEnumerable<DtoExpense> dbList = GetSearchData();
-                dgvFilter.DataSource = dbList.ToList().GenereateSrNo();
+                IEnumerable<DtoExpense> dbList = GetSearchData().ToList().GenereateSrNo();
+                dgvFilter.DataSource = dbList;
                 dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             }
@@ -46,7 +45,7 @@ namespace ExpenseTrackerWin
             string expenseType = cmbExpensesType.Text == "Please select" ? string.Empty : cmbExpensesType.Text;
             string comment = txtComment.Text;
 
-            var dbList = ServiceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            var dbList = _serviceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
             {
                 CategoryName = s.Category.CategoryName,
                 Date = s.Date,
@@ -79,14 +78,12 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                List<DtoExpense> dbList = LoadGrid();
-                dgvFilter.DataSource = dbList.GenereateSrNo();
+                List<DtoExpense> dbList = LoadGrid().GenereateSrNo();
+                dgvFilter.DataSource = dbList;
                 dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-
                 dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
-
                 SetTotalAmount(dbList);
                 LoadCombobox();
             }
@@ -102,8 +99,9 @@ namespace ExpenseTrackerWin
 
         private List<DtoExpense> LoadGrid()
         {
-            List<DtoExpense> dbList = ServiceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            List<DtoExpense> dbList = _serviceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
             {
+                Pk = s.Id,
                 CategoryName = s.Category.CategoryName,
                 Date = s.Date,
                 Amount = s.Amount,
@@ -169,7 +167,7 @@ namespace ExpenseTrackerWin
                 {
                     result = dbList.Where(x => x.Date >= startDate && x.Date <= endDate);
                 }
-                var dbIncomes = ServiceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
+                var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
                 foreach (var item in dbIncomes)
                 {
                     txtTotalIncome.AppendText(item.Date.ToShortDateString() + ": " + item.Name + " : " + item.Amount);
@@ -199,7 +197,7 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var data = ServiceFactory.CategoryServices.GetAll();
+                var data = _serviceFactory.CategoryServices.GetAll();
                 data.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
                 cmbCategory.DisplayMember = "CategoryName";
                 cmbCategory.ValueMember = "Id";
@@ -286,7 +284,7 @@ namespace ExpenseTrackerWin
 
         private void btnForm1_Click(object sender, EventArgs e)
         {
-            HomePage Check = new HomePage(ServiceFactory);
+            HomePage Check = new HomePage(_serviceFactory);
             Check.Show();
             Hide();
         }
@@ -335,6 +333,19 @@ namespace ExpenseTrackerWin
         private void dgvFilter_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            List<Expense> lst = new List<Expense>();
+            foreach (DataGridViewRow row in dgvFilter.SelectedRows)
+            {
+                int id = Convert.ToInt32(row.Cells[6].Value);
+                //dgvFilter.Rows.Remove(row);
+                lst.Add(new Expense() { Id = id });
+            }
+            _serviceFactory.ExpenseServices.Delete(lst);
+            LoadGrid();
         }
     }
 }

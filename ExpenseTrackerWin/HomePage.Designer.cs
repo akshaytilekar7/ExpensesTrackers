@@ -36,7 +36,7 @@
             // btnAddExpensed
             // 
             this.btnAddExpensed.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddExpensed.Location = new System.Drawing.Point(390, 247);
+            this.btnAddExpensed.Location = new System.Drawing.Point(388, 258);
             this.btnAddExpensed.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddExpensed.Name = "btnAddExpensed";
             this.btnAddExpensed.Size = new System.Drawing.Size(218, 43);
@@ -49,7 +49,7 @@
             // 
             this.btnAddIncome.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAddIncome.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddIncome.Location = new System.Drawing.Point(390, 180);
+            this.btnAddIncome.Location = new System.Drawing.Point(388, 191);
             this.btnAddIncome.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddIncome.Name = "btnAddIncome";
             this.btnAddIncome.Size = new System.Drawing.Size(218, 43);
@@ -61,7 +61,7 @@
             // btnViewExpense
             // 
             this.btnViewExpense.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnViewExpense.Location = new System.Drawing.Point(390, 320);
+            this.btnViewExpense.Location = new System.Drawing.Point(388, 331);
             this.btnViewExpense.Margin = new System.Windows.Forms.Padding(2);
             this.btnViewExpense.Name = "btnViewExpense";
             this.btnViewExpense.Size = new System.Drawing.Size(218, 43);

@@ -15,10 +15,14 @@ namespace ExpenseTrackerWin
 
         private void AddIncome_Load(object sender, EventArgs e)
         {
+            LoadGrid();
+        }
+
+        private void LoadGrid()
+        {
             var lst = ServiceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList();
             dgvIncome.DataSource = lst;
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             IncomeSource income = new IncomeSource();
@@ -35,6 +39,19 @@ namespace ExpenseTrackerWin
             HomePage Check = new HomePage(ServiceFactory);
             Check.Show();
             Hide();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            List<IncomeSource> lst = new List<IncomeSource>();
+            foreach (DataGridViewRow row in dgvIncome.SelectedRows)
+            {
+                int id = Convert.ToInt32(row.Cells[0].Value);
+                dgvIncome.Rows.Remove(row);
+                lst.Add(new IncomeSource() { Id = id });
+            }
+            ServiceFactory.IncomeService.Delete(lst);
+            //LoadGrid();
         }
     }
 }

@@ -42,7 +42,7 @@ namespace PatternForCore.Core.Repositories.Base
         
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
-            return dbSet.Where(predicate);
+            return dbSet.AsNoTracking().Where(predicate);
         }
         
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string include)
@@ -52,7 +52,7 @@ namespace PatternForCore.Core.Repositories.Base
         
         public IQueryable<T> GetAll()
         {
-            return dbSet;
+            return dbSet.AsNoTracking();
         }
 
         public IQueryable<T> GetAll(int page, int pageCount)
@@ -64,7 +64,7 @@ namespace PatternForCore.Core.Repositories.Base
         
         public IQueryable<T> GetAll(string include)
         {
-            return dbSet.Include(include);
+            return dbSet.AsNoTracking().Include(include);
         }
 
         public IQueryable<T> RawSql(string query, params object[] parameters)
@@ -74,7 +74,7 @@ namespace PatternForCore.Core.Repositories.Base
         
         public IQueryable<T> GetAll(string include, string include2)
         {
-            return dbSet.Include(include).Include(include2);
+            return dbSet.AsNoTracking().Include(include).Include(include2);
         }
 
         public bool Exists(Expression<Func<T, bool>> predicate)

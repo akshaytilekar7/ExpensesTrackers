@@ -39,11 +39,12 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnHomePage = new System.Windows.Forms.Button();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
+            this.incomeSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnDelete = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.incomeSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomeSourceBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -122,9 +123,9 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(450, 489);
+            this.btnSave.Location = new System.Drawing.Point(350, 481);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(90, 55);
+            this.btnSave.Size = new System.Drawing.Size(90, 52);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -133,9 +134,9 @@
             // btnHomePage
             // 
             this.btnHomePage.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnHomePage.Location = new System.Drawing.Point(563, 489);
+            this.btnHomePage.Location = new System.Drawing.Point(654, 481);
             this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(181, 55);
+            this.btnHomePage.Size = new System.Drawing.Size(149, 52);
             this.btnHomePage.TabIndex = 14;
             this.btnHomePage.Text = "Home page";
             this.btnHomePage.UseVisualStyleBackColor = true;
@@ -160,11 +161,28 @@
             this.dgvIncome.Size = new System.Drawing.Size(452, 304);
             this.dgvIncome.TabIndex = 15;
             // 
+            // incomeSourceBindingSource
+            // 
+            this.incomeSourceBindingSource.DataSource = typeof(PatternForCore.Models.IncomeSource);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDelete.Location = new System.Drawing.Point(445, 481);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(204, 52);
+            this.btnDelete.TabIndex = 16;
+            this.btnDelete.Text = "Delete Selected";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // dateDataGridViewTextBoxColumn
             // 
@@ -184,16 +202,13 @@
             this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
             // 
-            // incomeSourceBindingSource
-            // 
-            this.incomeSourceBindingSource.DataSource = typeof(PatternForCore.Models.IncomeSource);
-            // 
             // AddIncome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1196, 614);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.dgvIncome);
             this.Controls.Add(this.btnHomePage);
             this.Controls.Add(this.btnSave);
@@ -228,6 +243,7 @@
         private Button btnHomePage;
         private DataGridView dgvIncome;
         private BindingSource incomeSourceBindingSource;
+        private Button btnDelete;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;

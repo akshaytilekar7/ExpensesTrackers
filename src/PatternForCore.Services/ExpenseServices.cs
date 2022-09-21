@@ -53,5 +53,13 @@ namespace PatternForCore.Services
             var movieRepository = _unitOfWork.GetRepository<Expense>();
             return movieRepository.GetAll("Category").OrderByDescending(x => x.Id).ToList();
         }
+
+        public void Delete(List<Expense> lst)
+        {
+            var repository = _unitOfWork.GetRepository<Expense>();
+            foreach (var item in lst)
+                repository.HardDelete(item);
+            _unitOfWork.Commit();
+        }
     }
 }

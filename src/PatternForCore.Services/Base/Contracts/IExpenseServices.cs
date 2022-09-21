@@ -8,5 +8,7 @@ namespace PatternForCore.Services.Base.Contracts
         bool Add(Expense expense);
         void Add(List<Expense> lst);
         IList<Expense> GetAll();
+        void Delete(List<Expense> lst);
+
     }
 }

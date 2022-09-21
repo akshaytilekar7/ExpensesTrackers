@@ -5,7 +5,8 @@ namespace PatternForCore.Models.Dto
 {
     public class DtoExpense
     {
-        public int Id { get; set; }
+        public int Pk { get; set; }
+        public int SrNo { get; set; }
         public DateTime Date { get; set; }
         public string CategoryName { get; set; }
         public string ExpenseType { get; set; }
@@ -19,7 +20,11 @@ namespace PatternForCore.Models.Dto
         {
             int index = 1;
             for (int i = 0; i < dtoExpenses.Count; i++)
-                dtoExpenses[i].Id = index++;
+
+            {
+                var x = index++;
+                dtoExpenses[i].SrNo = x;
+            }
 
             return dtoExpenses;
         }

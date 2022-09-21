@@ -7,5 +7,7 @@ namespace PatternForCore.Services.Base.Contracts
     {
         bool Add(IncomeSource movieItem);
         IList<IncomeSource> GetAll();
+        void Delete(List<IncomeSource> lst);
+
     }
 }
