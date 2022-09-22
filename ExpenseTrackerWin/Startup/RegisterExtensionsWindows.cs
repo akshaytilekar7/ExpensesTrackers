@@ -29,14 +29,14 @@ namespace ExpenseTrackerWin.Startup
 
         public static void AddInjections(this IServiceCollection services)
         {
-            services.AddScoped<IDatabaseContext, DatabaseContext>();
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped(typeof(IExpenseServices), typeof(ExpenseServices));
-            services.AddScoped(typeof(ICategoryServices), typeof(CategoryServices));
-            services.AddScoped(typeof(IExcelService), typeof(ExcelService));
-            services.AddScoped(typeof(IServiceFactory), typeof(ServiceFactory));
-            services.AddScoped<IContextFactory, ContextFactory>();
+            services.AddTransient<IDatabaseContext, DatabaseContext>();
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient(typeof(IExpenseServices), typeof(ExpenseServices));
+            services.AddTransient(typeof(ICategoryServices), typeof(CategoryServices));
+            services.AddTransient(typeof(IExcelService), typeof(ExcelService));
+            services.AddTransient(typeof(IServiceFactory), typeof(ServiceFactory));
+            services.AddTransient<IContextFactory, ContextFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
