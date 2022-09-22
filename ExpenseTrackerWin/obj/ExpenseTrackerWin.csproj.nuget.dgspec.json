@@ -122,18 +122,6 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "dependencies": {
-            "Excel": {
-              "target": "Package",
-              "version": "[1.0.0, )"
-            },
-            "ExcelDataReader": {
-              "target": "Package",
-              "version": "[2.1.0, )"
-            },
-            "IronXL.Excel": {
-              "target": "Package",
-              "version": "[2022.9.8711, )"
-            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
