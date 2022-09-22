@@ -159,6 +159,10 @@ namespace ExpenseTrackerWin
                     DataGridViewTextBoxCell cAmount = new DataGridViewTextBoxCell();
                     cAmount.Value = item.Amount;
 
+                    if (item.Amount == 196)
+                    {
+                        int x = 10;
+                    }
                     DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
                     var excelWhatsAppExpense = lstWhatsAppData.FirstOrDefault(x => x.Date.Day == item.Date.Day && x.Amount == item.Amount);
 
@@ -176,6 +180,28 @@ namespace ExpenseTrackerWin
                         var dbCategory = dbCategories.FirstOrDefault(x => x.CategoryName.ToLower().Contains(comment.ToLower()));
                         if (dbCategory != null)
                             cCategory.Value = dbCategory.Id;
+                        else
+                        {
+                            foreach (var catLst in CategoryTags.GetTags())
+                            {
+                                foreach (var tg in catLst.Tags)
+                                {
+                                    var arr = comment.Split(" ");
+                                    foreach (var itemarr in arr)
+                                    {
+                                        if (itemarr != " " && tg.Contains(itemarr))
+                                        {
+                                            var dbCategory1 = dbCategories.FirstOrDefault(x => x.CategoryName.ToLower().Contains(catLst.CategoryName.ToLower()));
+                                            if (dbCategory1 != null)
+                                            {
+                                                cCategory.Value = dbCategory1.Id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     row.Cells.Add(cDay);
