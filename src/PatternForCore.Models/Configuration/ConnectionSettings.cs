@@ -1,7 +1,7 @@
 ﻿namespace PatternForCore.Models.Configuration
 {
-    public class ConnectionSettings
+    public static class ConnectionSettings
     {
-        public string DefaultConnection = "Server=localhost;Database=ExpenseTracker;Trusted_Connection=True;";
+        public static string DefaultConnection = "Server=localhost;Database=ExpenseTracker;Trusted_Connection=True;";
     }
 }

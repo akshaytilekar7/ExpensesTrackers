@@ -12,11 +12,9 @@ namespace PatternForCore.Core.Factory
     /// </summary>
     public class ContextFactory : IContextFactory
     {
-        private readonly IOptions<ConnectionSettings> _connectionOptions;
 
-        public ContextFactory(IOptions<ConnectionSettings> connectionOptions)
+        public ContextFactory()
         {
-            _connectionOptions = connectionOptions;
         }
 
         public IDatabaseContext DbContext => new DatabaseContext(GetDataContext().Options);
@@ -25,7 +23,7 @@ namespace PatternForCore.Core.Factory
         {
             ValidateDefaultConnection();
 
-            var sqlConnectionBuilder = new SqlConnectionStringBuilder(_connectionOptions.Value.DefaultConnection);
+            var sqlConnectionBuilder = new SqlConnectionStringBuilder(ConnectionSettings.DefaultConnection);
 
             var contextOptionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
 
@@ -36,9 +34,9 @@ namespace PatternForCore.Core.Factory
 
         private void ValidateDefaultConnection()
         {
-            if (string.IsNullOrEmpty(_connectionOptions.Value.DefaultConnection))
+            if (string.IsNullOrEmpty(ConnectionSettings.DefaultConnection))
             {
-                throw new ArgumentNullException(nameof(_connectionOptions.Value.DefaultConnection));
+                throw new ArgumentNullException(nameof(ConnectionSettings.DefaultConnection));
             }
         }
     }

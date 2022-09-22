@@ -19,7 +19,7 @@ namespace ExpenseTrackerWin.Startup
     {
         public static void AddDbContexts(this IServiceCollection services, IConfiguration configuration)
         {
-            var contextConnectionString = configuration.GetConnectionString("DefaultConnection");
+            var contextConnectionString = ConnectionSettings.DefaultConnection;
             services.AddDbContextPool<DatabaseContext>(x => x.UseSqlServer(contextConnectionString, o =>
             {
                 o.EnableRetryOnFailure(3);
