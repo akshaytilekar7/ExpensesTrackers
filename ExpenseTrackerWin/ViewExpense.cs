@@ -47,6 +47,7 @@ namespace ExpenseTrackerWin
 
             var dbList = _serviceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
             {
+                Id = s.Id,
                 CategoryName = s.Category.CategoryName,
                 Date = s.Date,
                 Amount = s.Amount,
@@ -67,7 +68,9 @@ namespace ExpenseTrackerWin
             if (!string.IsNullOrEmpty(comment))
                 dbList = dbList.Where(x => x.Comment.ToLower().Contains(comment.ToLower()));
 
-            SetTotalAmount(dbList.OrderBy(x => x.ExpenseType).ToList());
+            var res = dbList.OrderBy(x => x.ExpenseType).ToList().GenereateSrNo();
+
+            SetTotalAmount(res);
 
             if (!dbList.Any())
                 lblError.Text = "No Data Fount";
@@ -78,13 +81,6 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                List<DtoExpense> dbList = LoadGrid().GenereateSrNo();
-                dgvFilter.DataSource = dbList;
-                dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-                dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
-                SetTotalAmount(dbList);
                 LoadCombobox();
             }
             catch (Exception ex)
@@ -99,15 +95,23 @@ namespace ExpenseTrackerWin
 
         private List<DtoExpense> LoadGrid()
         {
-            List<DtoExpense> dbList = _serviceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            List<DtoExpense> dbList1 = _serviceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
             {
-                Pk = s.Id,
+                Id = s.Id,
                 CategoryName = s.Category.CategoryName,
                 Date = s.Date,
                 Amount = s.Amount,
                 ExpenseType = s.Category.ExpensesType,
                 Comment = s.Comment
             }).OrderBy(x => x.Date).ToList();
+
+            List<DtoExpense> dbList = dbList1.GenereateSrNo();
+            dgvFilter.DataSource = dbList;
+            dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+            SetTotalAmount(dbList);
             return dbList;
         }
 
@@ -340,7 +344,7 @@ namespace ExpenseTrackerWin
             List<Expense> lst = new List<Expense>();
             foreach (DataGridViewRow row in dgvFilter.SelectedRows)
             {
-                int id = Convert.ToInt32(row.Cells[6].Value);
+                int id = Convert.ToInt32(row.Cells["Id"].Value);
                 //dgvFilter.Rows.Remove(row);
                 lst.Add(new Expense() { Id = id });
             }

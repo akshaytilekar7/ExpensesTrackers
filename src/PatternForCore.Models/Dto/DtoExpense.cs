@@ -5,7 +5,7 @@ namespace PatternForCore.Models.Dto
 {
     public class DtoExpense
     {
-        public int Pk { get; set; }
+        public int Id { get; set; }
         public int SrNo { get; set; }
         public DateTime Date { get; set; }
         public string CategoryName { get; set; }

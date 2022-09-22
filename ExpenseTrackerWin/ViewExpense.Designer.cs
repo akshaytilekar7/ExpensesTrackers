@@ -43,7 +43,6 @@
             this.lblComment = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.dgvFilter = new System.Windows.Forms.DataGridView();
             this.expenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblError = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -56,15 +55,18 @@
             this.lblIncome = new System.Windows.Forms.Label();
             this.txtTotalIncome = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.dgvFilter = new System.Windows.Forms.DataGridView();
+            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDate
@@ -185,27 +187,6 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // dgvFilter
-            // 
-            this.dgvFilter.AutoGenerateColumns = false;
-            this.dgvFilter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFilter.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SrNo,
-            this.Date,
-            this.CategoryName,
-            this.ExpenseType,
-            this.Amount,
-            this.Comment,
-            this.Pk});
-            this.dgvFilter.DataSource = this.expenseBindingSource;
-            this.dgvFilter.Location = new System.Drawing.Point(31, 277);
-            this.dgvFilter.Name = "dgvFilter";
-            this.dgvFilter.RowHeadersWidth = 62;
-            this.dgvFilter.RowTemplate.Height = 25;
-            this.dgvFilter.Size = new System.Drawing.Size(705, 325);
-            this.dgvFilter.TabIndex = 14;
-            this.dgvFilter.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellContentClick);
-            // 
             // expenseBindingSource
             // 
             this.expenseBindingSource.DataSource = typeof(PatternForCore.Models.Expense);
@@ -325,61 +306,70 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // dgvFilter
+            // 
+            this.dgvFilter.AutoGenerateColumns = false;
+            this.dgvFilter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFilter.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.SrNo,
+            this.Date,
+            this.CategoryName,
+            this.ExpenseType,
+            this.Amount,
+            this.Comment});
+            this.dgvFilter.DataSource = this.dtoExpenseBindingSource;
+            this.dgvFilter.Location = new System.Drawing.Point(28, 293);
+            this.dgvFilter.Name = "dgvFilter";
+            this.dgvFilter.RowTemplate.Height = 25;
+            this.dgvFilter.Size = new System.Drawing.Size(708, 299);
+            this.dgvFilter.TabIndex = 26;
+            // 
+            // dtoExpenseBindingSource
+            // 
+            this.dtoExpenseBindingSource.DataSource = typeof(PatternForCore.Models.Dto.DtoExpense);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
             // SrNo
             // 
             this.SrNo.DataPropertyName = "SrNo";
             this.SrNo.HeaderText = "SrNo";
-            this.SrNo.MinimumWidth = 8;
             this.SrNo.Name = "SrNo";
-            this.SrNo.ReadOnly = true;
-            this.SrNo.Width = 150;
             // 
             // Date
             // 
             this.Date.DataPropertyName = "Date";
             this.Date.HeaderText = "Date";
-            this.Date.MinimumWidth = 8;
             this.Date.Name = "Date";
-            this.Date.Width = 150;
             // 
             // CategoryName
             // 
             this.CategoryName.DataPropertyName = "CategoryName";
             this.CategoryName.HeaderText = "CategoryName";
-            this.CategoryName.MinimumWidth = 8;
             this.CategoryName.Name = "CategoryName";
-            this.CategoryName.Width = 150;
             // 
             // ExpenseType
             // 
             this.ExpenseType.DataPropertyName = "ExpenseType";
             this.ExpenseType.HeaderText = "ExpenseType";
-            this.ExpenseType.MinimumWidth = 8;
             this.ExpenseType.Name = "ExpenseType";
-            this.ExpenseType.Width = 150;
             // 
             // Amount
             // 
             this.Amount.DataPropertyName = "Amount";
             this.Amount.HeaderText = "Amount";
-            this.Amount.MinimumWidth = 8;
             this.Amount.Name = "Amount";
-            this.Amount.Width = 150;
             // 
             // Comment
             // 
             this.Comment.DataPropertyName = "Comment";
             this.Comment.HeaderText = "Comment";
-            this.Comment.MinimumWidth = 8;
             this.Comment.Name = "Comment";
-            this.Comment.Width = 150;
-            // 
-            // Pk
-            // 
-            this.Pk.DataPropertyName = "Pk";
-            this.Pk.HeaderText = "Pk";
-            this.Pk.Name = "Pk";
-            this.Pk.ReadOnly = true;
             // 
             // ViewExpense
             // 
@@ -388,6 +378,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1148, 630);
+            this.Controls.Add(this.dgvFilter);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblIncome);
             this.Controls.Add(this.txtTotalIncome);
@@ -399,7 +390,6 @@
             this.Controls.Add(this.txtTotalAmount);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblError);
-            this.Controls.Add(this.dgvFilter);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtComment);
@@ -417,8 +407,9 @@
             this.Name = "ViewExpense";
             this.Text = "View Expense";
             this.Load += new System.EventHandler(this.FilterData_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,14 +431,10 @@
         private Label lblComment;
         private Button btnSearch;
         private Button btnClear;
-        private DataGridView dgvFilter;
-        private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private BindingSource expenseBindingSource;
         private DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
         private Label lblError;
         private DataGridViewTextBoxColumn Category;
-        private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
         private Label lblTotal;
         private TextBox txtTotalAmount;
         private Button btnExcel;
@@ -458,12 +445,14 @@
         private Label lblIncome;
         private TextBox txtTotalIncome;
         private Button btnDelete;
+        private DataGridView dgvFilter;
+        private BindingSource dtoExpenseBindingSource;
+        private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn SrNo;
         private DataGridViewTextBoxColumn Date;
         private DataGridViewTextBoxColumn CategoryName;
         private DataGridViewTextBoxColumn ExpenseType;
         private DataGridViewTextBoxColumn Amount;
         private DataGridViewTextBoxColumn Comment;
-        private DataGridViewTextBoxColumn Pk;
     }
 }
