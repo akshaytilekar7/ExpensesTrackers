@@ -22,7 +22,7 @@ namespace ExpenseTrackerWin
             try
             {
                 lblError.Text = string.Empty;
-                IEnumerable<DtoExpense> dbList = GetSearchData().ToList().GenereateSrNo();
+                IEnumerable<DtoExpense> dbList = GetSearchData().ToList();
                 dgvFilter.DataSource = dbList;
                 dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
@@ -198,6 +198,7 @@ namespace ExpenseTrackerWin
             return income;
 
         }
+
         private void LoadCombobox()
         {
             try
@@ -213,7 +214,6 @@ namespace ExpenseTrackerWin
                 cmbExpensesType.DisplayMember = "ExpensesType";
                 cmbExpensesType.ValueMember = "Id";
                 cmbExpensesType.DataSource = data2;
-
 
                 cmbSort.DisplayMember = "Name";
                 cmbSort.ValueMember = "Id";
@@ -233,10 +233,6 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                //SaveFileDialog savefile = new SaveFileDialog();
-                //savefile.FileName = "Response.xls";
-                //savefile.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
-
                 string workingDirectory = Environment.CurrentDirectory;
                 string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
                 projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
@@ -335,18 +331,12 @@ namespace ExpenseTrackerWin
 
         }
 
-        private void dgvFilter_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             List<Expense> lst = new List<Expense>();
             foreach (DataGridViewRow row in dgvFilter.SelectedRows)
             {
                 int id = Convert.ToInt32(row.Cells["Id"].Value);
-                //dgvFilter.Rows.Remove(row);
                 lst.Add(new Expense() { Id = id });
             }
             _serviceFactory.ExpenseServices.Delete(lst);

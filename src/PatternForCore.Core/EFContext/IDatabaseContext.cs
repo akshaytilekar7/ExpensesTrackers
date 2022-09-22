@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace PatternForCore.Core.EFContext
 
         /// <returns>number of state entries interacted with database</returns>
         int SaveChanges(bool confirmAllTransactions);
+        EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         void Dispose();
     }
 }

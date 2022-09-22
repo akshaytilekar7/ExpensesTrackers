@@ -27,29 +27,35 @@ namespace PatternForCore.Core.Repositories.Base
 
         public T Get<TKey>(TKey id)
         {
-            return dbSet.Find(id);
+            var entity = dbSet.Find(id);
+            _context.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
 
         public async Task<T> GetAsync<TKey>(TKey id)
         {
-            return await dbSet.FindAsync(id);
+            var entity = await dbSet.FindAsync(id);
+            _context.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
 
         public T Get(params object[] keyValues)
         {
-            return dbSet.Find(keyValues);
+            var entity = dbSet.Find(keyValues);
+            _context.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
-        
+
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
             return dbSet.AsNoTracking().Where(predicate);
         }
-        
+
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string include)
         {
             return FindBy(predicate).Include(include);
         }
-        
+
         public IQueryable<T> GetAll()
         {
             return dbSet.AsNoTracking();
@@ -61,7 +67,7 @@ namespace PatternForCore.Core.Repositories.Base
 
             return dbSet.Skip(pageSize).Take(pageCount);
         }
-        
+
         public IQueryable<T> GetAll(string include)
         {
             return dbSet.AsNoTracking().Include(include);
@@ -71,7 +77,7 @@ namespace PatternForCore.Core.Repositories.Base
         {
             return dbSet.FromSqlRaw(query, parameters);
         }
-        
+
         public IQueryable<T> GetAll(string include, string include2)
         {
             return dbSet.AsNoTracking().Include(include).Include(include2);

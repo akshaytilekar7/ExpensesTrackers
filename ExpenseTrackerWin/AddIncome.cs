@@ -51,7 +51,6 @@ namespace ExpenseTrackerWin
                 lst.Add(new IncomeSource() { Id = id });
             }
             ServiceFactory.IncomeService.Delete(lst);
-            //LoadGrid();
         }
     }
 }
