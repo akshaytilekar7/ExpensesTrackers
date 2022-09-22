@@ -31,6 +31,7 @@ namespace ExpenseTrackerWin
             return Host.CreateDefaultBuilder().ConfigureServices((context, services) => {
                 services.AddDbContexts(Configuration);
                 services.AddInjections();
+                services.AddIdentity();
                 services.AddTransient<HomePage>();
                 });
         }
