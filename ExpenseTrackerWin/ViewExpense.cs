@@ -14,6 +14,7 @@ namespace ExpenseTrackerWin
         {
             InitializeComponent();
             _serviceFactory = serviceFactory;
+            LoadGrid();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -95,7 +96,7 @@ namespace ExpenseTrackerWin
 
         private List<DtoExpense> LoadGrid()
         {
-            List<DtoExpense> dbList1 = _serviceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
+            List<DtoExpense> dbList = _serviceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
             {
                 Id = s.Id,
                 CategoryName = s.Category.CategoryName,
@@ -105,7 +106,7 @@ namespace ExpenseTrackerWin
                 Comment = s.Comment
             }).OrderBy(x => x.Date).ToList();
 
-            List<DtoExpense> dbList = dbList1.GenereateSrNo();
+            dbList = dbList.GenereateSrNo();
             dgvFilter.DataSource = dbList;
             dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
