@@ -56,7 +56,6 @@
             this.txtTotalIncome = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
-            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +63,7 @@
             this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
@@ -169,9 +169,10 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(88, 185);
+            this.btnSearch.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSearch.Location = new System.Drawing.Point(31, 185);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(87, 46);
+            this.btnSearch.Size = new System.Drawing.Size(101, 48);
             this.btnSearch.TabIndex = 12;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -179,9 +180,10 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(194, 186);
+            this.btnClear.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnClear.Location = new System.Drawing.Point(143, 185);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(74, 46);
+            this.btnClear.Size = new System.Drawing.Size(88, 48);
             this.btnClear.TabIndex = 13;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -221,10 +223,11 @@
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(286, 186);
+            this.btnExcel.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnExcel.Location = new System.Drawing.Point(236, 185);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(118, 46);
+            this.btnExcel.Size = new System.Drawing.Size(183, 48);
             this.btnExcel.TabIndex = 18;
             this.btnExcel.Text = "Export to Excel";
             this.btnExcel.UseVisualStyleBackColor = true;
@@ -232,10 +235,11 @@
             // 
             // btnForm1
             // 
-            this.btnForm1.Location = new System.Drawing.Point(423, 187);
+            this.btnForm1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnForm1.Location = new System.Drawing.Point(425, 185);
             this.btnForm1.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm1.Name = "btnForm1";
-            this.btnForm1.Size = new System.Drawing.Size(102, 44);
+            this.btnForm1.Size = new System.Drawing.Size(102, 48);
             this.btnForm1.TabIndex = 19;
             this.btnForm1.Text = "Home Page";
             this.btnForm1.UseVisualStyleBackColor = true;
@@ -254,7 +258,7 @@
             // lblSort
             // 
             this.lblSort.AutoSize = true;
-            this.lblSort.Location = new System.Drawing.Point(559, 247);
+            this.lblSort.Location = new System.Drawing.Point(559, 267);
             this.lblSort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSort.Name = "lblSort";
             this.lblSort.Size = new System.Drawing.Size(44, 15);
@@ -264,7 +268,7 @@
             // cmbSort
             // 
             this.cmbSort.FormattingEnabled = true;
-            this.cmbSort.Location = new System.Drawing.Point(607, 244);
+            this.cmbSort.Location = new System.Drawing.Point(607, 264);
             this.cmbSort.Margin = new System.Windows.Forms.Padding(2);
             this.cmbSort.Name = "cmbSort";
             this.cmbSort.Size = new System.Drawing.Size(129, 23);
@@ -297,10 +301,10 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(532, 186);
+            this.btnDelete.Location = new System.Drawing.Point(531, 185);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(192, 45);
+            this.btnDelete.Size = new System.Drawing.Size(204, 48);
             this.btnDelete.TabIndex = 25;
             this.btnDelete.Text = "Delete Selected";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -324,10 +328,6 @@
             this.dgvFilter.RowTemplate.Height = 25;
             this.dgvFilter.Size = new System.Drawing.Size(708, 299);
             this.dgvFilter.TabIndex = 26;
-            // 
-            // dtoExpenseBindingSource
-            // 
-            this.dtoExpenseBindingSource.DataSource = typeof(PatternForCore.Models.Dto.DtoExpense);
             // 
             // Id
             // 
@@ -370,6 +370,10 @@
             this.Comment.DataPropertyName = "Comment";
             this.Comment.HeaderText = "Comment";
             this.Comment.Name = "Comment";
+            // 
+            // dtoExpenseBindingSource
+            // 
+            this.dtoExpenseBindingSource.DataSource = typeof(PatternForCore.Models.Dto.DtoExpense);
             // 
             // ViewExpense
             // 
