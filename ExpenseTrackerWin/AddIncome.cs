@@ -48,10 +48,10 @@ namespace ExpenseTrackerWin
             foreach (DataGridViewRow row in dgvIncome.SelectedRows)
             {
                 int id = Convert.ToInt32(row.Cells[0].Value);
-                dgvIncome.Rows.Remove(row);
                 lst.Add(new IncomeSource() { Id = id });
             }
             ServiceFactory.IncomeService.Delete(lst);
+            LoadGrid();
         }
     }
 }

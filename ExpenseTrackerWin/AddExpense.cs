@@ -159,10 +159,6 @@ namespace ExpenseTrackerWin
                     DataGridViewTextBoxCell cAmount = new DataGridViewTextBoxCell();
                     cAmount.Value = item.Amount;
 
-                    if (item.Amount == 196)
-                    {
-                        int x = 10;
-                    }
                     DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
                     var excelWhatsAppExpense = lstWhatsAppData.FirstOrDefault(x => x.Date.Day == item.Date.Day && x.Amount == item.Amount);
 
