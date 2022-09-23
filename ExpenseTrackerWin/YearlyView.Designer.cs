@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.datePickerYearly = new System.Windows.Forms.DateTimePicker();
             this.dgvYealy = new System.Windows.Forms.DataGridView();
             this.btnHome = new System.Windows.Forms.Button();
@@ -47,13 +48,26 @@
             // dgvYealy
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.MenuBar;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvYealy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvYealy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvYealy.Location = new System.Drawing.Point(28, 56);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvYealy.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvYealy.Location = new System.Drawing.Point(9, 56);
             this.dgvYealy.Name = "dgvYealy";
+            this.dgvYealy.RowHeadersWidth = 62;
             this.dgvYealy.RowTemplate.Height = 25;
-            this.dgvYealy.Size = new System.Drawing.Size(1418, 936);
+            this.dgvYealy.Size = new System.Drawing.Size(1418, 932);
             this.dgvYealy.TabIndex = 1;
             this.dgvYealy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -81,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1480, 1004);
+            this.ClientSize = new System.Drawing.Size(1347, 709);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.dgvYealy);

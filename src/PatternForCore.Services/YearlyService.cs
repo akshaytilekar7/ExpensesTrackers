@@ -50,6 +50,23 @@ namespace PatternForCore.Services
                 dtoYealries.Add(dtoYealry);
             }
 
+            var dto = new DtoYealry();
+            dto.Category = "Z Total";
+            dto.Jan = lstExpenses.Where(ec => ec.Date.Date.Month == 1).ToList().Sum(x => x.Amount);
+            dto.Feb = lstExpenses.Where(ec => ec.Date.Date.Month == 2).ToList().Sum(x => x.Amount);
+            dto.March = lstExpenses.Where(ec => ec.Date.Date.Month == 3).ToList().Sum(x => x.Amount);
+            dto.April = lstExpenses.Where(ec => ec.Date.Date.Month == 4).ToList().Sum(x => x.Amount);
+            dto.May = lstExpenses.Where(ec => ec.Date.Date.Month == 5).ToList().Sum(x => x.Amount);
+            dto.June = lstExpenses.Where(ec => ec.Date.Date.Month == 6).ToList().Sum(x => x.Amount);
+            dto.July = lstExpenses.Where(ec => ec.Date.Date.Month == 7).ToList().Sum(x => x.Amount);
+            dto.August = lstExpenses.Where(ec => ec.Date.Date.Month == 8).ToList().Sum(x => x.Amount);
+            dto.September = lstExpenses.Where(ec => ec.Date.Date.Month == 9).ToList().Sum(x => x.Amount);
+            dto.October = lstExpenses.Where(ec => ec.Date.Date.Month == 10).ToList().Sum(x => x.Amount);
+            dto.November = lstExpenses.Where(ec => ec.Date.Date.Month == 11).ToList().Sum(x => x.Amount);
+            dto.December = lstExpenses.Where(ec => ec.Date.Date.Month == 12).ToList().Sum(x => x.Amount);
+            dto.CatogoryTotal = lstExpenses.Sum(s => s.Amount);
+            dtoYealries.Add(dto);
+
             totalYealyIncome = lstIncomeSource.Sum(s => s.Amount);
             total = lstExpenses.Sum(x => x.Amount);
             return dtoYealries.OrderBy(x => x.Category).ToList();
