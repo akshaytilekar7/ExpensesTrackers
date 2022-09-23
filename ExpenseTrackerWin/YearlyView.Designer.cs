@@ -63,17 +63,17 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvYealy.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvYealy.Location = new System.Drawing.Point(9, 56);
+            this.dgvYealy.Location = new System.Drawing.Point(28, 56);
             this.dgvYealy.Name = "dgvYealy";
             this.dgvYealy.RowHeadersWidth = 62;
             this.dgvYealy.RowTemplate.Height = 25;
-            this.dgvYealy.Size = new System.Drawing.Size(1418, 932);
+            this.dgvYealy.Size = new System.Drawing.Size(1437, 932);
             this.dgvYealy.TabIndex = 1;
             this.dgvYealy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnHome
             // 
-            this.btnHome.Location = new System.Drawing.Point(1371, 27);
+            this.btnHome.Location = new System.Drawing.Point(1390, 27);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(75, 23);
             this.btnHome.TabIndex = 2;
@@ -85,7 +85,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotal.Location = new System.Drawing.Point(269, 27);
+            this.lblTotal.Location = new System.Drawing.Point(269, 23);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(65, 26);
             this.lblTotal.TabIndex = 3;
@@ -95,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1347, 709);
+            this.ClientSize = new System.Drawing.Size(1524, 1015);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.dgvYealy);
