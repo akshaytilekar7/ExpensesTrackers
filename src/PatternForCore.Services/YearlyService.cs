@@ -17,7 +17,7 @@ namespace PatternForCore.Services
             _unitOfWork = unitOfWork;
         }
 
-        public List<DtoYealry> GetYearlyData(int year, out int total)
+        public List<DtoYealry> GetYearlyData(int year, out int total, out int totalYealyIncome)
         {
             var repoExpense = _unitOfWork.GetRepository<Expense>();
             var lstExpenses = repoExpense.GetAll("Category").Where(x => x.Date.Year == year).ToList();
@@ -25,6 +25,9 @@ namespace PatternForCore.Services
             List<DtoYealry> dtoYealries = new List<DtoYealry>();
             var repoCategory = _unitOfWork.GetRepository<Category>();
             var lstCategory = repoCategory.GetAll();
+
+            var repoIncomeSource = _unitOfWork.GetRepository<IncomeSource>();
+            var lstIncomeSource = repoIncomeSource.GetAll().Where(x => x.Date.Year == year).ToList();
 
             foreach (var itemCategory in lstCategory)
             {
@@ -46,8 +49,9 @@ namespace PatternForCore.Services
                 dtoYealry.CatogoryTotal = lstExpensesByCategory.Sum(s => s.Amount);
                 dtoYealries.Add(dtoYealry);
             }
-            
-            total = lstExpenses.Sum(x => x.Amount); 
+
+            totalYealyIncome = lstIncomeSource.Sum(s => s.Amount);
+            total = lstExpenses.Sum(x => x.Amount);
             return dtoYealries.OrderBy(x => x.Category).ToList();
         }
     }

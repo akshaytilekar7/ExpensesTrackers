@@ -33,12 +33,12 @@ namespace ExpenseTrackerWin
 
         private void LoadGird()
         {
-            var lstDtoYealry = _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text), out int totalSum);
+            var lstDtoYealry = _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text), out int totalSum, out int totalYealyIncome);
             SortableBindingList<DtoYealry> sortableBindingList = new(lstDtoYealry);
             dgvYealy.DataSource = sortableBindingList;
             dgvYealy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvYealy.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            lblTotal.Text = "Year " + datePickerYearly.Text + " Total Expense:" + totalSum;
+            lblTotal.Text = "Year " + datePickerYearly.Text + " Total Income: " + totalYealyIncome + " Total Expense:" + totalSum;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

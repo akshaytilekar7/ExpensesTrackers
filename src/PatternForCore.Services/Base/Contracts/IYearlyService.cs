@@ -5,6 +5,6 @@ namespace PatternForCore.Services.Base.Contracts
 {
     public interface IYearlyService
     {
-        List<DtoYealry> GetYearlyData(int year, out int total);
+        List<DtoYealry> GetYearlyData(int year, out int total, out int totalYealyIncome);
     }
 }

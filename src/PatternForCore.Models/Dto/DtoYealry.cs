@@ -16,6 +16,7 @@
         public int November { get; set; }
         public int December { get; set; }
         public int CatogoryTotal { get; set; }
+
     }
 
 }
