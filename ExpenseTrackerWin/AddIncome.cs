@@ -32,6 +32,7 @@ namespace ExpenseTrackerWin
             ServiceFactory.IncomeService.Add(income);
             string message = "Save Data Sucessfully";
             MessageBox.Show(message);
+            LoadGrid();
         }
 
         private void btnHomePage_Click(object sender, EventArgs e)

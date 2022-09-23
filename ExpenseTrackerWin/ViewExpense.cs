@@ -1,4 +1,5 @@
-﻿using PatternForCore.Models;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using PatternForCore.Models;
 using PatternForCore.Models.Dto;
 using PatternForCore.Services.Factory;
 using System.Data;
@@ -22,8 +23,8 @@ namespace ExpenseTrackerWin
             try
             {
                 lblError.Text = string.Empty;
-                IEnumerable<DtoExpense> dbList = GetSearchData().ToList();
-                dgvFilter.DataSource = dbList;
+                SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(GetSearchData().ToList());
+                dgvFilter.DataSource = sortableBindingList;
                 dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             }
@@ -69,13 +70,13 @@ namespace ExpenseTrackerWin
             if (!string.IsNullOrEmpty(comment))
                 dbList = dbList.Where(x => x.Comment.ToLower().Contains(comment.ToLower()));
 
-            var res = dbList.OrderBy(x => x.ExpenseType).ToList().GenereateSrNo();
+            var res = dbList.OrderBy(x => x.Date).ToList().GenereateSrNo();
 
             SetTotalAmount(res);
 
             if (!dbList.Any())
                 lblError.Text = "No Data Fount";
-            return dbList;
+            return res;
         }
 
         private void FilterData_Load(object sender, EventArgs e)
@@ -107,7 +108,8 @@ namespace ExpenseTrackerWin
             }).OrderBy(x => x.Date).ToList();
 
             dbList = dbList.GenereateSrNo();
-            dgvFilter.DataSource = dbList;
+            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(dbList);
+            dgvFilter.DataSource = sortableBindingList;
             dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
@@ -316,7 +318,8 @@ namespace ExpenseTrackerWin
                     break;
             }
 
-            dgvFilter.DataSource = res.ToList().GenereateSrNo();
+            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res.ToList().GenereateSrNo());
+            dgvFilter.DataSource = sortableBindingList;
             dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
         }

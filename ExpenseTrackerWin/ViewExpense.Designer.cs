@@ -205,7 +205,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotal.Location = new System.Drawing.Point(786, 304);
+            this.lblTotal.Location = new System.Drawing.Point(770, 550);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(175, 33);
             this.lblTotal.TabIndex = 16;
@@ -213,7 +213,7 @@
             // 
             // txtTotalAmount
             // 
-            this.txtTotalAmount.Location = new System.Drawing.Point(786, 340);
+            this.txtTotalAmount.Location = new System.Drawing.Point(770, 586);
             this.txtTotalAmount.Multiline = true;
             this.txtTotalAmount.Name = "txtTotalAmount";
             this.txtTotalAmount.ReadOnly = true;
@@ -279,7 +279,7 @@
             // 
             this.lblIncome.AutoSize = true;
             this.lblIncome.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(786, 7);
+            this.lblIncome.Location = new System.Drawing.Point(770, 253);
             this.lblIncome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIncome.Name = "lblIncome";
             this.lblIncome.Size = new System.Drawing.Size(168, 37);
@@ -289,7 +289,7 @@
             // 
             // txtTotalIncome
             // 
-            this.txtTotalIncome.Location = new System.Drawing.Point(786, 47);
+            this.txtTotalIncome.Location = new System.Drawing.Point(770, 293);
             this.txtTotalIncome.Multiline = true;
             this.txtTotalIncome.Name = "txtTotalIncome";
             this.txtTotalIncome.ReadOnly = true;
@@ -326,7 +326,7 @@
             this.dgvFilter.Location = new System.Drawing.Point(28, 293);
             this.dgvFilter.Name = "dgvFilter";
             this.dgvFilter.RowTemplate.Height = 25;
-            this.dgvFilter.Size = new System.Drawing.Size(708, 299);
+            this.dgvFilter.Size = new System.Drawing.Size(719, 553);
             this.dgvFilter.TabIndex = 26;
             // 
             // Id
@@ -381,7 +381,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1148, 630);
+            this.ClientSize = new System.Drawing.Size(1148, 858);
             this.Controls.Add(this.dgvFilter);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblIncome);

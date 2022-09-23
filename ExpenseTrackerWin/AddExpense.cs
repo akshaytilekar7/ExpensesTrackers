@@ -182,25 +182,9 @@ namespace ExpenseTrackerWin
                             cCategory.Value = dbCategory.Id;
                         else
                         {
-                            foreach (var catLst in CategoryTags.GetTags())
-                            {
-                                foreach (var tg in catLst.Tags)
-                                {
-                                    var arr = comment.Split(" ");
-                                    foreach (var itemarr in arr)
-                                    {
-                                        if (itemarr != " " && tg.Contains(itemarr))
-                                        {
-                                            var dbCategory1 = dbCategories.FirstOrDefault(x => x.CategoryName.ToLower().Contains(catLst.CategoryName.ToLower()));
-                                            if (dbCategory1 != null)
-                                            {
-                                                cCategory.Value = dbCategory1.Id;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                            int categoryId = GetCategoryBasedOnComment(comment, dbCategories);
+                            if (categoryId != 0)
+                                cCategory.Value = categoryId;
                         }
                     }
 
@@ -220,6 +204,30 @@ namespace ExpenseTrackerWin
                     st = ex.InnerException.Message;
                 lblError.Text = "btnUpload_Click : " + ex.Message + " " + st;
             }
+        }
+
+        private static int GetCategoryBasedOnComment(string comment, IList<Category> dbCategories)
+        {
+            foreach (var catLst in CategoryTags.GetTags())
+            {
+                foreach (var tg in catLst.Tags)
+                {
+                    var arr = comment.Split(" ");
+                    foreach (var itemarr in arr)
+                    {
+                        if (itemarr != " " && tg.Contains(itemarr))
+                        {
+                            var dbCategory1 = dbCategories.FirstOrDefault(x => x.CategoryName.ToLower().Contains(catLst.CategoryName.ToLower()));
+                            if (dbCategory1 != null)
+                            {
+                                return dbCategory1.Id;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return 0;
         }
 
         private IList<DtoExpense> GetWhatsAppData()

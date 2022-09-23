@@ -42,5 +42,13 @@ namespace PatternForCore.Services.Factory
                 return new ExcelService();
             }
         }
+
+        public IYearlyService YearlyService
+        {
+            get
+            {
+                return new YearlyService(_unitOfWork);
+            }
+        }
     }
 }

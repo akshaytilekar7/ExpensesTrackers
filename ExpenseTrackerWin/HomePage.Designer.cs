@@ -31,6 +31,7 @@
             this.btnAddExpensed = new System.Windows.Forms.Button();
             this.btnAddIncome = new System.Windows.Forms.Button();
             this.btnViewExpense = new System.Windows.Forms.Button();
+            this.btnYealry = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAddExpensed
@@ -70,12 +71,26 @@
             this.btnViewExpense.UseVisualStyleBackColor = true;
             this.btnViewExpense.Click += new System.EventHandler(this.btnViewExpense_Click);
             // 
+            // btnYealry
+            // 
+            this.btnYealry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnYealry.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnYealry.Location = new System.Drawing.Point(360, 398);
+            this.btnYealry.Margin = new System.Windows.Forms.Padding(2);
+            this.btnYealry.Name = "btnYealry";
+            this.btnYealry.Size = new System.Drawing.Size(265, 43);
+            this.btnYealry.TabIndex = 3;
+            this.btnYealry.Text = "Yealry Expense View";
+            this.btnYealry.UseVisualStyleBackColor = true;
+            this.btnYealry.Click += new System.EventHandler(this.btnYealry_Click);
+            // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1004, 594);
+            this.Controls.Add(this.btnYealry);
             this.Controls.Add(this.btnViewExpense);
             this.Controls.Add(this.btnAddIncome);
             this.Controls.Add(this.btnAddExpensed);
@@ -92,5 +107,6 @@
         private Button btnAddExpensed;
         private Button btnAddIncome;
         private Button btnViewExpense;
+        private Button btnYealry;
     }
 }

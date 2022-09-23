@@ -36,6 +36,7 @@ namespace ExpenseTrackerWin.Startup
             services.AddTransient(typeof(ICategoryServices), typeof(CategoryServices));
             services.AddTransient(typeof(IExcelService), typeof(ExcelService));
             services.AddTransient(typeof(IServiceFactory), typeof(ServiceFactory));
+            services.AddTransient(typeof(IYearlyService), typeof(YearlyService));
             services.AddTransient<IContextFactory, ContextFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }

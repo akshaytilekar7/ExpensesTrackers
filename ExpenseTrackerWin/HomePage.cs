@@ -51,5 +51,12 @@ namespace ExpenseTrackerWin
         {
 
         }
+
+        private void btnYealry_Click(object sender, EventArgs e)
+        {
+            YearlyView Check = new YearlyView(ServiceFactory);
+            Check.Show();
+            Hide();
+        }
     }
 }

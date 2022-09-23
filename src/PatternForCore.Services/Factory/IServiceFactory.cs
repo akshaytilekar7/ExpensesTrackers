@@ -11,6 +11,8 @@ namespace PatternForCore.Services.Factory
         IExpenseServices ExpenseServices { get; }
         IIncomeService IncomeService { get; }
         IExcelService ExcelService { get; }
+        IYearlyService YearlyService { get; }
+
 
     }
 }
