@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace PatternForCore.Models
@@ -12,7 +13,8 @@ namespace PatternForCore.Models
 
             foreach (var item in expenses)
             {
-                str += item.Date.ToShortDateString() + " || " + item.Amount + " || " + item.Comment;
+                string monthName = item.Date.ToString("MMM", CultureInfo.InvariantCulture);
+                str += item.Date.Day + " " + monthName + " " + item.Date.DayOfWeek.ToString() + " || " + item.Amount + " || " + item.Comment;
                 str += "\n";
             }
             return str;
