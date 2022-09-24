@@ -76,7 +76,6 @@ namespace PatternForCore.Services
             return dtoYealries.OrderBy(x => x.Category).ToList();
         }
 
-
         public List<DtoExpenseByCategory> GetExpenseByCategory(ExpenseFilter filter)
         {
             List<DtoExpenseByCategory> dtoExpenseByCategories = new List<DtoExpenseByCategory>();
@@ -97,9 +96,21 @@ namespace PatternForCore.Services
             }
 
             DtoExpenseByCategory dto1 = new DtoExpenseByCategory();
-            dto1.ExpensesType = "Total";
+            dto1.ExpensesType = "Total Income";
+            dto1.Amount = income;
+            dto1.Percent = "NA"; ;
+            dtoExpenseByCategories.Add(dto1);
+
+            dto1 = new DtoExpenseByCategory();
+            dto1.ExpensesType = "Total Expense";
             dto1.Amount = lstDtoExpense.Sum(x => x.Amount);
             dto1.Percent = psum + " %"; ;
+            dtoExpenseByCategories.Add(dto1);
+
+            dto1 = new DtoExpenseByCategory();
+            dto1.ExpensesType = "Balance";
+            dto1.Amount = income - lstDtoExpense.Sum(x => x.Amount);
+            dto1.Percent = "NA";
             dtoExpenseByCategories.Add(dto1);
             return dtoExpenseByCategories;
         }

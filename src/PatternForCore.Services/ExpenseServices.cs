@@ -65,10 +65,6 @@ namespace PatternForCore.Services
 
         public List<DtoExpense> GetExpenseFilter(ExpenseFilter expenseFilter)
         {
-            string category = expenseFilter.Category == "Please select" ? string.Empty : expenseFilter.Category;
-            string expenseType = expenseFilter.Category == "Please select" ? string.Empty : expenseFilter.Category;
-            string comment = expenseFilter.Comment;
-
             var dbList = GetAll().ToList().Select(s => new DtoExpense()
             {
                 Id = s.Id,
@@ -85,12 +81,12 @@ namespace PatternForCore.Services
             if (expenseFilter.Amount >= 1)
                 dbList = dbList.Where(x => x.Amount == expenseFilter.Amount);
 
-            if (!string.IsNullOrEmpty(category))
-                dbList = dbList.Where(x => x.CategoryName.ToLower().Contains(category.ToLower()));
-            if (!string.IsNullOrEmpty(expenseType))
-                dbList = dbList.Where(x => x.ExpenseType.ToLower().Contains(expenseType.ToLower()));
-            if (!string.IsNullOrEmpty(comment))
-                dbList = dbList.Where(x => x.Comment.ToLower().Contains(comment.ToLower()));
+            if (!string.IsNullOrEmpty(expenseFilter.Category))
+                dbList = dbList.Where(x => x.CategoryName.ToLower().Contains(expenseFilter.Category.ToLower()));
+            if (!string.IsNullOrEmpty(expenseFilter.ExpenseType))
+                dbList = dbList.Where(x => x.ExpenseType.ToLower().Contains(expenseFilter.ExpenseType.ToLower()));
+            if (!string.IsNullOrEmpty(expenseFilter.Comment))
+                dbList = dbList.Where(x => x.Comment.ToLower().Contains(expenseFilter.Comment.ToLower()));
 
             var res = dbList.OrderBy(x => x.Date).ToList().GenereateSrNo();
 

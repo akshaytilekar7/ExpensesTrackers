@@ -121,10 +121,6 @@ namespace ExpenseTrackerWin
                 cmbExpensesType.DisplayMember = "ExpensesType";
                 cmbExpensesType.ValueMember = "Id";
                 cmbExpensesType.DataSource = data2;
-
-                cmbSort.DisplayMember = "Name";
-                cmbSort.ValueMember = "Id";
-                cmbSort.DataSource = lstSortBy;
             }
             catch (Exception ex)
             {
@@ -236,6 +232,15 @@ namespace ExpenseTrackerWin
             txtComment.Clear();
             cmbCategory.ResetText();
             cmbExpensesType.ResetText();
+            
+            dgvIncome.Rows.Clear();
+            dgvIncome.Refresh();
+
+            dgvExpenseOverview.Rows.Clear();
+            dgvExpenseOverview.Refresh();
+            
+            dgvFilter.Rows.Clear();
+            dgvFilter.Refresh();
         }
 
         private ExpenseFilter GetFilter()

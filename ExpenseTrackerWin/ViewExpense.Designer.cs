@@ -48,8 +48,6 @@
             this.btnExcel = new System.Windows.Forms.Button();
             this.btnForm1 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.lblSort = new System.Windows.Forms.Label();
-            this.cmbSort = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +60,8 @@
             this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
+            this.lblExpenseOverview = new System.Windows.Forms.Label();
+            this.lblIncome = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
@@ -235,26 +235,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // lblSort
-            // 
-            this.lblSort.AutoSize = true;
-            this.lblSort.Location = new System.Drawing.Point(559, 267);
-            this.lblSort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblSort.Name = "lblSort";
-            this.lblSort.Size = new System.Drawing.Size(44, 15);
-            this.lblSort.TabIndex = 21;
-            this.lblSort.Text = "Sort by";
-            // 
-            // cmbSort
-            // 
-            this.cmbSort.FormattingEnabled = true;
-            this.cmbSort.Location = new System.Drawing.Point(607, 264);
-            this.cmbSort.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbSort.Name = "cmbSort";
-            this.cmbSort.Size = new System.Drawing.Size(129, 23);
-            this.cmbSort.TabIndex = 22;
-            this.cmbSort.SelectedIndexChanged += new System.EventHandler(this.cmbSort_SelectedIndexChanged);
-            // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -280,10 +260,10 @@
             this.Amount,
             this.Comment});
             this.dgvFilter.DataSource = this.dtoExpenseBindingSource;
-            this.dgvFilter.Location = new System.Drawing.Point(28, 293);
+            this.dgvFilter.Location = new System.Drawing.Point(31, 264);
             this.dgvFilter.Name = "dgvFilter";
             this.dgvFilter.RowTemplate.Height = 25;
-            this.dgvFilter.Size = new System.Drawing.Size(719, 553);
+            this.dgvFilter.Size = new System.Drawing.Size(729, 567);
             this.dgvFilter.TabIndex = 26;
             this.dgvFilter.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellContentClick);
             // 
@@ -336,7 +316,7 @@
             // dgvExpenseOverview
             // 
             this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvExpenseOverview.Location = new System.Drawing.Point(766, 293);
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(766, 264);
             this.dgvExpenseOverview.Name = "dgvExpenseOverview";
             this.dgvExpenseOverview.Size = new System.Drawing.Size(370, 266);
             this.dgvExpenseOverview.TabIndex = 27;
@@ -349,6 +329,26 @@
             this.dgvIncome.Size = new System.Drawing.Size(370, 266);
             this.dgvIncome.TabIndex = 28;
             // 
+            // lblExpenseOverview
+            // 
+            this.lblExpenseOverview.AutoSize = true;
+            this.lblExpenseOverview.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblExpenseOverview.Location = new System.Drawing.Point(766, 235);
+            this.lblExpenseOverview.Name = "lblExpenseOverview";
+            this.lblExpenseOverview.Size = new System.Drawing.Size(151, 23);
+            this.lblExpenseOverview.TabIndex = 29;
+            this.lblExpenseOverview.Text = "Expense Overview";
+            // 
+            // lblIncome
+            // 
+            this.lblIncome.AutoSize = true;
+            this.lblIncome.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblIncome.Location = new System.Drawing.Point(766, 539);
+            this.lblIncome.Name = "lblIncome";
+            this.lblIncome.Size = new System.Drawing.Size(68, 23);
+            this.lblIncome.TabIndex = 30;
+            this.lblIncome.Text = "Income";
+            // 
             // ViewExpense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -356,12 +356,12 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1148, 858);
+            this.Controls.Add(this.lblIncome);
+            this.Controls.Add(this.lblExpenseOverview);
             this.Controls.Add(this.dgvIncome);
             this.Controls.Add(this.dgvExpenseOverview);
             this.Controls.Add(this.dgvFilter);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.cmbSort);
-            this.Controls.Add(this.lblSort);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnForm1);
             this.Controls.Add(this.btnExcel);
@@ -416,8 +416,6 @@
         private Button btnExcel;
         private Button btnForm1;
         private Button button1;
-        private Label lblSort;
-        private ComboBox cmbSort;
         private Button btnDelete;
         private DataGridView dgvFilter;
         private BindingSource dtoExpenseBindingSource;
@@ -430,5 +428,7 @@
         private DataGridViewTextBoxColumn Comment;
         private DataGridView dgvExpenseOverview;
         private DataGridView dgvIncome;
+        private Label lblExpenseOverview;
+        private Label lblIncome;
     }
 }
