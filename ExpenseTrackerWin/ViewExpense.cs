@@ -132,23 +132,31 @@ namespace ExpenseTrackerWin
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
+
+            ExportToExcel(dgvFilter, projectDirectory);
+            ExportToExcel(dgvIncome, projectDirectory);
+            ExportToExcel(dgvExpenseOverview, projectDirectory);
+            MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
+        }
+
+        private void ExportToExcel(DataGridView dataGridView, string projectDirectory)
+        {
             try
             {
-                string workingDirectory = Environment.CurrentDirectory;
-                string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-                projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
-
-                if (dgvFilter.Rows.Count > 0)
+                if (dataGridView.Rows.Count > 0)
                 {
-                    StreamWriter wr = new StreamWriter(projectDirectory);
-                    for (int i = 0; i < dgvFilter.Columns.Count; i++)
+                    StreamWriter wr = new StreamWriter(projectDirectory, append: true);
+                    for (int i = 0; i < dataGridView.Columns.Count; i++)
                     {
-                        wr.Write(dgvFilter.Columns[i].Name.ToString().ToUpper() + "\t");
+                        wr.Write(dataGridView.Columns[i].Name.ToString().ToUpper() + "\t");
                     }
 
                     wr.WriteLine();
 
-                    foreach (DataGridViewRow row in dgvFilter.Rows)
+                    foreach (DataGridViewRow row in dataGridView.Rows)
                     {
                         foreach (DataGridViewCell cell in row.Cells)
                         {
@@ -165,10 +173,7 @@ namespace ExpenseTrackerWin
                     }
 
                     wr.WriteLine();
-                    //wr.WriteLine(txtTotalIncome.Text);
-                    //wr.WriteLine(txtTotalAmount.Text);
                     wr.Close();
-                    MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
                 }
                 else
                 {
@@ -183,7 +188,6 @@ namespace ExpenseTrackerWin
                 lblError.Text = "btnExcel_Click : " + ex.Message + " " + st;
             }
         }
-
         private void btnForm1_Click(object sender, EventArgs e)
         {
             HomePage Check = new HomePage(_serviceFactory);
