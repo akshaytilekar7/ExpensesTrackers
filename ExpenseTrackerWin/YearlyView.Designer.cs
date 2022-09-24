@@ -60,10 +60,9 @@
             // 
             // datePickerYearly
             // 
-            this.datePickerYearly.Location = new System.Drawing.Point(40, 45);
-            this.datePickerYearly.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.datePickerYearly.Location = new System.Drawing.Point(28, 27);
             this.datePickerYearly.Name = "datePickerYearly";
-            this.datePickerYearly.Size = new System.Drawing.Size(284, 31);
+            this.datePickerYearly.Size = new System.Drawing.Size(200, 23);
             this.datePickerYearly.TabIndex = 0;
             this.datePickerYearly.ValueChanged += new System.EventHandler(this.datePickerYearly_ValueChanged);
             // 
@@ -102,14 +101,14 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvYealy.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvYealy.Location = new System.Drawing.Point(40, 93);
-            this.dgvYealy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvYealy.Location = new System.Drawing.Point(28, 56);
             this.dgvYealy.Name = "dgvYealy";
             this.dgvYealy.RowHeadersWidth = 62;
             this.dgvYealy.RowTemplate.Height = 25;
-            this.dgvYealy.Size = new System.Drawing.Size(2053, 1553);
+            this.dgvYealy.Size = new System.Drawing.Size(1437, 932);
             this.dgvYealy.TabIndex = 1;
             this.dgvYealy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvYealy.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvYealy_CellMouseMove);
             // 
             // categoryDataGridViewTextBoxColumn
             // 
@@ -233,10 +232,9 @@
             // 
             // btnHome
             // 
-            this.btnHome.Location = new System.Drawing.Point(1986, 45);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnHome.Location = new System.Drawing.Point(1390, 27);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(107, 38);
+            this.btnHome.Size = new System.Drawing.Size(75, 23);
             this.btnHome.TabIndex = 2;
             this.btnHome.Text = "Home";
             this.btnHome.UseVisualStyleBackColor = true;
@@ -246,10 +244,9 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotal.Location = new System.Drawing.Point(384, 38);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotal.Location = new System.Drawing.Point(269, 23);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(98, 39);
+            this.lblTotal.Size = new System.Drawing.Size(65, 26);
             this.lblTotal.TabIndex = 3;
             this.lblTotal.Text = "label1";
             // 
@@ -259,15 +256,14 @@
             // 
             // YearlyView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1924, 1050);
+            this.ClientSize = new System.Drawing.Size(1347, 630);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.dgvYealy);
             this.Controls.Add(this.datePickerYearly);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "YearlyView";
             this.Text = "YearlyView";
             this.Load += new System.EventHandler(this.YearlyView_Load);
