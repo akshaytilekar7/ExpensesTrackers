@@ -38,7 +38,7 @@
             // btnAddExpensed
             // 
             this.btnAddExpensed.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddExpensed.Location = new System.Drawing.Point(411, 241);
+            this.btnAddExpensed.Location = new System.Drawing.Point(252, 287);
             this.btnAddExpensed.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddExpensed.Name = "btnAddExpensed";
             this.btnAddExpensed.Size = new System.Drawing.Size(303, 40);
@@ -51,7 +51,7 @@
             // 
             this.btnAddIncome.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAddIncome.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddIncome.Location = new System.Drawing.Point(411, 178);
+            this.btnAddIncome.Location = new System.Drawing.Point(252, 229);
             this.btnAddIncome.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddIncome.Name = "btnAddIncome";
             this.btnAddIncome.Size = new System.Drawing.Size(303, 40);
@@ -63,12 +63,12 @@
             // btnViewExpense
             // 
             this.btnViewExpense.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnViewExpense.Location = new System.Drawing.Point(411, 309);
+            this.btnViewExpense.Location = new System.Drawing.Point(623, 229);
             this.btnViewExpense.Margin = new System.Windows.Forms.Padding(2);
             this.btnViewExpense.Name = "btnViewExpense";
             this.btnViewExpense.Size = new System.Drawing.Size(303, 40);
             this.btnViewExpense.TabIndex = 2;
-            this.btnViewExpense.Text = "View Expense";
+            this.btnViewExpense.Text = "Monthly Expense";
             this.btnViewExpense.UseVisualStyleBackColor = true;
             this.btnViewExpense.Click += new System.EventHandler(this.btnViewExpense_Click);
             // 
@@ -76,12 +76,12 @@
             // 
             this.btnYealry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnYealry.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnYealry.Location = new System.Drawing.Point(411, 371);
+            this.btnYealry.Location = new System.Drawing.Point(623, 287);
             this.btnYealry.Margin = new System.Windows.Forms.Padding(2);
             this.btnYealry.Name = "btnYealry";
             this.btnYealry.Size = new System.Drawing.Size(303, 40);
             this.btnYealry.TabIndex = 3;
-            this.btnYealry.Text = "Yealry Expense View";
+            this.btnYealry.Text = "Yealry Expense";
             this.btnYealry.UseVisualStyleBackColor = true;
             this.btnYealry.Click += new System.EventHandler(this.btnYealry_Click);
             // 
@@ -89,8 +89,8 @@
             // 
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Sigmar One", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.lblHeader.ForeColor = System.Drawing.Color.Red;
-            this.lblHeader.Location = new System.Drawing.Point(290, 23);
+            this.lblHeader.ForeColor = System.Drawing.Color.Teal;
+            this.lblHeader.Location = new System.Drawing.Point(342, 97);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(537, 79);
             this.lblHeader.TabIndex = 4;
