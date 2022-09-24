@@ -15,7 +15,11 @@ namespace ExpenseTrackerWin
         {
             InitializeComponent();
             _serviceFactory = serviceFactory;
-            LoadGrid();
+            dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+            LoadAllGrid();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -23,10 +27,7 @@ namespace ExpenseTrackerWin
             try
             {
                 lblError.Text = string.Empty;
-                SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(GetSearchData().ToList());
-                dgvFilter.DataSource = sortableBindingList;
-                dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                LoadAllGrid();
             }
             catch (Exception ex)
             {
@@ -35,48 +36,6 @@ namespace ExpenseTrackerWin
                     st = ex.InnerException.Message;
                 lblError.Text = "btnSearch_Click : " + ex.Message + " " + st;
             }
-        }
-
-        private IEnumerable<DtoExpense> GetSearchData()
-        {
-            DateTime startDate = dateStart.Value.Date;
-            DateTime endDate = dateEnd.Value.Date;
-            int amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToInt32(txtAmount.Text);
-
-            string category = cmbCategory.Text == "Please select" ? string.Empty : cmbCategory.Text;
-            string expenseType = cmbExpensesType.Text == "Please select" ? string.Empty : cmbExpensesType.Text;
-            string comment = txtComment.Text;
-
-            var dbList = _serviceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
-            {
-                Id = s.Id,
-                CategoryName = s.Category.CategoryName,
-                Date = s.Date,
-                Amount = s.Amount,
-                ExpenseType = s.Category.ExpensesType,
-                Comment = s.Comment
-            });
-
-            if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
-                dbList = dbList.Where(x => x.Date >= startDate && x.Date <= endDate);
-
-            if (amount >= 1)
-                dbList = dbList.Where(x => x.Amount == amount);
-
-            if (!string.IsNullOrEmpty(category))
-                dbList = dbList.Where(x => x.CategoryName.ToLower().Contains(category.ToLower()));
-            if (!string.IsNullOrEmpty(expenseType))
-                dbList = dbList.Where(x => x.ExpenseType.ToLower().Contains(expenseType.ToLower()));
-            if (!string.IsNullOrEmpty(comment))
-                dbList = dbList.Where(x => x.Comment.ToLower().Contains(comment.ToLower()));
-
-            var res = dbList.OrderBy(x => x.Date).ToList().GenereateSrNo();
-
-            SetTotalAmount(res);
-
-            if (!dbList.Any())
-                lblError.Text = "No Data Fount";
-            return res;
         }
 
         private void FilterData_Load(object sender, EventArgs e)
@@ -95,48 +54,29 @@ namespace ExpenseTrackerWin
 
         }
 
-        private List<DtoExpense> LoadGrid()
+        private void LoadAllGrid()
         {
-            List<DtoExpense> dbList = _serviceFactory.ExpenseServices.GetAll().ToList().Select(s => new DtoExpense()
-            {
-                Id = s.Id,
-                CategoryName = s.Category.CategoryName,
-                Date = s.Date,
-                Amount = s.Amount,
-                ExpenseType = s.Category.ExpensesType,
-                Comment = s.Comment
-            }).OrderBy(x => x.Date).ToList();
+            LoadExpenseFilterGrid();
+            LoadExpenseByCategoryGrid();
+            LoadIncomeGrid();
+        }
 
-            dbList = dbList.GenereateSrNo();
-            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(dbList);
+        private void LoadExpenseFilterGrid()
+        {
+            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(_serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter()));
             dgvFilter.DataSource = sortableBindingList;
             dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
-            SetTotalAmount(dbList);
-            return dbList;
         }
-
-        private void SetTotalAmount(List<DtoExpense> dbList)
+        private void LoadExpenseByCategoryGrid()
         {
             try
             {
-                txtTotalAmount.Clear();
-                string Total = string.Empty;
-                var income = SetIncome(dbList);
-                int percent = 0;
-                foreach (var expenseType in dbList.DistinctBy(x => x.ExpenseType).Select(x => x.ExpenseType))
-                {
-                    var expenseSum = dbList.Where(x => x.ExpenseType == expenseType).Sum(x => x.Amount);
-                    percent = (int)Math.Round((double)(100 * expenseSum) / income);
-                    txtTotalAmount.AppendText(expenseType + " : " + expenseSum + "      (" + percent + "%)");
-                    txtTotalAmount.AppendText(Environment.NewLine);
-                }
-
-                int amt = dbList.Sum(x => x.Amount);
-                percent = (int)Math.Round((double)(100 * amt) / income);
-                txtTotalAmount.AppendText("Total Expenses : " + amt + "      (" + percent + "%)");
+                List<DtoExpenseByCategory>? result = _serviceFactory.YearlyService.GetExpenseByCategory(GetFilter());
+                SortableBindingList<DtoExpenseByCategory> sortableBindingList = new SortableBindingList<DtoExpenseByCategory>(result);
+                dgvExpenseOverview.DataSource = sortableBindingList;
+                dgvExpenseOverview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvExpenseOverview.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             }
 
             catch (Exception ex)
@@ -147,48 +87,15 @@ namespace ExpenseTrackerWin
                 lblError.Text = "SetTotalAmount : " + ex.Message + " " + st;
             }
         }
-
-        private void btnClear_Click(object sender, EventArgs e)
+        private void LoadIncomeGrid()
         {
-            lblError.Text = string.Empty;
-            txtAmount.Clear();
-            txtTotalIncome.Clear();
-            txtComment.Clear();
-            txtTotalAmount.Clear();
-            cmbCategory.ResetText();
-            cmbExpensesType.ResetText();
-        }
-
-        private int SetIncome(List<DtoExpense> dbList)
-        {
-            int income = 0;
-            IEnumerable<DtoExpense>? result = null;
             try
             {
-                txtTotalIncome.Clear();
-                string Total = string.Empty;
-                DateTime startDate = dateStart.Value.Date;
-                DateTime endDate = dateEnd.Value.Date;
-
-                if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
-                {
-                    result = dbList.Where(x => x.Date >= startDate && x.Date <= endDate);
-                }
-                var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
-                foreach (var item in dbIncomes)
-                {
-                    txtTotalIncome.AppendText(item.Date.ToShortDateString() + ": " + item.Name + " : " + item.Amount);
-                    txtTotalIncome.AppendText(Environment.NewLine);
-                }
-                txtTotalIncome.AppendText(Environment.NewLine);
-                income = dbIncomes.Sum(x => x.Amount);
-                var expense = result.Sum(x => x.Amount);
-                txtTotalIncome.AppendText("Total Income : " + Convert.ToString(income));
-                txtTotalIncome.AppendText(Environment.NewLine);
-                txtTotalIncome.AppendText("Total Expenses : " + expense);
-                txtTotalIncome.AppendText(Environment.NewLine);
-                txtTotalIncome.AppendText("Balance : " + Convert.ToString(income - expense));
-                txtTotalIncome.AppendText(Environment.NewLine);
+                List<IncomeSource>? dbIncomes = _serviceFactory.YearlyService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
+                SortableBindingList<IncomeSource> sortableBindingList = new SortableBindingList<IncomeSource>(dbIncomes);
+                dgvIncome.DataSource = sortableBindingList;
+                dgvIncome.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvIncome.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             }
             catch (Exception ex)
             {
@@ -197,10 +104,8 @@ namespace ExpenseTrackerWin
                     st = ex.InnerException.Message;
                 lblError.Text = "SetIncome : " + ex.Message + " " + st;
             }
-            return income;
 
         }
-
         private void LoadCombobox()
         {
             try
@@ -266,8 +171,8 @@ namespace ExpenseTrackerWin
                     }
 
                     wr.WriteLine();
-                    wr.WriteLine(txtTotalIncome.Text);
-                    wr.WriteLine(txtTotalAmount.Text);
+                    //wr.WriteLine(txtTotalIncome.Text);
+                    //wr.WriteLine(txtTotalAmount.Text);
                     wr.Close();
                     MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
                 }
@@ -294,34 +199,7 @@ namespace ExpenseTrackerWin
 
         private void cmbSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            IOrderedEnumerable<DtoExpense>? res = null;
-            var dbList = GetSearchData();
-            var sortOn = cmbSort.Text;
-            switch (sortOn)
-            {
-                case "CategoryName":
-                    res = dbList.OrderBy(d => d.CategoryName);
-                    break;
-                case "ExpensesType":
-                    res = dbList.OrderBy(d => d.ExpenseType);
-                    break;
-                case "Date":
-                    res = dbList.OrderBy(d => d.Date);
-                    break;
-                case "Amount":
-                    res = dbList.OrderBy(d => d.Amount);
-                    break;
-                case "Comment":
-                    res = dbList.OrderBy(d => d.Comment);
-                    break;
-                default:
-                    break;
-            }
 
-            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res.ToList().GenereateSrNo());
-            dgvFilter.DataSource = sortableBindingList;
-            dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
         }
 
         private void txtTotalIncome_TextChanged(object sender, EventArgs e)
@@ -343,8 +221,38 @@ namespace ExpenseTrackerWin
                 lst.Add(new Expense() { Id = id });
             }
             _serviceFactory.ExpenseServices.Delete(lst);
-            LoadGrid();
+            LoadAllGrid();
         }
+
+        private void dgvFilter_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            lblError.Text = string.Empty;
+            txtAmount.Clear();
+            txtComment.Clear();
+            cmbCategory.ResetText();
+            cmbExpensesType.ResetText();
+        }
+
+        private ExpenseFilter GetFilter()
+        {
+            var filter = new ExpenseFilter()
+            {
+                Amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToInt32(txtAmount.Text),
+                Comment = txtComment.Text,
+                StartDate = dateStart.Value.Date,
+                EndDate = dateEnd.Value.Date,
+                Category = cmbCategory.Text == "Please select" ? string.Empty : cmbCategory.Text,
+                ExpenseType = cmbExpensesType.Text == "Please select" ? string.Empty : cmbExpensesType.Text,
+            };
+            return filter;
+        }
+
+
     }
 }
 

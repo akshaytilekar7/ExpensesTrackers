@@ -5,16 +5,20 @@ using PatternForCore.Models;
 using PatternForCore.Services.Base.Contracts;
 using PatternForCore.Models.Dto;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Data;
+using System;
+using PatternForCore.Services.Factory;
 
 namespace PatternForCore.Services
 {
     public class YearlyService : IYearlyService
     {
         private readonly IUnitOfWork _unitOfWork;
-
+        private readonly ServiceFactory _serviceFactory;
         public YearlyService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _serviceFactory = new ServiceFactory(_unitOfWork);
         }
 
         public List<DtoYealry> GetYearlyData(int year, out int total, out int totalYealyIncome)
@@ -70,6 +74,40 @@ namespace PatternForCore.Services
             totalYealyIncome = lstIncomeSource.Sum(s => s.Amount);
             total = lstExpenses.Sum(x => x.Amount);
             return dtoYealries.OrderBy(x => x.Category).ToList();
+        }
+
+
+        public List<DtoExpenseByCategory> GetExpenseByCategory(ExpenseFilter filter)
+        {
+            List<DtoExpenseByCategory> dtoExpenseByCategories = new List<DtoExpenseByCategory>();
+            IEnumerable<DtoExpense> lstDtoExpense = _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
+            var expenseTypes = _serviceFactory.CategoryServices.GetAll().Select(x => x.ExpensesType).Distinct();
+            var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate);
+            var income = dbIncomes.Sum(x => x.Amount);
+            var psum = 0;
+            foreach (var et in expenseTypes)
+            {
+                DtoExpenseByCategory dto = new DtoExpenseByCategory();
+                dto.ExpensesType = et;
+                dto.Amount = lstDtoExpense.Where(x => x.ExpenseType == et).Sum(x => x.Amount);
+                var per = (int)Math.Round((double)(100 * dto.Amount) / income);
+                dto.Percent = per + " %";
+                psum += per;
+                dtoExpenseByCategories.Add(dto);
+            }
+
+            DtoExpenseByCategory dto1 = new DtoExpenseByCategory();
+            dto1.ExpensesType = "Total";
+            dto1.Amount = lstDtoExpense.Sum(x => x.Amount);
+            dto1.Percent = psum + " %"; ;
+            dtoExpenseByCategories.Add(dto1);
+            return dtoExpenseByCategories;
+        }
+
+        public List<IncomeSource> GetIncome(DateTime startDate, DateTime endDate)
+        {
+            IEnumerable<IncomeSource> lst = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
+            return lst.ToList();
         }
     }
 }

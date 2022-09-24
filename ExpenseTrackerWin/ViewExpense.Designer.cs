@@ -45,15 +45,11 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.expenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblError = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.btnExcel = new System.Windows.Forms.Button();
             this.btnForm1 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblSort = new System.Windows.Forms.Label();
             this.cmbSort = new System.Windows.Forms.ComboBox();
-            this.lblIncome = new System.Windows.Forms.Label();
-            this.txtTotalIncome = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,9 +60,13 @@
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
+            this.dgvIncome = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseOverview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDate
@@ -201,26 +201,6 @@
             this.lblError.Size = new System.Drawing.Size(0, 15);
             this.lblError.TabIndex = 15;
             // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotal.Location = new System.Drawing.Point(770, 550);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(175, 33);
-            this.lblTotal.TabIndex = 16;
-            this.lblTotal.Text = "Total Expenses";
-            // 
-            // txtTotalAmount
-            // 
-            this.txtTotalAmount.Location = new System.Drawing.Point(770, 586);
-            this.txtTotalAmount.Multiline = true;
-            this.txtTotalAmount.Name = "txtTotalAmount";
-            this.txtTotalAmount.ReadOnly = true;
-            this.txtTotalAmount.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtTotalAmount.Size = new System.Drawing.Size(321, 262);
-            this.txtTotalAmount.TabIndex = 17;
-            // 
             // btnExcel
             // 
             this.btnExcel.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -275,29 +255,6 @@
             this.cmbSort.TabIndex = 22;
             this.cmbSort.SelectedIndexChanged += new System.EventHandler(this.cmbSort_SelectedIndexChanged);
             // 
-            // lblIncome
-            // 
-            this.lblIncome.AutoSize = true;
-            this.lblIncome.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(770, 253);
-            this.lblIncome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblIncome.Name = "lblIncome";
-            this.lblIncome.Size = new System.Drawing.Size(168, 37);
-            this.lblIncome.TabIndex = 24;
-            this.lblIncome.Text = "Total Income";
-            this.lblIncome.Click += new System.EventHandler(this.lblIncome_Click);
-            // 
-            // txtTotalIncome
-            // 
-            this.txtTotalIncome.Location = new System.Drawing.Point(770, 293);
-            this.txtTotalIncome.Multiline = true;
-            this.txtTotalIncome.Name = "txtTotalIncome";
-            this.txtTotalIncome.ReadOnly = true;
-            this.txtTotalIncome.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtTotalIncome.Size = new System.Drawing.Size(321, 240);
-            this.txtTotalIncome.TabIndex = 23;
-            this.txtTotalIncome.TextChanged += new System.EventHandler(this.txtTotalIncome_TextChanged);
-            // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -328,6 +285,7 @@
             this.dgvFilter.RowTemplate.Height = 25;
             this.dgvFilter.Size = new System.Drawing.Size(719, 553);
             this.dgvFilter.TabIndex = 26;
+            this.dgvFilter.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellContentClick);
             // 
             // Id
             // 
@@ -375,6 +333,22 @@
             // 
             this.dtoExpenseBindingSource.DataSource = typeof(PatternForCore.Models.Dto.DtoExpense);
             // 
+            // dgvExpenseOverview
+            // 
+            this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(766, 293);
+            this.dgvExpenseOverview.Name = "dgvExpenseOverview";
+            this.dgvExpenseOverview.Size = new System.Drawing.Size(370, 266);
+            this.dgvExpenseOverview.TabIndex = 27;
+            // 
+            // dgvIncome
+            // 
+            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIncome.Location = new System.Drawing.Point(766, 565);
+            this.dgvIncome.Name = "dgvIncome";
+            this.dgvIncome.Size = new System.Drawing.Size(370, 266);
+            this.dgvIncome.TabIndex = 28;
+            // 
             // ViewExpense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -382,17 +356,15 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1148, 858);
+            this.Controls.Add(this.dgvIncome);
+            this.Controls.Add(this.dgvExpenseOverview);
             this.Controls.Add(this.dgvFilter);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.lblIncome);
-            this.Controls.Add(this.txtTotalIncome);
             this.Controls.Add(this.cmbSort);
             this.Controls.Add(this.lblSort);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnForm1);
             this.Controls.Add(this.btnExcel);
-            this.Controls.Add(this.txtTotalAmount);
-            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSearch);
@@ -414,6 +386,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseOverview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,15 +413,11 @@
         private DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
         private Label lblError;
         private DataGridViewTextBoxColumn Category;
-        private Label lblTotal;
-        private TextBox txtTotalAmount;
         private Button btnExcel;
         private Button btnForm1;
         private Button button1;
         private Label lblSort;
         private ComboBox cmbSort;
-        private Label lblIncome;
-        private TextBox txtTotalIncome;
         private Button btnDelete;
         private DataGridView dgvFilter;
         private BindingSource dtoExpenseBindingSource;
@@ -458,5 +428,7 @@
         private DataGridViewTextBoxColumn ExpenseType;
         private DataGridViewTextBoxColumn Amount;
         private DataGridViewTextBoxColumn Comment;
+        private DataGridView dgvExpenseOverview;
+        private DataGridView dgvIncome;
     }
 }

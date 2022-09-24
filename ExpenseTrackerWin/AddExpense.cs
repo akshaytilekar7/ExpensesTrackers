@@ -147,7 +147,7 @@ namespace ExpenseTrackerWin
             {
                 ClearGrid();
                 IList<DtoExpense> lstBankStatementData = GetBankStatementData();
-                IList<DtoExpense> lstWhatsAppData = GetWhatsAppData();
+                IList<DtoExpense> lstWhatsAppData = new List<DtoExpense>(); // GetWhatsAppData();
 
                 int index = 0;
                 foreach (var item in lstBankStatementData)
@@ -228,8 +228,9 @@ namespace ExpenseTrackerWin
 
         private IList<DtoExpense> GetWhatsAppData()
         {
+            var date = Convert.ToDateTime(DatePicker.Text);
             string projectDirectory2 = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            projectDirectory2 += "\\ExcelFiles\\Input\\W_" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
+            projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Month + "_" + date.Year + ".xls";
             DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
             var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
             return lstExpenseBankStatement;
@@ -237,8 +238,10 @@ namespace ExpenseTrackerWin
 
         private List<DtoExpense> GetBankStatementData()
         {
+            var date = Convert.ToDateTime(DatePicker.Text);
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            projectDirectory += "\\ExcelFiles\\Input\\" + DateTime.Now.Month + "_" + DateTime.Now.Year + ".xls";
+            projectDirectory += "\\ExcelFiles\\Input\\" + date.Month + "_" + date.Year + ".xls";
+
             DataTable dt = ServiceFactory.ExcelService.LoadDataTable(projectDirectory);
             var lstExpense = dt.DatatableToClass<DtoExpense>();
             return lstExpense.Where(x => x.Amount > 0).ToList();

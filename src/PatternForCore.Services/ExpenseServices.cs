@@ -4,6 +4,7 @@ using PatternForCore.Core.Uow;
 using System.Linq;
 using PatternForCore.Models;
 using PatternForCore.Services.Base.Contracts;
+using PatternForCore.Models.Dto;
 
 namespace PatternForCore.Services
 {
@@ -60,6 +61,40 @@ namespace PatternForCore.Services
             foreach (var item in lst)
                 repository.HardDelete(item);
             _unitOfWork.Commit();
+        }
+
+        public List<DtoExpense> GetExpenseFilter(ExpenseFilter expenseFilter)
+        {
+            string category = expenseFilter.Category == "Please select" ? string.Empty : expenseFilter.Category;
+            string expenseType = expenseFilter.Category == "Please select" ? string.Empty : expenseFilter.Category;
+            string comment = expenseFilter.Comment;
+
+            var dbList = GetAll().ToList().Select(s => new DtoExpense()
+            {
+                Id = s.Id,
+                CategoryName = s.Category.CategoryName,
+                Date = s.Date,
+                Amount = s.Amount,
+                ExpenseType = s.Category.ExpensesType,
+                Comment = s.Comment
+            });
+
+            if (expenseFilter.StartDate != DateTime.MinValue && expenseFilter.EndDate != DateTime.MinValue)
+                dbList = dbList.Where(x => x.Date >= expenseFilter.StartDate && x.Date <= expenseFilter.EndDate);
+
+            if (expenseFilter.Amount >= 1)
+                dbList = dbList.Where(x => x.Amount == expenseFilter.Amount);
+
+            if (!string.IsNullOrEmpty(category))
+                dbList = dbList.Where(x => x.CategoryName.ToLower().Contains(category.ToLower()));
+            if (!string.IsNullOrEmpty(expenseType))
+                dbList = dbList.Where(x => x.ExpenseType.ToLower().Contains(expenseType.ToLower()));
+            if (!string.IsNullOrEmpty(comment))
+                dbList = dbList.Where(x => x.Comment.ToLower().Contains(comment.ToLower()));
+
+            var res = dbList.OrderBy(x => x.Date).ToList().GenereateSrNo();
+
+            return res;
         }
     }
 }
