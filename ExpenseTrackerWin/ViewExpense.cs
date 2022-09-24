@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+﻿using ExpenseTrackerWin.Utility;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using PatternForCore.Models;
 using PatternForCore.Models.Dto;
 using PatternForCore.Services.Factory;
@@ -65,8 +66,7 @@ namespace ExpenseTrackerWin
         {
             SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(_serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter()));
             dgvFilter.DataSource = sortableBindingList;
-            dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dgvFilter.SetGridToFit();
         }
         private void LoadExpenseByCategoryGrid()
         {
@@ -75,8 +75,7 @@ namespace ExpenseTrackerWin
                 List<DtoExpenseByCategory>? result = _serviceFactory.YearlyService.GetExpenseByCategory(GetFilter());
                 SortableBindingList<DtoExpenseByCategory> sortableBindingList = new SortableBindingList<DtoExpenseByCategory>(result);
                 dgvExpenseOverview.DataSource = sortableBindingList;
-                dgvExpenseOverview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dgvExpenseOverview.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                dgvExpenseOverview.SetGridToFit();
             }
 
             catch (Exception ex)
@@ -94,8 +93,7 @@ namespace ExpenseTrackerWin
                 List<IncomeSource>? dbIncomes = _serviceFactory.YearlyService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
                 SortableBindingList<IncomeSource> sortableBindingList = new SortableBindingList<IncomeSource>(dbIncomes);
                 dgvIncome.DataSource = sortableBindingList;
-                dgvIncome.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dgvIncome.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                dgvIncome.SetGridToFit();
             }
             catch (Exception ex)
             {

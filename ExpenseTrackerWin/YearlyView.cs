@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+﻿using ExpenseTrackerWin.Utility;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using PatternForCore.Models.Dto;
 using PatternForCore.Services.Factory;
 using System;
@@ -36,8 +37,7 @@ namespace ExpenseTrackerWin
             var lstDtoYealry = _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text), out int totalSum, out int totalYealyIncome);
             SortableBindingList<DtoYealry> sortableBindingList = new(lstDtoYealry);
             dgvYealy.DataSource = sortableBindingList;
-            dgvYealy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvYealy.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dgvYealy.SetGridToFit();
             lblTotal.Text = "Year " + datePickerYearly.Text + " Total Income: " + totalYealyIncome + " Total Expense:" + totalSum;
         }
 
