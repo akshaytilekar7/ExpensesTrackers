@@ -43,7 +43,7 @@ namespace ExpenseTrackerWin
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
 
             DataGridView grid = (DataGridView)sender;
@@ -58,7 +58,7 @@ namespace ExpenseTrackerWin
 
             var tooltip = string.Empty;
 
-            if(dtoYealry == null)
+            if (dtoYealry == null)
                 return tooltip;
 
             switch (columnIndex)
@@ -120,17 +120,15 @@ namespace ExpenseTrackerWin
 
         private void dgvYealy_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex < 0)
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
-
 
             DataGridView grid = (DataGridView)sender;
             var dtoYealry = (DtoYealry)grid.Rows[e.RowIndex].DataBoundItem;
 
             var tooltip = ShowTooltip(e.ColumnIndex, dtoYealry);
             var cell = grid.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            if (!string.IsNullOrEmpty(tooltip))
-                cell.ToolTipText = tooltip;
+            cell.ToolTipText = string.IsNullOrEmpty(tooltip) ? "No Tooltip" : tooltip;
 
         }
     }
