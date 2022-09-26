@@ -226,7 +226,7 @@ namespace ExpenseTrackerWin
             return 0;
         }
 
-        private IList<DtoExpense> GetWhatsAppData()
+        private List<DtoExpense> GetWhatsAppData()
         {
             try
             {
@@ -235,7 +235,7 @@ namespace ExpenseTrackerWin
                 projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Month + "_" + date.Year + ".xls";
                 DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
                 var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
-                return lstExpenseBankStatement;
+                return lstExpenseBankStatement.Where(x=> x.Date.Date >= date.Date).ToList();
             }
             catch (Exception ex)
             {
@@ -253,7 +253,7 @@ namespace ExpenseTrackerWin
 
             DataTable dt = ServiceFactory.ExcelService.LoadDataTable(projectDirectory);
             var lstExpense = dt.DatatableToClass<DtoExpense>();
-            return lstExpense.Where(x => x.Amount > 0).ToList();
+            return lstExpense.Where(x => x.Amount > 0 && x.Date.Date >= date.Date).ToList();
         }
 
         private void ClearGrid()
