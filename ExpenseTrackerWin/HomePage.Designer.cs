@@ -38,10 +38,10 @@
             // btnAddExpensed
             // 
             this.btnAddExpensed.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddExpensed.Location = new System.Drawing.Point(252, 287);
+            this.btnAddExpensed.Location = new System.Drawing.Point(380, 377);
             this.btnAddExpensed.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddExpensed.Name = "btnAddExpensed";
-            this.btnAddExpensed.Size = new System.Drawing.Size(303, 40);
+            this.btnAddExpensed.Size = new System.Drawing.Size(303, 55);
             this.btnAddExpensed.TabIndex = 0;
             this.btnAddExpensed.Text = "Add Expenses";
             this.btnAddExpensed.UseVisualStyleBackColor = true;
@@ -51,10 +51,10 @@
             // 
             this.btnAddIncome.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAddIncome.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddIncome.Location = new System.Drawing.Point(252, 229);
+            this.btnAddIncome.Location = new System.Drawing.Point(380, 286);
             this.btnAddIncome.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddIncome.Name = "btnAddIncome";
-            this.btnAddIncome.Size = new System.Drawing.Size(303, 40);
+            this.btnAddIncome.Size = new System.Drawing.Size(303, 54);
             this.btnAddIncome.TabIndex = 1;
             this.btnAddIncome.Text = "Add Income";
             this.btnAddIncome.UseVisualStyleBackColor = true;
@@ -63,10 +63,10 @@
             // btnViewExpense
             // 
             this.btnViewExpense.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnViewExpense.Location = new System.Drawing.Point(623, 229);
+            this.btnViewExpense.Location = new System.Drawing.Point(751, 286);
             this.btnViewExpense.Margin = new System.Windows.Forms.Padding(2);
             this.btnViewExpense.Name = "btnViewExpense";
-            this.btnViewExpense.Size = new System.Drawing.Size(303, 40);
+            this.btnViewExpense.Size = new System.Drawing.Size(303, 54);
             this.btnViewExpense.TabIndex = 2;
             this.btnViewExpense.Text = "Monthly Expense";
             this.btnViewExpense.UseVisualStyleBackColor = true;
@@ -76,10 +76,10 @@
             // 
             this.btnYealry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnYealry.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnYealry.Location = new System.Drawing.Point(623, 287);
+            this.btnYealry.Location = new System.Drawing.Point(751, 377);
             this.btnYealry.Margin = new System.Windows.Forms.Padding(2);
             this.btnYealry.Name = "btnYealry";
-            this.btnYealry.Size = new System.Drawing.Size(303, 40);
+            this.btnYealry.Size = new System.Drawing.Size(303, 55);
             this.btnYealry.TabIndex = 3;
             this.btnYealry.Text = "Yealry Expense";
             this.btnYealry.UseVisualStyleBackColor = true;
@@ -92,16 +92,16 @@
             this.lblHeader.ForeColor = System.Drawing.Color.Teal;
             this.lblHeader.Location = new System.Drawing.Point(342, 97);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(537, 79);
+            this.lblHeader.Size = new System.Drawing.Size(798, 119);
             this.lblHeader.TabIndex = 4;
             this.lblHeader.Text = "Expense Tracker";
             // 
             // HomePage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1147, 554);
+            this.ClientSize = new System.Drawing.Size(1454, 692);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.btnYealry);
             this.Controls.Add(this.btnViewExpense);
