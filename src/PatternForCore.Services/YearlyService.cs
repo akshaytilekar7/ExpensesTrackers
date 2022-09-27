@@ -38,43 +38,55 @@ namespace PatternForCore.Services
                 DtoYealry dtoYealry = new DtoYealry();
                 dtoYealry.Category = itemCategory.CategoryName + " (" + itemCategory.ExpensesType + ")";
                 var lstExpensesByCategory = lstExpenses.Where(e => e.Category.CategoryName == itemCategory.CategoryName);
-                
+
                 dtoYealry.Jan = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 1).ToList().Sum(x => x.Amount);
                 dtoYealry.JanTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 1).GetTooltipData();
-                
+                dtoYealry.JanLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 1);
+
                 dtoYealry.Feb = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 2).ToList().Sum(x => x.Amount);
                 dtoYealry.FebTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 2).GetTooltipData();
+                dtoYealry.FebLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 2);
 
                 dtoYealry.March = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 3).ToList().Sum(x => x.Amount);
                 dtoYealry.MarchTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 3).GetTooltipData();
+                dtoYealry.MarchLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 3);
 
                 dtoYealry.April = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 4).ToList().Sum(x => x.Amount);
                 dtoYealry.AprilTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 4).GetTooltipData();
+                dtoYealry.AprilLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 4);
 
                 dtoYealry.May = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 5).ToList().Sum(x => x.Amount);
                 dtoYealry.MayTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 5).GetTooltipData();
+                dtoYealry.MayLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 5);
 
                 dtoYealry.June = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 6).ToList().Sum(x => x.Amount);
-                dtoYealry.JuneTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 6).GetTooltipData(); 
-                
+                dtoYealry.JuneTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 6).GetTooltipData();
+                dtoYealry.JuneLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 6);
+
                 dtoYealry.July = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 7).ToList().Sum(x => x.Amount);
-                dtoYealry.JulyTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 7).GetTooltipData(); 
-                
+                dtoYealry.JulyTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 7).GetTooltipData();
+                dtoYealry.JulyLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 7);
+
                 dtoYealry.August = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 8).ToList().Sum(x => x.Amount);
-                dtoYealry.AugustTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 8).GetTooltipData(); 
-                
+                dtoYealry.AugustTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 8).GetTooltipData();
+                dtoYealry.AugustLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 8);
+
                 dtoYealry.September = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 9).ToList().Sum(x => x.Amount);
-                dtoYealry.SeptemberTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 9).GetTooltipData(); 
-                
+                dtoYealry.SeptemberTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 9).GetTooltipData();
+                dtoYealry.SeptemberLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 9);
+
                 dtoYealry.October = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 10).ToList().Sum(x => x.Amount);
-                dtoYealry.OctoberTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 10).GetTooltipData(); 
-                
+                dtoYealry.OctoberTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 10).GetTooltipData();
+                dtoYealry.OctoberLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 10);
+
                 dtoYealry.November = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 11).ToList().Sum(x => x.Amount);
-                dtoYealry.NovemberTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 11).GetTooltipData(); 
-                
+                dtoYealry.NovemberTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 11).GetTooltipData();
+                dtoYealry.NovemberLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 11);
+
                 dtoYealry.December = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 12).ToList().Sum(x => x.Amount);
-                dtoYealry.DecemberTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 12).GetTooltipData(); 
-                
+                dtoYealry.DecemberTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 12).GetTooltipData();
+                dtoYealry.DecemberLst = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 12);
+
                 dtoYealry.CatogoryTotal = lstExpensesByCategory.Sum(s => s.Amount);
                 dtoYealries.Add(dtoYealry);
             }
