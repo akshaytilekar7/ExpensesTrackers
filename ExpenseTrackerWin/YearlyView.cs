@@ -40,7 +40,8 @@ namespace ExpenseTrackerWin
             SortableBindingList<DtoYealry> sortableBindingList = new(lstDtoYealry);
             dgvYealy.DataSource = sortableBindingList;
             dgvYealy.SetGridToFit();
-            lblTotal.Text = "Year " + datePickerYearly.Text + " Total Income: " + totalYealyIncome + " Total Expense:" + totalSum;
+            var balance = totalYealyIncome - totalSum;
+            lblTotal.Text = "Year " + datePickerYearly.Text + "\nTotal Income: " + totalYealyIncome.ToString("#,##0.00") + " \nTotal Expense: " + totalSum.ToString("#,##0.00") + " \nBalance: " + balance.ToString("#,##0.00");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -59,14 +60,14 @@ namespace ExpenseTrackerWin
                 var lst = expenses.ToList();
                 if (lst.Any())
                 {
-                    dgvTooltip.DataSource = lst.Select(x => new
+                    var sortlist = lst.Select(x => new DtoTooltip
                     {
                         Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.DayOfWeek.ToString(),
-                        CategoryName = x.Category.CategoryName,
-                        //ExpensesType = x.Category.ExpensesType,
                         Amount = x.Amount,
                         Comment = x.Comment,
                     }).ToList();
+                    SortableBindingList<DtoTooltip> sortableBindingList = new(sortlist);
+                    dgvTooltip.DataSource = sortableBindingList;
                 }
             }
         }
@@ -167,22 +168,22 @@ namespace ExpenseTrackerWin
                     dgvTooltip.SetGridToFit();
                     var lst = expenses.ToList();
                     if (lst.Any())
-                        dgvTooltip.DataSource = lst.Select(x => new
+                    {
+                        var sortlist = lst.Select(x => new DtoTooltip
                         {
                             Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.DayOfWeek.ToString(),
-                            CategoryName = x.Category.CategoryName,
-                            //ExpensesType = x.Category.ExpensesType,
                             Amount = x.Amount,
                             Comment = x.Comment,
                         }).ToList();
+                        SortableBindingList<DtoTooltip> sortableBindingList = new(sortlist);
+                        dgvTooltip.DataSource = sortableBindingList;
+                    }
+                    else
+                    {
+                        cell.ToolTipText = "No Tooltip";
+                    }
                 }
             }
-            else
-            {
-                cell.ToolTipText = "No Tooltip";
-            }
-
-
         }
     }
 }
