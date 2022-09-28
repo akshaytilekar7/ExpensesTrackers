@@ -55,17 +55,17 @@ namespace ExpenseTrackerWin
 
         }
 
-        private void LoadAllGrid() // 
+        private async Task LoadAllGrid()
         {
-            LoadExpenseFilterGrid(); //LoadExpenseFilterGrid
-            LoadExpenseByCategoryGrid();
+            await LoadExpenseFilterGrid();
+            await LoadExpenseByCategoryGrid();
             LoadIncomeGrid();
         }
 
-        private void LoadExpenseFilterGrid() //async Task
+        private async Task LoadExpenseFilterGrid()
         {
-            var res = _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter()); //await
-            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res.Result);
+            var res = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
+            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res);
             dgvFilter.DataSource = sortableBindingList;
             dgvFilter.SetGridToFit();
         }
