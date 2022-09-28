@@ -7,7 +7,7 @@ namespace PatternForCore.Services.Base.Contracts
 {
     public interface ICategoryServices
     {
-        bool Add(Category movieItem);
-        IList<Category> GetAll();
+        bool Add(MasterCategoryType movieItem);
+        IList<MasterCategoryType> GetAll();
     }
 }

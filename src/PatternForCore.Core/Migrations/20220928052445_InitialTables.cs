@@ -49,20 +49,6 @@ namespace PatternForCore.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Category",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExpensesType = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Category", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "IncomeSource",
                 columns: table => new
                 {
@@ -75,6 +61,19 @@ namespace PatternForCore.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_IncomeSource", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MasterExpenseType",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MasterExpenseType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,6 +183,25 @@ namespace PatternForCore.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MasterCategoryType",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MasterExpenseTypeId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MasterCategoryType", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MasterCategoryType_MasterExpenseType_MasterExpenseTypeId",
+                        column: x => x.MasterExpenseTypeId,
+                        principalTable: "MasterExpenseType",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Expense",
                 columns: table => new
                 {
@@ -198,9 +216,9 @@ namespace PatternForCore.Core.Migrations
                 {
                     table.PrimaryKey("PK_Expense", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Expense_Category_CategoryId",
+                        name: "FK_Expense_MasterCategoryType_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Category",
+                        principalTable: "MasterCategoryType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -248,6 +266,11 @@ namespace PatternForCore.Core.Migrations
                 name: "IX_Expense_CategoryId",
                 table: "Expense",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MasterCategoryType_MasterExpenseTypeId",
+                table: "MasterCategoryType",
+                column: "MasterExpenseTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -280,7 +303,10 @@ namespace PatternForCore.Core.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "MasterCategoryType");
+
+            migrationBuilder.DropTable(
+                name: "MasterExpenseType");
         }
     }
 }

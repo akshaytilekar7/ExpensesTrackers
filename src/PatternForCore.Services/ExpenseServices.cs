@@ -76,9 +76,9 @@ namespace PatternForCore.Services
                 dbList = dbList.Where(x => x.Amount == expenseFilter.Amount);
 
             if (!string.IsNullOrEmpty(expenseFilter.Category))
-                dbList = dbList.Where(x => x.Category.CategoryName.ToLower().Contains(expenseFilter.Category.ToLower()));
+                dbList = dbList.Where(x => x.Category.Name.ToLower().Contains(expenseFilter.Category.ToLower()));
             if (!string.IsNullOrEmpty(expenseFilter.ExpenseType))
-                dbList = dbList.Where(x => x.Category.ExpensesType.Contains(expenseFilter.ExpenseType.ToLower()));
+                dbList = dbList.Where(x => x.Category.MasterExpenseType.Name.Contains(expenseFilter.ExpenseType.ToLower()));
             if (!string.IsNullOrEmpty(expenseFilter.Comment))
                 dbList = dbList.Where(x => x.Comment.ToLower().Contains(expenseFilter.Comment.ToLower()));
 
@@ -87,10 +87,10 @@ namespace PatternForCore.Services
             var result = dbList.Select(s => new DtoExpense()
             {
                 Id = s.Id,
-                CategoryName = s.Category.CategoryName,
+                CategoryName = s.Category.Name,
                 Date = s.Date,
                 Amount = s.Amount,
-                ExpenseType = s.Category.ExpensesType,
+                ExpenseType = s.Category.MasterExpenseType.Name,
                 Comment = s.Comment
             });
 

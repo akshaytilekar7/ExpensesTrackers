@@ -10,5 +10,6 @@
 
         public int MasterExpenseTypeId { get; set; }
 
+
     }
 }

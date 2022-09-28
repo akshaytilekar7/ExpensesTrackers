@@ -58,5 +58,12 @@ namespace ExpenseTrackerWin
             Check.Show();
             Hide();
         }
+
+        private void btnUserSettings_Click(object sender, EventArgs e)
+        {
+            UserSettings Check = new UserSettings(ServiceFactory);
+            Check.Show();
+            Hide();
+        }
     }
 }

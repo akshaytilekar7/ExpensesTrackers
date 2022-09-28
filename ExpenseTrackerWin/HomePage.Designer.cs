@@ -33,6 +33,7 @@
             this.btnViewExpense = new System.Windows.Forms.Button();
             this.btnYealry = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
+            this.btnUserSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAddExpensed
@@ -92,16 +93,30 @@
             this.lblHeader.ForeColor = System.Drawing.Color.Teal;
             this.lblHeader.Location = new System.Drawing.Point(342, 97);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(798, 119);
+            this.lblHeader.Size = new System.Drawing.Size(537, 79);
             this.lblHeader.TabIndex = 4;
             this.lblHeader.Text = "Expense Tracker";
             // 
+            // btnUserSettings
+            // 
+            this.btnUserSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnUserSettings.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnUserSettings.Location = new System.Drawing.Point(21, 616);
+            this.btnUserSettings.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUserSettings.Name = "btnUserSettings";
+            this.btnUserSettings.Size = new System.Drawing.Size(303, 55);
+            this.btnUserSettings.TabIndex = 5;
+            this.btnUserSettings.Text = "User Settings";
+            this.btnUserSettings.UseVisualStyleBackColor = true;
+            this.btnUserSettings.Click += new System.EventHandler(this.btnUserSettings_Click);
+            // 
             // HomePage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1454, 692);
+            this.Controls.Add(this.btnUserSettings);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.btnYealry);
             this.Controls.Add(this.btnViewExpense);
@@ -124,5 +139,6 @@
         private Button btnViewExpense;
         private Button btnYealry;
         private Label lblHeader;
+        private Button btnUserSettings;
     }
 }

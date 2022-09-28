@@ -110,13 +110,14 @@ namespace ExpenseTrackerWin
             try
             {
                 var data = _serviceFactory.CategoryServices.GetAll();
-                data.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
+                //data.Insert(0, new MasterCategoryType() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
                 cmbCategory.DisplayMember = "CategoryName";
                 cmbCategory.ValueMember = "Id";
                 cmbCategory.DataSource = data;
 
-                IList<Category> data2 = data.DistinctBy(x => x.ExpensesType).OrderBy(x => x.ExpensesType).ToList();
-                data2.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
+                IList<MasterCategoryType> data2 = data.DistinctBy(x => x.MasterExpenseType.Name).OrderBy(x => x.MasterExpenseType.Name).ToList();
+                // TODO 2
+                //data2.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
                 cmbExpensesType.DisplayMember = "ExpensesType";
                 cmbExpensesType.ValueMember = "Id";
                 cmbExpensesType.DataSource = data2;

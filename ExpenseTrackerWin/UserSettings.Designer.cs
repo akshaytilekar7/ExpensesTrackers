@@ -28,25 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvExpenseType = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.masterExpenseTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblExpenseType = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvCategory = new System.Windows.Forms.DataGridView();
             this.btnSaveExpense = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnSaveCategory = new System.Windows.Forms.Button();
+            this.masterCategoryTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnHome = new System.Windows.Forms.Button();
+            this.cmbExpeseType = new System.Windows.Forms.ComboBox();
+            this.txtCategory = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.ctId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctExpenseType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ctName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEditSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masterExpenseTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masterCategoryTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvExpenseType
             // 
+            this.dgvExpenseType.AllowDrop = true;
+            this.dgvExpenseType.AllowUserToOrderColumns = true;
             this.dgvExpenseType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvExpenseType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Name});
             this.dgvExpenseType.Location = new System.Drawing.Point(17, 63);
             this.dgvExpenseType.Name = "dgvExpenseType";
             this.dgvExpenseType.RowTemplate.Height = 25;
             this.dgvExpenseType.Size = new System.Drawing.Size(505, 677);
             this.dgvExpenseType.TabIndex = 0;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "EtId";
+            this.Id.HeaderText = "EtId";
+            this.Id.Name = "Id";
+            // 
+            // Name
+            // 
+            this.Name.DataPropertyName = "EtName";
+            this.Name.HeaderText = "EtName";
+            this.Name.Name = "Name";
+            // 
+            // masterExpenseTypeBindingSource
+            // 
+            this.masterExpenseTypeBindingSource.DataSource = typeof(PatternForCore.Models.MasterExpenseType);
             // 
             // lblExpenseType
             // 
@@ -60,20 +98,24 @@
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(652, 39);
+            this.lblCategory.Location = new System.Drawing.Point(628, 39);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(80, 15);
             this.lblCategory.TabIndex = 3;
             this.lblCategory.Text = "Add Category";
             // 
-            // dataGridView1
+            // dgvCategory
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(633, 63);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(487, 677);
-            this.dataGridView1.TabIndex = 2;
+            this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCategory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ctId,
+            this.ctExpenseType,
+            this.ctName});
+            this.dgvCategory.Location = new System.Drawing.Point(624, 371);
+            this.dgvCategory.Name = "dgvCategory";
+            this.dgvCategory.RowTemplate.Height = 25;
+            this.dgvCategory.Size = new System.Drawing.Size(487, 357);
+            this.dgvCategory.TabIndex = 2;
             // 
             // btnSaveExpense
             // 
@@ -97,7 +139,7 @@
             // 
             // btnSaveCategory
             // 
-            this.btnSaveCategory.Location = new System.Drawing.Point(633, 746);
+            this.btnSaveCategory.Location = new System.Drawing.Point(628, 140);
             this.btnSaveCategory.Name = "btnSaveCategory";
             this.btnSaveCategory.Size = new System.Drawing.Size(75, 23);
             this.btnSaveCategory.TabIndex = 6;
@@ -105,23 +147,116 @@
             this.btnSaveCategory.UseVisualStyleBackColor = true;
             this.btnSaveCategory.Click += new System.EventHandler(this.btnSaveCategory_Click);
             // 
+            // masterCategoryTypeBindingSource
+            // 
+            this.masterCategoryTypeBindingSource.DataSource = typeof(PatternForCore.Models.MasterCategoryType);
+            // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(111, 12);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(75, 23);
+            this.btnHome.TabIndex = 7;
+            this.btnHome.Text = "Home";
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
+            // cmbExpeseType
+            // 
+            this.cmbExpeseType.FormattingEnabled = true;
+            this.cmbExpeseType.Location = new System.Drawing.Point(628, 102);
+            this.cmbExpeseType.Name = "cmbExpeseType";
+            this.cmbExpeseType.Size = new System.Drawing.Size(121, 23);
+            this.cmbExpeseType.TabIndex = 8;
+            // 
+            // txtCategory
+            // 
+            this.txtCategory.Location = new System.Drawing.Point(779, 102);
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.Size = new System.Drawing.Size(100, 23);
+            this.txtCategory.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(628, 84);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 15);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Expense Type";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(779, 84);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 15);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "CategoryName";
+            // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(902, 102);
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(100, 23);
+            this.txtId.TabIndex = 12;
+            // 
+            // ctId
+            // 
+            this.ctId.DataPropertyName = "ctId";
+            this.ctId.HeaderText = "ctId";
+            this.ctId.Name = "ctId";
+            // 
+            // ctExpenseType
+            // 
+            this.ctExpenseType.DataPropertyName = "ctExpenseType";
+            this.ctExpenseType.HeaderText = "ExpenseType";
+            this.ctExpenseType.Name = "ctExpenseType";
+            this.ctExpenseType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ctExpenseType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ctName
+            // 
+            this.ctName.DataPropertyName = "ctName";
+            this.ctName.HeaderText = "Name";
+            this.ctName.Name = "ctName";
+            // 
+            // btnEditSave
+            // 
+            this.btnEditSave.Location = new System.Drawing.Point(624, 746);
+            this.btnEditSave.Name = "btnEditSave";
+            this.btnEditSave.Size = new System.Drawing.Size(75, 23);
+            this.btnEditSave.TabIndex = 13;
+            this.btnEditSave.Text = "Save Edited";
+            this.btnEditSave.UseVisualStyleBackColor = true;
+            this.btnEditSave.Click += new System.EventHandler(this.btnEditSave_Click);
+            // 
             // UserSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1145, 834);
+            this.Controls.Add(this.btnEditSave);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtCategory);
+            this.Controls.Add(this.cmbExpeseType);
+            this.Controls.Add(this.btnHome);
             this.Controls.Add(this.btnSaveCategory);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnSaveExpense);
             this.Controls.Add(this.lblCategory);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvCategory);
             this.Controls.Add(this.lblExpenseType);
             this.Controls.Add(this.dgvExpenseType);
-            this.Name = "UserSettings";
             this.Text = "UserSettings";
             this.Load += new System.EventHandler(this.UserSettings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masterExpenseTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masterCategoryTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,9 +267,23 @@
         private DataGridView dgvExpenseType;
         private Label lblExpenseType;
         private Label lblCategory;
-        private DataGridView dataGridView1;
+        private DataGridView dgvCategory;
         private Button btnSaveExpense;
         private Button btnRefresh;
         private Button btnSaveCategory;
+        private BindingSource masterExpenseTypeBindingSource;
+        private BindingSource masterCategoryTypeBindingSource;
+        private Button btnHome;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn Name;
+        private ComboBox cmbExpeseType;
+        private TextBox txtCategory;
+        private Label label1;
+        private Label label2;
+        private TextBox txtId;
+        private DataGridViewTextBoxColumn ctId;
+        private DataGridViewComboBoxColumn ctExpenseType;
+        private DataGridViewTextBoxColumn ctName;
+        private Button btnEditSave;
     }
 }

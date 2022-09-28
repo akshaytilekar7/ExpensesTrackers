@@ -50,5 +50,13 @@ namespace PatternForCore.Services.Factory
                 return new YearlyService(_unitOfWork);
             }
         }
+
+        public IMasterTableService MasterTableService
+        {
+            get
+            {
+                return new MasterTableService(_unitOfWork);
+            }
+        }
     }
 }

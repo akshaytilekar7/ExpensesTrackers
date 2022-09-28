@@ -16,14 +16,14 @@ namespace PatternForCore.Services
             _unitOfWork = unitOfWork;
         }
 
-        public bool Add(Category category)
+        public bool Add(MasterCategoryType category)
         {
             bool result = false;
             try
             {
                 if (category != null)
                 {
-                    var movieRepository = _unitOfWork.GetRepository<Category>();
+                    var movieRepository = _unitOfWork.GetRepository<MasterCategoryType>();
                     movieRepository.Add(category);
                     _unitOfWork.Commit();
                     result = true;
@@ -38,10 +38,10 @@ namespace PatternForCore.Services
             return result;
         }
 
-        public IList<Category> GetAll()
+        public IList<MasterCategoryType> GetAll()
         {
-            var movieRepository = _unitOfWork.GetRepository<Category>();
-            return movieRepository.GetAll().OrderBy(x => x.CategoryName).ToList();
+            var movieRepository = _unitOfWork.GetRepository<MasterCategoryType>();
+            return movieRepository.GetAll().OrderBy(x => x.Name).ToList();
         }
     }
 }

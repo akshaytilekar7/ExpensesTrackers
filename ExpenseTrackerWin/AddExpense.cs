@@ -173,7 +173,7 @@ namespace ExpenseTrackerWin
 
                     if (!string.IsNullOrEmpty(comment))
                     {
-                        var dbCategory = dbCategories.FirstOrDefault(x => x.CategoryName.ToLower().Contains(comment.ToLower()));
+                        var dbCategory = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(comment.ToLower()));
                         if (dbCategory != null)
                             cCategory.Value = dbCategory.Id;
                         else
@@ -202,7 +202,7 @@ namespace ExpenseTrackerWin
             }
         }
 
-        private static int GetCategoryBasedOnComment(string comment, IList<Category> dbCategories)
+        private static int GetCategoryBasedOnComment(string comment, IList<MasterCategoryType> dbCategories)
         {
             foreach (var catLst in CategoryTags.GetTags())
             {
@@ -213,7 +213,7 @@ namespace ExpenseTrackerWin
                     {
                         if (itemarr != " " && tg.Contains(itemarr))
                         {
-                            var dbCategory1 = dbCategories.FirstOrDefault(x => x.CategoryName.ToLower().Contains(catLst.CategoryName.ToLower()));
+                            var dbCategory1 = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(catLst.CategoryName.ToLower()));
                             if (dbCategory1 != null)
                             {
                                 return dbCategory1.Id;

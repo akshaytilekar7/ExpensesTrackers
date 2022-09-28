@@ -12,7 +12,7 @@ namespace PatternForCore.Services.Factory
         IIncomeService IncomeService { get; }
         IExcelService ExcelService { get; }
         IYearlyService YearlyService { get; }
-
+        IMasterTableService MasterTableService { get; }
 
     }
 }

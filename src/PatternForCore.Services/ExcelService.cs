@@ -74,7 +74,6 @@ namespace PatternForCore.Services
         }
 
     }
-
     public static class Extenstions
     {
         public static IList<T> DatatableToClass<T>(this System.Data.DataTable Table) where T : class, new()

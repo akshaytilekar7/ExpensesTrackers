@@ -12,8 +12,8 @@ using PatternForCore.Core.EFContext;
 namespace PatternForCore.Core.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220922082349_InitialData")]
-    partial class InitialData
+    [Migration("20220928052445_InitialTables")]
+    partial class InitialTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -157,25 +157,6 @@ namespace PatternForCore.Core.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PatternForCore.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1, 1);
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExpensesType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Category");
-                });
-
             modelBuilder.Entity("PatternForCore.Models.Configuration.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -290,6 +271,43 @@ namespace PatternForCore.Core.Migrations
                     b.ToTable("IncomeSource");
                 });
 
+            modelBuilder.Entity("PatternForCore.Models.MasterCategoryType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1, 1);
+
+                    b.Property<int?>("MasterExpenseTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MasterExpenseTypeId");
+
+                    b.ToTable("MasterCategoryType");
+                });
+
+            modelBuilder.Entity("PatternForCore.Models.MasterExpenseType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MasterExpenseType");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -343,13 +361,22 @@ namespace PatternForCore.Core.Migrations
 
             modelBuilder.Entity("PatternForCore.Models.Expense", b =>
                 {
-                    b.HasOne("PatternForCore.Models.Category", "Category")
+                    b.HasOne("PatternForCore.Models.MasterCategoryType", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("PatternForCore.Models.MasterCategoryType", b =>
+                {
+                    b.HasOne("PatternForCore.Models.MasterExpenseType", "MasterExpenseType")
+                        .WithMany()
+                        .HasForeignKey("MasterExpenseTypeId");
+
+                    b.Navigation("MasterExpenseType");
                 });
 #pragma warning restore 612, 618
         }
