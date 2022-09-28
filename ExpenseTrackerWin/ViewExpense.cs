@@ -20,7 +20,7 @@ namespace ExpenseTrackerWin
             dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             dateStart.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
-            LoadAllGrid();
+            LoadCombobox();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                LoadCombobox();
+                LoadAllGrid();
             }
             catch (Exception ex)
             {
