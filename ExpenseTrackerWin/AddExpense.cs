@@ -147,7 +147,7 @@ namespace ExpenseTrackerWin
             {
                 ClearGrid();
                 IList<DtoExpense> lstBankStatementData = GetBankStatementData();
-                IList<DtoExpense> lstWhatsAppData = new List<DtoExpense>(); // GetWhatsAppData();
+                IList<DtoExpense> lstWhatsAppData = GetWhatsAppData();
 
                 int index = 0;
                 foreach (var item in lstBankStatementData)
@@ -160,7 +160,10 @@ namespace ExpenseTrackerWin
                     cAmount.Value = item.Amount;
 
                     DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
-                    cComment.Value = string.IsNullOrEmpty(item.Comment) ? string.Empty : item.Comment.Trim();
+                    var excelWhatsAppExpense = lstWhatsAppData.FirstOrDefault(x => x.Date.Day == item.Date.Day && x.Amount == item.Amount);
+
+                    var comment = excelWhatsAppExpense == null ? string.Empty : excelWhatsAppExpense.Comment;
+                    cComment.Value = comment;
 
                     DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
                     var dbCategories = ServiceFactory.CategoryServices.GetAll();
@@ -168,9 +171,18 @@ namespace ExpenseTrackerWin
                     cCategory.ValueMember = "Id";
                     cCategory.DataSource = dbCategories;
 
-                    var dbCategory = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(item.CategoryName.ToLower()));
-                    if (dbCategory != null)
-                        cCategory.Value = dbCategory.Id;
+                    if (!string.IsNullOrEmpty(comment))
+                    {
+                        var dbCategory = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(comment.ToLower()));
+                        if (dbCategory != null)
+                            cCategory.Value = dbCategory.Id;
+                        else
+                        {
+                            int categoryId = GetCategoryBasedOnComment(comment, dbCategories);
+                            if (categoryId != 0)
+                                cCategory.Value = categoryId;
+                        }
+                    }
 
                     row.Cells.Add(cDay);
                     row.Cells.Add(cCategory);
@@ -241,9 +253,7 @@ namespace ExpenseTrackerWin
 
             DataTable dt = ServiceFactory.ExcelService.LoadDataTable(projectDirectory);
             var lstExpense = dt.DatatableToClass<DtoExpense>();
-            var lastDayOfMonth = DateTime.DaysInMonth(date.Year, date.Month);
-            var endDate = new DateTime(date.Year, date.Month, lastDayOfMonth);
-            return lstExpense.Where(x => x.Amount > 0 && x.Date.Date >= date.Date && x.Date.Date <= endDate).ToList();
+            return lstExpense.Where(x => x.Amount > 0 && x.Date.Date >= date.Date).ToList();
         }
 
         private void ClearGrid()
