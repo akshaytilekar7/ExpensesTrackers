@@ -55,24 +55,25 @@ namespace ExpenseTrackerWin
 
         }
 
-        private void LoadAllGrid()
+        private async Task LoadAllGrid()
         {
-            LoadExpenseFilterGrid();
-            LoadExpenseByCategoryGrid();
+            await LoadExpenseFilterGrid();
+            await LoadExpenseByCategoryGrid();
             LoadIncomeGrid();
         }
 
-        private void LoadExpenseFilterGrid()
+        private async Task LoadExpenseFilterGrid()
         {
-            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(_serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter()));
+            var res = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
+            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res);
             dgvFilter.DataSource = sortableBindingList;
             dgvFilter.SetGridToFit();
         }
-        private void LoadExpenseByCategoryGrid()
+        private async Task LoadExpenseByCategoryGrid()
         {
             try
             {
-                List<DtoExpenseByCategory>? result = _serviceFactory.YearlyService.GetExpenseByCategory(GetFilter());
+                var result = await _serviceFactory.YearlyService.GetExpenseByCategory(GetFilter());
                 SortableBindingList<DtoExpenseByCategory> sortableBindingList = new SortableBindingList<DtoExpenseByCategory>(result);
                 dgvExpenseOverview.DataSource = sortableBindingList;
                 dgvExpenseOverview.SetGridToFit();
@@ -234,13 +235,13 @@ namespace ExpenseTrackerWin
             txtComment.Clear();
             cmbCategory.ResetText();
             cmbExpensesType.ResetText();
-            
+
             dgvIncome.Rows.Clear();
             dgvIncome.Refresh();
 
             dgvExpenseOverview.Rows.Clear();
             dgvExpenseOverview.Refresh();
-            
+
             dgvFilter.Rows.Clear();
             dgvFilter.Refresh();
         }

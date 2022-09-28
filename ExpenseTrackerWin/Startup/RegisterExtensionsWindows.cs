@@ -20,11 +20,12 @@ namespace ExpenseTrackerWin.Startup
         public static void AddDbContexts(this IServiceCollection services, IConfiguration configuration)
         {
             var contextConnectionString = ConnectionSettings.DefaultConnection;
-            services.AddDbContextPool<DatabaseContext>(x => x.UseSqlServer(contextConnectionString, o =>
+
+            services.AddDbContext<DatabaseContext>(x => x.UseSqlServer(contextConnectionString, o =>
             {
                 o.EnableRetryOnFailure(3);
             })
-            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)); // ServiceLifetime.Transient
         }
 
         public static void AddInjections(this IServiceCollection services)

@@ -26,15 +26,15 @@ namespace ExpenseTrackerWin
             _serviceFactory = serviceFactory;
         }
 
-        private void YearlyView_Load(object sender, EventArgs e)
+        private async void YearlyView_Load(object sender, EventArgs e)
         {
             datePickerYearly.Format = DateTimePickerFormat.Custom;
             datePickerYearly.CustomFormat = "yyyy";
             datePickerYearly.ShowUpDown = true;
-            LoadGird();
+            await LoadGird();
         }
 
-        private void LoadGird()
+        private async Task LoadGird()
         {
             var lstDtoYealry = _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text), out int totalSum, out int totalYealyIncome);
             SortableBindingList<DtoYealry> sortableBindingList = new(lstDtoYealry);
@@ -42,9 +42,12 @@ namespace ExpenseTrackerWin
             dgvYealy.SetGridToFit();
             var balance = totalYealyIncome - totalSum;
             lblTotal.Text = "Year " + datePickerYearly.Text + "\nTotal Income: " + totalYealyIncome.ToString("#,##0.00") + " \nTotal Expense: " + totalSum.ToString("#,##0.00") + " \nBalance: " + balance.ToString("#,##0.00");
+
+            await LoadExpenseByCategoryGrid();
+
         }
 
-        private void LoadExpenseByCategoryGrid()
+        private async Task LoadExpenseByCategoryGrid()
         {
             int year = Convert.ToInt32(datePickerYearly.Text);
             var filter = new ExpenseFilter()
@@ -52,7 +55,7 @@ namespace ExpenseTrackerWin
                 StartDate = new DateTime(year, 1, 1),
                 EndDate = new DateTime(year, 12, 31),
             };
-            List<DtoExpenseByCategory>? result = _serviceFactory.YearlyService.GetExpenseByCategory(filter);
+            List<DtoExpenseByCategory>? result = await _serviceFactory.YearlyService.GetExpenseByCategory(filter);
             SortableBindingList<DtoExpenseByCategory> sortableBindingList = new SortableBindingList<DtoExpenseByCategory>(result);
             dgvExpenseOverview.DataSource = sortableBindingList;
             dgvExpenseOverview.SetGridToFit();
@@ -198,13 +201,6 @@ namespace ExpenseTrackerWin
                     }
                 }
             }
-        }
-
-        private void btnLoadExpense_Click(object sender, EventArgs e)
-        {
-            lblPleaseWait.Text = "please wait.. loading data";
-            LoadExpenseByCategoryGrid();
-            lblPleaseWait.Text = String.Empty;
         }
     }
 }

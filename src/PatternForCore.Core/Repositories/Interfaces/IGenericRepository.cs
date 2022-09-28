@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -38,6 +39,7 @@ namespace PatternForCore.Core.Repositories.Interfaces
 
         /// <returns>List of entities</returns>
         IQueryable<T> GetAll(string include);
+        
 
         /// <returns>List of entities</returns>
         IQueryable<T> RawSql(string sql, params object[] parameters);
@@ -59,6 +61,7 @@ namespace PatternForCore.Core.Repositories.Interfaces
 
         bool Exists(Expression<Func<T, bool>> predicate);
 
+        public Task<IEnumerable<T>> GetAllAsync(string include);
 
     }
 }

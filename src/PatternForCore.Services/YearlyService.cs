@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System.Data;
 using System;
 using PatternForCore.Services.Factory;
+using System.Threading.Tasks;
 
 namespace PatternForCore.Services
 {
@@ -113,10 +114,10 @@ namespace PatternForCore.Services
             return dtoYealries.OrderBy(x => x.Category).ToList();
         }
 
-        public List<DtoExpenseByCategory> GetExpenseByCategory(ExpenseFilter filter)
+        public async Task<List<DtoExpenseByCategory>> GetExpenseByCategory(ExpenseFilter filter)
         {
             List<DtoExpenseByCategory> dtoExpenseByCategories = new List<DtoExpenseByCategory>();
-            List<DtoExpense> lstDtoExpense =  _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
+            var lstDtoExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
             var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate);
             var income = dbIncomes.Sum(x => x.Amount);
             var psum = 0;

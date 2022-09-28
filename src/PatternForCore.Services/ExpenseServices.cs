@@ -5,6 +5,7 @@ using System.Linq;
 using PatternForCore.Models;
 using PatternForCore.Services.Base.Contracts;
 using PatternForCore.Models.Dto;
+using System.Threading.Tasks;
 
 namespace PatternForCore.Services
 {
@@ -63,20 +64,10 @@ namespace PatternForCore.Services
             _unitOfWork.Commit();
         }
 
-        public List<DtoExpense> GetExpenseFilter(ExpenseFilter expenseFilter)
+        public async Task<List<DtoExpense>> GetExpenseFilter(ExpenseFilter expenseFilter)
         {
             var movieRepository = _unitOfWork.GetRepository<Expense>();
-            IQueryable<Expense> dbList = movieRepository.GetAll("Category");
-
-            //var dbList = GetAll().Select(s => new DtoExpense()
-            //{
-            //    Id = s.Id,
-            //    CategoryName = s.Category.CategoryName,
-            //    Date = s.Date,
-            //    Amount = s.Amount,
-            //    ExpenseType = s.Category.ExpensesType,
-            //    Comment = s.Comment
-            //});
+            IEnumerable<Expense> dbList = await movieRepository.GetAllAsync("Category");
 
             if (expenseFilter.StartDate != DateTime.MinValue && expenseFilter.EndDate != DateTime.MinValue)
                 dbList = dbList.Where(x => x.Date >= expenseFilter.StartDate && x.Date <= expenseFilter.EndDate);

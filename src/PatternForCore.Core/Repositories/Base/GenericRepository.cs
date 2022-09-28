@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -71,6 +72,11 @@ namespace PatternForCore.Core.Repositories.Base
         public IQueryable<T> GetAll(string include)
         {
             return dbSet.AsNoTracking().Include(include);
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync(string include)
+        {
+            return await _context.Set<T>().Include(include).ToListAsync();
         }
 
         public IQueryable<T> RawSql(string query, params object[] parameters)

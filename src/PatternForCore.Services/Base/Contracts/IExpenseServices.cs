@@ -11,7 +11,7 @@ namespace PatternForCore.Services.Base.Contracts
         void Add(List<Expense> lst);
         IList<Expense> GetAll();
         void Delete(List<Expense> lst);
-        List<DtoExpense> GetExpenseFilter(ExpenseFilter expenseFilter);
+        Task<List<DtoExpense>> GetExpenseFilter(ExpenseFilter expenseFilter);
 
     }
 }
