@@ -9,6 +9,7 @@ using System.Data;
 using System;
 using PatternForCore.Services.Factory;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace PatternForCore.Services
 {
@@ -25,9 +26,14 @@ namespace PatternForCore.Services
         public List<DtoYealry> GetYearlyData(int year, out int total, out int totalYealyIncome)
         {
             var repoExpense = _unitOfWork.GetRepository<Expense>();
-            var lstExpenses = repoExpense.GetAll("Category").Where(x => x.Date.Year == year).ToList();
+
+            List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
+            includers.Add(x => x.MasterCategoryType);
+            includers.Add(x => x.MasterCategoryType.MasterExpenseType);
+            var lstExpenses = repoExpense.GetAll(includers).OrderByDescending(x => x.Id).Where(x => x.Date.Year == year).ToList(); 
 
             List<DtoYealry> dtoYealries = new List<DtoYealry>();
+
             var repoCategory = _unitOfWork.GetRepository<MasterCategoryType>();
             var lstCategory = repoCategory.GetAll();
 
@@ -37,7 +43,7 @@ namespace PatternForCore.Services
             foreach (var itemCategory in lstCategory)
             {
                 DtoYealry dtoYealry = new DtoYealry();
-                dtoYealry.Category = itemCategory.Name + " (" + itemCategory.MasterExpenseType.Name + ")";
+                dtoYealry.Category = itemCategory.Name + " (" + itemCategory.Name + ")";
                 var lstExpensesByCategory = lstExpenses.Where(e => e.MasterCategoryType.Name == itemCategory.Name);
 
                 dtoYealry.Jan = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 1).ToList().Sum(x => x.Amount);

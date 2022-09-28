@@ -36,6 +36,9 @@
             this.lblExpenseType = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
             this.dgvCategory = new System.Windows.Forms.DataGridView();
+            this.ctId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctExpenseType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ctName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSaveExpense = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnSaveCategory = new System.Windows.Forms.Button();
@@ -46,9 +49,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.ctId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ctExpenseType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ctName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterExpenseTypeBindingSource)).BeginInit();
@@ -98,7 +98,7 @@
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(628, 39);
+            this.lblCategory.Location = new System.Drawing.Point(623, 16);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(80, 15);
             this.lblCategory.TabIndex = 3;
@@ -111,11 +111,31 @@
             this.ctId,
             this.ctExpenseType,
             this.ctName});
-            this.dgvCategory.Location = new System.Drawing.Point(624, 371);
+            this.dgvCategory.Location = new System.Drawing.Point(624, 140);
             this.dgvCategory.Name = "dgvCategory";
             this.dgvCategory.RowTemplate.Height = 25;
-            this.dgvCategory.Size = new System.Drawing.Size(487, 357);
+            this.dgvCategory.Size = new System.Drawing.Size(487, 665);
             this.dgvCategory.TabIndex = 2;
+            // 
+            // ctId
+            // 
+            this.ctId.DataPropertyName = "ctId";
+            this.ctId.HeaderText = "ctId";
+            this.ctId.Name = "ctId";
+            // 
+            // ctExpenseType
+            // 
+            this.ctExpenseType.DataPropertyName = "ctExpenseType";
+            this.ctExpenseType.HeaderText = "ExpenseType";
+            this.ctExpenseType.Name = "ctExpenseType";
+            this.ctExpenseType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ctExpenseType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ctName
+            // 
+            this.ctName.DataPropertyName = "ctName";
+            this.ctName.HeaderText = "Name";
+            this.ctName.Name = "ctName";
             // 
             // btnSaveExpense
             // 
@@ -139,7 +159,7 @@
             // 
             // btnSaveCategory
             // 
-            this.btnSaveCategory.Location = new System.Drawing.Point(628, 140);
+            this.btnSaveCategory.Location = new System.Drawing.Point(624, 101);
             this.btnSaveCategory.Name = "btnSaveCategory";
             this.btnSaveCategory.Size = new System.Drawing.Size(75, 23);
             this.btnSaveCategory.TabIndex = 6;
@@ -164,14 +184,14 @@
             // cmbExpeseType
             // 
             this.cmbExpeseType.FormattingEnabled = true;
-            this.cmbExpeseType.Location = new System.Drawing.Point(628, 102);
+            this.cmbExpeseType.Location = new System.Drawing.Point(624, 63);
             this.cmbExpeseType.Name = "cmbExpeseType";
             this.cmbExpeseType.Size = new System.Drawing.Size(121, 23);
             this.cmbExpeseType.TabIndex = 8;
             // 
             // txtCategory
             // 
-            this.txtCategory.Location = new System.Drawing.Point(779, 102);
+            this.txtCategory.Location = new System.Drawing.Point(775, 63);
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(100, 23);
             this.txtCategory.TabIndex = 9;
@@ -179,7 +199,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(628, 84);
+            this.label1.Location = new System.Drawing.Point(624, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 15);
             this.label1.TabIndex = 10;
@@ -188,7 +208,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(779, 84);
+            this.label2.Location = new System.Drawing.Point(775, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 15);
             this.label2.TabIndex = 11;
@@ -196,35 +216,15 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(902, 102);
+            this.txtId.Location = new System.Drawing.Point(898, 63);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(100, 23);
             this.txtId.TabIndex = 12;
             // 
-            // ctId
-            // 
-            this.ctId.DataPropertyName = "ctId";
-            this.ctId.HeaderText = "ctId";
-            this.ctId.Name = "ctId";
-            // 
-            // ctExpenseType
-            // 
-            this.ctExpenseType.DataPropertyName = "ctExpenseType";
-            this.ctExpenseType.HeaderText = "ExpenseType";
-            this.ctExpenseType.Name = "ctExpenseType";
-            this.ctExpenseType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ctExpenseType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ctName
-            // 
-            this.ctName.DataPropertyName = "ctName";
-            this.ctName.HeaderText = "Name";
-            this.ctName.Name = "ctName";
-            // 
             // btnEditSave
             // 
-            this.btnEditSave.Location = new System.Drawing.Point(624, 746);
+            this.btnEditSave.Location = new System.Drawing.Point(623, 811);
             this.btnEditSave.Name = "btnEditSave";
             this.btnEditSave.Size = new System.Drawing.Size(75, 23);
             this.btnEditSave.TabIndex = 13;

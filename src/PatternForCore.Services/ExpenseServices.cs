@@ -54,7 +54,10 @@ namespace PatternForCore.Services
         public IList<Expense> GetAll()
         {
             var movieRepository = _unitOfWork.GetRepository<Expense>();
-            return movieRepository.GetAll("Category").OrderByDescending(x => x.Id).ToList();
+            List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
+            includers.Add(x => x.MasterCategoryType);
+            includers.Add(x => x.MasterCategoryType.MasterExpenseType);
+            return movieRepository.GetAll(includers).OrderByDescending(x => x.Id).ToList();
         }
 
         public void Delete(List<Expense> lst)

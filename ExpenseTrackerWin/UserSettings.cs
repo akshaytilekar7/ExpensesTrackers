@@ -115,13 +115,13 @@ namespace ExpenseTrackerWin
 
         private void LoadCategoryGrid()
         {
-            dgvCategory.Rows.Clear();   
+            dgvCategory.Rows.Clear();
             var dbExpense = _serviceFactory.MasterTableService.GetAllMasterExpenseType();
             cmbExpeseType.DataSource = dbExpense;
             cmbExpeseType.DisplayMember = "Name";
             cmbExpeseType.ValueMember = "Id";
 
-            var dbCategories = _serviceFactory.MasterTableService.GetAllMasterCategoryType();
+            var dbCategories = _serviceFactory.MasterTableService.GetAllMasterCategoryType().OrderBy(x => x.MasterExpenseType.Name).ToList();
             if (!dbCategories.Any())
                 dbCategories.Add(new MasterCategoryType());
             //dgvCategory.DataSource = dbCategories;
