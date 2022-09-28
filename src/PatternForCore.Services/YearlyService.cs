@@ -24,7 +24,6 @@ namespace PatternForCore.Services
         }
 
 
-        //public async Task<List<DtoYealry>> GetYearlyData(int year)
         public async Task<List<DtoYealry>> GetYearlyData(int year)
         {
             var repoExpense = _unitOfWork.GetRepository<Expense>();
@@ -32,18 +31,12 @@ namespace PatternForCore.Services
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
             includers.Add(x => x.MasterCategoryType);
             includers.Add(x => x.MasterCategoryType.MasterExpenseType);
-            //
-            //var lstExpenses = repoExpense.GetAll(includers).OrderByDescending(x => x.Id).Where(x => x.Date.Year == year).ToList();
-
-            //
             var lstExpenses = await repoExpense.GetAllAsync(includers);
             lstExpenses = lstExpenses.OrderByDescending(x => x.Id).Where(x => x.Date.Year == year);
-            //
-
             List<DtoYealry> dtoYealries = new List<DtoYealry>();
 
             var repoCategory = _unitOfWork.GetRepository<MasterCategoryType>();
-            var lstCategory = repoCategory.GetAll();
+            var lstCategory = repoCategory.GetAll("MasterExpenseType");
 
             var repoIncomeSource = _unitOfWork.GetRepository<IncomeSource>();
             var lstIncomeSource = repoIncomeSource.GetAll().Where(x => x.Date.Year == year).ToList();
@@ -51,7 +44,7 @@ namespace PatternForCore.Services
             foreach (var itemCategory in lstCategory)
             {
                 DtoYealry dtoYealry = new DtoYealry();
-                dtoYealry.Category = itemCategory.Name + " (" + itemCategory.Name + ")";
+                dtoYealry.Category = itemCategory.Name + " (" + itemCategory.MasterExpenseType.Name + ")";
                 var lstExpensesByCategory = lstExpenses.Where(e => e.MasterCategoryType.Name == itemCategory.Name);
 
                 dtoYealry.Jan = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 1).ToList().Sum(x => x.Amount);
@@ -123,8 +116,6 @@ namespace PatternForCore.Services
             dto.CatogoryTotal = lstExpenses.Sum(s => s.Amount);
             dtoYealries.Add(dto);
 
-            //totalYealyIncome = lstIncomeSource.Sum(s => s.Amount);
-            //total = lstExpenses.Sum(x => x.Amount);
             return dtoYealries.OrderBy(x => x.Category).ToList();
         }
 
