@@ -70,7 +70,7 @@ namespace ExpenseTrackerWin
             try
             {
                 var Categories = ServiceFactory.CategoryServices.GetAll();
-                Category.DisplayMember = "CategoryName";
+                Category.DisplayMember = "Name";
                 Category.ValueMember = "Id";
                 Category.DataSource = Categories;
             }
@@ -94,7 +94,7 @@ namespace ExpenseTrackerWin
                         continue;
 
                     Expense expense = new Expense();
-                    expense.CategoryId = Convert.ToInt32(row.Cells[1].Value);
+                    expense.MasterCategoryTypeId = Convert.ToInt32(row.Cells[1].Value);
                     var date = Convert.ToDateTime(DatePicker.Text);
                     expense.Date = new DateTime(date.Year, date.Month, day);
                     expense.Amount = Convert.ToInt32(row.Cells[2].Value);
@@ -167,7 +167,7 @@ namespace ExpenseTrackerWin
 
                     DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
                     var dbCategories = ServiceFactory.CategoryServices.GetAll();
-                    cCategory.DisplayMember = "CategoryName";
+                    cCategory.DisplayMember = "Name";
                     cCategory.ValueMember = "Id";
                     cCategory.DataSource = dbCategories;
 

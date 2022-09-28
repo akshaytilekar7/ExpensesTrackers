@@ -55,17 +55,17 @@ namespace ExpenseTrackerWin
 
         }
 
-        private async Task LoadAllGrid()
+        private void LoadAllGrid() // async Task
         {
-            await LoadExpenseFilterGrid();
-            await LoadExpenseByCategoryGrid();
+            LoadExpenseFilterGrid(); //LoadExpenseFilterGrid
+            LoadExpenseByCategoryGrid();
             LoadIncomeGrid();
         }
 
-        private async Task LoadExpenseFilterGrid()
+        private void LoadExpenseFilterGrid() //async Task
         {
-            var res = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
-            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res);
+            var res = _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter()); //await
+            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res.Result);
             dgvFilter.DataSource = sortableBindingList;
             dgvFilter.SetGridToFit();
         }
@@ -109,18 +109,18 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var data = _serviceFactory.CategoryServices.GetAll();
-                //data.Insert(0, new MasterCategoryType() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
-                cmbCategory.DisplayMember = "CategoryName";
+                var data = _serviceFactory.MasterTableService.GetAllMasterCategoryType();
+                data.Insert(0, new MasterCategoryType() { Id = 0, Name = "Please select" });
+                cmbCategory.DisplayMember = "Name";
                 cmbCategory.ValueMember = "Id";
                 cmbCategory.DataSource = data;
 
-                IList<MasterCategoryType> data2 = data.DistinctBy(x => x.MasterExpenseType.Name).OrderBy(x => x.MasterExpenseType.Name).ToList();
+                var dataExpenseTypes = _serviceFactory.MasterTableService.GetAllMasterExpenseType();
                 // TODO 2
-                //data2.Insert(0, new Category() { Id = 0, CategoryName = "Please select", ExpensesType = "Please select" });
-                cmbExpensesType.DisplayMember = "ExpensesType";
+                dataExpenseTypes.Insert(0, new MasterExpenseType() { Id = 0, Name = "Please select" });
+                cmbExpensesType.DisplayMember = "Name";
                 cmbExpensesType.ValueMember = "Id";
-                cmbExpensesType.DataSource = data2;
+                cmbExpensesType.DataSource = dataExpenseTypes;
             }
             catch (Exception ex)
             {

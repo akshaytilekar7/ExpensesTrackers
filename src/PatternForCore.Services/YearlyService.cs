@@ -38,7 +38,7 @@ namespace PatternForCore.Services
             {
                 DtoYealry dtoYealry = new DtoYealry();
                 dtoYealry.Category = itemCategory.Name + " (" + itemCategory.MasterExpenseType.Name + ")";
-                var lstExpensesByCategory = lstExpenses.Where(e => e.Category.Name == itemCategory.Name);
+                var lstExpensesByCategory = lstExpenses.Where(e => e.MasterCategoryType.Name == itemCategory.Name);
 
                 dtoYealry.Jan = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 1).ToList().Sum(x => x.Amount);
                 dtoYealry.JanTooltip = lstExpensesByCategory.Where(ec => ec.Date.Date.Month == 1).GetTooltipData();
@@ -121,7 +121,7 @@ namespace PatternForCore.Services
             var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate);
             var income = dbIncomes.Sum(x => x.Amount);
             var psum = 0;
-            var expenseTypes = _serviceFactory.CategoryServices.GetAll().Select(x => x.MasterExpenseType.Name).Distinct();
+            var expenseTypes = _serviceFactory.MasterTableService.GetAllMasterExpenseType().Select(x => x.Name).Distinct();
             foreach (var et in expenseTypes)
             {
                 DtoExpenseByCategory dto = new DtoExpenseByCategory();

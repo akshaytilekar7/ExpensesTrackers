@@ -64,10 +64,10 @@ namespace PatternForCore.Services
             _unitOfWork.Commit();
         }
 
-        public async Task<List<DtoExpense>> GetExpenseFilter(ExpenseFilter expenseFilter)
+        public Task<List<DtoExpense>> GetExpenseFilter(ExpenseFilter expenseFilter)
         {
             var movieRepository = _unitOfWork.GetRepository<Expense>();
-            IEnumerable<Expense> dbList = await movieRepository.GetAllAsync("Category");
+            IEnumerable<Expense> dbList = movieRepository.GetAll("MasterCategoryType"); //GetAllAsybc .ResultS
 
             if (expenseFilter.StartDate != DateTime.MinValue && expenseFilter.EndDate != DateTime.MinValue)
                 dbList = dbList.Where(x => x.Date >= expenseFilter.StartDate && x.Date <= expenseFilter.EndDate);
@@ -76,9 +76,9 @@ namespace PatternForCore.Services
                 dbList = dbList.Where(x => x.Amount == expenseFilter.Amount);
 
             if (!string.IsNullOrEmpty(expenseFilter.Category))
-                dbList = dbList.Where(x => x.Category.Name.ToLower().Contains(expenseFilter.Category.ToLower()));
+                dbList = dbList.Where(x => x.MasterCategoryType.Name.ToLower().Contains(expenseFilter.Category.ToLower()));
             if (!string.IsNullOrEmpty(expenseFilter.ExpenseType))
-                dbList = dbList.Where(x => x.Category.MasterExpenseType.Name.Contains(expenseFilter.ExpenseType.ToLower()));
+                dbList = dbList.Where(x => x.MasterCategoryType.MasterExpenseType.Name.Contains(expenseFilter.ExpenseType.ToLower()));
             if (!string.IsNullOrEmpty(expenseFilter.Comment))
                 dbList = dbList.Where(x => x.Comment.ToLower().Contains(expenseFilter.Comment.ToLower()));
 
@@ -87,14 +87,14 @@ namespace PatternForCore.Services
             var result = dbList.Select(s => new DtoExpense()
             {
                 Id = s.Id,
-                CategoryName = s.Category.Name,
+                CategoryName = s.MasterCategoryType.Name,
                 Date = s.Date,
                 Amount = s.Amount,
-                ExpenseType = s.Category.MasterExpenseType.Name,
+                //ExpenseType = s.MasterCategoryType.MasterExpenseType.Name, //TODO include
                 Comment = s.Comment
             });
 
-            return result.ToList();
+            return Task.FromResult(result.ToList());
         }
     }
 }
