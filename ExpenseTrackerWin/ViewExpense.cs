@@ -138,58 +138,12 @@ namespace ExpenseTrackerWin
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
             projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
 
-            ExportToExcel(dgvFilter, projectDirectory);
-            ExportToExcel(dgvIncome, projectDirectory);
-            ExportToExcel(dgvExpenseOverview, projectDirectory);
+            GridExcel.ExportToExcel(dgvFilter, projectDirectory);
+            GridExcel.ExportToExcel(dgvIncome, projectDirectory);
+            GridExcel.ExportToExcel(dgvExpenseOverview, projectDirectory);
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }
 
-        private void ExportToExcel(DataGridView dataGridView, string projectDirectory)
-        {
-            try
-            {
-                if (dataGridView.Rows.Count > 0)
-                {
-                    StreamWriter wr = new StreamWriter(projectDirectory, append: true);
-                    for (int i = 0; i < dataGridView.Columns.Count; i++)
-                    {
-                        wr.Write(dataGridView.Columns[i].Name.ToString().ToUpper() + "\t");
-                    }
-
-                    wr.WriteLine();
-
-                    foreach (DataGridViewRow row in dataGridView.Rows)
-                    {
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            if (cell != null)
-                            {
-                                wr.Write(Convert.ToString(cell.Value) + "\t");
-                            }
-                            else
-                            {
-                                wr.Write("\t");
-                            }
-                        }
-                        wr.WriteLine();
-                    }
-
-                    wr.WriteLine();
-                    wr.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Zero record to export , perform a operation first" + "Can't export file");
-                }
-            }
-            catch (Exception ex)
-            {
-                var st = string.Empty;
-                if (ex.InnerException != null)
-                    st = ex.InnerException.Message;
-                lblError.Text = "btnExcel_Click : " + ex.Message + " " + st;
-            }
-        }
         private void btnForm1_Click(object sender, EventArgs e)
         {
             HomePage Check = new HomePage(_serviceFactory);
