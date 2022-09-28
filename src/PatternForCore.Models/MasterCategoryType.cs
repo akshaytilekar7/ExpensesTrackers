@@ -6,6 +6,8 @@
 
         public string Name { get; set; }
 
+        public string CommaSeparatedTags { get; set; }
+
         public MasterExpenseType MasterExpenseType { get; set; }
 
         public int MasterExpenseTypeId { get; set; }

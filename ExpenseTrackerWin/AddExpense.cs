@@ -173,12 +173,13 @@ namespace ExpenseTrackerWin
 
                     if (!string.IsNullOrEmpty(comment))
                     {
+                        comment = comment.Trim();
                         var dbCategory = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(comment.ToLower()));
                         if (dbCategory != null)
                             cCategory.Value = dbCategory.Id;
                         else
                         {
-                            int categoryId = GetCategoryBasedOnComment(comment, dbCategories);
+                            int categoryId = GetCategoryBasedOnComment(comment, dbCategories.ToList());
                             if (categoryId != 0)
                                 cCategory.Value = categoryId;
                         }
@@ -202,48 +203,19 @@ namespace ExpenseTrackerWin
             }
         }
 
-        private static int GetCategoryBasedOnComment(string comment, IList<MasterCategoryType> dbCategories)
+        private static int GetCategoryBasedOnComment(string comment, List<MasterCategoryType> dbCategories)
         {
-            foreach (var catLst in CategoryTags.GetTags())
+            dbCategories = dbCategories.Where(x => x.CommaSeparatedTags != null).ToList();
+            foreach (var category in dbCategories)
             {
-                foreach (var tg in catLst.Tags)
-                {
-                    var arr = comment.Split(" ");
-                    foreach (var itemarr in arr)
-                    {
-                        if (itemarr != " " && tg.Contains(itemarr))
-                        {
-                            var dbCategory1 = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(catLst.CategoryName.ToLower()));
-                            if (dbCategory1 != null)
-                            {
-                                return dbCategory1.Id;
-                            }
-                        }
-                    }
-                }
+                var listCommaSeparatedTags = category.CommaSeparatedTags.Split(",").ToList();
+                listCommaSeparatedTags = listCommaSeparatedTags.Where(x => x != " ").ToList();
+                if (listCommaSeparatedTags.Contains(comment))
+                    return category.Id;
             }
 
             return 0;
         }
-
-        //private List<DtoExpense> GetWhatsAppData()
-        //{
-        //    try
-        //    {
-        //        var date = Convert.ToDateTime(DatePicker.Text);
-        //        string projectDirectory2 = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-        //        projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Month + "_" + date.Year + ".xls";
-        //        DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
-        //        var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
-        //        return lstExpenseBankStatement.Where(x => x.Date.Date >= date.Date).ToList();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblError.Text = ex.Message;
-        //        return new List<DtoExpense>();
-        //    }
-
-        //}
 
         private IList<DtoExpense> GetWhatsAppData()
         {

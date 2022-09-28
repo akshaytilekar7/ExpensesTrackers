@@ -91,7 +91,7 @@
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Sigmar One", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.lblHeader.ForeColor = System.Drawing.Color.Teal;
-            this.lblHeader.Location = new System.Drawing.Point(342, 97);
+            this.lblHeader.Location = new System.Drawing.Point(456, 87);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(537, 79);
             this.lblHeader.TabIndex = 4;
