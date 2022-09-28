@@ -147,7 +147,7 @@ namespace ExpenseTrackerWin
             {
                 ClearGrid();
                 IList<DtoExpense> lstBankStatementData = GetBankStatementData();
-                IList<DtoExpense> lstWhatsAppData = GetWhatsAppData();
+                IList<DtoExpense> lstWhatsAppData = new List<DtoExpense>(); // GetWhatsAppData();
 
                 int index = 0;
                 foreach (var item in lstBankStatementData)
@@ -160,10 +160,7 @@ namespace ExpenseTrackerWin
                     cAmount.Value = item.Amount;
 
                     DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
-                    var excelWhatsAppExpense = lstWhatsAppData.FirstOrDefault(x => x.Date.Day == item.Date.Day && x.Amount == item.Amount);
-
-                    var comment = excelWhatsAppExpense == null ? string.Empty : excelWhatsAppExpense.Comment;
-                    cComment.Value = comment;
+                    cComment.Value = string.IsNullOrEmpty(item.Comment) ? string.Empty : item.Comment.Trim();
 
                     DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
                     var dbCategories = ServiceFactory.CategoryServices.GetAll();
@@ -171,18 +168,9 @@ namespace ExpenseTrackerWin
                     cCategory.ValueMember = "Id";
                     cCategory.DataSource = dbCategories;
 
-                    if (!string.IsNullOrEmpty(comment))
-                    {
-                        var dbCategory = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(comment.ToLower()));
-                        if (dbCategory != null)
-                            cCategory.Value = dbCategory.Id;
-                        else
-                        {
-                            int categoryId = GetCategoryBasedOnComment(comment, dbCategories);
-                            if (categoryId != 0)
-                                cCategory.Value = categoryId;
-                        }
-                    }
+                    var dbCategory = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(item.CategoryName.ToLower()));
+                    if (dbCategory != null)
+                        cCategory.Value = dbCategory.Id;
 
                     row.Cells.Add(cDay);
                     row.Cells.Add(cCategory);
@@ -235,14 +223,14 @@ namespace ExpenseTrackerWin
                 projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Month + "_" + date.Year + ".xls";
                 DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
                 var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
-                return lstExpenseBankStatement.Where(x=> x.Date.Date >= date.Date).ToList();
+                return lstExpenseBankStatement.Where(x => x.Date.Date >= date.Date).ToList();
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
                 return new List<DtoExpense>();
             }
-           
+
         }
 
         private List<DtoExpense> GetBankStatementData()
@@ -253,7 +241,9 @@ namespace ExpenseTrackerWin
 
             DataTable dt = ServiceFactory.ExcelService.LoadDataTable(projectDirectory);
             var lstExpense = dt.DatatableToClass<DtoExpense>();
-            return lstExpense.Where(x => x.Amount > 0 && x.Date.Date >= date.Date).ToList();
+            var lastDayOfMonth = DateTime.DaysInMonth(date.Year, date.Month);
+            var endDate = new DateTime(date.Year, date.Month, lastDayOfMonth);
+            return lstExpense.Where(x => x.Amount > 0 && x.Date.Date >= date.Date && x.Date.Date <= endDate).ToList();
         }
 
         private void ClearGrid()

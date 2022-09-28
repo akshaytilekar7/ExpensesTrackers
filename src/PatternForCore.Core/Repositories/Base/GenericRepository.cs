@@ -85,9 +85,15 @@ namespace PatternForCore.Core.Repositories.Base
             return query;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(string include)
+        public async Task<IEnumerable<T>> GetAllAsync<TParamater>(IList<Expression<Func<T, TParamater>>> includeProperties)
         {
-            return await _context.Set<T>().Include(include).ToListAsync();
+            var query = dbSet.AsQueryable();
+            foreach (var include in includeProperties)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.ToListAsync();
         }
 
         public IQueryable<T> RawSql(string query, params object[] parameters)

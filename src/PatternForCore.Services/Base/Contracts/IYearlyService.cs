@@ -8,7 +8,7 @@ namespace PatternForCore.Services.Base.Contracts
 {
     public interface IYearlyService
     {
-        List<DtoYealry> GetYearlyData(int year, out int total, out int totalYealyIncome);
+        Task<List<DtoYealry>> GetYearlyData(int year);
 
         Task<List<DtoExpenseByCategory>> GetExpenseByCategory(ExpenseFilter filter);
 

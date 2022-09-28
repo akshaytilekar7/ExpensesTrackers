@@ -23,14 +23,22 @@ namespace PatternForCore.Services
             _serviceFactory = new ServiceFactory(_unitOfWork);
         }
 
-        public List<DtoYealry> GetYearlyData(int year, out int total, out int totalYealyIncome)
+
+        //public async Task<List<DtoYealry>> GetYearlyData(int year)
+        public async Task<List<DtoYealry>> GetYearlyData(int year)
         {
             var repoExpense = _unitOfWork.GetRepository<Expense>();
 
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
             includers.Add(x => x.MasterCategoryType);
             includers.Add(x => x.MasterCategoryType.MasterExpenseType);
-            var lstExpenses = repoExpense.GetAll(includers).OrderByDescending(x => x.Id).Where(x => x.Date.Year == year).ToList(); 
+            //
+            //var lstExpenses = repoExpense.GetAll(includers).OrderByDescending(x => x.Id).Where(x => x.Date.Year == year).ToList();
+
+            //
+            var lstExpenses = await repoExpense.GetAllAsync(includers);
+            lstExpenses = lstExpenses.OrderByDescending(x => x.Id).Where(x => x.Date.Year == year);
+            //
 
             List<DtoYealry> dtoYealries = new List<DtoYealry>();
 
@@ -115,8 +123,8 @@ namespace PatternForCore.Services
             dto.CatogoryTotal = lstExpenses.Sum(s => s.Amount);
             dtoYealries.Add(dto);
 
-            totalYealyIncome = lstIncomeSource.Sum(s => s.Amount);
-            total = lstExpenses.Sum(x => x.Amount);
+            //totalYealyIncome = lstIncomeSource.Sum(s => s.Amount);
+            //total = lstExpenses.Sum(x => x.Amount);
             return dtoYealries.OrderBy(x => x.Category).ToList();
         }
 

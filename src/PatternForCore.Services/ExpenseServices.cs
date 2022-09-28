@@ -68,14 +68,14 @@ namespace PatternForCore.Services
             _unitOfWork.Commit();
         }
 
-        public Task<List<DtoExpense>> GetExpenseFilter(ExpenseFilter expenseFilter)
+        public async Task<List<DtoExpense>> GetExpenseFilter(ExpenseFilter expenseFilter)
         {
-            var movieRepository = _unitOfWork.GetRepository<Expense>();
+            var expenseRepository = _unitOfWork.GetRepository<Expense>();
 
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
             includers.Add(x => x.MasterCategoryType);
             includers.Add(x => x.MasterCategoryType.MasterExpenseType);
-            IEnumerable<Expense> dbList = movieRepository.GetAll(includers); //GetAllAsybc .ResultS
+            var dbList = await expenseRepository.GetAllAsync(includers);
 
             if (expenseFilter.StartDate != DateTime.MinValue && expenseFilter.EndDate != DateTime.MinValue)
                 dbList = dbList.Where(x => x.Date >= expenseFilter.StartDate && x.Date <= expenseFilter.EndDate);
@@ -104,7 +104,7 @@ namespace PatternForCore.Services
                 Comment = s.Comment
             });
 
-            return Task.FromResult(result.ToList());
+            return result.ToList();
         }
     }
 }

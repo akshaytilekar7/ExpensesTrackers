@@ -81,7 +81,8 @@ namespace ExpenseTrackerWin
         }
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            LoadExpenseGrid();
+            LoadCategoryGrid();
         }
 
         private void UserSettings_Load(object sender, EventArgs e)

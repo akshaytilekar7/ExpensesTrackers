@@ -39,7 +39,7 @@ namespace PatternForCore.Core.Repositories.Interfaces
 
         /// <returns>List of entities</returns>
         IQueryable<T> GetAll(string include);
-        
+
 
         /// <returns>List of entities</returns>
         IQueryable<T> RawSql(string sql, params object[] parameters);
@@ -61,7 +61,7 @@ namespace PatternForCore.Core.Repositories.Interfaces
 
         bool Exists(Expression<Func<T, bool>> predicate);
 
-        public Task<IEnumerable<T>> GetAllAsync(string include);
+        public Task<IEnumerable<T>> GetAllAsync<TParamater>(IList<Expression<Func<T, TParamater>>> includeProperties);
 
         public IQueryable<T> GetAll<TParamater>(IList<Expression<Func<T, TParamater>>> includeProperties);
 

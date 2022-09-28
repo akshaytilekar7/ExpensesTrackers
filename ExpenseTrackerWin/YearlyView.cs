@@ -36,12 +36,13 @@ namespace ExpenseTrackerWin
 
         private async Task LoadGird()
         {
-            var lstDtoYealry = _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text), out int totalSum, out int totalYealyIncome);
+            var lstDtoYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text));
             SortableBindingList<DtoYealry> sortableBindingList = new(lstDtoYealry);
             dgvYealy.DataSource = sortableBindingList;
             dgvYealy.SetGridToFit();
-            var balance = totalYealyIncome - totalSum;
-            lblTotal.Text = "Year " + datePickerYearly.Text + "\nTotal Income: " + totalYealyIncome.ToString("#,##0.00") + " \nTotal Expense: " + totalSum.ToString("#,##0.00") + " \nBalance: " + balance.ToString("#,##0.00");
+
+            //var balance = totalYealyIncome - totalSum;
+            //lblTotal.Text = "Year " + datePickerYearly.Text + "\nTotal Income: " + totalYealyIncome.ToString("#,##0.00") + " \nTotal Expense: " + totalSum.ToString("#,##0.00") + " \nBalance: " + balance.ToString("#,##0.00");
 
             await LoadExpenseByCategoryGrid();
 
@@ -162,9 +163,9 @@ namespace ExpenseTrackerWin
             Hide();
         }
 
-        private void datePickerYearly_ValueChanged(object sender, EventArgs e)
+        private async void datePickerYearly_ValueChanged(object sender, EventArgs e)
         {
-            LoadGird();
+            await LoadGird();
         }
 
         private void dgvYealy_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
