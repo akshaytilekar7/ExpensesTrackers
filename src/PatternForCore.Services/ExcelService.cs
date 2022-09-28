@@ -114,9 +114,9 @@ namespace PatternForCore.Services
                 }
                 return result;
             }
-            catch
+            catch(Exception ex)
             {
-                return new List<T>();
+                throw ex;
             }
         }
     }
