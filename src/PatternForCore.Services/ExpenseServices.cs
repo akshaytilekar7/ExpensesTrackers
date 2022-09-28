@@ -65,7 +65,35 @@ namespace PatternForCore.Services
 
         public List<DtoExpense> GetExpenseFilter(ExpenseFilter expenseFilter)
         {
-            var dbList = GetAll().ToList().Select(s => new DtoExpense()
+            var movieRepository = _unitOfWork.GetRepository<Expense>();
+            IQueryable<Expense> dbList = movieRepository.GetAll("Category");
+
+            //var dbList = GetAll().Select(s => new DtoExpense()
+            //{
+            //    Id = s.Id,
+            //    CategoryName = s.Category.CategoryName,
+            //    Date = s.Date,
+            //    Amount = s.Amount,
+            //    ExpenseType = s.Category.ExpensesType,
+            //    Comment = s.Comment
+            //});
+
+            if (expenseFilter.StartDate != DateTime.MinValue && expenseFilter.EndDate != DateTime.MinValue)
+                dbList = dbList.Where(x => x.Date >= expenseFilter.StartDate && x.Date <= expenseFilter.EndDate);
+
+            if (expenseFilter.Amount >= 1)
+                dbList = dbList.Where(x => x.Amount == expenseFilter.Amount);
+
+            if (!string.IsNullOrEmpty(expenseFilter.Category))
+                dbList = dbList.Where(x => x.Category.CategoryName.ToLower().Contains(expenseFilter.Category.ToLower()));
+            if (!string.IsNullOrEmpty(expenseFilter.ExpenseType))
+                dbList = dbList.Where(x => x.Category.ExpensesType.Contains(expenseFilter.ExpenseType.ToLower()));
+            if (!string.IsNullOrEmpty(expenseFilter.Comment))
+                dbList = dbList.Where(x => x.Comment.ToLower().Contains(expenseFilter.Comment.ToLower()));
+
+            dbList = dbList.OrderBy(x => x.Date);
+
+            var result = dbList.Select(s => new DtoExpense()
             {
                 Id = s.Id,
                 CategoryName = s.Category.CategoryName,
@@ -75,22 +103,7 @@ namespace PatternForCore.Services
                 Comment = s.Comment
             });
 
-            if (expenseFilter.StartDate != DateTime.MinValue && expenseFilter.EndDate != DateTime.MinValue)
-                dbList = dbList.Where(x => x.Date >= expenseFilter.StartDate && x.Date <= expenseFilter.EndDate);
-
-            if (expenseFilter.Amount >= 1)
-                dbList = dbList.Where(x => x.Amount == expenseFilter.Amount);
-
-            if (!string.IsNullOrEmpty(expenseFilter.Category))
-                dbList = dbList.Where(x => x.CategoryName.ToLower().Contains(expenseFilter.Category.ToLower()));
-            if (!string.IsNullOrEmpty(expenseFilter.ExpenseType))
-                dbList = dbList.Where(x => x.ExpenseType.ToLower().Contains(expenseFilter.ExpenseType.ToLower()));
-            if (!string.IsNullOrEmpty(expenseFilter.Comment))
-                dbList = dbList.Where(x => x.Comment.ToLower().Contains(expenseFilter.Comment.ToLower()));
-
-            var res = dbList.OrderBy(x => x.Date).ToList().GenereateSrNo();
-
-            return res;
+            return result.ToList();
         }
     }
 }

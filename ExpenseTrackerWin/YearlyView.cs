@@ -44,6 +44,20 @@ namespace ExpenseTrackerWin
             lblTotal.Text = "Year " + datePickerYearly.Text + "\nTotal Income: " + totalYealyIncome.ToString("#,##0.00") + " \nTotal Expense: " + totalSum.ToString("#,##0.00") + " \nBalance: " + balance.ToString("#,##0.00");
         }
 
+        private void LoadExpenseByCategoryGrid()
+        {
+            int year = Convert.ToInt32(datePickerYearly.Text);
+            var filter = new ExpenseFilter()
+            {
+                StartDate = new DateTime(year, 1, 1),
+                EndDate = new DateTime(year, 12, 31),
+            };
+            List<DtoExpenseByCategory>? result = _serviceFactory.YearlyService.GetExpenseByCategory(filter);
+            SortableBindingList<DtoExpenseByCategory> sortableBindingList = new SortableBindingList<DtoExpenseByCategory>(result);
+            dgvExpenseOverview.DataSource = sortableBindingList;
+            dgvExpenseOverview.SetGridToFit();
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
@@ -184,6 +198,13 @@ namespace ExpenseTrackerWin
                     }
                 }
             }
+        }
+
+        private void btnLoadExpense_Click(object sender, EventArgs e)
+        {
+            lblPleaseWait.Text = "please wait.. loading data";
+            LoadExpenseByCategoryGrid();
+            lblPleaseWait.Text = String.Empty;
         }
     }
 }

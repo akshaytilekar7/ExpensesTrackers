@@ -116,11 +116,11 @@ namespace PatternForCore.Services
         public List<DtoExpenseByCategory> GetExpenseByCategory(ExpenseFilter filter)
         {
             List<DtoExpenseByCategory> dtoExpenseByCategories = new List<DtoExpenseByCategory>();
-            IEnumerable<DtoExpense> lstDtoExpense = _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
-            var expenseTypes = _serviceFactory.CategoryServices.GetAll().Select(x => x.ExpensesType).Distinct();
+            List<DtoExpense> lstDtoExpense =  _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
             var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate);
             var income = dbIncomes.Sum(x => x.Amount);
             var psum = 0;
+            var expenseTypes = _serviceFactory.CategoryServices.GetAll().Select(x => x.ExpensesType).Distinct();
             foreach (var et in expenseTypes)
             {
                 DtoExpenseByCategory dto = new DtoExpenseByCategory();
@@ -138,15 +138,16 @@ namespace PatternForCore.Services
             dto1.Percent = "NA"; ;
             dtoExpenseByCategories.Add(dto1);
 
+            var sum = lstDtoExpense.Sum(x => x.Amount);
             dto1 = new DtoExpenseByCategory();
             dto1.ExpensesType = "Total Expense";
-            dto1.Amount = lstDtoExpense.Sum(x => x.Amount);
+            dto1.Amount = sum;
             dto1.Percent = psum + " %"; ;
             dtoExpenseByCategories.Add(dto1);
 
             dto1 = new DtoExpenseByCategory();
             dto1.ExpensesType = "Balance";
-            dto1.Amount = income - lstDtoExpense.Sum(x => x.Amount);
+            dto1.Amount = income - sum;
             dto1.Percent = "NA";
             dtoExpenseByCategories.Add(dto1);
             return dtoExpenseByCategories;

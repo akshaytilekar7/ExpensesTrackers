@@ -1,6 +1,7 @@
 ﻿using PatternForCore.Models;
 using PatternForCore.Models.Dto;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PatternForCore.Services.Base.Contracts
 {

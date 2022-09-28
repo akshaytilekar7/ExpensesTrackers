@@ -53,11 +53,15 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvTooltip = new System.Windows.Forms.DataGridView();
+            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
+            this.btnLoadExpense = new System.Windows.Forms.Button();
+            this.lblPleaseWait = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvYealy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTooltip)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseOverview)).BeginInit();
             this.SuspendLayout();
             // 
             // datePickerYearly
@@ -259,11 +263,38 @@
             // dgvTooltip
             // 
             this.dgvTooltip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTooltip.Location = new System.Drawing.Point(1195, 268);
+            this.dgvTooltip.Location = new System.Drawing.Point(1195, 543);
             this.dgvTooltip.Name = "dgvTooltip";
             this.dgvTooltip.RowTemplate.Height = 25;
             this.dgvTooltip.Size = new System.Drawing.Size(491, 445);
             this.dgvTooltip.TabIndex = 4;
+            // 
+            // dgvExpenseOverview
+            // 
+            this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(1195, 238);
+            this.dgvExpenseOverview.Name = "dgvExpenseOverview";
+            this.dgvExpenseOverview.RowTemplate.Height = 25;
+            this.dgvExpenseOverview.Size = new System.Drawing.Size(491, 289);
+            this.dgvExpenseOverview.TabIndex = 5;
+            // 
+            // btnLoadExpense
+            // 
+            this.btnLoadExpense.Location = new System.Drawing.Point(1200, 204);
+            this.btnLoadExpense.Name = "btnLoadExpense";
+            this.btnLoadExpense.Size = new System.Drawing.Size(124, 23);
+            this.btnLoadExpense.TabIndex = 6;
+            this.btnLoadExpense.Text = "Load Expense";
+            this.btnLoadExpense.UseVisualStyleBackColor = true;
+            this.btnLoadExpense.Click += new System.EventHandler(this.btnLoadExpense_Click);
+            // 
+            // lblPleaseWait
+            // 
+            this.lblPleaseWait.AutoSize = true;
+            this.lblPleaseWait.Location = new System.Drawing.Point(1346, 208);
+            this.lblPleaseWait.Name = "lblPleaseWait";
+            this.lblPleaseWait.Size = new System.Drawing.Size(0, 15);
+            this.lblPleaseWait.TabIndex = 7;
             // 
             // YearlyView
             // 
@@ -271,6 +302,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1698, 1028);
+            this.Controls.Add(this.lblPleaseWait);
+            this.Controls.Add(this.btnLoadExpense);
+            this.Controls.Add(this.dgvExpenseOverview);
             this.Controls.Add(this.dgvTooltip);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnHome);
@@ -284,6 +318,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTooltip)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseOverview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,5 +348,8 @@
         private BindingSource dtoYealryBindingSource1;
         private BindingSource dtoExpenseBindingSource;
         private DataGridView dgvTooltip;
+        private DataGridView dgvExpenseOverview;
+        private Button btnLoadExpense;
+        private Label lblPleaseWait;
     }
 }
