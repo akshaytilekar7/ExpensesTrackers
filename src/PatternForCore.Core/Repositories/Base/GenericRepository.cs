@@ -74,6 +74,17 @@ namespace PatternForCore.Core.Repositories.Base
             return dbSet.AsNoTracking().Include(include);
         }
 
+        public IQueryable<T> GetAll<TParamater>(IList<Expression<Func<T, TParamater>>> includeProperties)
+        {
+            var query = dbSet.AsQueryable();
+            foreach (var include in includeProperties)
+            {
+                query = query.Include(include);
+            }
+
+            return query;
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync(string include)
         {
             return await _context.Set<T>().Include(include).ToListAsync();

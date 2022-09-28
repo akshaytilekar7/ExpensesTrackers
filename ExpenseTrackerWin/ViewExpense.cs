@@ -55,7 +55,7 @@ namespace ExpenseTrackerWin
 
         }
 
-        private void LoadAllGrid() // async Task
+        private void LoadAllGrid() // 
         {
             LoadExpenseFilterGrid(); //LoadExpenseFilterGrid
             LoadExpenseByCategoryGrid();
@@ -255,8 +255,8 @@ namespace ExpenseTrackerWin
                 Comment = txtComment.Text,
                 StartDate = dateStart.Value.Date,
                 EndDate = dateEnd.Value.Date,
-                Category = cmbCategory.Text == "Please select" ? string.Empty : cmbCategory.Text,
-                ExpenseType = cmbExpensesType.Text == "Please select" ? string.Empty : cmbExpensesType.Text,
+                CategoryId = Convert.ToInt32(cmbCategory.SelectedValue),
+                ExpenseTypeId = Convert.ToInt32(cmbExpensesType.SelectedValue),
             };
             return filter;
         }

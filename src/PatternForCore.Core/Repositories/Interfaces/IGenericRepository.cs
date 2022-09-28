@@ -63,5 +63,8 @@ namespace PatternForCore.Core.Repositories.Interfaces
 
         public Task<IEnumerable<T>> GetAllAsync(string include);
 
+        public IQueryable<T> GetAll<TParamater>(IList<Expression<Func<T, TParamater>>> includeProperties);
+
+
     }
 }

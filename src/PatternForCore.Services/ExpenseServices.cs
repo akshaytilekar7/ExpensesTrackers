@@ -6,6 +6,7 @@ using PatternForCore.Models;
 using PatternForCore.Services.Base.Contracts;
 using PatternForCore.Models.Dto;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace PatternForCore.Services
 {
@@ -67,7 +68,11 @@ namespace PatternForCore.Services
         public Task<List<DtoExpense>> GetExpenseFilter(ExpenseFilter expenseFilter)
         {
             var movieRepository = _unitOfWork.GetRepository<Expense>();
-            IEnumerable<Expense> dbList = movieRepository.GetAll("MasterCategoryType"); //GetAllAsybc .ResultS
+
+            List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
+            includers.Add(x => x.MasterCategoryType);
+            includers.Add(x => x.MasterCategoryType.MasterExpenseType);
+            IEnumerable<Expense> dbList = movieRepository.GetAll(includers); //GetAllAsybc .ResultS
 
             if (expenseFilter.StartDate != DateTime.MinValue && expenseFilter.EndDate != DateTime.MinValue)
                 dbList = dbList.Where(x => x.Date >= expenseFilter.StartDate && x.Date <= expenseFilter.EndDate);
@@ -75,10 +80,12 @@ namespace PatternForCore.Services
             if (expenseFilter.Amount >= 1)
                 dbList = dbList.Where(x => x.Amount == expenseFilter.Amount);
 
-            if (!string.IsNullOrEmpty(expenseFilter.Category))
-                dbList = dbList.Where(x => x.MasterCategoryType.Name.ToLower().Contains(expenseFilter.Category.ToLower()));
-            if (!string.IsNullOrEmpty(expenseFilter.ExpenseType))
-                dbList = dbList.Where(x => x.MasterCategoryType.MasterExpenseType.Name.Contains(expenseFilter.ExpenseType.ToLower()));
+            if (expenseFilter.CategoryId > 0)
+                dbList = dbList.Where(x => x.MasterCategoryType.Id == expenseFilter.CategoryId);
+
+            if (expenseFilter.ExpenseTypeId > 0)
+                dbList = dbList.Where(x => x.MasterCategoryType.MasterExpenseType.Id == expenseFilter.ExpenseTypeId);
+
             if (!string.IsNullOrEmpty(expenseFilter.Comment))
                 dbList = dbList.Where(x => x.Comment.ToLower().Contains(expenseFilter.Comment.ToLower()));
 
@@ -90,7 +97,7 @@ namespace PatternForCore.Services
                 CategoryName = s.MasterCategoryType.Name,
                 Date = s.Date,
                 Amount = s.Amount,
-                //ExpenseType = s.MasterCategoryType.MasterExpenseType.Name, //TODO include
+                ExpenseType = s.MasterCategoryType.MasterExpenseType.Name, //TODO include
                 Comment = s.Comment
             });
 
