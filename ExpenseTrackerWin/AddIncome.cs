@@ -28,11 +28,11 @@ namespace ExpenseTrackerWin
             IncomeSource income = new IncomeSource();
             income.Date = Convert.ToDateTime(datePicker.Text);
             income.Amount = Convert.ToInt32(txtAmount.Text);
-            income.Name = txtName.Text;
-            ServiceFactory.IncomeService.Add(income);
+            income.Name = cmbNames.Text;
+            //ServiceFactory.IncomeService.Add(income);
             string message = "Save Data Sucessfully";
             MessageBox.Show(message);
-            LoadGrid();
+            //LoadGrid();
         }
 
         private void btnHomePage_Click(object sender, EventArgs e)

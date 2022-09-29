@@ -33,10 +33,6 @@
             this.lblError = new System.Windows.Forms.Label();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.Date = new System.Windows.Forms.Label();
-            this.lblAmount = new System.Windows.Forms.Label();
-            this.txtAmount = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnHomePage = new System.Windows.Forms.Button();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
@@ -46,6 +42,10 @@
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.incomeSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new System.Windows.Forms.Button();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblAmount = new System.Windows.Forms.Label();
+            this.cmbNames = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomeSourceBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -80,46 +80,6 @@
             this.Date.Size = new System.Drawing.Size(67, 33);
             this.Date.TabIndex = 6;
             this.Date.Text = "Date";
-            // 
-            // lblAmount
-            // 
-            this.lblAmount.AutoSize = true;
-            this.lblAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblAmount.Location = new System.Drawing.Point(769, 90);
-            this.lblAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(104, 33);
-            this.lblAmount.TabIndex = 9;
-            this.lblAmount.Text = "Amount";
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtAmount.Location = new System.Drawing.Point(877, 87);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(2);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(106, 40);
-            this.txtAmount.TabIndex = 10;
-            // 
-            // txtName
-            // 
-            this.txtName.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtName.Location = new System.Drawing.Point(638, 90);
-            this.txtName.Margin = new System.Windows.Forms.Padding(2);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(106, 40);
-            this.txtName.TabIndex = 12;
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblName.Location = new System.Drawing.Point(554, 90);
-            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(80, 33);
-            this.lblName.TabIndex = 11;
-            this.lblName.Text = "Name";
             // 
             // btnSave
             // 
@@ -205,20 +165,62 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // txtAmount
+            // 
+            this.txtAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtAmount.Location = new System.Drawing.Point(888, 89);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(145, 40);
+            this.txtAmount.TabIndex = 18;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblName.Location = new System.Drawing.Point(547, 95);
+            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(80, 33);
+            this.lblName.TabIndex = 19;
+            this.lblName.Text = "Name";
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblAmount.Location = new System.Drawing.Point(779, 95);
+            this.lblAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(104, 33);
+            this.lblAmount.TabIndex = 20;
+            this.lblAmount.Text = "Amount";
+            // 
+            // cmbNames
+            // 
+            this.cmbNames.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbNames.FormattingEnabled = true;
+            this.cmbNames.Items.AddRange(new object[] {
+            "Akshay",
+            "Pragati"});
+            this.cmbNames.Location = new System.Drawing.Point(632, 92);
+            this.cmbNames.Name = "cmbNames";
+            this.cmbNames.Size = new System.Drawing.Size(142, 41);
+            this.cmbNames.TabIndex = 21;
+            // 
             // AddIncome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1196, 614);
+            this.Controls.Add(this.cmbNames);
+            this.Controls.Add(this.lblAmount);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.dgvIncome);
             this.Controls.Add(this.btnHomePage);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.lblName);
-            this.Controls.Add(this.txtAmount);
-            this.Controls.Add(this.lblAmount);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.datePicker);
             this.Controls.Add(this.Date);
@@ -238,10 +240,6 @@
         private Label lblError;
         private DateTimePicker datePicker;
         private Label Date;
-        private Label lblAmount;
-        private TextBox txtAmount;
-        private TextBox txtName;
-        private Label lblName;
         private Button btnSave;
         private Button btnHomePage;
         private DataGridView dgvIncome;
@@ -251,5 +249,9 @@
         private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
+        private TextBox txtAmount;
+        private Label lblName;
+        private Label lblAmount;
+        private ComboBox cmbNames;
     }
 }
