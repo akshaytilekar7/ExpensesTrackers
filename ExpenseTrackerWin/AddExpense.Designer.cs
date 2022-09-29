@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Date = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.dgvExpenses = new System.Windows.Forms.DataGridView();
@@ -49,7 +49,15 @@
             this.txtTotalIncome = new System.Windows.Forms.TextBox();
             this.lblIncome = new System.Windows.Forms.Label();
             this.btnHomePage = new System.Windows.Forms.Button();
+            this.btnGeData = new System.Windows.Forms.Button();
+            this.dgvOldData = new System.Windows.Forms.DataGridView();
+            this.dpDate = new System.Windows.Forms.DateTimePicker();
+            this.brnOldDataCleat = new System.Windows.Forms.Button();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenses)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOldData)).BeginInit();
             this.SuspendLayout();
             // 
             // Date
@@ -76,10 +84,10 @@
             // dgvExpenses
             // 
             this.dgvExpenses.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvExpenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvExpenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvExpenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -88,19 +96,19 @@
             this.Category,
             this.Amount,
             this.Comment});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgvExpenses.Location = new System.Drawing.Point(34, 116);
             this.dgvExpenses.Name = "dgvExpenses";
             this.dgvExpenses.RowHeadersWidth = 62;
             this.dgvExpenses.RowTemplate.Height = 25;
-            this.dgvExpenses.Size = new System.Drawing.Size(979, 512);
+            this.dgvExpenses.Size = new System.Drawing.Size(979, 767);
             this.dgvExpenses.TabIndex = 2;
             this.dgvExpenses.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpenses_CellContentClick);
             // 
@@ -108,8 +116,8 @@
             // 
             this.Day.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Day.DataPropertyName = "Day";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Day.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Day.DefaultCellStyle = dataGridViewCellStyle7;
             this.Day.HeaderText = "Day";
             this.Day.MinimumWidth = 8;
             this.Day.Name = "Day";
@@ -117,8 +125,8 @@
             // Category
             // 
             this.Category.DataPropertyName = "Category";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Category.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Category.DefaultCellStyle = dataGridViewCellStyle8;
             this.Category.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.Category.HeaderText = "Category";
             this.Category.MaxDropDownItems = 5;
@@ -131,8 +139,8 @@
             // Amount
             // 
             this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle9;
             this.Amount.HeaderText = "Amount";
             this.Amount.MinimumWidth = 8;
             this.Amount.Name = "Amount";
@@ -148,7 +156,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(194, 651);
+            this.btnSave.Location = new System.Drawing.Point(229, 889);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 55);
             this.btnSave.TabIndex = 3;
@@ -159,7 +167,7 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClear.Location = new System.Drawing.Point(290, 651);
+            this.btnClear.Location = new System.Drawing.Point(325, 889);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(88, 55);
             this.btnClear.TabIndex = 4;
@@ -191,7 +199,7 @@
             // btnUpload
             // 
             this.btnUpload.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnUpload.Location = new System.Drawing.Point(383, 651);
+            this.btnUpload.Location = new System.Drawing.Point(418, 889);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(169, 56);
@@ -214,7 +222,7 @@
             // 
             // txtTotalIncome
             // 
-            this.txtTotalIncome.Location = new System.Drawing.Point(1063, 291);
+            this.txtTotalIncome.Location = new System.Drawing.Point(1019, 743);
             this.txtTotalIncome.Multiline = true;
             this.txtTotalIncome.Name = "txtTotalIncome";
             this.txtTotalIncome.ReadOnly = true;
@@ -226,7 +234,7 @@
             // 
             this.lblIncome.AutoSize = true;
             this.lblIncome.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(1074, 237);
+            this.lblIncome.Location = new System.Drawing.Point(1019, 703);
             this.lblIncome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIncome.Name = "lblIncome";
             this.lblIncome.Size = new System.Drawing.Size(104, 37);
@@ -236,7 +244,7 @@
             // btnHomePage
             // 
             this.btnHomePage.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnHomePage.Location = new System.Drawing.Point(557, 652);
+            this.btnHomePage.Location = new System.Drawing.Point(592, 890);
             this.btnHomePage.Name = "btnHomePage";
             this.btnHomePage.Size = new System.Drawing.Size(181, 55);
             this.btnHomePage.TabIndex = 20;
@@ -244,12 +252,81 @@
             this.btnHomePage.UseVisualStyleBackColor = true;
             this.btnHomePage.Click += new System.EventHandler(this.btnHomePage_Click);
             // 
+            // btnGeData
+            // 
+            this.btnGeData.Location = new System.Drawing.Point(1301, 133);
+            this.btnGeData.Name = "btnGeData";
+            this.btnGeData.Size = new System.Drawing.Size(75, 23);
+            this.btnGeData.TabIndex = 22;
+            this.btnGeData.Text = "Get Data";
+            this.btnGeData.UseVisualStyleBackColor = true;
+            this.btnGeData.Click += new System.EventHandler(this.btnGeData_Click);
+            this.btnGeData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnGeData_KeyDown);
+            // 
+            // dgvOldData
+            // 
+            this.dgvOldData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOldData.Location = new System.Drawing.Point(1030, 172);
+            this.dgvOldData.Name = "dgvOldData";
+            this.dgvOldData.RowTemplate.Height = 25;
+            this.dgvOldData.Size = new System.Drawing.Size(553, 346);
+            this.dgvOldData.TabIndex = 23;
+            // 
+            // dpDate
+            // 
+            this.dpDate.Location = new System.Drawing.Point(1095, 133);
+            this.dpDate.Name = "dpDate";
+            this.dpDate.Size = new System.Drawing.Size(200, 23);
+            this.dpDate.TabIndex = 24;
+            // 
+            // brnOldDataCleat
+            // 
+            this.brnOldDataCleat.Location = new System.Drawing.Point(1030, 524);
+            this.brnOldDataCleat.Name = "brnOldDataCleat";
+            this.brnOldDataCleat.Size = new System.Drawing.Size(75, 23);
+            this.brnOldDataCleat.TabIndex = 25;
+            this.brnOldDataCleat.Text = "Clear";
+            this.brnOldDataCleat.UseVisualStyleBackColor = true;
+            this.brnOldDataCleat.Click += new System.EventHandler(this.brnOldDataCleat_Click);
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.Location = new System.Drawing.Point(1095, 104);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(100, 23);
+            this.txtAmount.TabIndex = 26;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1030, 107);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 15);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Amount";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1030, 137);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 15);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Date";
+            // 
             // AddExpense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1367, 754);
+            this.ClientSize = new System.Drawing.Size(1595, 957);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtAmount);
+            this.Controls.Add(this.brnOldDataCleat);
+            this.Controls.Add(this.dpDate);
+            this.Controls.Add(this.dgvOldData);
+            this.Controls.Add(this.btnGeData);
             this.Controls.Add(this.btnHomePage);
             this.Controls.Add(this.lblIncome);
             this.Controls.Add(this.txtTotalIncome);
@@ -267,6 +344,7 @@
             this.Text = "Add Expense";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenses)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOldData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,5 +369,12 @@
         private TextBox txtTotalIncome;
         private Label lblIncome;
         private Button btnHomePage;
+        private Button btnGeData;
+        private DataGridView dgvOldData;
+        private DateTimePicker dpDate;
+        private Button brnOldDataCleat;
+        private TextBox txtAmount;
+        private Label label1;
+        private Label label2;
     }
 }

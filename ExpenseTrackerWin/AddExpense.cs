@@ -1,3 +1,5 @@
+using ExpenseTrackerWin.Utility;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using PatternForCore.Models;
 using PatternForCore.Models.Dto;
 using PatternForCore.Services;
@@ -10,6 +12,7 @@ namespace ExpenseTrackerWin
     {
 
         List<Expense> list = new List<Expense>();
+        List<DtoExpense> listOldData = new List<DtoExpense>();
 
         public IServiceFactory ServiceFactory { get; }
 
@@ -265,6 +268,35 @@ namespace ExpenseTrackerWin
         private void dgvExpenses_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private async void btnGeData_Click(object sender, EventArgs e)
+        {
+            var date = Convert.ToDateTime(dpDate.Text);
+            ExpenseFilter expenseFilter = new ExpenseFilter() { StartDate = date, EndDate = date };
+
+            if (!string.IsNullOrEmpty(txtAmount.Text))
+            {
+                listOldData = new List<DtoExpense>();
+                expenseFilter.Amount = Convert.ToInt32(txtAmount.Text);
+            }
+
+            List<DtoExpense> newOldaData = await ServiceFactory.ExpenseServices.GetExpenseFilter(expenseFilter);
+            listOldData.AddRange(newOldaData);
+            SortableBindingList<DtoExpense> sortableBindingList = new(listOldData.GenereateSrNo().ToList());
+            dgvOldData.DataSource = sortableBindingList;
+            dgvOldData.SetGridToFit();
+        }
+
+        private void btnGeData_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void brnOldDataCleat_Click(object sender, EventArgs e)
+        {
+            listOldData = new List<DtoExpense>();
+            dgvOldData.DataSource = null;
         }
     }
 }
