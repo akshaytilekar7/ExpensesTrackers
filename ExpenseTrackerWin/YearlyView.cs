@@ -64,96 +64,66 @@ namespace ExpenseTrackerWin
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0)
-                return;
-
-            DataGridView grid = (DataGridView)sender;
-            var dtoYealry = (DtoYealry)grid.Rows[e.RowIndex].DataBoundItem;
-            var tooltip = ShowTooltip(e.ColumnIndex, dtoYealry, out IEnumerable<Expense> expenses);
-            if (!string.IsNullOrEmpty(tooltip))
-                MessageBox.Show(tooltip);
-            if (expenses != null)
-            {
-                dgvTooltip.SetGridToFit();
-                var lst = expenses.ToList();
-                if (lst.Any())
-                {
-                    var sortlist = lst.Select(x => new DtoTooltip
-                    {
-                        Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.DayOfWeek.ToString(),
-                        Amount = x.Amount,
-                        Comment = x.Comment,
-                    }).ToList();
-                    SortableBindingList<DtoTooltip> sortableBindingList = new(sortlist);
-                    dgvTooltip.DataSource = sortableBindingList;
-                }
-            }
+            SetTooltipGrid(sender, e.RowIndex, e.ColumnIndex);
         }
 
-        private static string ShowTooltip(int columnIndex, DtoYealry dtoYealry, out IEnumerable<Expense> expenses)
+        private static List<DtoTooltip> GetTooltipList(int columnIndex, DtoYealry dtoYealry)
         {
+            IEnumerable<Expense> expenses = new List<Expense>();
+            List<DtoTooltip> lstDtoTooltip = new List<DtoTooltip>();
 
-            var tooltip = string.Empty;
-            expenses = new List<Expense>();
-            if (dtoYealry == null)
-            {
-                return tooltip;
-            }
             switch (columnIndex)
             {
                 case 1:
-                    tooltip = dtoYealry.JanTooltip;
                     expenses = dtoYealry.JanLst;
                     break;
                 case 2:
-                    tooltip = dtoYealry.FebTooltip;
                     expenses = dtoYealry.FebLst;
                     break;
                 case 3:
-                    tooltip = dtoYealry.MarchTooltip;
                     expenses = dtoYealry.MarchLst;
                     break;
                 case 4:
-                    tooltip = dtoYealry.AprilTooltip;
                     expenses = dtoYealry.AprilLst;
                     break;
                 case 5:
-                    tooltip = dtoYealry.MayTooltip;
                     expenses = dtoYealry.MayLst;
                     break;
                 case 6:
-                    tooltip = dtoYealry.JuneTooltip;
                     expenses = dtoYealry.JuneLst;
                     break;
                 case 7:
-                    tooltip = dtoYealry.JulyTooltip;
                     expenses = dtoYealry.JulyLst;
                     break;
                 case 8:
-                    tooltip = dtoYealry.AugustTooltip;
                     expenses = dtoYealry.AugustLst;
                     break;
                 case 9:
-                    tooltip = dtoYealry.SeptemberTooltip;
                     expenses = dtoYealry.SeptemberLst;
                     break;
                 case 10:
-                    tooltip = dtoYealry.OctoberTooltip;
                     expenses = dtoYealry.OctoberLst;
                     break;
                 case 11:
-                    tooltip = dtoYealry.NovemberTooltip;
                     expenses = dtoYealry.NovemberLst;
                     break;
                 case 12:
-                    tooltip = dtoYealry.DecemberTooltip;
                     expenses = dtoYealry.DecemberLst;
                     break;
                 default:
                     break;
             }
 
-            return tooltip;
+            if (expenses != null && expenses.Any())
+            {
+                return expenses.Select(x => new DtoTooltip
+                {
+                    Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.DayOfWeek.ToString(),
+                    Amount = x.Amount,
+                    Comment = x.Comment,
+                }).ToList();
+            }
+            return lstDtoTooltip;
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -170,38 +140,20 @@ namespace ExpenseTrackerWin
 
         private void dgvYealy_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            // SetTooltipGrid(sender, e.RowIndex, e.ColumnIndex);
+        }
+
+        private void SetTooltipGrid(object sender, int rowIndex, int columnIndex)
+        {
+            if (rowIndex < 0 || columnIndex < 0)
                 return;
 
             DataGridView grid = (DataGridView)sender;
-            var dtoYealry = (DtoYealry)grid.Rows[e.RowIndex].DataBoundItem;
-
-            var tooltip = ShowTooltip(e.ColumnIndex, dtoYealry, out IEnumerable<Expense> expenses);
-            var cell = grid.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            if (!string.IsNullOrEmpty(tooltip))
-            {
-                cell.ToolTipText = tooltip;
-                if (expenses != null)
-                {
-                    dgvTooltip.SetGridToFit();
-                    var lst = expenses.ToList();
-                    if (lst.Any())
-                    {
-                        var sortlist = lst.Select(x => new DtoTooltip
-                        {
-                            Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.DayOfWeek.ToString(),
-                            Amount = x.Amount,
-                            Comment = x.Comment,
-                        }).ToList();
-                        SortableBindingList<DtoTooltip> sortableBindingList = new(sortlist);
-                        dgvTooltip.DataSource = sortableBindingList;
-                    }
-                    else
-                    {
-                        cell.ToolTipText = "No Tooltip";
-                    }
-                }
-            }
+            var dtoYealry = (DtoYealry)grid.Rows[rowIndex].DataBoundItem;
+            var lstDtoTooltip = GetTooltipList(columnIndex, dtoYealry);
+            SortableBindingList<DtoTooltip> sortableBindingList = new(lstDtoTooltip);
+            dgvTooltip.SetGridToFit();
+            dgvTooltip.DataSource = sortableBindingList;
         }
 
         private void btnExport_Click(object sender, EventArgs e)

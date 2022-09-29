@@ -65,7 +65,7 @@ namespace ExpenseTrackerWin
         private async Task LoadExpenseFilterGrid()
         {
             var res = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
-            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res);
+            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res.GenereateSrNo());
             dgvFilter.DataSource = sortableBindingList;
             dgvFilter.SetGridToFit();
         }
