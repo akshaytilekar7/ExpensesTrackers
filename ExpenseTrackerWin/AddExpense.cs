@@ -5,6 +5,7 @@ using PatternForCore.Models.Dto;
 using PatternForCore.Services;
 using PatternForCore.Services.Factory;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace ExpenseTrackerWin
 {
@@ -196,6 +197,7 @@ namespace ExpenseTrackerWin
                     this.dgvExpenses.Rows.Add(row);
                     index++;
                 }
+                this.dgvExpenses.SetGridToFit();
             }
             catch (Exception ex)
             {
@@ -208,23 +210,28 @@ namespace ExpenseTrackerWin
 
         private static int GetCategoryBasedOnComment(string comment, List<MasterCategoryType> dbCategories)
         {
+            int defaultCategoryId = dbCategories.First(x => x.Name.Contains("Extra")).Id;
             dbCategories = dbCategories.Where(x => x.CommaSeparatedTags != null).ToList();
             foreach (var category in dbCategories)
             {
-                var listCommaSeparatedTags = category.CommaSeparatedTags.Split(",").ToList();
+                var listCommaSeparatedTags = category.CommaSeparatedTags.Split(",").Select(x => x.Trim()).ToList();
                 listCommaSeparatedTags = listCommaSeparatedTags.Where(x => x != " ").ToList();
-                if (listCommaSeparatedTags.Contains(comment))
+                var CommaSeparatedComment = comment.Split(" ").Select(x => x.Trim());
+                var isSameExist = CommaSeparatedComment.Intersect(listCommaSeparatedTags).Any();
+                if (isSameExist)
                     return category.Id;
             }
 
-            return 0;
+            return defaultCategoryId;
         }
 
         private IList<DtoExpense> GetWhatsAppData()
         {
             var date = Convert.ToDateTime(DatePicker.Text);
             string projectDirectory2 = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Month + "_" + date.Year + ".xls";
+            //projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Month + "_" + date.Year + ".xls";
+            projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Year + ".xls";
+
             DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
             var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
             return lstExpenseBankStatement;
@@ -234,7 +241,9 @@ namespace ExpenseTrackerWin
         {
             var date = Convert.ToDateTime(DatePicker.Text);
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            projectDirectory += "\\ExcelFiles\\Input\\" + date.Month + "_" + date.Year + ".xls";
+            //projectDirectory += "\\ExcelFiles\\Input\\" + date.Month + "_" + date.Year + ".xls";
+
+            projectDirectory += "\\ExcelFiles\\Input\\" + date.Year + ".xls";
 
             DataTable dt = ServiceFactory.ExcelService.LoadDataTable(projectDirectory);
             var lstExpense = dt.DatatableToClass<DtoExpense>();

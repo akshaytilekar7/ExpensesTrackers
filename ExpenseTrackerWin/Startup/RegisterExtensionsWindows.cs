@@ -25,7 +25,7 @@ namespace ExpenseTrackerWin.Startup
             {
                 o.EnableRetryOnFailure(3);
             })
-            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)); // ServiceLifetime.Transient
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking), ServiceLifetime.Transient); // 
         }
 
         public static void AddInjections(this IServiceCollection services)
