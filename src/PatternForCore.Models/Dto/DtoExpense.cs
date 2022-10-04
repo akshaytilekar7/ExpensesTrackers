@@ -12,6 +12,8 @@ namespace PatternForCore.Models.Dto
         public string ExpenseType { get; set; }
         public int Amount { get; set; }
         public string Comment { get; set; }
+        public string User { get; set; }
+
     }
 
     public static class DtoExpenseExtenstion

@@ -121,6 +121,12 @@ namespace ExpenseTrackerWin
                 cmbExpensesType.DisplayMember = "Name";
                 cmbExpensesType.ValueMember = "Id";
                 cmbExpensesType.DataSource = dataExpenseTypes;
+
+                var users = _serviceFactory.UserService.GetAll();
+                users.Insert(0, new User() { Id = 0, Name = "Please select" });
+                cmbUsers.DataSource = users;
+                cmbUsers.DisplayMember = "Name";
+                cmbUsers.ValueMember = "Id";
             }
             catch (Exception ex)
             {
@@ -211,6 +217,7 @@ namespace ExpenseTrackerWin
                 EndDate = dateEnd.Value.Date,
                 CategoryId = Convert.ToInt32(cmbCategory.SelectedValue),
                 ExpenseTypeId = Convert.ToInt32(cmbExpensesType.SelectedValue),
+                UserId = Convert.ToInt32(cmbUsers.SelectedValue),
             };
             return filter;
         }

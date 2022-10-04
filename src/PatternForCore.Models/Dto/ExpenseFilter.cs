@@ -9,6 +9,7 @@ namespace PatternForCore.Models.Dto
         public int CategoryId { get; set; }
         public int ExpenseTypeId { get; set; }
         public string Comment { get; set; }
+        public int UserId { get; set; }
 
     }
 }

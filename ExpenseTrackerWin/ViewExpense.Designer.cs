@@ -57,11 +57,14 @@
             this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
             this.lblExpenseOverview = new System.Windows.Forms.Label();
             this.lblIncome = new System.Windows.Forms.Label();
+            this.cmbUsers = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
@@ -72,120 +75,107 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(44, 52);
-            this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDate.Location = new System.Drawing.Point(31, 31);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(54, 25);
+            this.lblDate.Size = new System.Drawing.Size(35, 15);
             this.lblDate.TabIndex = 0;
             this.lblDate.Text = "From";
             // 
             // dateStart
             // 
-            this.dateStart.Location = new System.Drawing.Point(127, 42);
-            this.dateStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateStart.Location = new System.Drawing.Point(89, 25);
             this.dateStart.Name = "dateStart";
-            this.dateStart.Size = new System.Drawing.Size(284, 31);
+            this.dateStart.Size = new System.Drawing.Size(200, 23);
             this.dateStart.TabIndex = 1;
             // 
             // dateEnd
             // 
-            this.dateEnd.Location = new System.Drawing.Point(607, 42);
-            this.dateEnd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateEnd.Location = new System.Drawing.Point(425, 25);
             this.dateEnd.Name = "dateEnd";
-            this.dateEnd.Size = new System.Drawing.Size(284, 31);
+            this.dateEnd.Size = new System.Drawing.Size(200, 23);
             this.dateEnd.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(477, 52);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(334, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 25);
+            this.label1.Size = new System.Drawing.Size(19, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "To";
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(44, 142);
-            this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCategory.Location = new System.Drawing.Point(31, 85);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(84, 25);
+            this.lblCategory.Size = new System.Drawing.Size(55, 15);
             this.lblCategory.TabIndex = 4;
             this.lblCategory.Text = "Category";
             // 
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(137, 137);
-            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbCategory.Location = new System.Drawing.Point(96, 82);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(171, 33);
+            this.cmbCategory.Size = new System.Drawing.Size(121, 23);
             this.cmbCategory.TabIndex = 5;
             // 
             // cmbExpensesType
             // 
             this.cmbExpensesType.FormattingEnabled = true;
-            this.cmbExpensesType.Location = new System.Drawing.Point(607, 137);
-            this.cmbExpensesType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbExpensesType.Location = new System.Drawing.Point(425, 82);
             this.cmbExpensesType.Name = "cmbExpensesType";
-            this.cmbExpensesType.Size = new System.Drawing.Size(171, 33);
+            this.cmbExpensesType.Size = new System.Drawing.Size(121, 23);
             this.cmbExpensesType.TabIndex = 7;
             // 
             // lblExpensesType
             // 
             this.lblExpensesType.AutoSize = true;
-            this.lblExpensesType.Location = new System.Drawing.Point(466, 147);
-            this.lblExpensesType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblExpensesType.Location = new System.Drawing.Point(326, 88);
             this.lblExpensesType.Name = "lblExpensesType";
-            this.lblExpensesType.Size = new System.Drawing.Size(126, 25);
+            this.lblExpensesType.Size = new System.Drawing.Size(82, 15);
             this.lblExpensesType.TabIndex = 6;
             this.lblExpensesType.Text = "Expenses Type";
             // 
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(44, 230);
-            this.lblAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAmount.Location = new System.Drawing.Point(31, 138);
             this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(77, 25);
+            this.lblAmount.Size = new System.Drawing.Size(51, 15);
             this.lblAmount.TabIndex = 8;
             this.lblAmount.Text = "Amount";
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(137, 228);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtAmount.Location = new System.Drawing.Point(96, 137);
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(141, 31);
+            this.txtAmount.Size = new System.Drawing.Size(100, 23);
             this.txtAmount.TabIndex = 9;
             // 
             // txtComment
             // 
-            this.txtComment.Location = new System.Drawing.Point(607, 227);
-            this.txtComment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtComment.Location = new System.Drawing.Point(425, 136);
             this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(141, 31);
+            this.txtComment.Size = new System.Drawing.Size(100, 23);
             this.txtComment.TabIndex = 11;
             // 
             // lblComment
             // 
             this.lblComment.AutoSize = true;
-            this.lblComment.Location = new System.Drawing.Point(467, 232);
-            this.lblComment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblComment.Location = new System.Drawing.Point(327, 139);
             this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(91, 25);
+            this.lblComment.Size = new System.Drawing.Size(61, 15);
             this.lblComment.TabIndex = 10;
             this.lblComment.Text = "Comment";
             // 
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSearch.Location = new System.Drawing.Point(44, 308);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSearch.Location = new System.Drawing.Point(31, 185);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(144, 80);
+            this.btnSearch.Size = new System.Drawing.Size(101, 48);
             this.btnSearch.TabIndex = 12;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -194,10 +184,9 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClear.Location = new System.Drawing.Point(204, 308);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClear.Location = new System.Drawing.Point(143, 185);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(126, 80);
+            this.btnClear.Size = new System.Drawing.Size(88, 48);
             this.btnClear.TabIndex = 13;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -210,18 +199,18 @@
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(1226, -80);
-            this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblError.Location = new System.Drawing.Point(858, -48);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 25);
+            this.lblError.Size = new System.Drawing.Size(0, 15);
             this.lblError.TabIndex = 15;
             // 
             // btnExcel
             // 
             this.btnExcel.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnExcel.Location = new System.Drawing.Point(337, 308);
+            this.btnExcel.Location = new System.Drawing.Point(236, 185);
+            this.btnExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(189, 80);
+            this.btnExcel.Size = new System.Drawing.Size(132, 48);
             this.btnExcel.TabIndex = 18;
             this.btnExcel.Text = "Export";
             this.btnExcel.UseVisualStyleBackColor = true;
@@ -230,9 +219,10 @@
             // btnForm1
             // 
             this.btnForm1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnForm1.Location = new System.Drawing.Point(532, 308);
+            this.btnForm1.Location = new System.Drawing.Point(372, 185);
+            this.btnForm1.Margin = new System.Windows.Forms.Padding(2);
             this.btnForm1.Name = "btnForm1";
-            this.btnForm1.Size = new System.Drawing.Size(146, 80);
+            this.btnForm1.Size = new System.Drawing.Size(102, 48);
             this.btnForm1.TabIndex = 19;
             this.btnForm1.Text = "Home";
             this.btnForm1.UseVisualStyleBackColor = true;
@@ -240,9 +230,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1026, 162);
+            this.button1.Location = new System.Drawing.Point(718, 97);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(9, 8);
+            this.button1.Size = new System.Drawing.Size(6, 5);
             this.button1.TabIndex = 20;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -250,9 +241,10 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(693, 308);
+            this.btnDelete.Location = new System.Drawing.Point(485, 185);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(291, 80);
+            this.btnDelete.Size = new System.Drawing.Size(204, 48);
             this.btnDelete.TabIndex = 25;
             this.btnDelete.Text = "Delete Selected";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -269,14 +261,14 @@
             this.CategoryName,
             this.ExpenseType,
             this.Amount,
-            this.Comment});
+            this.Comment,
+            this.User});
             this.dgvFilter.DataSource = this.dtoExpenseBindingSource;
-            this.dgvFilter.Location = new System.Drawing.Point(44, 440);
-            this.dgvFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvFilter.Location = new System.Drawing.Point(31, 264);
             this.dgvFilter.Name = "dgvFilter";
             this.dgvFilter.RowHeadersWidth = 62;
             this.dgvFilter.RowTemplate.Height = 25;
-            this.dgvFilter.Size = new System.Drawing.Size(1041, 945);
+            this.dgvFilter.Size = new System.Drawing.Size(824, 567);
             this.dgvFilter.TabIndex = 26;
             this.dgvFilter.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellContentClick);
             // 
@@ -336,6 +328,12 @@
             this.Comment.Name = "Comment";
             this.Comment.Width = 150;
             // 
+            // User
+            // 
+            this.User.DataPropertyName = "User";
+            this.User.HeaderText = "User";
+            this.User.Name = "User";
+            // 
             // dtoExpenseBindingSource
             // 
             this.dtoExpenseBindingSource.DataSource = typeof(PatternForCore.Models.Dto.DtoExpense);
@@ -343,31 +341,28 @@
             // dgvExpenseOverview
             // 
             this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvExpenseOverview.Location = new System.Drawing.Point(1094, 440);
-            this.dgvExpenseOverview.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(873, 261);
             this.dgvExpenseOverview.Name = "dgvExpenseOverview";
             this.dgvExpenseOverview.RowHeadersWidth = 62;
-            this.dgvExpenseOverview.Size = new System.Drawing.Size(529, 443);
+            this.dgvExpenseOverview.Size = new System.Drawing.Size(370, 266);
             this.dgvExpenseOverview.TabIndex = 27;
             // 
             // dgvIncome
             // 
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIncome.Location = new System.Drawing.Point(1094, 942);
-            this.dgvIncome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvIncome.Location = new System.Drawing.Point(873, 553);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.RowHeadersWidth = 62;
-            this.dgvIncome.Size = new System.Drawing.Size(529, 443);
+            this.dgvIncome.Size = new System.Drawing.Size(370, 266);
             this.dgvIncome.TabIndex = 28;
             // 
             // lblExpenseOverview
             // 
             this.lblExpenseOverview.AutoSize = true;
             this.lblExpenseOverview.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblExpenseOverview.Location = new System.Drawing.Point(1094, 392);
-            this.lblExpenseOverview.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblExpenseOverview.Location = new System.Drawing.Point(873, 235);
             this.lblExpenseOverview.Name = "lblExpenseOverview";
-            this.lblExpenseOverview.Size = new System.Drawing.Size(229, 36);
+            this.lblExpenseOverview.Size = new System.Drawing.Size(151, 23);
             this.lblExpenseOverview.TabIndex = 29;
             this.lblExpenseOverview.Text = "Expense Overview";
             // 
@@ -375,20 +370,38 @@
             // 
             this.lblIncome.AutoSize = true;
             this.lblIncome.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(1094, 898);
-            this.lblIncome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIncome.Location = new System.Drawing.Point(873, 527);
             this.lblIncome.Name = "lblIncome";
-            this.lblIncome.Size = new System.Drawing.Size(101, 36);
+            this.lblIncome.Size = new System.Drawing.Size(68, 23);
             this.lblIncome.TabIndex = 30;
             this.lblIncome.Text = "Income";
             // 
+            // cmbUsers
+            // 
+            this.cmbUsers.FormattingEnabled = true;
+            this.cmbUsers.Location = new System.Drawing.Point(685, 82);
+            this.cmbUsers.Name = "cmbUsers";
+            this.cmbUsers.Size = new System.Drawing.Size(121, 23);
+            this.cmbUsers.TabIndex = 32;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(586, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 15);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "Expenses Type";
+            // 
             // ViewExpense
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1640, 1430);
+            this.ClientSize = new System.Drawing.Size(1272, 709);
+            this.Controls.Add(this.cmbUsers);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblIncome);
             this.Controls.Add(this.lblExpenseOverview);
             this.Controls.Add(this.dgvIncome);
@@ -413,7 +426,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateStart);
             this.Controls.Add(this.lblDate);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ViewExpense";
             this.Text = "View Expense";
             this.Load += new System.EventHandler(this.FilterData_Load);
@@ -453,6 +465,10 @@
         private Button btnDelete;
         private DataGridView dgvFilter;
         private BindingSource dtoExpenseBindingSource;
+        private DataGridView dgvExpenseOverview;
+        private DataGridView dgvIncome;
+        private Label lblExpenseOverview;
+        private Label lblIncome;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn SrNo;
         private DataGridViewTextBoxColumn Date;
@@ -460,9 +476,8 @@
         private DataGridViewTextBoxColumn ExpenseType;
         private DataGridViewTextBoxColumn Amount;
         private DataGridViewTextBoxColumn Comment;
-        private DataGridView dgvExpenseOverview;
-        private DataGridView dgvIncome;
-        private Label lblExpenseOverview;
-        private Label lblIncome;
+        private DataGridViewTextBoxColumn User;
+        private ComboBox cmbUsers;
+        private Label label2;
     }
 }

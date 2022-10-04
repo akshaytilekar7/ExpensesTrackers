@@ -13,6 +13,7 @@ namespace PatternForCore.Services.Factory
         IExcelService ExcelService { get; }
         IYearlyService YearlyService { get; }
         IMasterTableService MasterTableService { get; }
+        IUserService UserService { get; }
 
     }
 }

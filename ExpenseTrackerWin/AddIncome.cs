@@ -22,13 +22,18 @@ namespace ExpenseTrackerWin
         {
             var lst = ServiceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList();
             dgvIncome.DataSource = lst;
+
+            var users = ServiceFactory.UserService.GetAll();
+            cmbNames.DataSource = users;
+            cmbNames.DisplayMember = "Name";
+            cmbNames.ValueMember = "Id";
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
             IncomeSource income = new IncomeSource();
             income.Date = Convert.ToDateTime(datePicker.Text);
             income.Amount = Convert.ToInt32(txtAmount.Text);
-            income.Name = cmbNames.Text;
+            income.UserId = Convert.ToInt32(cmbNames.SelectedValue);
             ServiceFactory.IncomeService.Add(income);
             string message = "Save Data Sucessfully";
             MessageBox.Show(message);

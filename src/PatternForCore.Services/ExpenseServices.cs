@@ -92,16 +92,22 @@ namespace PatternForCore.Services
             if (!string.IsNullOrEmpty(expenseFilter.Comment))
                 dbList = dbList.Where(x => x.Comment.ToLower().Contains(expenseFilter.Comment.ToLower()));
 
+            if (expenseFilter.UserId > 0)
+                dbList = dbList.Where(x => x.UserId == expenseFilter.UserId);
+
             dbList = dbList.OrderBy(x => x.Date);
 
+            var userRepository = _unitOfWork.GetRepository<User>();
+            var users = userRepository.GetAll();    
             var result = dbList.Select(s => new DtoExpense()
             {
                 Id = s.Id,
                 CategoryName = s.MasterCategoryType.Name,
                 Date = s.Date,
                 Amount = s.Amount,
-                ExpenseType = s.MasterCategoryType.MasterExpenseType.Name, //TODO include
-                Comment = s.Comment
+                ExpenseType = s.MasterCategoryType.MasterExpenseType.Name, 
+                Comment = s.Comment,
+                User = users.FirstOrDefault(x => x.Id == s.UserId).Name
             });
 
             return result.ToList();

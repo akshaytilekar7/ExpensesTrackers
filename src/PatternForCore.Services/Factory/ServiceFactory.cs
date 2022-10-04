@@ -58,5 +58,13 @@ namespace PatternForCore.Services.Factory
                 return new MasterTableService(_unitOfWork);
             }
         }
+
+        public IUserService UserService
+        {
+            get
+            {
+                return new UserService(_unitOfWork);
+            }
+        }
     }
 }

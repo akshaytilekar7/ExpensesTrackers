@@ -48,7 +48,7 @@ namespace ExpenseTrackerWin
                 var dbIncomes = ServiceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month && s.Date.Year == date.Year);
                 foreach (var item in dbIncomes)
                 {
-                    txtTotalIncome.AppendText(item.Name + " : " + item.Amount);
+                    //////////// txtTotalIncome.AppendText(item.Name + " : " + item.Amount);
                     txtTotalIncome.AppendText(Environment.NewLine);
                 }
                 txtTotalIncome.AppendText("Total Income : " + Convert.ToString(dbIncomes.Sum(x => x.Amount)));
@@ -77,6 +77,11 @@ namespace ExpenseTrackerWin
                 Category.DisplayMember = "Name";
                 Category.ValueMember = "Id";
                 Category.DataSource = Categories;
+
+                var users = ServiceFactory.UserService.GetAll();
+                cmbNames.DataSource = users;
+                cmbNames.DisplayMember = "Name";
+                cmbNames.ValueMember = "Id";
             }
             catch (Exception ex)
             {
@@ -91,6 +96,7 @@ namespace ExpenseTrackerWin
         {
             try
             {
+                var user = Convert.ToInt32(cmbNames.SelectedValue);
                 foreach (DataGridViewRow row in dgvExpenses.Rows)
                 {
                     int day = Convert.ToInt32(row.Cells[0].Value);
@@ -103,6 +109,7 @@ namespace ExpenseTrackerWin
                     expense.Date = new DateTime(date.Year, date.Month, day);
                     expense.Amount = Convert.ToInt32(row.Cells[2].Value);
                     expense.Comment = Convert.ToString(row.Cells[3].Value);
+                    expense.UserId = user;
                     list.Add(expense);
                 }
                 ServiceFactory.ExpenseServices.Add(list);

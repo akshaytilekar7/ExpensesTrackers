@@ -14,3 +14,7 @@ soln -  In EF Core 6, there are overloads for both Int32 and Int64 parameters of
 
 to solve error
 	ALWAYS REPLACE 1L TO 1
+
+
+	
+	Add-Migration UserTable

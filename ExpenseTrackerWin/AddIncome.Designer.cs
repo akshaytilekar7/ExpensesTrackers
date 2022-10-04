@@ -46,8 +46,10 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
             this.cmbNames = new System.Windows.Forms.ComboBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomeSourceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblError
@@ -199,13 +201,14 @@
             // 
             this.cmbNames.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbNames.FormattingEnabled = true;
-            this.cmbNames.Items.AddRange(new object[] {
-            "Akshay",
-            "Pragati"});
             this.cmbNames.Location = new System.Drawing.Point(632, 92);
             this.cmbNames.Name = "cmbNames";
             this.cmbNames.Size = new System.Drawing.Size(142, 41);
             this.cmbNames.TabIndex = 21;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(PatternForCore.Models.User);
             // 
             // AddIncome
             // 
@@ -230,6 +233,7 @@
             this.Load += new System.EventHandler(this.AddIncome_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomeSourceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,5 +257,6 @@
         private Label lblName;
         private Label lblAmount;
         private ComboBox cmbNames;
+        private BindingSource userBindingSource;
     }
 }

@@ -49,7 +49,11 @@ namespace PatternForCore.Services
         public IList<IncomeSource> GetAll()
         {
             var movieRepository = _unitOfWork.GetRepository<IncomeSource>();
-            return movieRepository.GetAll().OrderBy(x => x.Date).ToList();
+            var users = _unitOfWork.GetRepository<User>().GetAll().ToList();
+
+            var result = movieRepository.GetAll().OrderBy(x => x.Date).ToList();
+            result.ForEach(i => i.Name = users.FirstOrDefault(x => x.Id == i.UserId).Name); ;
+            return result;
         }
     }
 }
