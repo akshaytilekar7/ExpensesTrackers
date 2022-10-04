@@ -29,7 +29,7 @@ namespace ExpenseTrackerWin
             income.Date = Convert.ToDateTime(datePicker.Text);
             income.Amount = Convert.ToInt32(txtAmount.Text);
             income.Name = cmbNames.Text;
-            //ServiceFactory.IncomeService.Add(income);
+            ServiceFactory.IncomeService.Add(income);
             string message = "Save Data Sucessfully";
             MessageBox.Show(message);
             //LoadGrid();
