@@ -161,7 +161,8 @@ namespace ExpenseTrackerWin
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
             projectDirectory += "\\ExcelFiles\\Output\\OutputYearly_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
-            GridExcel.ExportToExcel(dgvYealy, projectDirectory);
+            var x = new List<ExcelDto>() { new ExcelDto() { DataGridView = dgvYealy, SheetName = "Yearly Overview" } };
+            GridExcel.ExportToExcel(x, projectDirectory);
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }
     }

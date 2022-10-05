@@ -142,11 +142,17 @@ namespace ExpenseTrackerWin
         {
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
+            // projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
+            projectDirectory += "\\ExcelFiles\\Output\\Output.xls";
 
-            GridExcel.ExportToExcel(dgvFilter, projectDirectory);
-            GridExcel.ExportToExcel(dgvIncome, projectDirectory);
-            GridExcel.ExportToExcel(dgvExpenseOverview, projectDirectory);
+            List<ExcelDto> dataExpenseTypes = new List<ExcelDto>();
+            dataExpenseTypes.Add(new ExcelDto() { DataGridView = dgvFilter, SheetName = "Expense" });
+            dataExpenseTypes.Add(new ExcelDto() { DataGridView = dgvIncome, SheetName = "Income" });
+            dataExpenseTypes.Add(new ExcelDto() { DataGridView = dgvExpenseOverview, SheetName = "Overview" });
+            //GridExcel.ExportToExcel(dgvFilter, projectDirectory, "Expense");
+            //GridExcel.ExportToExcel(dgvIncome, projectDirectory, "Income");
+            //GridExcel.ExportToExcel(dgvExpenseOverview, projectDirectory, "Overview");
+            GridExcel.ExportToExcel(dataExpenseTypes, projectDirectory);
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }
 

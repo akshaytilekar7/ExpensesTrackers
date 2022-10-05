@@ -66,5 +66,13 @@ namespace PatternForCore.Services.Factory
                 return new UserService(_unitOfWork);
             }
         }
+
+        public IExcelInteropService ExcelInteropService
+        {
+            get
+            {
+                return new ExcelInteropService();
+            }
+        }
     }
 }
