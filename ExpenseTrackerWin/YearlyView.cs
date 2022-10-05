@@ -181,6 +181,10 @@ namespace ExpenseTrackerWin
             foreach (var item in lstMonthly)
                 excelDtos.Add(new ExcelDto() { dataTable = item.dtoExpenses.ToDataTable(), SheetName = item.Name });
 
+            var excelYearlyExpenseByCategory = await _serviceFactory.YearlyService.YearlyMonthlyExpensewise(year);
+
+            excelDtos.Add(new ExcelDto() { dataTable = excelYearlyExpenseByCategory.dtoExpenseByCategories.ToDataTable(), SheetName = "Percentage overview" });
+
             GridExcel.ExportToExcel(excelDtos, projectDirectory);
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }

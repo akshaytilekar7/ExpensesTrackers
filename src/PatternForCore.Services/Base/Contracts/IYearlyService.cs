@@ -16,5 +16,7 @@ namespace PatternForCore.Services.Base.Contracts
         List<IncomeSource> GetIncome(DateTime startDate, DateTime endDate);
 
         Task<List<ExcelYearly>> YearlyMonthlywise(int year);
+
+        Task<ExcelYearlyExpenseByCategory> YearlyMonthlyExpensewise(int year);
     }
 }

@@ -8,6 +8,18 @@ namespace PatternForCore.Models.Dto
         public string Name { get; set; }
 
     }
+
+    public class ExcelYearlyExpenseByCategory
+    {
+        public ExcelYearlyExpenseByCategory()
+        {
+            dtoExpenseByCategories = new List<DtoExpenseByCategory>();
+        }
+        public List<DtoExpenseByCategory> dtoExpenseByCategories { get; set; }
+
+        public string Name { get; set; }
+
+    }
     public enum Months
     {
         January = 1,

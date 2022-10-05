@@ -120,6 +120,7 @@ namespace PatternForCore.Services
 
         public async Task<List<DtoExpenseByCategory>> GetExpenseByCategory(ExpenseFilter filter)
         {
+            string month = string.Empty;
             List<DtoExpenseByCategory> dtoExpenseByCategories = new List<DtoExpenseByCategory>();
             var lstDtoExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
             var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate);
@@ -128,7 +129,8 @@ namespace PatternForCore.Services
             var expenseTypes = _serviceFactory.MasterTableService.GetAllMasterExpenseType().Select(x => x.Name).Distinct();
             foreach (var et in expenseTypes)
             {
-                DtoExpenseByCategory dto = new DtoExpenseByCategory();
+                month = filter.StartDate.Month + " - " + filter.EndDate.Month;
+                DtoExpenseByCategory dto = new DtoExpenseByCategory(month);
                 dto.ExpensesType = et;
                 dto.Amount = lstDtoExpense.Where(x => x.ExpenseType == et).Sum(x => x.Amount);
                 var per = (int)Math.Round((double)(100 * dto.Amount) / income);
@@ -137,20 +139,21 @@ namespace PatternForCore.Services
                 dtoExpenseByCategories.Add(dto);
             }
 
-            DtoExpenseByCategory dto1 = new DtoExpenseByCategory();
+            month = filter.StartDate.Month + " - " + filter.EndDate.Month;
+            DtoExpenseByCategory dto1 = new DtoExpenseByCategory(month);
             dto1.ExpensesType = "Total Income";
             dto1.Amount = income;
             dto1.Percent = "NA"; ;
             dtoExpenseByCategories.Add(dto1);
 
             var sum = lstDtoExpense.Sum(x => x.Amount);
-            dto1 = new DtoExpenseByCategory();
+            dto1 = new DtoExpenseByCategory(month);
             dto1.ExpensesType = "Total Expense";
             dto1.Amount = sum;
             dto1.Percent = psum + " %"; ;
             dtoExpenseByCategories.Add(dto1);
 
-            dto1 = new DtoExpenseByCategory();
+            dto1 = new DtoExpenseByCategory(month);
             dto1.ExpensesType = "Balance";
             dto1.Amount = income - sum;
             dto1.Percent = "NA";
@@ -189,6 +192,29 @@ namespace PatternForCore.Services
                     excelYearlies.Add(new ExcelYearly() { dtoExpenses = ans, Name = stringValue });
             }
             return excelYearlies;
+        }
+
+        public async Task<ExcelYearlyExpenseByCategory> YearlyMonthlyExpensewise(int year)
+        {
+
+            int[] lstMonths = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+            var row = new ExcelYearlyExpenseByCategory();
+
+            foreach (var month in lstMonths)
+            {
+                var sDate = new DateTime(year, month, 1);
+                var eDate = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+                var filter = new ExpenseFilter()
+                {
+                    StartDate = sDate,
+                    EndDate = eDate,
+                };
+
+                List<DtoExpenseByCategory> dbList = await GetExpenseByCategory(filter);
+                if (dbList.Any())
+                    row.dtoExpenseByCategories.AddRange(dbList);
+            }
+            return row;
         }
     }
 }
