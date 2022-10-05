@@ -164,5 +164,54 @@ namespace PatternForCore.Services
             IEnumerable<IncomeSource> lst = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
             return lst.ToList();
         }
+
+        enum Months
+        {
+            January = 1,
+            February,
+            March,
+            April,
+            May,
+            June,
+            July,
+            August,
+            September,
+            October,
+            November,
+            December
+        }
+        public class ExcelYearly
+        {
+            public List<DtoExpense> dtoExpenses { get; set; }
+            public string Name { get; set; }
+
+        }
+
+        public async Task<List<ExcelYearly>> YearlyMonthlywise(int year)
+        {
+
+            int[] lstMonths = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+            List<ExcelYearly> excelYearlies = new List<ExcelYearly>();
+            var filter = new ExpenseFilter()
+            {
+                StartDate = new DateTime(year, 1, 1),
+                EndDate = new DateTime(year, 12, 31),
+            };
+
+            List<DtoExpense> dbList = await _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
+
+            foreach (var month in lstMonths)
+            {
+                var enumDisplayStatus = (Months)month;
+                string stringValue = enumDisplayStatus.ToString();
+
+                var sDate = new DateTime(year, month, 1);
+                var eDate = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+                var ans = dbList.Where(x => x.Date >= sDate && x.Date <= eDate).ToList();
+                if (ans.Any())
+                    excelYearlies.Add(new ExcelYearly() { dtoExpenses = ans, Name = stringValue });
+            }
+            return excelYearlies;
+        }
     }
 }

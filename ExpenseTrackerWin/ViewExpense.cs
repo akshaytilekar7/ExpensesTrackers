@@ -138,20 +138,21 @@ namespace ExpenseTrackerWin
 
         }
 
-        private void btnExcel_Click(object sender, EventArgs e)
+        private async void btnExcel_Click(object sender, EventArgs e)
         {
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            // projectDirectory += "\\ExcelFiles\\Output\\Output_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
             projectDirectory += "\\ExcelFiles\\Output\\Output.xls";
 
             List<ExcelDto> dataExpenseTypes = new List<ExcelDto>();
-            dataExpenseTypes.Add(new ExcelDto() { DataGridView = dgvFilter, SheetName = "Expense" });
-            dataExpenseTypes.Add(new ExcelDto() { DataGridView = dgvIncome, SheetName = "Income" });
-            dataExpenseTypes.Add(new ExcelDto() { DataGridView = dgvExpenseOverview, SheetName = "Overview" });
-            //GridExcel.ExportToExcel(dgvFilter, projectDirectory, "Expense");
-            //GridExcel.ExportToExcel(dgvIncome, projectDirectory, "Income");
-            //GridExcel.ExportToExcel(dgvExpenseOverview, projectDirectory, "Overview");
+
+            var lstExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
+            var lstIncomes = _serviceFactory.YearlyService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
+            var lstExpenseCategory = await _serviceFactory.YearlyService.GetExpenseByCategory(GetFilter());
+
+            dataExpenseTypes.Add(new ExcelDto() { dataTable = lstExpense.ToDataTable(), SheetName = "Expense" });
+            dataExpenseTypes.Add(new ExcelDto() { dataTable = lstIncomes.ToDataTable(), SheetName = "Income" });
+            dataExpenseTypes.Add(new ExcelDto() { dataTable = lstExpenseCategory.ToDataTable(), SheetName = "Overview" });
             GridExcel.ExportToExcel(dataExpenseTypes, projectDirectory);
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }

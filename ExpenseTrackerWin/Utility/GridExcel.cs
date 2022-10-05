@@ -9,7 +9,7 @@ namespace ExpenseTrackerWin.Utility
 {
     public class ExcelDto
     {
-        public DataGridView DataGridView { get; set; }
+        public DataTable dataTable { get; set; }
         public string SheetName { get; set; }
     }
     public class GridExcel
@@ -21,59 +21,39 @@ namespace ExpenseTrackerWin.Utility
                 IWorkbook workbook = new XSSFWorkbook();
                 foreach (var item in excelDtos)
                 {
-                    var dataGridView = item.DataGridView;
+                    var dataTable = item.dataTable;
                     ISheet excelSheet = workbook.CreateSheet(item.SheetName);
-                    List<string> columns = new List<string>();
-                    IRow row = excelSheet.CreateRow(0);
-                    int columnIndex = 0;
-
                     var myFont = (XSSFFont)workbook.CreateFont();
 
                     myFont.FontHeightInPoints = 15;
                     myFont.FontName = "Calibri Light";
                     XSSFCellStyle borderedCellStyle = GetBorderedCellStyle(workbook, myFont, IndexedColors.Yellow.Index, BorderStyle.Thick);
 
-                    DataTable dt = new DataTable();
-                    foreach (DataGridViewColumn col in dataGridView.Columns)
-                        dt.Columns.Add(col.Name);
-
-                    foreach (DataGridViewRow row1 in dataGridView.Rows)
+                    var row = excelSheet.CreateRow(0);
+                    for (int j = 0; j < dataTable.Columns.Count; ++j)
                     {
-                        DataRow dRow = dt.NewRow();
-                        foreach (DataGridViewCell cell in row1.Cells)
-                            dRow[cell.ColumnIndex] = cell.Value;
-                        dt.Rows.Add(dRow);
-                    }
-
-                    foreach (DataColumn column in dt.Columns)
-                    {
-                        ICell Cell = row.CreateCell(columnIndex);
-                        Cell.SetCellValue(column.ColumnName);
+                        //row.CreateCell(j).SetCellValue(dataTable.Columns[j].ColumnName);
+                        ICell Cell = row.CreateCell(j);
+                        Cell.SetCellValue(dataTable.Columns[j].ColumnName);
                         Cell.CellStyle = borderedCellStyle;
-
-                        columns.Add(column.ColumnName);
-                        row.Cells.Add(Cell);
-                        columnIndex++;
+                        excelSheet.AutoSizeColumn(0);
                     }
-                    excelSheet.AutoSizeColumn(columnIndex);
 
-                    int rowIndex = 1;
+                    int columnIndex = 1;
                     borderedCellStyle = GetBorderedCellStyle(workbook, myFont, IndexedColors.White.Index, BorderStyle.Medium);
-                    foreach (DataRow dsrow in dt.Rows)
+                    for (int i = 0; i < dataTable.Rows.Count; ++i)
                     {
-                        row = excelSheet.CreateRow(rowIndex);
-                        int cellIndex = 0;
-                        foreach (String col in columns)
+                        row = excelSheet.CreateRow(columnIndex);
+                        for (int j = 0; j < dataTable.Columns.Count; ++j)
                         {
-                            row.CreateCell(cellIndex).SetCellValue(dsrow[col].ToString());
-
-                            ICell Cell = row.CreateCell(cellIndex);
-                            Cell.SetCellValue(dsrow[col].ToString());
+                            // row.CreateCell(j).SetCellValue(dataTable.Rows[i][j].ToString());
+                            ICell Cell = row.CreateCell(j);
+                            Cell.SetCellValue(dataTable.Rows[i][j].ToString());
                             Cell.CellStyle = borderedCellStyle;
 
-                            cellIndex++;
                         }
-                        rowIndex++;
+                        excelSheet.AutoSizeColumn(columnIndex);
+                        ++columnIndex;
                     }
                 }
                 workbook.Write(fs);
