@@ -163,17 +163,24 @@ namespace ExpenseTrackerWin
             projectDirectory += "\\ExcelFiles\\Output\\OutputYearly_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
 
             int year = Convert.ToInt32(datePickerYearly.Text);
+            var filter = new ExpenseFilter()
+            {
+                StartDate = new DateTime(year, 1, 1),
+                EndDate = new DateTime(year, 12, 31),
+            };
+
             var lstYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text));
+            var expenseByCategories = await _serviceFactory.YearlyService.GetExpenseByCategory(filter);
 
             List<ExcelDto> excelDtos = new List<ExcelDto>();
             excelDtos.Add(new ExcelDto() { dataTable = lstYealry.ToDataTable(), SheetName = "Yealry Overview" });
+            excelDtos.Add(new ExcelDto() { dataTable = expenseByCategories.ToDataTable(), SheetName = "Yealry Expense By Categories" });
 
             var lstMonthly = await _serviceFactory.YearlyService.YearlyMonthlywise(year);
 
             foreach (var item in lstMonthly)
                 excelDtos.Add(new ExcelDto() { dataTable = item.dtoExpenses.ToDataTable(), SheetName = item.Name });
 
-            
             GridExcel.ExportToExcel(excelDtos, projectDirectory);
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }

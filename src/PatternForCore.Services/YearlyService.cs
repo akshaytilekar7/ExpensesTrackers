@@ -23,7 +23,6 @@ namespace PatternForCore.Services
             _serviceFactory = new ServiceFactory(_unitOfWork);
         }
 
-
         public async Task<List<DtoYealry>> GetYearlyData(int year)
         {
             var repoExpense = _unitOfWork.GetRepository<Expense>();
@@ -163,28 +162,6 @@ namespace PatternForCore.Services
         {
             IEnumerable<IncomeSource> lst = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
             return lst.ToList();
-        }
-
-        enum Months
-        {
-            January = 1,
-            February,
-            March,
-            April,
-            May,
-            June,
-            July,
-            August,
-            September,
-            October,
-            November,
-            December
-        }
-        public class ExcelYearly
-        {
-            public List<DtoExpense> dtoExpenses { get; set; }
-            public string Name { get; set; }
-
         }
 
         public async Task<List<ExcelYearly>> YearlyMonthlywise(int year)
