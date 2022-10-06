@@ -1,15 +1,13 @@
 ﻿using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using PatternForCore.Services;
 using System.Data;
-using System.Text.RegularExpressions;
 using BorderStyle = NPOI.SS.UserModel.BorderStyle;
 
 namespace ExpenseTrackerWin.Utility
 {
     public class ExcelDto
     {
-        public DataTable dataTable { get; set; }
+        public DataTable DataTable { get; set; }
         public string SheetName { get; set; }
     }
     public class GridExcel
@@ -21,7 +19,7 @@ namespace ExpenseTrackerWin.Utility
                 IWorkbook workbook = new XSSFWorkbook();
                 foreach (var item in excelDtos)
                 {
-                    var dataTable = item.dataTable;
+                    var dataTable = item.DataTable;
                     ISheet excelSheet = workbook.CreateSheet(item.SheetName);
                     var myFont = (XSSFFont)workbook.CreateFont();
 

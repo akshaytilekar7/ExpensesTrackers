@@ -163,13 +163,13 @@ namespace ExpenseTrackerWin
 
             List<ExcelDto> excelDtos = new List<ExcelDto>();
           
-            excelDtos.Add(new ExcelDto() { dataTable = lstYealry.ToDataTable(), SheetName = "Yealry Overview" });
+            excelDtos.Add(new ExcelDto() { DataTable = lstYealry.ToDataTable(), SheetName = "Yealry Overview" });
 
             foreach (var item in lstAllMonthsData)
-                excelDtos.Add(new ExcelDto() { dataTable = item.dtoExpenses.ToDataTable(), SheetName = item.Name });
+                excelDtos.Add(new ExcelDto() { DataTable = item.dtoExpenses.ToDataTable(), SheetName = item.Name });
 
-            excelDtos.Add(new ExcelDto() { dataTable = lstMonthDataOnExpenseType.dtoExpenseByCategories.ToDataTable(), SheetName = "Percentage overview" });
-            excelDtos.Add(new ExcelDto() { dataTable = lstExpenseByExpensesTypes.ToDataTable(), SheetName = "Yealry Expense By Categories" });
+            excelDtos.Add(new ExcelDto() { DataTable = lstMonthDataOnExpenseType.dtoExpenseByCategories.ToDataTable(), SheetName = "Percentage overview" });
+            excelDtos.Add(new ExcelDto() { DataTable = lstExpenseByExpensesTypes.ToDataTable(), SheetName = "Yealry Expense By Categories" });
 
             GridExcel.ExportToExcel(excelDtos, projectDirectory);
             

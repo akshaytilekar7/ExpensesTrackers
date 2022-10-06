@@ -148,9 +148,10 @@ namespace ExpenseTrackerWin
             var lstIncomes = _serviceFactory.YearlyService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
             var lstExpenseCategory = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
 
-            dataExpenseTypes.Add(new ExcelDto() { dataTable = lstExpense.ToDataTable(), SheetName = "Expense" });
-            dataExpenseTypes.Add(new ExcelDto() { dataTable = lstIncomes.ToDataTable(), SheetName = "Income" });
-            dataExpenseTypes.Add(new ExcelDto() { dataTable = lstExpenseCategory.ToDataTable(), SheetName = "Overview" });
+            dataExpenseTypes.Add(new ExcelDto() { DataTable = lstExpense.ToDataTable(), SheetName = "Expense" });
+            dataExpenseTypes.Add(new ExcelDto() { DataTable = lstIncomes.ToDataTable(), SheetName = "Income" });
+            dataExpenseTypes.Add(new ExcelDto() { DataTable = lstExpenseCategory.ToDataTable(), SheetName = "Overview" });
+            
             GridExcel.ExportToExcel(dataExpenseTypes, projectDirectory);
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }
