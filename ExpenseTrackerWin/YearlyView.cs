@@ -51,7 +51,7 @@ namespace ExpenseTrackerWin
         private async Task LoadExpenseByCategoryGrid()
         {
             int year = Convert.ToInt32(datePickerYearly.Text);
-            var filter = new ExpenseFilter()
+            var filter = new DtoExpenseFilter()
             {
                 StartDate = new DateTime(year, 1, 1),
                 EndDate = new DateTime(year, 12, 31),
@@ -67,10 +67,10 @@ namespace ExpenseTrackerWin
             SetTooltipGrid(sender, e.RowIndex, e.ColumnIndex);
         }
 
-        private static List<DtoTooltip> GetTooltipList(int columnIndex, DtoYealry dtoYealry)
+        private static List<DtoDetails> GetDetails(int columnIndex, DtoYealry dtoYealry)
         {
             IEnumerable<Expense> expenses = new List<Expense>();
-            List<DtoTooltip> lstDtoTooltip = new List<DtoTooltip>();
+            List<DtoDetails> lstDtoTooltip = new List<DtoDetails>();
 
             switch (columnIndex)
             {
@@ -116,7 +116,7 @@ namespace ExpenseTrackerWin
 
             if (expenses != null && expenses.Any())
             {
-                return expenses.Select(x => new DtoTooltip
+                return expenses.Select(x => new DtoDetails
                 {
                     Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.DayOfWeek.ToString(),
                     Amount = x.Amount,
@@ -150,8 +150,8 @@ namespace ExpenseTrackerWin
 
             DataGridView grid = (DataGridView)sender;
             var dtoYealry = (DtoYealry)grid.Rows[rowIndex].DataBoundItem;
-            var lstDtoTooltip = GetTooltipList(columnIndex, dtoYealry);
-            SortableBindingList<DtoTooltip> sortableBindingList = new(lstDtoTooltip);
+            var lstDetails = GetDetails(columnIndex, dtoYealry);
+            SortableBindingList<DtoDetails> sortableBindingList = new(lstDetails);
             dgvTooltip.SetGridToFit();
             dgvTooltip.DataSource = sortableBindingList;
         }
@@ -163,7 +163,7 @@ namespace ExpenseTrackerWin
             projectDirectory += "\\ExcelFiles\\Output\\OutputYearly_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
 
             int year = Convert.ToInt32(datePickerYearly.Text);
-            var filter = new ExpenseFilter()
+            var filter = new DtoExpenseFilter()
             {
                 StartDate = new DateTime(year, 1, 1),
                 EndDate = new DateTime(year, 12, 31),

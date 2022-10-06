@@ -1,5 +1,4 @@
-﻿using System;
-namespace PatternForCore.Models
+﻿namespace PatternForCore.Models
 {
     public class MasterExpenseType
     {

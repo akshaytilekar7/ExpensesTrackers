@@ -2,16 +2,16 @@
 
 namespace PatternForCore.Models.Dto
 {
-    public class ExcelYearly
+    public class DtoYearlyExpense
     {
         public List<DtoExpense> dtoExpenses { get; set; }
         public string Name { get; set; }
 
     }
 
-    public class ExcelYearlyExpenseByCategory
+    public class DtoYearlyExpenseByCategory
     {
-        public ExcelYearlyExpenseByCategory()
+        public DtoYearlyExpenseByCategory()
         {
             dtoExpenseByCategories = new List<DtoExpenseByCategory>();
         }

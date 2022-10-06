@@ -23,8 +23,8 @@ namespace PatternForCore.Services
             {
                 if (category != null)
                 {
-                    var movieRepository = _unitOfWork.GetRepository<MasterCategoryType>();
-                    movieRepository.Add(category);
+                    var repo = _unitOfWork.GetRepository<MasterCategoryType>();
+                    repo.Add(category);
                     _unitOfWork.Commit();
                     result = true;
                 }
@@ -40,8 +40,8 @@ namespace PatternForCore.Services
 
         public IList<MasterCategoryType> GetAll()
         {
-            var movieRepository = _unitOfWork.GetRepository<MasterCategoryType>();
-            return movieRepository.GetAll().OrderBy(x => x.Name).ToList();
+            var repo = _unitOfWork.GetRepository<MasterCategoryType>();
+            return repo.GetAll().OrderBy(x => x.Name).ToList();
         }
     }
 }

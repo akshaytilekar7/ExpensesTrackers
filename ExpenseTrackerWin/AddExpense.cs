@@ -2,11 +2,9 @@ using ExpenseTrackerWin.Utility;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using PatternForCore.Models;
 using PatternForCore.Models.Dto;
-using PatternForCore.Services;
 using PatternForCore.Services.Factory;
 using System.Data;
-using System.Text.RegularExpressions;
-
+using PatternForCore.Services.Base;
 namespace ExpenseTrackerWin
 {
     public partial class AddExpense : Form
@@ -289,7 +287,7 @@ namespace ExpenseTrackerWin
         private async void btnGeData_Click(object sender, EventArgs e)
         {
             var date = Convert.ToDateTime(dpDate.Text);
-            ExpenseFilter expenseFilter = new ExpenseFilter() { StartDate = date, EndDate = date };
+            DtoExpenseFilter expenseFilter = new DtoExpenseFilter() { StartDate = date, EndDate = date };
 
             if (!string.IsNullOrEmpty(txtAmount.Text))
             {

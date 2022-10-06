@@ -1,7 +1,7 @@
 ﻿using System;
 namespace PatternForCore.Models.Dto
 {
-    public class ExpenseFilter
+    public class DtoExpenseFilter
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

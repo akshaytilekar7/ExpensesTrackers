@@ -1,6 +1,6 @@
 ﻿namespace PatternForCore.Models.Dto
 {
-    public class DtoTooltip
+    public class DtoDetails
     {
         public string Date { get; set; }
         public int Amount { get; set; }

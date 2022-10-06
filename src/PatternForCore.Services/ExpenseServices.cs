@@ -26,8 +26,8 @@ namespace PatternForCore.Services
             {
                 if (expense != null)
                 {
-                    var movieRepository = _unitOfWork.GetRepository<Expense>();
-                    movieRepository.Add(expense);
+                    var repo = _unitOfWork.GetRepository<Expense>();
+                    repo.Add(expense);
                     _unitOfWork.Commit();
                     result = true;
                 }
@@ -43,21 +43,21 @@ namespace PatternForCore.Services
 
         public void Add(List<Expense> lst)
         {
-            var movieRepository = _unitOfWork.GetRepository<Expense>();
+            var repo = _unitOfWork.GetRepository<Expense>();
             foreach (var item in lst)
             {
-                movieRepository.Add(item);
+                repo.Add(item);
                 _unitOfWork.Commit();
             }
         }
 
         public IList<Expense> GetAll()
         {
-            var movieRepository = _unitOfWork.GetRepository<Expense>();
+            var repo = _unitOfWork.GetRepository<Expense>();
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
             includers.Add(x => x.MasterCategoryType);
             includers.Add(x => x.MasterCategoryType.MasterExpenseType);
-            return movieRepository.GetAll(includers).OrderByDescending(x => x.Id).ToList();
+            return repo.GetAll(includers).OrderByDescending(x => x.Id).ToList();
         }
 
         public void Delete(List<Expense> lst)
@@ -68,38 +68,38 @@ namespace PatternForCore.Services
             _unitOfWork.Commit();
         }
 
-        public async Task<List<DtoExpense>> GetExpenseFilter(ExpenseFilter expenseFilter)
+        public async Task<List<DtoExpense>> GetExpenseFilter(DtoExpenseFilter filter)
         {
             var expenseRepository = _unitOfWork.GetRepository<Expense>();
 
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
             includers.Add(x => x.MasterCategoryType);
             includers.Add(x => x.MasterCategoryType.MasterExpenseType);
-            var dbList = await expenseRepository.GetAllAsync(includers);
+            IEnumerable<Expense> lstExpenses = await expenseRepository.GetAllAsync(includers);
 
-            if (expenseFilter.StartDate != DateTime.MinValue && expenseFilter.EndDate != DateTime.MinValue)
-                dbList = dbList.Where(x => x.Date >= expenseFilter.StartDate && x.Date <= expenseFilter.EndDate);
+            if (filter.StartDate != DateTime.MinValue && filter.EndDate != DateTime.MinValue)
+                lstExpenses = lstExpenses.Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate);
 
-            if (expenseFilter.Amount >= 1)
-                dbList = dbList.Where(x => x.Amount == expenseFilter.Amount);
+            if (filter.Amount >= 1)
+                lstExpenses = lstExpenses.Where(x => x.Amount == filter.Amount);
 
-            if (expenseFilter.CategoryId > 0)
-                dbList = dbList.Where(x => x.MasterCategoryType.Id == expenseFilter.CategoryId);
+            if (filter.CategoryId > 0)
+                lstExpenses = lstExpenses.Where(x => x.MasterCategoryType.Id == filter.CategoryId);
 
-            if (expenseFilter.ExpenseTypeId > 0)
-                dbList = dbList.Where(x => x.MasterCategoryType.MasterExpenseType.Id == expenseFilter.ExpenseTypeId);
+            if (filter.ExpenseTypeId > 0)
+                lstExpenses = lstExpenses.Where(x => x.MasterCategoryType.MasterExpenseType.Id == filter.ExpenseTypeId);
 
-            if (!string.IsNullOrEmpty(expenseFilter.Comment))
-                dbList = dbList.Where(x => x.Comment.ToLower().Contains(expenseFilter.Comment.ToLower()));
+            if (!string.IsNullOrEmpty(filter.Comment))
+                lstExpenses = lstExpenses.Where(x => x.Comment.ToLower().Contains(filter.Comment.ToLower()));
 
-            if (expenseFilter.UserId > 0)
-                dbList = dbList.Where(x => x.UserId == expenseFilter.UserId);
+            if (filter.UserId > 0)
+                lstExpenses = lstExpenses.Where(x => x.UserId == filter.UserId);
 
-            dbList = dbList.OrderBy(x => x.Date);
+            lstExpenses = lstExpenses.OrderBy(x => x.Date);
 
             var userRepository = _unitOfWork.GetRepository<User>();
             var users = userRepository.GetAll();    
-            var result = dbList.Select(s => new DtoExpense()
+            var result = lstExpenses.Select(s => new DtoExpense()
             {
                 Id = s.Id,
                 CategoryName = s.MasterCategoryType.Name,

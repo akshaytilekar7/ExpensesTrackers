@@ -1,11 +1,11 @@
-﻿using System;
+﻿using PatternForCore.Models.Dto;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 namespace PatternForCore.Models
 {
-    public static class Extentions
+    public static class Extensions
     {
         public static string GetTooltipData(this IEnumerable<Expense> expenses)
         {
@@ -18,6 +18,19 @@ namespace PatternForCore.Models
                 str += "\n";
             }
             return str;
+        }
+
+        public static List<DtoExpense> GenereateSrNo(this List<DtoExpense> dtoExpenses)
+        {
+            int index = 1;
+            for (int i = 0; i < dtoExpenses.Count; i++)
+
+            {
+                var x = index++;
+                dtoExpenses[i].SrNo = x;
+            }
+
+            return dtoExpenses;
         }
     }
 }

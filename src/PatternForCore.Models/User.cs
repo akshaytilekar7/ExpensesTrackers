@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PatternForCore.Models
+﻿namespace PatternForCore.Models
 {
     public class User
     {

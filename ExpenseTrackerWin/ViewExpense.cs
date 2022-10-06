@@ -11,7 +11,6 @@ namespace ExpenseTrackerWin
     {
         public IServiceFactory _serviceFactory { get; }
 
-        public List<SortBy> lstSortBy = new SortBy().GetList();
         public ViewExpense(IServiceFactory serviceFactory)
         {
             InitializeComponent();
@@ -214,9 +213,9 @@ namespace ExpenseTrackerWin
             dgvFilter.Refresh();
         }
 
-        private ExpenseFilter GetFilter()
+        private DtoExpenseFilter GetFilter()
         {
-            var filter = new ExpenseFilter()
+            var filter = new DtoExpenseFilter()
             {
                 Amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToInt32(txtAmount.Text),
                 Comment = txtComment.Text,
