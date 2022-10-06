@@ -3,16 +3,9 @@ using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using PatternForCore.Models;
 using PatternForCore.Models.Dto;
 using PatternForCore.Services.Factory;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using PatternForCore.Services.Base;
 
 namespace ExpenseTrackerWin
 {
@@ -37,12 +30,8 @@ namespace ExpenseTrackerWin
         private async Task LoadGird()
         {
             var lstDtoYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text));
-            SortableBindingList<DtoYealry> sortableBindingList = new(lstDtoYealry);
-            dgvYealy.DataSource = sortableBindingList;
+            dgvYealy.DataSource = lstDtoYealry.MakeSortable();
             dgvYealy.SetGridToFit();
-
-            //var balance = totalYealyIncome - totalSum;
-            //lblTotal.Text = "Year " + datePickerYearly.Text + "\nTotal Income: " + totalYealyIncome.ToString("#,##0.00") + " \nTotal Expense: " + totalSum.ToString("#,##0.00") + " \nBalance: " + balance.ToString("#,##0.00");
 
             await LoadExpenseByCategoryGrid();
 
@@ -56,9 +45,8 @@ namespace ExpenseTrackerWin
                 StartDate = new DateTime(year, 1, 1),
                 EndDate = new DateTime(year, 12, 31),
             };
-            List<DtoExpenseByCategory>? result = await _serviceFactory.YearlyService.GetExpenseByCategory(filter);
-            SortableBindingList<DtoExpenseByCategory> sortableBindingList = new SortableBindingList<DtoExpenseByCategory>(result);
-            dgvExpenseOverview.DataSource = sortableBindingList;
+            var lst = await _serviceFactory.YearlyService.GetExpenseByCategory(filter);
+            dgvExpenseOverview.DataSource = lst.MakeSortable(); ;
             dgvExpenseOverview.SetGridToFit();
         }
 
@@ -140,7 +128,6 @@ namespace ExpenseTrackerWin
 
         private void dgvYealy_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            // SetTooltipGrid(sender, e.RowIndex, e.ColumnIndex);
         }
 
         private void SetTooltipGrid(object sender, int rowIndex, int columnIndex)
@@ -151,9 +138,8 @@ namespace ExpenseTrackerWin
             DataGridView grid = (DataGridView)sender;
             var dtoYealry = (DtoYealry)grid.Rows[rowIndex].DataBoundItem;
             var lstDetails = GetDetails(columnIndex, dtoYealry);
-            SortableBindingList<DtoDetails> sortableBindingList = new(lstDetails);
             dgvTooltip.SetGridToFit();
-            dgvTooltip.DataSource = sortableBindingList;
+            dgvTooltip.DataSource = lstDetails.MakeSortable();
         }
 
         private async void btnExport_Click(object sender, EventArgs e)
@@ -171,21 +157,21 @@ namespace ExpenseTrackerWin
 
             var lstYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text));
             var expenseByCategories = await _serviceFactory.YearlyService.GetExpenseByCategory(filter);
+            var excelYearlyExpenseByCategory = await _serviceFactory.YearlyService.YearlyMonthlyExpensewise(year);
+            var lstMonthly = await _serviceFactory.YearlyService.YearlyMonthlywise(year);
 
             List<ExcelDto> excelDtos = new List<ExcelDto>();
+          
             excelDtos.Add(new ExcelDto() { dataTable = lstYealry.ToDataTable(), SheetName = "Yealry Overview" });
             excelDtos.Add(new ExcelDto() { dataTable = expenseByCategories.ToDataTable(), SheetName = "Yealry Expense By Categories" });
-
-            var lstMonthly = await _serviceFactory.YearlyService.YearlyMonthlywise(year);
 
             foreach (var item in lstMonthly)
                 excelDtos.Add(new ExcelDto() { dataTable = item.dtoExpenses.ToDataTable(), SheetName = item.Name });
 
-            var excelYearlyExpenseByCategory = await _serviceFactory.YearlyService.YearlyMonthlyExpensewise(year);
-
             excelDtos.Add(new ExcelDto() { dataTable = excelYearlyExpenseByCategory.dtoExpenseByCategories.ToDataTable(), SheetName = "Percentage overview" });
 
             GridExcel.ExportToExcel(excelDtos, projectDirectory);
+            
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }
     }

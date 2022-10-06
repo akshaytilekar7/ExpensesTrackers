@@ -1,16 +1,4 @@
-﻿using PatternForCore.Models;
-using PatternForCore.Services;
-using PatternForCore.Services.Base.Contracts;
-using PatternForCore.Services.Factory;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using PatternForCore.Services.Factory;
 
 namespace ExpenseTrackerWin
 {
@@ -20,28 +8,28 @@ namespace ExpenseTrackerWin
         public HomePage(IServiceFactory serviceFactory)
         {
             InitializeComponent();
-            ServiceFactory = serviceFactory;
+            _serviceFactory = serviceFactory;
         }
 
-        public IServiceFactory ServiceFactory { get; }
+        IServiceFactory _serviceFactory { get; }
 
         private void btnAddExpensed_Click(object sender, EventArgs e)
         {
-            AddExpense Check = new AddExpense(ServiceFactory);
+            AddExpense Check = new AddExpense(_serviceFactory);
             Check.Show();
             Hide();
         }
 
         private void btnAddIncome_Click(object sender, EventArgs e)
         {
-            AddIncome Check = new AddIncome(ServiceFactory);
+            AddIncome Check = new AddIncome(_serviceFactory);
             Check.Show();
             Hide();
         }
 
         private void btnViewExpense_Click(object sender, EventArgs e)
         {
-            ViewExpense Check = new ViewExpense(ServiceFactory);
+            ViewExpense Check = new ViewExpense(_serviceFactory);
             Check.Show();
             Hide();
 
@@ -54,14 +42,14 @@ namespace ExpenseTrackerWin
 
         private void btnYealry_Click(object sender, EventArgs e)
         {
-            YearlyView Check = new YearlyView(ServiceFactory);
+            YearlyView Check = new YearlyView(_serviceFactory);
             Check.Show();
             Hide();
         }
 
         private void btnUserSettings_Click(object sender, EventArgs e)
         {
-            UserSettings Check = new UserSettings(ServiceFactory);
+            UserSettings Check = new UserSettings(_serviceFactory);
             Check.Show();
             Hide();
         }

@@ -8,10 +8,10 @@ namespace ExpenseTrackerWin
         public AddIncome(IServiceFactory serviceFactory)
         {
             InitializeComponent();
-            ServiceFactory = serviceFactory;
+            _serviceFactory = serviceFactory;
         }
 
-        public IServiceFactory ServiceFactory { get; }
+        private IServiceFactory _serviceFactory { get; }
 
         private void AddIncome_Load(object sender, EventArgs e)
         {
@@ -20,10 +20,10 @@ namespace ExpenseTrackerWin
 
         private void LoadGrid()
         {
-            var lst = ServiceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList();
+            var lst = _serviceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList();
             dgvIncome.DataSource = lst;
 
-            var users = ServiceFactory.UserService.GetAll();
+            var users = _serviceFactory.UserService.GetAll();
             cmbNames.DataSource = users;
             cmbNames.DisplayMember = "Name";
             cmbNames.ValueMember = "Id";
@@ -34,15 +34,15 @@ namespace ExpenseTrackerWin
             income.Date = Convert.ToDateTime(datePicker.Text);
             income.Amount = Convert.ToInt32(txtAmount.Text);
             income.UserId = Convert.ToInt32(cmbNames.SelectedValue);
-            ServiceFactory.IncomeService.Add(income);
+            _serviceFactory.IncomeService.Add(income);
             string message = "Save Data Sucessfully";
             MessageBox.Show(message);
-            //LoadGrid();
+            LoadGrid();
         }
 
         private void btnHomePage_Click(object sender, EventArgs e)
         {
-            HomePage Check = new HomePage(ServiceFactory);
+            HomePage Check = new HomePage(_serviceFactory);
             Check.Show();
             Hide();
         }
@@ -55,7 +55,7 @@ namespace ExpenseTrackerWin
                 int id = Convert.ToInt32(row.Cells[0].Value);
                 lst.Add(new IncomeSource() { Id = id });
             }
-            ServiceFactory.IncomeService.Delete(lst);
+            _serviceFactory.IncomeService.Delete(lst);
             LoadGrid();
         }
     }

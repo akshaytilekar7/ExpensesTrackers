@@ -3,8 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using PatternForCore.Models;
 using PatternForCore.Models.Dto;
 using PatternForCore.Services.Factory;
-using System.Data;
-
+using PatternForCore.Services.Base;
 namespace ExpenseTrackerWin
 {
     public partial class ViewExpense : Form

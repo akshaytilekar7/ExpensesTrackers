@@ -10,15 +10,14 @@ namespace ExpenseTrackerWin
     public partial class AddExpense : Form
     {
 
-        List<Expense> list = new List<Expense>();
+        List<Expense> listExpense = new List<Expense>();
         List<DtoExpense> listOldData = new List<DtoExpense>();
-
-        public IServiceFactory ServiceFactory { get; }
+        IServiceFactory _serviceFactory { get; }
 
         public AddExpense(IServiceFactory serviceFactory)
         {
             InitializeComponent();
-            ServiceFactory = serviceFactory;
+            _serviceFactory = serviceFactory;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -43,10 +42,10 @@ namespace ExpenseTrackerWin
                 txtTotalIncome.Clear();
                 string Total = string.Empty;
                 var date = Convert.ToDateTime(DatePicker.Text);
-                var dbIncomes = ServiceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month && s.Date.Year == date.Year);
+                var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month && s.Date.Year == date.Year);
                 foreach (var item in dbIncomes)
                 {
-                    //////////// txtTotalIncome.AppendText(item.Name + " : " + item.Amount);
+                    txtTotalIncome.AppendText(item.Name + " : " + item.Amount); //?????
                     txtTotalIncome.AppendText(Environment.NewLine);
                 }
                 txtTotalIncome.AppendText("Total Income : " + Convert.ToString(dbIncomes.Sum(x => x.Amount)));
@@ -71,12 +70,12 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var Categories = ServiceFactory.CategoryServices.GetAll();
+                var Categories = _serviceFactory.CategoryServices.GetAll();
                 Category.DisplayMember = "Name";
                 Category.ValueMember = "Id";
                 Category.DataSource = Categories;
 
-                var users = ServiceFactory.UserService.GetAll();
+                var users = _serviceFactory.UserService.GetAll();
                 cmbNames.DataSource = users;
                 cmbNames.DisplayMember = "Name";
                 cmbNames.ValueMember = "Id";
@@ -108,12 +107,12 @@ namespace ExpenseTrackerWin
                     expense.Amount = Convert.ToInt32(row.Cells[2].Value);
                     expense.Comment = Convert.ToString(row.Cells[3].Value);
                     expense.UserId = user;
-                    list.Add(expense);
+                    listExpense.Add(expense);
                 }
-                ServiceFactory.ExpenseServices.Add(list);
+                _serviceFactory.ExpenseServices.Add(listExpense);
 
                 string message = "Save Data Sucessfully";
-                list.Clear();
+                listExpense.Clear();
                 dgvExpenses.Rows.Clear();
                 dgvExpenses.Refresh();
                 MessageBox.Show(message);
@@ -126,14 +125,13 @@ namespace ExpenseTrackerWin
                     st = ex.InnerException.Message;
                 lblError.Text = "btnSave_Click : " + ex.Message + " " + st;
             }
-
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             try
             {
-                list.Clear();
+                listExpense.Clear();
                 dgvExpenses.Rows.Clear();
                 dgvExpenses.Refresh();
             }
@@ -145,7 +143,7 @@ namespace ExpenseTrackerWin
 
         private void btnFilterPage_Click(object sender, EventArgs e)
         {
-            ViewExpense Check = new ViewExpense(ServiceFactory);
+            ViewExpense Check = new ViewExpense(_serviceFactory);
             Check.Show();
             Hide();
         }
@@ -175,7 +173,7 @@ namespace ExpenseTrackerWin
                     cComment.Value = comment;
 
                     DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
-                    var dbCategories = ServiceFactory.CategoryServices.GetAll();
+                    var dbCategories = _serviceFactory.CategoryServices.GetAll();
                     cCategory.DisplayMember = "Name";
                     cCategory.ValueMember = "Id";
                     cCategory.DataSource = dbCategories;
@@ -237,7 +235,7 @@ namespace ExpenseTrackerWin
             //projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Month + "_" + date.Year + ".xls";
             projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Year + ".xls";
 
-            DataTable bankStatement = ServiceFactory.ExcelService.LoadDataTable(projectDirectory2);
+            DataTable bankStatement = _serviceFactory.ExcelService.LoadDataTable(projectDirectory2);
             var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
             return lstExpenseBankStatement;
         }
@@ -247,10 +245,9 @@ namespace ExpenseTrackerWin
             var date = Convert.ToDateTime(DatePicker.Text);
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             //projectDirectory += "\\ExcelFiles\\Input\\" + date.Month + "_" + date.Year + ".xls";
-
             projectDirectory += "\\ExcelFiles\\Input\\" + date.Year + ".xls";
 
-            DataTable dt = ServiceFactory.ExcelService.LoadDataTable(projectDirectory);
+            DataTable dt = _serviceFactory.ExcelService.LoadDataTable(projectDirectory);
             var lstExpense = dt.DatatableToClass<DtoExpense>();
             return lstExpense.Where(x => x.Amount > 0 && x.Date.Date >= date.Date).ToList();
         }
@@ -274,7 +271,7 @@ namespace ExpenseTrackerWin
 
         private void btnHomePage_Click(object sender, EventArgs e)
         {
-            HomePage Check = new HomePage(ServiceFactory);
+            HomePage Check = new HomePage(_serviceFactory);
             Check.Show();
             Hide();
         }
@@ -295,10 +292,10 @@ namespace ExpenseTrackerWin
                 expenseFilter.Amount = Convert.ToInt32(txtAmount.Text);
             }
 
-            List<DtoExpense> newOldaData = await ServiceFactory.ExpenseServices.GetExpenseFilter(expenseFilter);
+            List<DtoExpense> newOldaData = await _serviceFactory.ExpenseServices.GetExpenseFilter(expenseFilter);
             listOldData.AddRange(newOldaData);
-            SortableBindingList<DtoExpense> sortableBindingList = new(listOldData.GenereateSrNo().ToList());
-            dgvOldData.DataSource = sortableBindingList;
+            listOldData = listOldData.GenereateSrNo().ToList();
+            dgvOldData.DataSource = listOldData.MakeSortable();
             dgvOldData.SetGridToFit();
         }
 
@@ -314,7 +311,3 @@ namespace ExpenseTrackerWin
         }
     }
 }
-
-//SELECT CAST(ex.Date AS DATE) as Date, ct.CategoryName, ct.ExpensesType, ex.Amount
-//  FROM[dbo].[Expense] as ex join[dbo].[Category] as ct
-//  on ex.CategoryId = ct.Id

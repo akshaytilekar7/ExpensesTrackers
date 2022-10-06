@@ -1,13 +1,6 @@
 ﻿using PatternForCore.Models;
 using PatternForCore.Services.Factory;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using PatternForCore.Services;
 namespace ExpenseTrackerWin
 {
     public partial class UserSettings : Form
@@ -93,10 +86,10 @@ namespace ExpenseTrackerWin
         private void LoadExpenseGrid()
         {
             dgvExpenseType.Rows.Clear();
-            var dbExpense = _serviceFactory.MasterTableService.GetAllMasterExpenseType();
+            var lstExpense = _serviceFactory.MasterTableService.GetAllMasterExpenseType();
 
             int index = 0;
-            foreach (var item in dbExpense)
+            foreach (var item in lstExpense)
             {
                 DataGridViewRow row = new DataGridViewRow();
 
@@ -109,7 +102,7 @@ namespace ExpenseTrackerWin
                 row.Cells.Add(cId);
                 row.Cells.Add(cName);
 
-                this.dgvExpenseType.Rows.Add(row);
+                dgvExpenseType.Rows.Add(row);
                 index++;
             }
         }
@@ -117,19 +110,18 @@ namespace ExpenseTrackerWin
         private void LoadCategoryGrid()
         {
             dgvCategory.Rows.Clear();
-            var dbExpense = _serviceFactory.MasterTableService.GetAllMasterExpenseType();
-            cmbExpeseType.DataSource = dbExpense;
+            var lstExpenses = _serviceFactory.MasterTableService.GetAllMasterExpenseType();
+            cmbExpeseType.DataSource = lstExpenses;
             cmbExpeseType.DisplayMember = "Name";
             cmbExpeseType.ValueMember = "Id";
 
-            var dbCategories = _serviceFactory.MasterTableService.GetAllMasterCategoryType().OrderBy(x => x.MasterExpenseType.Name).ToList();
-            if (!dbCategories.Any())
-                dbCategories.Add(new MasterCategoryType());
-            //dgvCategory.DataSource = dbCategories;
+            var lstCategories = _serviceFactory.MasterTableService.GetAllMasterCategoryType().OrderBy(x => x.MasterExpenseType.Name).ToList();
+            if (!lstCategories.Any())
+                lstCategories.Add(new MasterCategoryType());
 
             this.dgvCategory.AllowUserToAddRows = true;
 
-            foreach (var item in dbCategories)
+            foreach (var item in lstCategories)
             {
                 DataGridViewRow row = new DataGridViewRow();
 
@@ -139,7 +131,7 @@ namespace ExpenseTrackerWin
                 DataGridViewComboBoxCell cExpense = new DataGridViewComboBoxCell();
                 cExpense.DisplayMember = "Name";
                 cExpense.ValueMember = "Id";
-                cExpense.DataSource = dbExpense;
+                cExpense.DataSource = lstExpenses;
                 if (item.MasterExpenseType != null)
                     cExpense.Value = item.MasterExpenseType.Id;
 
@@ -150,7 +142,7 @@ namespace ExpenseTrackerWin
                 row.Cells.Add(cExpense);
                 row.Cells.Add(cName);
 
-                this.dgvCategory.Rows.Add(row);
+                dgvCategory.Rows.Add(row);
             }
         }
 

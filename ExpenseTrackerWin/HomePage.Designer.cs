@@ -104,9 +104,9 @@
             this.btnUserSettings.Location = new System.Drawing.Point(21, 616);
             this.btnUserSettings.Margin = new System.Windows.Forms.Padding(2);
             this.btnUserSettings.Name = "btnUserSettings";
-            this.btnUserSettings.Size = new System.Drawing.Size(303, 55);
+            this.btnUserSettings.Size = new System.Drawing.Size(168, 55);
             this.btnUserSettings.TabIndex = 5;
-            this.btnUserSettings.Text = "User Settings";
+            this.btnUserSettings.Text = "Admin";
             this.btnUserSettings.UseVisualStyleBackColor = true;
             this.btnUserSettings.Click += new System.EventHandler(this.btnUserSettings_Click);
             // 
