@@ -12,9 +12,9 @@ namespace PatternForCore.Services.Base.Contracts
 
         List<MasterCategoryType> GetAllMasterCategoryType();
 
-        public void SaveMasterExpenseType(List<MasterExpenseType> masterExpenseTypes);
+        public void SaveMasterExpenseType(List<MasterExpenseType> lst);
 
-        public void SaveMasterCategoryType(List<MasterCategoryType> masterCategoryTypes);
+        public void SaveMasterCategoryType(List<MasterCategoryType> lst);
 
     }
 }

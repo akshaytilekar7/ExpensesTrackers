@@ -3,7 +3,6 @@ using PatternForCore.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using static PatternForCore.Services.YearlyService;
 
 namespace PatternForCore.Services.Base.Contracts
 {

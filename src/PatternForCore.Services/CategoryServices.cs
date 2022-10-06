@@ -16,15 +16,15 @@ namespace PatternForCore.Services
             _unitOfWork = unitOfWork;
         }
 
-        public bool Add(MasterCategoryType category)
+        public bool Add(MasterCategoryType item)
         {
             bool result = false;
             try
             {
-                if (category != null)
+                if (item != null)
                 {
                     var repo = _unitOfWork.GetRepository<MasterCategoryType>();
-                    repo.Add(category);
+                    repo.Add(item);
                     _unitOfWork.Commit();
                     result = true;
                 }

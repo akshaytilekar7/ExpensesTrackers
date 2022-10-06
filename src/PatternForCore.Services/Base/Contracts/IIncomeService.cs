@@ -5,7 +5,7 @@ namespace PatternForCore.Services.Base.Contracts
 {
     public interface IIncomeService
     {
-        bool Add(IncomeSource movieItem);
+        bool Add(IncomeSource item);
         IList<IncomeSource> GetAll();
         void Delete(List<IncomeSource> lst);
 

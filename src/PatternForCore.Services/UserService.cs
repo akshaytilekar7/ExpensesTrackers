@@ -23,7 +23,6 @@ namespace PatternForCore.Services
             _serviceFactory = new ServiceFactory(_unitOfWork);
         }
 
-
         public List<User> GetAll()
         {
             var repoExpense = _unitOfWork.GetRepository<User>();

@@ -7,7 +7,7 @@ namespace PatternForCore.Services.Base.Contracts
 {
     public interface IExpenseServices
     {
-        bool Add(Expense expense);
+        bool Add(Expense item);
         void Add(List<Expense> lst);
         IList<Expense> GetAll();
         void Delete(List<Expense> lst);

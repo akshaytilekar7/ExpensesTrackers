@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace PatternForCore.Services.Base
 {
-    public static class Extenstions
+    public static class Extensions
     {
         public static IList<T> DatatableToClass<T>(this System.Data.DataTable Table) where T : class, new()
         {

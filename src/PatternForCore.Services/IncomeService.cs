@@ -16,15 +16,15 @@ namespace PatternForCore.Services
             _unitOfWork = unitOfWork;
         }
 
-        public bool Add(IncomeSource category)
+        public bool Add(IncomeSource item)
         {
             bool result = false;
             try
             {
-                if (category != null)
+                if (item != null)
                 {
                     var movieRepository = _unitOfWork.GetRepository<IncomeSource>();
-                    movieRepository.Add(category);
+                    movieRepository.Add(item);
                     _unitOfWork.Commit();
                     result = true;
                 }

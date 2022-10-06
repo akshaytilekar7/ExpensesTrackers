@@ -19,15 +19,15 @@ namespace PatternForCore.Services
             _unitOfWork = unitOfWork;
         }
 
-        public bool Add(Expense expense)
+        public bool Add(Expense item)
         {
             bool result = false;
             try
             {
-                if (expense != null)
+                if (item != null)
                 {
                     var repo = _unitOfWork.GetRepository<Expense>();
-                    repo.Add(expense);
+                    repo.Add(item);
                     _unitOfWork.Commit();
                     result = true;
                 }
@@ -99,7 +99,7 @@ namespace PatternForCore.Services
 
             var userRepository = _unitOfWork.GetRepository<User>();
             var users = userRepository.GetAll();    
-            var result = lstExpenses.Select(s => new DtoExpense()
+            var lstDtoExpense = lstExpenses.Select(s => new DtoExpense()
             {
                 Id = s.Id,
                 CategoryName = s.MasterCategoryType.Name,
@@ -110,7 +110,7 @@ namespace PatternForCore.Services
                 User = users.FirstOrDefault(x => x.Id == s.UserId).Name
             });
 
-            return result.ToList();
+            return lstDtoExpense.ToList();
         }
     }
 }
