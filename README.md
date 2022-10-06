@@ -1,18 +1,25 @@
-# Generic Repository &amp; UOW Pattern For .NET Core 3.1
+# EXPENSE TRACKER 
 
-[![Build status](https://ci.appveyor.com/api/projects/status/1gum36aiadit63bk/branch/master?svg=true)](https://ci.appveyor.com/project/senvardarsemih/genericforcore/branch/master)
-[![Build Status](https://travis-ci.org/senvardarsemih/generic-for-core.svg?branch=master)](https://travis-ci.org/senvardarsemih/generic-for-core)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=senvardarsemih_genericforcore&metric=alert_status)](https://sonarcloud.io/dashboard?id=senvardarsemih_genericforcore)
+## Tracke you expense easily
+## Report for montlhy and yealry overview
+## Filter out Record for anlaysing 
+## Easily drill down your expenditure and analysis on the same
+## Export to excel functionality 
 
-* simple experimental generic repository pattern demo on .net core *
+#### Windows form
+#### UOW Pattern + Entity Framework + Generic Repository (.NET Core 3.1)
+#### SQL server
 
-* You have to setup your own connection string in appsettings.json file.
-* You have to run the entity framework core migration via package manager console (In Visual Studio go to Tools -> Nuget Package Manager -> Package Manager Console then start migration with 'Update-Database' command
+
+#### framework and pattern
+    * You have to setup your own connection string in appsettings.json file.
+    * Open packahe manager console set default prroject to **WIN.project
+        * Add-Migration InitialTables
+        * Update-Database
 
 
-## K8S Support Update ##
-* You can run this app in k8s environment
-* You may want to use minikube or docker desktop
-* First, build docker image => <b>docker build -t gfc:1.0 .</b>
-* Go to tools folder => <b>cd tools</b> , then => <b>kubectl apply -f deploy.yml</b>
-* Finally => <b>kubectl apply -f service.yml</b> , then go to the browser, type localhost and hit enter, you should see the application loaded. 🌞
+
+    * In case of error "1L" 
+            *   soln -  In EF Core 6, there are overloads for both Int32 and Int64 parameters of the UseIdentityColumns method.
+                    In EF Core 5, there is only one for Int32. So as mentioned in the comments, you need to change 1L to simply 1.
+            *   To solve error 	ALWAYS REPLACE 1L TO 1    
