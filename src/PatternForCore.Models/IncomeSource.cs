@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PatternForCore.Models
+namespace ExpenseTracker.Models
 {
     public class IncomeSource
     {

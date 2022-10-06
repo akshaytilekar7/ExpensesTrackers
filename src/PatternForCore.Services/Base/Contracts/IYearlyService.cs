@@ -1,10 +1,10 @@
-﻿using PatternForCore.Models;
-using PatternForCore.Models.Dto;
+﻿using ExpenseTracker.Models;
+using ExpenseTracker.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PatternForCore.Services.Base.Contracts
+namespace ExpenseTracker.Services.Base.Contracts
 {
     public interface IYearlyService
     {

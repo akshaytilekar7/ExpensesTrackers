@@ -1,7 +1,7 @@
-﻿using PatternForCore.Models;
+﻿using ExpenseTracker.Models;
 using System.Collections.Generic;
 
-namespace PatternForCore.Services.Base.Contracts
+namespace ExpenseTracker.Services.Base.Contracts
 {
     public interface IIncomeService
     {

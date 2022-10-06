@@ -1,4 +1,4 @@
-﻿namespace PatternForCore.Services.Base.Contracts
+﻿namespace ExpenseTracker.Services.Base.Contracts
 {
     public interface IExcelService
     {

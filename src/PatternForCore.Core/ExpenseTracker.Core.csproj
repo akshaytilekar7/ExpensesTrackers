@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PatternForCore.Models\PatternForCore.Models.csproj" />
+    <ProjectReference Include="..\PatternForCore.Models\ExpenseTracker.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

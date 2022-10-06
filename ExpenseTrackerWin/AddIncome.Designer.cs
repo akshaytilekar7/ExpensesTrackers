@@ -1,4 +1,6 @@
-﻿namespace ExpenseTrackerWin
+﻿using ExpenseTracker.Models;
+
+namespace ExpenseTrackerWin
 {
     partial class AddIncome
     {
@@ -153,7 +155,7 @@
             // 
             // incomeSourceBindingSource
             // 
-            this.incomeSourceBindingSource.DataSource = typeof(PatternForCore.Models.IncomeSource);
+            this.incomeSourceBindingSource.DataSource = typeof(IncomeSource);
             // 
             // btnDelete
             // 
@@ -208,7 +210,7 @@
             // 
             // userBindingSource
             // 
-            this.userBindingSource.DataSource = typeof(PatternForCore.Models.User);
+            this.userBindingSource.DataSource = typeof(User);
             // 
             // AddIncome
             // 

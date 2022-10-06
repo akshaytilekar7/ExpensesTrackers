@@ -1,4 +1,6 @@
-﻿namespace ExpenseTrackerWin
+﻿using ExpenseTracker.Models;
+
+namespace ExpenseTrackerWin
 {
     partial class ViewExpense
     {
@@ -194,7 +196,7 @@
             // 
             // expenseBindingSource
             // 
-            this.expenseBindingSource.DataSource = typeof(PatternForCore.Models.Expense);
+            this.expenseBindingSource.DataSource = typeof(Expense);
             // 
             // lblError
             // 
@@ -336,7 +338,7 @@
             // 
             // dtoExpenseBindingSource
             // 
-            this.dtoExpenseBindingSource.DataSource = typeof(PatternForCore.Models.Dto.DtoExpense);
+            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
             // 
             // dgvExpenseOverview
             // 

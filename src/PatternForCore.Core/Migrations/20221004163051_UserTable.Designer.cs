@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PatternForCore.Core.EFContext;
+using ExpenseTracker.Core.EFContext;
 
 #nullable disable
 
-namespace PatternForCore.Core.Migrations
+namespace ExpenseTracker.Core.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     [Migration("20221004163051_UserTable")]
@@ -157,7 +157,7 @@ namespace PatternForCore.Core.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PatternForCore.Models.Configuration.ApplicationUser", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.Configuration.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -222,7 +222,7 @@ namespace PatternForCore.Core.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("PatternForCore.Models.Expense", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.Expense", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -252,7 +252,7 @@ namespace PatternForCore.Core.Migrations
                     b.ToTable("Expense");
                 });
 
-            modelBuilder.Entity("PatternForCore.Models.IncomeSource", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.IncomeSource", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -277,7 +277,7 @@ namespace PatternForCore.Core.Migrations
                     b.ToTable("IncomeSource");
                 });
 
-            modelBuilder.Entity("PatternForCore.Models.MasterCategoryType", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.MasterCategoryType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -301,7 +301,7 @@ namespace PatternForCore.Core.Migrations
                     b.ToTable("MasterCategoryType");
                 });
 
-            modelBuilder.Entity("PatternForCore.Models.MasterExpenseType", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.MasterExpenseType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -317,7 +317,7 @@ namespace PatternForCore.Core.Migrations
                     b.ToTable("MasterExpenseType");
                 });
 
-            modelBuilder.Entity("PatternForCore.Models.User", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -347,7 +347,7 @@ namespace PatternForCore.Core.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("PatternForCore.Models.Configuration.ApplicationUser", null)
+                    b.HasOne("ExpenseTracker.Models.Configuration.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -356,7 +356,7 @@ namespace PatternForCore.Core.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("PatternForCore.Models.Configuration.ApplicationUser", null)
+                    b.HasOne("ExpenseTracker.Models.Configuration.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -371,7 +371,7 @@ namespace PatternForCore.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PatternForCore.Models.Configuration.ApplicationUser", null)
+                    b.HasOne("ExpenseTracker.Models.Configuration.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -380,16 +380,16 @@ namespace PatternForCore.Core.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("PatternForCore.Models.Configuration.ApplicationUser", null)
+                    b.HasOne("ExpenseTracker.Models.Configuration.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PatternForCore.Models.Expense", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.Expense", b =>
                 {
-                    b.HasOne("PatternForCore.Models.MasterCategoryType", "MasterCategoryType")
+                    b.HasOne("ExpenseTracker.Models.MasterCategoryType", "MasterCategoryType")
                         .WithMany()
                         .HasForeignKey("MasterCategoryTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -398,9 +398,9 @@ namespace PatternForCore.Core.Migrations
                     b.Navigation("MasterCategoryType");
                 });
 
-            modelBuilder.Entity("PatternForCore.Models.MasterCategoryType", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.MasterCategoryType", b =>
                 {
-                    b.HasOne("PatternForCore.Models.MasterExpenseType", "MasterExpenseType")
+                    b.HasOne("ExpenseTracker.Models.MasterExpenseType", "MasterExpenseType")
                         .WithMany()
                         .HasForeignKey("MasterExpenseTypeId")
                         .OnDelete(DeleteBehavior.Cascade)

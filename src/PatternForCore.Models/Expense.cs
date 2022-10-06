@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PatternForCore.Models
+namespace ExpenseTracker.Models
 {
     public class Expense
     {

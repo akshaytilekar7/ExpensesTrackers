@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PatternForCore.Models;
-using PatternForCore.Models.Configuration;
+using ExpenseTracker.Models.Configuration;
+using ExpenseTracker.Models;
 
-namespace PatternForCore.Core.EFContext
+namespace ExpenseTracker.Core.EFContext
 {
     public class DatabaseContext : IdentityDbContext<ApplicationUser>, IDatabaseContext
     {

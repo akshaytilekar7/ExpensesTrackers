@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj": {}
+    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj": {}
   },
   "projects": {
     "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj": {
@@ -170,12 +170,12 @@
         }
       }
     },
-    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj": {
+    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj",
-        "projectName": "PatternForCore.Services",
-        "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj",
+        "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj",
+        "projectName": "ExpenseTracker.Services",
+        "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
         "outputPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\obj\\",
         "projectStyle": "PackageReference",

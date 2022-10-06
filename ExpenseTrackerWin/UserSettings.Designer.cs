@@ -1,4 +1,6 @@
-﻿namespace ExpenseTrackerWin
+﻿using ExpenseTracker.Models;
+
+namespace ExpenseTrackerWin
 {
     partial class UserSettings
     {
@@ -84,7 +86,7 @@
             // 
             // masterExpenseTypeBindingSource
             // 
-            this.masterExpenseTypeBindingSource.DataSource = typeof(PatternForCore.Models.MasterExpenseType);
+            this.masterExpenseTypeBindingSource.DataSource = typeof(MasterExpenseType);
             // 
             // lblExpenseType
             // 
@@ -169,7 +171,7 @@
             // 
             // masterCategoryTypeBindingSource
             // 
-            this.masterCategoryTypeBindingSource.DataSource = typeof(PatternForCore.Models.MasterCategoryType);
+            this.masterCategoryTypeBindingSource.DataSource = typeof(MasterCategoryType);
             // 
             // btnHome
             // 

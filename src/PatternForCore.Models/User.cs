@@ -1,4 +1,4 @@
-﻿namespace PatternForCore.Models
+﻿namespace ExpenseTracker.Models
 {
     public class User
     {

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using PatternForCore.Core.EFContext;
-using PatternForCore.Models.Configuration;
+using ExpenseTracker.Core.EFContext;
+using ExpenseTracker.Models.Configuration;
 using System;
 using System.Data.SqlClient;
 
-namespace PatternForCore.Core.Factory
+namespace ExpenseTracker.Core.Factory
 {
     /// <summary>
     /// context factory for ef

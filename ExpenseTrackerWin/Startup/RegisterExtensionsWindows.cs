@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PatternForCore.Core.EFContext;
-using PatternForCore.Core.Factory;
-using PatternForCore.Core.Repositories.Base;
-using PatternForCore.Core.Repositories.Interfaces;
-using PatternForCore.Core.Uow;
-using PatternForCore.Models.Configuration;
-using PatternForCore.Services;
-using PatternForCore.Services.Base.Contracts;
-using PatternForCore.Services.Factory;
+using ExpenseTracker.Core.EFContext;
+using ExpenseTracker.Core.Factory;
+using ExpenseTracker.Core.Repositories.Base;
+using ExpenseTracker.Core.Repositories.Interfaces;
+using ExpenseTracker.Core.Uow;
+using ExpenseTracker.Models.Configuration;
+using ExpenseTracker.Services;
+using ExpenseTracker.Services.Base.Contracts;
+using ExpenseTracker.Services.Factory;
 
 namespace ExpenseTrackerWin.Startup
 {

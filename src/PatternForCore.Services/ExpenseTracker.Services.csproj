@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PatternForCore.Core\PatternForCore.Core.csproj" />
-    <ProjectReference Include="..\PatternForCore.Models\PatternForCore.Models.csproj" />
+    <ProjectReference Include="..\PatternForCore.Core\ExpenseTracker.Core.csproj" />
+    <ProjectReference Include="..\PatternForCore.Models\ExpenseTracker.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

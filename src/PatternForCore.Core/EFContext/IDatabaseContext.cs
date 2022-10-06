@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PatternForCore.Core.EFContext
+namespace ExpenseTracker.Core.EFContext
 {
     public interface IDatabaseContext
     {

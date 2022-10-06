@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
-using PatternForCore.Core.Uow;
+using ExpenseTracker.Core.Uow;
 using System.Linq;
-using PatternForCore.Models;
-using PatternForCore.Services.Base.Contracts;
-using PatternForCore.Models.Dto;
+using ExpenseTracker.Models;
+using ExpenseTracker.Services.Base.Contracts;
+using ExpenseTracker.Models.Dto;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System.Data;
 using System;
-using PatternForCore.Services.Factory;
+using ExpenseTracker.Services.Factory;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
 
-namespace PatternForCore.Services
+namespace ExpenseTracker.Services
 {
     public class YearlyService : IYearlyService
     {

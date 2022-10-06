@@ -1,9 +1,9 @@
-﻿using PatternForCore.Models.Dto;
+﻿using ExpenseTracker.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace PatternForCore.Models
+namespace ExpenseTracker.Models
 {
     public static class Extensions
     {

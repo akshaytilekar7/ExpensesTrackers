@@ -1,10 +1,7 @@
-﻿using PatternForCore.Models;
-using PatternForCore.Models.Dto;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using ExpenseTracker.Models;
 
-namespace PatternForCore.Services.Base.Contracts
+namespace ExpenseTracker.Services.Base.Contracts
 {
     public interface IMasterTableService
     {

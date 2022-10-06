@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="DtoExpense" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-  <TypeInfo>PatternForCore.Models.Dto.DtoExpense, PatternForCore.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+  <TypeInfo>ExpenseTracker.Models.Dto.DtoExpense, PatternForCore.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

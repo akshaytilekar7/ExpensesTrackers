@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace PatternForCore.Core.Migrations
+namespace ExpenseTracker.Core.Migrations
 {
     public partial class ExpesneTableStructure : Migration
     {

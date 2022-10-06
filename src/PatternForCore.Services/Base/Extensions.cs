@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 
-namespace PatternForCore.Services.Base
+namespace ExpenseTracker.Services.Base
 {
     public static class Extensions
     {

@@ -1,6 +1,6 @@
-﻿using PatternForCore.Core.EFContext;
+﻿using ExpenseTracker.Core.EFContext;
 
-namespace PatternForCore.Core.Factory
+namespace ExpenseTracker.Core.Factory
 {
     public interface IContextFactory
     {

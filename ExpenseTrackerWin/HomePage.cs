@@ -1,4 +1,4 @@
-﻿using PatternForCore.Services.Factory;
+﻿using ExpenseTracker.Services.Factory;
 
 namespace ExpenseTrackerWin
 {

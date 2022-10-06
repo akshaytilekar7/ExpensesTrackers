@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using PatternForCore.Core.Repositories.Interfaces;
+using ExpenseTracker.Core.Repositories.Interfaces;
 
-namespace PatternForCore.Core.Uow
+namespace ExpenseTracker.Core.Uow
 {
     public interface IUnitOfWork
     {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using PatternForCore.Core.Uow;
+using ExpenseTracker.Core.Uow;
 using System.Linq;
-using PatternForCore.Models;
-using PatternForCore.Services.Base.Contracts;
-using PatternForCore.Models.Dto;
+using ExpenseTracker.Services.Base.Contracts;
+using ExpenseTracker.Models.Dto;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using ExpenseTracker.Models;
 
-namespace PatternForCore.Services
+namespace ExpenseTracker.Services
 {
     public class ExpenseServices : IExpenseServices
     {

@@ -2577,7 +2577,7 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "PatternForCore.Models/1.0.0": {
+      "ExpenseTracker.Models/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
@@ -2586,10 +2586,10 @@
           "System.ComponentModel.Annotations": "4.7.0"
         },
         "compile": {
-          "bin/placeholder/PatternForCore.Models.dll": {}
+          "bin/placeholder/ExpenseTracker.Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PatternForCore.Models.dll": {}
+          "bin/placeholder/ExpenseTracker.Models.dll": {}
         }
       }
     }
@@ -8460,20 +8460,20 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "PatternForCore.Models/1.0.0": {
+    "ExpenseTracker.Models/1.0.0": {
       "type": "project",
-      "path": "../PatternForCore.Models/PatternForCore.Models.csproj",
-      "msbuildProject": "../PatternForCore.Models/PatternForCore.Models.csproj"
+      "path": "../PatternForCore.Models/ExpenseTracker.Models.csproj",
+      "msbuildProject": "../PatternForCore.Models/ExpenseTracker.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
+      "ExpenseTracker.Models >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.17",
       "Microsoft.EntityFrameworkCore >= 5.0.17",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.10",
       "Microsoft.Office.Interop.Excel >= 15.0.4795.1001",
-      "PatternForCore.Models >= 1.0.0",
       "System.Data.OleDb >= 6.0.0",
       "System.Data.SqlClient >= 4.8.2"
     ]
@@ -8485,9 +8485,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\PatternForCore.Core.csproj",
-      "projectName": "PatternForCore.Core",
-      "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\PatternForCore.Core.csproj",
+      "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj",
+      "projectName": "ExpenseTracker.Core",
+      "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
       "outputPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\obj\\",
       "projectStyle": "PackageReference",
@@ -8510,8 +8510,8 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj": {
-              "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj"
+            "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj": {
+              "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj"
             }
           }
         }

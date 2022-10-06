@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace PatternForCore.Core.Migrations
+namespace ExpenseTracker.Core.Migrations
 {
     public partial class InitialTables : Migration
     {

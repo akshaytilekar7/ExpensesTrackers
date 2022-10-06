@@ -5,11 +5,11 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F55B7AF9-C0F7-48FE-BFC3-A172DAC6B6A2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatternForCore.Core", "src\PatternForCore.Core\PatternForCore.Core.csproj", "{AA8E90A2-E929-4E10-98D9-C1DCD65F833A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.Core", "src\PatternForCore.Core\ExpenseTracker.Core.csproj", "{AA8E90A2-E929-4E10-98D9-C1DCD65F833A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatternForCore.Models", "src\PatternForCore.Models\PatternForCore.Models.csproj", "{D2C7EE5C-36F3-4978-BAB9-FD7D51D6291B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.Models", "src\PatternForCore.Models\ExpenseTracker.Models.csproj", "{D2C7EE5C-36F3-4978-BAB9-FD7D51D6291B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatternForCore.Services", "src\PatternForCore.Services\PatternForCore.Services.csproj", "{81393BDA-3AED-468F-A5E9-6FA9BCF08761}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.Services", "src\PatternForCore.Services\ExpenseTracker.Services.csproj", "{81393BDA-3AED-468F-A5E9-6FA9BCF08761}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTrackerWin", "ExpenseTrackerWin\ExpenseTrackerWin.csproj", "{35200BA8-61BF-44AF-9095-D959EE9B4A6E}"
 EndProject

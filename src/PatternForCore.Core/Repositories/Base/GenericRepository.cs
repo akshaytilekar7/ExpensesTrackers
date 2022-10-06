@@ -4,10 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PatternForCore.Core.EFContext;
-using PatternForCore.Core.Repositories.Interfaces;
+using ExpenseTracker.Core.EFContext;
+using ExpenseTracker.Core.Repositories.Interfaces;
 
-namespace PatternForCore.Core.Repositories.Base
+namespace ExpenseTracker.Core.Repositories.Base
 {
     public class GenericRepository<T> : IGenericRepository<T>
          where T : class

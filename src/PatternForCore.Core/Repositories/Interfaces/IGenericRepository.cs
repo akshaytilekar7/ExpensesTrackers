@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace PatternForCore.Core.Repositories.Interfaces
+namespace ExpenseTracker.Core.Repositories.Interfaces
 {
     /// <summary>
     /// Interface for generic repository for crud operations

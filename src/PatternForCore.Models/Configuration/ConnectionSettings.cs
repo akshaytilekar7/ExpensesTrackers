@@ -1,4 +1,4 @@
-﻿namespace PatternForCore.Models.Configuration
+﻿namespace ExpenseTracker.Models.Configuration
 {
     public static class ConnectionSettings
     {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using PatternForCore.Core.EFContext;
-using PatternForCore.Core.Factory;
-using PatternForCore.Core.Repositories.Base;
-using PatternForCore.Core.Repositories.Interfaces;
+using ExpenseTracker.Core.EFContext;
+using ExpenseTracker.Core.Factory;
+using ExpenseTracker.Core.Repositories.Base;
+using ExpenseTracker.Core.Repositories.Interfaces;
 
-namespace PatternForCore.Core.Uow
+namespace ExpenseTracker.Core.Uow
 {
     public sealed class UnitOfWork : IUnitOfWork
     {

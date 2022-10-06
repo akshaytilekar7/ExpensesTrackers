@@ -1,11 +1,11 @@
 ﻿using ExpenseTrackerWin.Utility;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using PatternForCore.Models;
-using PatternForCore.Models.Dto;
-using PatternForCore.Services.Factory;
+using ExpenseTracker.Models;
+using ExpenseTracker.Models.Dto;
+using ExpenseTracker.Services.Factory;
 using System.Data;
 using System.Globalization;
-using PatternForCore.Services.Base;
+using ExpenseTracker.Services.Base;
 
 namespace ExpenseTrackerWin
 {

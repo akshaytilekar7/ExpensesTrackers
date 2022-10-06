@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using PatternForCore.Core.Uow;
+using ExpenseTracker.Core.Uow;
 using System.Linq;
-using PatternForCore.Models;
-using PatternForCore.Services.Base.Contracts;
+using ExpenseTracker.Models;
+using ExpenseTracker.Services.Base.Contracts;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
-namespace PatternForCore.Services
+namespace ExpenseTracker.Services
 {
     public class UserService : IUserService
     {

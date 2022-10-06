@@ -117,11 +117,11 @@
             // 
             // dtoYealryBindingSource1
             // 
-            this.dtoYealryBindingSource1.DataSource = typeof(PatternForCore.Models.Dto.DtoYealry);
+            this.dtoYealryBindingSource1.DataSource = typeof(ExpenseTracker.Models.Dto.DtoYealry);
             // 
             // dtoYealryBindingSource
             // 
-            this.dtoYealryBindingSource.DataSource = typeof(PatternForCore.Models.Dto.DtoYealry);
+            this.dtoYealryBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoYealry);
             // 
             // btnHome
             // 
@@ -144,7 +144,7 @@
             // 
             // dtoExpenseBindingSource
             // 
-            this.dtoExpenseBindingSource.DataSource = typeof(PatternForCore.Models.Dto.DtoExpense);
+            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
             // 
             // dgvTooltip
             // 

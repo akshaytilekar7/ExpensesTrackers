@@ -26,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\PatternForCore.Models\PatternForCore.Models.csproj" />
-    <ProjectReference Include="..\src\PatternForCore.Services\PatternForCore.Services.csproj" />
+    <ProjectReference Include="..\src\PatternForCore.Core\ExpenseTracker.Core.csproj" />
+    <ProjectReference Include="..\src\PatternForCore.Models\ExpenseTracker.Models.csproj" />
+    <ProjectReference Include="..\src\PatternForCore.Services\ExpenseTracker.Services.csproj" />
   </ItemGroup>
-
 </Project>

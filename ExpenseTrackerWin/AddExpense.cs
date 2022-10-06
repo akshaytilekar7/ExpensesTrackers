@@ -1,10 +1,11 @@
 using ExpenseTrackerWin.Utility;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using PatternForCore.Models;
-using PatternForCore.Models.Dto;
-using PatternForCore.Services.Factory;
+using ExpenseTracker.Models.Dto;
+using ExpenseTracker.Services.Factory;
 using System.Data;
-using PatternForCore.Services.Base;
+using ExpenseTracker.Services.Base;
+using ExpenseTracker.Models;
+
 namespace ExpenseTrackerWin
 {
     public partial class AddExpense : Form
@@ -75,7 +76,7 @@ namespace ExpenseTrackerWin
                 Category.ValueMember = "Id";
                 Category.DataSource = Categories;
 
-                var users = _serviceFactory.UserService.GetAll();
+                List<User> users = _serviceFactory.UserService.GetAll();
                 cmbNames.DataSource = users;
                 cmbNames.DisplayMember = "Name";
                 cmbNames.ValueMember = "Id";

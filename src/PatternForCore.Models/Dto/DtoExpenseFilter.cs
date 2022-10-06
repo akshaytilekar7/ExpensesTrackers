@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PatternForCore.Models.Dto
+namespace ExpenseTracker.Models.Dto
 {
     public class DtoExpenseFilter
     {

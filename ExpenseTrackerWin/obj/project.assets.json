@@ -1500,26 +1500,26 @@
           }
         }
       },
-      "PatternForCore.Core/1.0.0": {
+      "ExpenseTracker.Core/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
+          "ExpenseTracker.Models": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
           "Microsoft.Office.Interop.Excel": "15.0.4795.1001",
-          "PatternForCore.Models": "1.0.0",
           "System.Data.OleDb": "6.0.0",
           "System.Data.SqlClient": "4.8.2"
         },
         "compile": {
-          "bin/placeholder/PatternForCore.Core.dll": {}
+          "bin/placeholder/ExpenseTracker.Core.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PatternForCore.Core.dll": {}
+          "bin/placeholder/ExpenseTracker.Core.dll": {}
         }
       },
-      "PatternForCore.Models/1.0.0": {
+      "ExpenseTracker.Models/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
@@ -1528,25 +1528,25 @@
           "System.ComponentModel.Annotations": "4.7.0"
         },
         "compile": {
-          "bin/placeholder/PatternForCore.Models.dll": {}
+          "bin/placeholder/ExpenseTracker.Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PatternForCore.Models.dll": {}
+          "bin/placeholder/ExpenseTracker.Models.dll": {}
         }
       },
-      "PatternForCore.Services/1.0.0": {
+      "ExpenseTracker.Services/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
-          "NPOI": "2.5.1",
-          "PatternForCore.Core": "1.0.0",
-          "PatternForCore.Models": "1.0.0"
+          "ExpenseTracker.Core": "1.0.0",
+          "ExpenseTracker.Models": "1.0.0",
+          "NPOI": "2.5.1"
         },
         "compile": {
-          "bin/placeholder/PatternForCore.Services.dll": {}
+          "bin/placeholder/ExpenseTracker.Services.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PatternForCore.Services.dll": {}
+          "bin/placeholder/ExpenseTracker.Services.dll": {}
         }
       }
     }
@@ -4005,31 +4005,32 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "PatternForCore.Core/1.0.0": {
+    "ExpenseTracker.Core/1.0.0": {
       "type": "project",
-      "path": "../src/PatternForCore.Core/PatternForCore.Core.csproj",
-      "msbuildProject": "../src/PatternForCore.Core/PatternForCore.Core.csproj"
+      "path": "../src/PatternForCore.Core/ExpenseTracker.Core.csproj",
+      "msbuildProject": "../src/PatternForCore.Core/ExpenseTracker.Core.csproj"
     },
-    "PatternForCore.Models/1.0.0": {
+    "ExpenseTracker.Models/1.0.0": {
       "type": "project",
-      "path": "../src/PatternForCore.Models/PatternForCore.Models.csproj",
-      "msbuildProject": "../src/PatternForCore.Models/PatternForCore.Models.csproj"
+      "path": "../src/PatternForCore.Models/ExpenseTracker.Models.csproj",
+      "msbuildProject": "../src/PatternForCore.Models/ExpenseTracker.Models.csproj"
     },
-    "PatternForCore.Services/1.0.0": {
+    "ExpenseTracker.Services/1.0.0": {
       "type": "project",
-      "path": "../src/PatternForCore.Services/PatternForCore.Services.csproj",
-      "msbuildProject": "../src/PatternForCore.Services/PatternForCore.Services.csproj"
+      "path": "../src/PatternForCore.Services/ExpenseTracker.Services.csproj",
+      "msbuildProject": "../src/PatternForCore.Services/ExpenseTracker.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
+      "ExpenseTracker.Core >= 1.0.0",
+      "ExpenseTracker.Models >= 1.0.0",
+      "ExpenseTracker.Services >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.9",
       "Microsoft.EntityFrameworkCore >= 6.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.9",
-      "Microsoft.Extensions.Hosting >= 6.0.1",
-      "PatternForCore.Models >= 1.0.0",
-      "PatternForCore.Services >= 1.0.0"
+      "Microsoft.Extensions.Hosting >= 6.0.1"
     ]
   },
   "packageFolders": {
@@ -4064,11 +4065,14 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj": {
-              "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj"
+            "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj": {
+              "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj"
             },
-            "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj": {
-              "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj"
+            "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj": {
+              "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj"
+            },
+            "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj": {
+              "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj"
             }
           }
         }

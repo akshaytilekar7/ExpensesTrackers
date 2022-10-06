@@ -1,5 +1,5 @@
-﻿using PatternForCore.Models;
-using PatternForCore.Services.Factory;
+﻿using ExpenseTracker.Services.Factory;
+using ExpenseTracker.Models;
 using System.Data;
 namespace ExpenseTrackerWin
 {

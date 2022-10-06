@@ -1,7 +1,7 @@
-﻿using PatternForCore.Core.Uow;
-using PatternForCore.Services.Base.Contracts;
+﻿using ExpenseTracker.Core.Uow;
+using ExpenseTracker.Services.Base.Contracts;
 
-namespace PatternForCore.Services.Factory
+namespace ExpenseTracker.Services.Factory
 {
     public class ServiceFactory : IServiceFactory
     {

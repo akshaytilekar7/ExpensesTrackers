@@ -32,11 +32,14 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj": {
-                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj"
+              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj": {
+                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj"
               },
-              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj": {
-                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj"
+              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj": {
+                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj"
+              },
+              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj": {
+                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj"
               }
             }
           }
@@ -96,12 +99,12 @@
         }
       }
     },
-    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\PatternForCore.Core.csproj": {
+    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\PatternForCore.Core.csproj",
-        "projectName": "PatternForCore.Core",
-        "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\PatternForCore.Core.csproj",
+        "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj",
+        "projectName": "ExpenseTracker.Core",
+        "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
         "outputPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\obj\\",
         "projectStyle": "PackageReference",
@@ -124,8 +127,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj": {
-                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj"
+              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj": {
+                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj"
               }
             }
           }
@@ -190,12 +193,12 @@
         }
       }
     },
-    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj": {
+    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj",
-        "projectName": "PatternForCore.Models",
-        "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj",
+        "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj",
+        "projectName": "ExpenseTracker.Models",
+        "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
         "outputPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\obj\\",
         "projectStyle": "PackageReference",
@@ -262,12 +265,12 @@
         }
       }
     },
-    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj": {
+    "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj",
-        "projectName": "PatternForCore.Services",
-        "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\PatternForCore.Services.csproj",
+        "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj",
+        "projectName": "ExpenseTracker.Services",
+        "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\ExpenseTracker.Services.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
         "outputPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Services\\obj\\",
         "projectStyle": "PackageReference",
@@ -290,11 +293,11 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\PatternForCore.Core.csproj": {
-                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\PatternForCore.Core.csproj"
+              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj": {
+                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Core\\ExpenseTracker.Core.csproj"
               },
-              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj": {
-                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\PatternForCore.Models.csproj"
+              "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj": {
+                "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj"
               }
             }
           }
