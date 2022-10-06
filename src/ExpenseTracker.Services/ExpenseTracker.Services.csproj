@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PatternForCore.Core\ExpenseTracker.Core.csproj" />
-    <ProjectReference Include="..\PatternForCore.Models\ExpenseTracker.Models.csproj" />
+    <ProjectReference Include="..\ExpenseTracker.Core\ExpenseTracker.Core.csproj" />
+    <ProjectReference Include="..\ExpenseTracker.Models\ExpenseTracker.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

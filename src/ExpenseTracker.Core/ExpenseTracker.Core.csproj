@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PatternForCore.Models\ExpenseTracker.Models.csproj" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\ExpenseTracker.Models\ExpenseTracker.Models.csproj" />
   </ItemGroup>
 
 </Project>

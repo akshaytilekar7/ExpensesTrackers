@@ -1949,11 +1949,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj",
+      "projectUniqueName": "D:\\Akshay\\ExpensesTracker\\src\\ExpenseTracker.Models\\ExpenseTracker.Models.csproj",
       "projectName": "ExpenseTracker.Models",
-      "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\ExpenseTracker.Models.csproj",
+      "projectPath": "D:\\Akshay\\ExpensesTracker\\src\\ExpenseTracker.Models\\ExpenseTracker.Models.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Akshay\\ExpensesTracker\\src\\PatternForCore.Models\\obj\\",
+      "outputPath": "D:\\Akshay\\ExpensesTracker\\src\\ExpenseTracker.Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
