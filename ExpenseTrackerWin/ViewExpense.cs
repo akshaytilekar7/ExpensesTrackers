@@ -71,8 +71,8 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var result = await _serviceFactory.YearlyService.GetExpenseByCategory(GetFilter());
-                SortableBindingList<DtoExpenseByCategory> sortableBindingList = new SortableBindingList<DtoExpenseByCategory>(result);
+                var result = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
+                SortableBindingList<DtoExpenseByExpensesType> sortableBindingList = new SortableBindingList<DtoExpenseByExpensesType>(result);
                 dgvExpenseOverview.DataSource = sortableBindingList;
                 dgvExpenseOverview.SetGridToFit();
             }
@@ -146,7 +146,7 @@ namespace ExpenseTrackerWin
 
             var lstExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
             var lstIncomes = _serviceFactory.YearlyService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
-            var lstExpenseCategory = await _serviceFactory.YearlyService.GetExpenseByCategory(GetFilter());
+            var lstExpenseCategory = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
 
             dataExpenseTypes.Add(new ExcelDto() { dataTable = lstExpense.ToDataTable(), SheetName = "Expense" });
             dataExpenseTypes.Add(new ExcelDto() { dataTable = lstIncomes.ToDataTable(), SheetName = "Income" });

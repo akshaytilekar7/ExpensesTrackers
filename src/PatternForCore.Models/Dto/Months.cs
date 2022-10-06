@@ -9,17 +9,16 @@ namespace PatternForCore.Models.Dto
 
     }
 
-    public class DtoYearlyExpenseByCategory
+    public class DtoYearlyExpenseByExpensesType
     {
-        public DtoYearlyExpenseByCategory()
+        public DtoYearlyExpenseByExpensesType()
         {
-            dtoExpenseByCategories = new List<DtoExpenseByCategory>();
+            dtoExpenseByCategories = new List<DtoExpenseByExpensesType>();
         }
-        public List<DtoExpenseByCategory> dtoExpenseByCategories { get; set; }
-
-        public string Name { get; set; }
+        public List<DtoExpenseByExpensesType> dtoExpenseByCategories { get; set; }
 
     }
+
     public enum Months
     {
         January = 1,

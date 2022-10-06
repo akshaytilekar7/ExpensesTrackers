@@ -45,7 +45,7 @@ namespace ExpenseTrackerWin
                 StartDate = new DateTime(year, 1, 1),
                 EndDate = new DateTime(year, 12, 31),
             };
-            var lst = await _serviceFactory.YearlyService.GetExpenseByCategory(filter);
+            var lst = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
             dgvExpenseOverview.DataSource = lst.MakeSortable(); ;
             dgvExpenseOverview.SetGridToFit();
         }
@@ -156,19 +156,20 @@ namespace ExpenseTrackerWin
             };
 
             var lstYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text));
-            var expenseByCategories = await _serviceFactory.YearlyService.GetExpenseByCategory(filter);
-            var excelYearlyExpenseByCategory = await _serviceFactory.YearlyService.YearlyMonthlyExpensewise(year);
-            var lstMonthly = await _serviceFactory.YearlyService.YearlyMonthlywise(year);
+            var lstAllMonthsData = await _serviceFactory.YearlyService.GetAllMonthsData(year);
+            
+            var lstMonthDataOnExpenseType = await _serviceFactory.YearlyService.GetAllMonthDataOnExpenseType(year);
+            var lstExpenseByExpensesTypes = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
 
             List<ExcelDto> excelDtos = new List<ExcelDto>();
           
             excelDtos.Add(new ExcelDto() { dataTable = lstYealry.ToDataTable(), SheetName = "Yealry Overview" });
-            excelDtos.Add(new ExcelDto() { dataTable = expenseByCategories.ToDataTable(), SheetName = "Yealry Expense By Categories" });
 
-            foreach (var item in lstMonthly)
+            foreach (var item in lstAllMonthsData)
                 excelDtos.Add(new ExcelDto() { dataTable = item.dtoExpenses.ToDataTable(), SheetName = item.Name });
 
-            excelDtos.Add(new ExcelDto() { dataTable = excelYearlyExpenseByCategory.dtoExpenseByCategories.ToDataTable(), SheetName = "Percentage overview" });
+            excelDtos.Add(new ExcelDto() { dataTable = lstMonthDataOnExpenseType.dtoExpenseByCategories.ToDataTable(), SheetName = "Percentage overview" });
+            excelDtos.Add(new ExcelDto() { dataTable = lstExpenseByExpensesTypes.ToDataTable(), SheetName = "Yealry Expense By Categories" });
 
             GridExcel.ExportToExcel(excelDtos, projectDirectory);
             

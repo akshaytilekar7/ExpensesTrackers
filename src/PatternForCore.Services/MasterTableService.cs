@@ -15,11 +15,9 @@ namespace PatternForCore.Services
     public class MasterTableService : IMasterTableService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ServiceFactory _serviceFactory;
         public MasterTableService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _serviceFactory = new ServiceFactory(_unitOfWork);
         }
 
         public List<MasterCategoryType> GetAllMasterCategoryType()

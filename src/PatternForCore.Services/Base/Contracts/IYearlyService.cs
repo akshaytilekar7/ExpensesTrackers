@@ -10,12 +10,12 @@ namespace PatternForCore.Services.Base.Contracts
     {
         Task<List<DtoYealry>> GetYearlyData(int year);
 
-        Task<List<DtoExpenseByCategory>> GetExpenseByCategory(DtoExpenseFilter filter);
+        Task<List<DtoExpenseByExpensesType>> GetExpenseByExpensesType(DtoExpenseFilter filter);
 
         List<IncomeSource> GetIncome(DateTime startDate, DateTime endDate);
 
-        Task<List<DtoYearlyExpense>> YearlyMonthlywise(int year);
+        Task<List<DtoYearlyExpense>> GetAllMonthsData(int year);
 
-        Task<DtoYearlyExpenseByCategory> YearlyMonthlyExpensewise(int year);
+        Task<DtoYearlyExpenseByExpensesType> GetAllMonthDataOnExpenseType(int year);
     }
 }

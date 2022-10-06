@@ -1,8 +1,8 @@
 ﻿namespace PatternForCore.Models.Dto
 {
-    public class DtoExpenseByCategory
+    public class DtoExpenseByExpensesType
     {
-        public DtoExpenseByCategory(string month)
+        public DtoExpenseByExpensesType(string month)
         {
             Month = month;
         }
