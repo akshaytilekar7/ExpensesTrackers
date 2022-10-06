@@ -2,7 +2,7 @@
 
 ## Tracke you expense easily
 ## Report for montlhy and yealry overview
-## Filter out Record for anlaysing 
+## Filter out Record for analysis 
 ## Easily drill down your expenditure and analysis on the same
 ## Export to excel functionality 
 
