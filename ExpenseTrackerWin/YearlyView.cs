@@ -36,11 +36,14 @@ namespace ExpenseTrackerWin
             await LoadExpenseByCategoryGrid();
             await LoadBankGrid();
         }
-       
+
         private async Task LoadBankGrid()
         {
-            var res = await _serviceFactory.ExpenseServices.GetBankData();
-            dgvBankAmount.DataSource = res;
+            int year = Convert.ToInt32(datePickerYearly.Text);
+            var startDate = new DateTime(year, 1, 1);
+            var endDate = new DateTime(year, 12, 31);
+            var lstBanks = await _serviceFactory.ExpenseServices.GetBankData(startDate, endDate);
+            dgvBankAmount.DataSource = lstBanks;
             dgvBankAmount.SetGridToFit();
         }
 
@@ -166,12 +169,12 @@ namespace ExpenseTrackerWin
 
             var lstYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text));
             var lstAllMonthsData = await _serviceFactory.YearlyService.GetAllMonthsData(year);
-            
+
             var lstMonthDataOnExpenseType = await _serviceFactory.YearlyService.GetAllMonthDataOnExpenseType(year);
             var lstExpenseByExpensesTypes = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
 
             List<ExcelDto> excelDtos = new List<ExcelDto>();
-          
+
             excelDtos.Add(new ExcelDto() { DataTable = lstYealry.ToDataTable(), SheetName = "Yealry Overview" });
 
             foreach (var item in lstAllMonthsData)
@@ -181,7 +184,7 @@ namespace ExpenseTrackerWin
             excelDtos.Add(new ExcelDto() { DataTable = lstExpenseByExpensesTypes.ToDataTable(), SheetName = "Yealry Expense By Categories" });
 
             GridExcel.ExportToExcel(excelDtos, projectDirectory);
-            
+
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }
     }

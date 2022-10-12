@@ -7,16 +7,19 @@ using ExpenseTracker.Models.Dto;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
 using ExpenseTracker.Models;
+using ExpenseTracker.Services.Factory;
 
 namespace ExpenseTracker.Services
 {
     public class ExpenseServices : IExpenseServices
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IServiceFactory _serviceFactory;
 
         public ExpenseServices(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _serviceFactory = new ServiceFactory(_unitOfWork);
         }
 
         public bool Add(Expense item)
@@ -120,16 +123,15 @@ namespace ExpenseTracker.Services
             return lstDtoExpense.ToList();
         }
 
-        public async Task<List<DtoBank>> GetBankData()
+        public async Task<List<DtoBank>> GetBankData(DateTime startDate, DateTime endDate)
         {
             var repoIncomeSource = _unitOfWork.GetRepository<IncomeSource>();
             List<Expression<Func<IncomeSource, object>>> includers = new List<Expression<Func<IncomeSource, object>>>();
             includers.Add(x => x.User);
             includers.Add(x => x.Bank);
-            List<DtoBank> lstDtoBanks = new List<DtoBank>();
-
             IEnumerable<IncomeSource> lstIncomeSources = await repoIncomeSource.GetAllAsync(includers);
 
+            List<DtoBank> lstDtoBanks = new List<DtoBank>();
             var expenseRepository = _unitOfWork.GetRepository<Expense>();
             List<Expression<Func<Expense, object>>> includersE = new List<Expression<Func<Expense, object>>>();
             includersE.Add(x => x.CategoryType);
@@ -138,6 +140,12 @@ namespace ExpenseTracker.Services
             includersE.Add(x => x.User);
 
             IEnumerable<Expense> lstExpenses = await expenseRepository.GetAllAsync(includersE);
+
+            if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
+            {
+                lstIncomeSources = lstIncomeSources.Where(x => x.Date >= startDate && x.Date <= endDate);
+                lstExpenses = lstExpenses.Where(x => x.Date >= startDate && x.Date <= endDate);
+            }
 
             var repoBank = _unitOfWork.GetRepository<Bank>();
             var lstBanks = repoBank.GetAll().ToList();

@@ -1,5 +1,6 @@
 ﻿using ExpenseTracker.Models;
 using ExpenseTracker.Models.Dto;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,6 +13,6 @@ namespace ExpenseTracker.Services.Base.Contracts
         IList<Expense> GetAll();
         void Delete(List<Expense> lst);
         Task<List<DtoExpense>> GetExpenseFilter(DtoExpenseFilter expenseFilter);
-        Task<List<DtoBank>> GetBankData();
+        Task<List<DtoBank>> GetBankData(DateTime startDate, DateTime endDate);
     }
 }
