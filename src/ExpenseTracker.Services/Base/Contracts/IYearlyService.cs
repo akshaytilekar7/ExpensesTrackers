@@ -12,7 +12,7 @@ namespace ExpenseTracker.Services.Base.Contracts
 
         Task<List<DtoExpenseByExpensesType>> GetExpenseByExpensesType(DtoExpenseFilter filter);
 
-        List<IncomeSource> GetIncome(DateTime startDate, DateTime endDate);
+        List<DtoIncome> GetIncome(DateTime startDate, DateTime endDate);
 
         Task<List<DtoYearlyExpense>> GetAllMonthsData(int year);
 

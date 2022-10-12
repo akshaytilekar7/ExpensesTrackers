@@ -34,7 +34,20 @@ namespace ExpenseTrackerWin
             dgvYealy.SetGridToFit();
 
             await LoadExpenseByCategoryGrid();
-
+            await LoadBankGrid();
+            await LoadBankAmountGrid();
+        }
+        private async Task LoadBankGrid()
+        {
+            //var res = await _serviceFactory.ExpenseServices.GetBankData(new DtoExpenseFilter());
+            //dgvBankOverview.DataSource = res;
+            //dgvBankOverview.SetGridToFit();
+        }
+        private async Task LoadBankAmountGrid()
+        {
+            var res = await _serviceFactory.ExpenseServices.GetBankData();
+            dgvBankAmount.DataSource = res;
+            dgvBankAmount.SetGridToFit();
         }
 
         private async Task LoadExpenseByCategoryGrid()
@@ -109,6 +122,8 @@ namespace ExpenseTrackerWin
                     Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.DayOfWeek.ToString(),
                     Amount = x.Amount,
                     Comment = x.Comment,
+                    BankName = x.Bank.Name,
+                    UserName = x.User.Name
                 }).ToList();
             }
             return lstDtoTooltip;

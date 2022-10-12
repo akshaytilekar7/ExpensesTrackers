@@ -31,16 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.datePickerYearly = new System.Windows.Forms.DateTimePicker();
             this.dgvYealy = new System.Windows.Forms.DataGridView();
-            this.dtoYealryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.dtoYealryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnHome = new System.Windows.Forms.Button();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvTooltip = new System.Windows.Forms.DataGridView();
-            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
-            this.btnExport = new System.Windows.Forms.Button();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Jan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Feb = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,12 +48,23 @@
             this.November = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.December = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CatogoryTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtoYealryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dtoYealryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnHome = new System.Windows.Forms.Button();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgvTooltip = new System.Windows.Forms.DataGridView();
+            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dgvBankAmount = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvYealy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTooltip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseOverview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBankAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // datePickerYearly
@@ -114,65 +118,6 @@
             this.dgvYealy.TabIndex = 1;
             this.dgvYealy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dgvYealy.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvYealy_CellMouseMove);
-            // 
-            // dtoYealryBindingSource1
-            // 
-            this.dtoYealryBindingSource1.DataSource = typeof(ExpenseTracker.Models.Dto.DtoYealry);
-            // 
-            // dtoYealryBindingSource
-            // 
-            this.dtoYealryBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoYealry);
-            // 
-            // btnHome
-            // 
-            this.btnHome.Location = new System.Drawing.Point(1114, 27);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(75, 23);
-            this.btnHome.TabIndex = 2;
-            this.btnHome.Text = "Home";
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotal.Location = new System.Drawing.Point(1232, 27);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(0, 26);
-            this.lblTotal.TabIndex = 3;
-            // 
-            // dtoExpenseBindingSource
-            // 
-            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
-            // 
-            // dgvTooltip
-            // 
-            this.dgvTooltip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTooltip.Location = new System.Drawing.Point(1195, 543);
-            this.dgvTooltip.Name = "dgvTooltip";
-            this.dgvTooltip.RowTemplate.Height = 25;
-            this.dgvTooltip.Size = new System.Drawing.Size(491, 445);
-            this.dgvTooltip.TabIndex = 4;
-            // 
-            // dgvExpenseOverview
-            // 
-            this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvExpenseOverview.Location = new System.Drawing.Point(1195, 238);
-            this.dgvExpenseOverview.Name = "dgvExpenseOverview";
-            this.dgvExpenseOverview.RowTemplate.Height = 25;
-            this.dgvExpenseOverview.Size = new System.Drawing.Size(491, 289);
-            this.dgvExpenseOverview.TabIndex = 5;
-            // 
-            // btnExport
-            // 
-            this.btnExport.Location = new System.Drawing.Point(1033, 27);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
-            this.btnExport.TabIndex = 6;
-            this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // Category
             // 
@@ -286,12 +231,102 @@
             this.CatogoryTotal.Name = "CatogoryTotal";
             this.CatogoryTotal.Width = 150;
             // 
+            // dtoYealryBindingSource1
+            // 
+            this.dtoYealryBindingSource1.DataSource = typeof(ExpenseTracker.Models.Dto.DtoYealry);
+            // 
+            // dtoYealryBindingSource
+            // 
+            this.dtoYealryBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoYealry);
+            // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(1114, 27);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(75, 23);
+            this.btnHome.TabIndex = 2;
+            this.btnHome.Text = "Home";
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotal.Location = new System.Drawing.Point(1232, 27);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(0, 26);
+            this.lblTotal.TabIndex = 3;
+            // 
+            // dtoExpenseBindingSource
+            // 
+            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
+            // 
+            // dgvTooltip
+            // 
+            this.dgvTooltip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTooltip.Location = new System.Drawing.Point(1195, 543);
+            this.dgvTooltip.Name = "dgvTooltip";
+            this.dgvTooltip.RowTemplate.Height = 25;
+            this.dgvTooltip.Size = new System.Drawing.Size(491, 445);
+            this.dgvTooltip.TabIndex = 4;
+            // 
+            // dgvExpenseOverview
+            // 
+            this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(1195, 238);
+            this.dgvExpenseOverview.Name = "dgvExpenseOverview";
+            this.dgvExpenseOverview.RowTemplate.Height = 25;
+            this.dgvExpenseOverview.Size = new System.Drawing.Size(491, 289);
+            this.dgvExpenseOverview.TabIndex = 5;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(1033, 27);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 6;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(1195, -1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(126, 23);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Bank Overview";
+            // 
+            // dgvBankAmount
+            // 
+            this.dgvBankAmount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBankAmount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvBankAmount.Location = new System.Drawing.Point(1195, 26);
+            this.dgvBankAmount.Name = "dgvBankAmount";
+            this.dgvBankAmount.RowTemplate.Height = 25;
+            this.dgvBankAmount.Size = new System.Drawing.Size(350, 206);
+            this.dgvBankAmount.TabIndex = 40;
+            // 
             // YearlyView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1698, 1028);
+            this.ClientSize = new System.Drawing.Size(1924, 1028);
+            this.Controls.Add(this.dgvBankAmount);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.dgvExpenseOverview);
             this.Controls.Add(this.dgvTooltip);
@@ -308,6 +343,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTooltip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseOverview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBankAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,5 +375,7 @@
         private DataGridViewTextBoxColumn November;
         private DataGridViewTextBoxColumn December;
         private DataGridViewTextBoxColumn CatogoryTotal;
+        private Label label3;
+        private DataGridView dgvBankAmount;
     }
 }

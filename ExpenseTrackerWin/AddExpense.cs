@@ -46,7 +46,7 @@ namespace ExpenseTrackerWin
                 var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month && s.Date.Year == date.Year);
                 foreach (var item in dbIncomes)
                 {
-                    txtTotalIncome.AppendText(item.User.Name + " : " + item.Amount); 
+                    txtTotalIncome.AppendText(item.UserName + " : " + item.Amount);
                     txtTotalIncome.AppendText(Environment.NewLine);
                 }
                 txtTotalIncome.AppendText("Total Income : " + Convert.ToString(dbIncomes.Sum(x => x.Amount)));
@@ -319,7 +319,56 @@ namespace ExpenseTrackerWin
 
         private void cmbNames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void btnUploadFromBackup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClearGrid();
+                IList<DtoExpense> lstBankStatementData = GetBankStatementData();
+
+                int index = 0;
+                foreach (var item in lstBankStatementData)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    DataGridViewTextBoxCell cDay = new DataGridViewTextBoxCell();
+                    cDay.Value = item.Date.Day;
+
+                    DataGridViewTextBoxCell cAmount = new DataGridViewTextBoxCell();
+                    cAmount.Value = item.Amount;
+
+                    DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
+                    cComment.Value = item.Comment;
+
+                    DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
+                    var dbCategories = _serviceFactory.CategoryServices.GetAll();
+                    cCategory.DisplayMember = "Name";
+                    cCategory.ValueMember = "Id";
+                    cCategory.DataSource = dbCategories;
+
+                    var dbCategory = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(item.CategoryName.ToLower()));
+                    if (dbCategory != null)
+                        cCategory.Value = dbCategory.Id;
+
+                    row.Cells.Add(cDay);
+                    row.Cells.Add(cCategory);
+                    row.Cells.Add(cAmount);
+                    row.Cells.Add(cComment);
+
+                    this.dgvExpenses.Rows.Add(row);
+                    index++;
+                }
+                this.dgvExpenses.SetGridToFit();
+            }
+            catch (Exception ex)
+            {
+                var st = string.Empty;
+                if (ex.InnerException != null)
+                    st = ex.InnerException.Message;
+                lblError.Text = "btnUpload_Click : " + ex.Message + " " + st;
+            }
         }
     }
 }

@@ -34,6 +34,9 @@ namespace ExpenseTracker.Services
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
             includers.Add(x => x.CategoryType);
             includers.Add(x => x.CategoryType.ExpenseType);
+            includers.Add(x => x.Bank);
+            includers.Add(x => x.User);
+
             var lstExpenses = await repoExpense.GetAllAsync(includers);
             lstExpenses = lstExpenses.OrderByDescending(x => x.Id).Where(x => x.Date.Year == year);
 
@@ -99,7 +102,7 @@ namespace ExpenseTracker.Services
             }
 
             var dto = new DtoYealry();
-            dto.Category = "Z Total";
+            dto.Category = "Z Monthly Expense";
             dto.Jan = lstExpenses.Where(ec => ec.Date.Date.Month == 1).ToList().Sum(x => x.Amount);
             dto.Feb = lstExpenses.Where(ec => ec.Date.Date.Month == 2).ToList().Sum(x => x.Amount);
             dto.March = lstExpenses.Where(ec => ec.Date.Date.Month == 3).ToList().Sum(x => x.Amount);
@@ -115,6 +118,22 @@ namespace ExpenseTracker.Services
             dto.CatogoryTotal = lstExpenses.Sum(s => s.Amount);
             dtoYealries.Add(dto);
 
+            dto = new DtoYealry();
+            dto.Jan = lstIncomeSource.Where(ec => ec.Date.Date.Month == 1).ToList().Sum(x => x.Amount);
+            dto.Feb = lstIncomeSource.Where(ec => ec.Date.Date.Month == 2).ToList().Sum(x => x.Amount);
+            dto.March = lstIncomeSource.Where(ec => ec.Date.Date.Month == 3).ToList().Sum(x => x.Amount);
+            dto.April = lstIncomeSource.Where(ec => ec.Date.Date.Month == 4).ToList().Sum(x => x.Amount);
+            dto.May = lstIncomeSource.Where(ec => ec.Date.Date.Month == 5).ToList().Sum(x => x.Amount);
+            dto.June = lstIncomeSource.Where(ec => ec.Date.Date.Month == 6).ToList().Sum(x => x.Amount);
+            dto.July = lstIncomeSource.Where(ec => ec.Date.Date.Month == 7).ToList().Sum(x => x.Amount);
+            dto.August = lstIncomeSource.Where(ec => ec.Date.Date.Month == 8).ToList().Sum(x => x.Amount);
+            dto.September = lstIncomeSource.Where(ec => ec.Date.Date.Month == 9).ToList().Sum(x => x.Amount);
+            dto.October = lstIncomeSource.Where(ec => ec.Date.Date.Month == 10).ToList().Sum(x => x.Amount);
+            dto.November = lstIncomeSource.Where(ec => ec.Date.Date.Month == 11).ToList().Sum(x => x.Amount);
+            dto.December = lstIncomeSource.Where(ec => ec.Date.Date.Month == 12).ToList().Sum(x => x.Amount);
+            dto.CatogoryTotal = lstIncomeSource.Sum(s => s.Amount);
+            dtoYealries.Add(dto);
+            dto.Category = "Z Monthly Income";
             return dtoYealries.OrderBy(x => x.Category).ToList();
         }
 
@@ -169,7 +188,7 @@ namespace ExpenseTracker.Services
         {
             var month = string.Empty;
             var lstExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
-            var income = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate).Sum(x => x.Amount);
+            var lstIncome = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate).Sum(x => x.Amount);
             var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllExpenseType().Select(x => x.Name).Distinct();
 
             
@@ -179,17 +198,19 @@ namespace ExpenseTracker.Services
             foreach (var types in lstExpenseTypes)
             {
                 month = filter.StartDate.Month + " - " + filter.EndDate.Month;
+                dto = new DtoExpenseByExpensesType(month);
                 dto.ExpensesType = types;
                 dto.Amount = lstExpense.Where(x => x.ExpenseType == types).Sum(x => x.Amount);
-                var percentage = (int)Math.Round((double)(100 * dto.Amount) / income);
+                var percentage = (int)Math.Round((double)(100 * dto.Amount) / lstIncome);
                 dto.Percent = percentage + " %";
                 percentSum += percentage;
                 lstExpenseByCategory.Add(dto);
             }
 
             month = filter.StartDate.Month + " - " + filter.EndDate.Month;
+            dto = new DtoExpenseByExpensesType(month);
             dto.ExpensesType = "Total Income";
-            dto.Amount = income;
+            dto.Amount = lstIncome;
             dto.Percent = "NA"; ;
             lstExpenseByCategory.Add(dto);
 
@@ -202,16 +223,16 @@ namespace ExpenseTracker.Services
 
             dto = new DtoExpenseByExpensesType(month);
             dto.ExpensesType = "Balance";
-            dto.Amount = income - sum;
+            dto.Amount = lstIncome - sum;
             dto.Percent = "NA";
             lstExpenseByCategory.Add(dto);
 
             return lstExpenseByCategory;
         }
         
-        public List<IncomeSource> GetIncome(DateTime startDate, DateTime endDate)
+        public List<DtoIncome> GetIncome(DateTime startDate, DateTime endDate)
         {
-            IEnumerable<IncomeSource> lst = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
+            IEnumerable<DtoIncome> lst = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
             return lst.ToList();
         }
 

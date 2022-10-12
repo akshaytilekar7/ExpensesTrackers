@@ -21,12 +21,12 @@ namespace ExpenseTrackerWin
             LoadCombobox();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private async void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
                 lblError.Text = string.Empty;
-                LoadAllGrid();
+                await LoadAllGrid();
             }
             catch (Exception ex)
             {
@@ -57,6 +57,7 @@ namespace ExpenseTrackerWin
         {
             await LoadExpenseFilterGrid();
             await LoadExpenseByCategoryGrid();
+            // await LoadBankGrid();
             LoadIncomeGrid();
         }
 
@@ -66,6 +67,13 @@ namespace ExpenseTrackerWin
             SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res.GenereateSrNo());
             dgvFilter.DataSource = sortableBindingList;
             dgvFilter.SetGridToFit();
+        }
+
+        private async Task LoadBankGrid()
+        {
+            //var res = await _serviceFactory.ExpenseServices.GetBankData(GetFilter());
+            //dgvBankOverview.DataSource = res;
+            //dgvBankOverview.SetGridToFit();
         }
         private async Task LoadExpenseByCategoryGrid()
         {
@@ -89,9 +97,8 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                List<IncomeSource>? dbIncomes = _serviceFactory.YearlyService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
-                SortableBindingList<IncomeSource> sortableBindingList = new SortableBindingList<IncomeSource>(dbIncomes);
-                dgvIncome.DataSource = sortableBindingList;
+                List<DtoIncome> dbIncomes = _serviceFactory.YearlyService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
+                dgvIncome.DataSource = dbIncomes.MakeSortable();
                 dgvIncome.SetGridToFit();
             }
             catch (Exception ex)
@@ -156,7 +163,7 @@ namespace ExpenseTrackerWin
             dataExpenseTypes.Add(new ExcelDto() { DataTable = lstExpense.ToDataTable(), SheetName = "Expense" });
             dataExpenseTypes.Add(new ExcelDto() { DataTable = lstIncomes.ToDataTable(), SheetName = "Income" });
             dataExpenseTypes.Add(new ExcelDto() { DataTable = lstExpenseCategory.ToDataTable(), SheetName = "Overview" });
-            
+
             GridExcel.ExportToExcel(dataExpenseTypes, projectDirectory);
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }

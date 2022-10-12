@@ -77,6 +77,7 @@ namespace ExpenseTracker.Services
             includers.Add(x => x.CategoryType.ExpenseType);
             includers.Add(x => x.Bank);
             includers.Add(x => x.User);
+
             IEnumerable<Expense> lstExpenses = await expenseRepository.GetAllAsync(includers);
 
             if (filter.StartDate != DateTime.MinValue && filter.EndDate != DateTime.MinValue)
@@ -110,13 +111,63 @@ namespace ExpenseTracker.Services
                 CategoryName = s.CategoryType.Name,
                 Date = s.Date,
                 Amount = s.Amount,
-                ExpenseType = s.CategoryType.ExpenseType.Name, 
+                ExpenseType = s.CategoryType.ExpenseType.Name,
                 Comment = s.Comment,
                 User = s.User.Name,
-                BankName =  s.Bank.Name
+                BankName = s.Bank.Name
             });
 
             return lstDtoExpense.ToList();
         }
+
+        public async Task<List<DtoBankAmount>> GetBankData()
+        {
+            var repoIncomeSource = _unitOfWork.GetRepository<IncomeSource>();
+            List<Expression<Func<IncomeSource, object>>> includers = new List<Expression<Func<IncomeSource, object>>>();
+            includers.Add(x => x.User);
+            includers.Add(x => x.Bank);
+            List<DtoBankAmount> lstDtoBanks = new List<DtoBankAmount>();
+
+            IEnumerable<IncomeSource> lstIncomeSources = await repoIncomeSource.GetAllAsync(includers);
+
+            var expenseRepository = _unitOfWork.GetRepository<Expense>();
+            List<Expression<Func<Expense, object>>> includersE = new List<Expression<Func<Expense, object>>>();
+            includersE.Add(x => x.CategoryType);
+            includersE.Add(x => x.CategoryType.ExpenseType);
+            includersE.Add(x => x.Bank);
+            includersE.Add(x => x.User);
+
+            IEnumerable<Expense> lstExpenses = await expenseRepository.GetAllAsync(includersE);
+
+            var repoBank = _unitOfWork.GetRepository<Bank>();
+            var lstBanks = repoBank.GetAll().ToList();
+
+            var DistinctItems = lstIncomeSources.GroupBy(x => x.BankId);
+
+            foreach (var _bank in lstBanks)
+            {
+                int amount = lstIncomeSources.Where(x => x.BankId == _bank.Id).Sum(x => x.Amount);
+                int expense = lstExpenses.Where(x => x.BankId == _bank.Id).Sum(x => x.Amount);
+
+                lstDtoBanks.Add(new DtoBankAmount()
+                {
+                    BankName = _bank.Name,
+                    Amount = amount,
+                    Expense = expense,
+                    Balance = amount - expense
+                });
+            }
+
+            lstDtoBanks.Add(new DtoBankAmount()
+            {
+                BankName = "Total",
+                Amount = lstDtoBanks.Sum(x => x.Amount),
+                Expense = lstDtoBanks.Sum(x => x.Expense),
+                Balance = lstDtoBanks.Sum(x => x.Amount) - lstDtoBanks.Sum(x => x.Expense)
+            });
+
+            return lstDtoBanks;
+        }
+
     }
 }

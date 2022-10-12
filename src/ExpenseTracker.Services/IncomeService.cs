@@ -5,6 +5,7 @@ using System.Linq;
 using ExpenseTracker.Services.Base.Contracts;
 using ExpenseTracker.Models;
 using System.Linq.Expressions;
+using ExpenseTracker.Models.Dto;
 
 namespace ExpenseTracker.Services
 {
@@ -47,13 +48,20 @@ namespace ExpenseTracker.Services
             _unitOfWork.Commit();
         }
 
-        public IList<IncomeSource> GetAll()
+        public IList<DtoIncome> GetAll()
         {
             List<Expression<Func<IncomeSource, object>>> includers = new List<Expression<Func<IncomeSource, object>>>();
             includers.Add(x => x.User);
             includers.Add(x => x.Bank);
             var lstUsers = _unitOfWork.GetRepository<IncomeSource>().GetAll(includers).ToList();
-            return lstUsers;
+            return lstUsers.Select(x => new DtoIncome()
+            {
+                Amount = x.Amount,
+                BankName = x.Bank.Name,
+                Date = x.Date,
+                Id = x.Id,
+                UserName = x.User.Name
+            }).ToList();
         }
     }
 }

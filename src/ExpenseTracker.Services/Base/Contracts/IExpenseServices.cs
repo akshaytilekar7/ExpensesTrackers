@@ -12,6 +12,6 @@ namespace ExpenseTracker.Services.Base.Contracts
         IList<Expense> GetAll();
         void Delete(List<Expense> lst);
         Task<List<DtoExpense>> GetExpenseFilter(DtoExpenseFilter expenseFilter);
-
+        Task<List<DtoBankAmount>> GetBankData();
     }
 }

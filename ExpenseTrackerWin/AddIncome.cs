@@ -21,15 +21,7 @@ namespace ExpenseTrackerWin
 
         private void LoadGrid()
         {
-            var lstIncome = _serviceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList().Select(x => new DtoIncome()
-            {
-                Amount = x.Amount,
-                BankName = x.Bank.Name,
-                Date = x.Date,
-                Id = x.Id,
-                UserName = x.User.Name
-            }).ToList();
-
+            var lstIncome = _serviceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList();
             dgvIncome.DataSource = lstIncome;
 
             var lstUsers = _serviceFactory.UserService.GetAll();
