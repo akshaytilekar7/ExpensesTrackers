@@ -1,6 +1,6 @@
 ﻿namespace ExpenseTracker.Models
 {
-    public class MasterExpenseType
+    public class ExpenseType
     {
         public int Id { get; set; }
 

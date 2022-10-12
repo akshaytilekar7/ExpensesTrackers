@@ -107,15 +107,15 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var data = _serviceFactory.MasterTableService.GetAllMasterCategoryType();
-                data.Insert(0, new MasterCategoryType() { Id = 0, Name = "Please select" });
+                var data = _serviceFactory.MasterTableService.GetAllCategoryType();
+                data.Insert(0, new CategoryType() { Id = 0, Name = "Please select" });
                 cmbCategory.DisplayMember = "Name";
                 cmbCategory.ValueMember = "Id";
                 cmbCategory.DataSource = data;
 
-                var dataExpenseTypes = _serviceFactory.MasterTableService.GetAllMasterExpenseType();
+                var dataExpenseTypes = _serviceFactory.MasterTableService.GetAllExpenseType();
                 // TODO 2
-                dataExpenseTypes.Insert(0, new MasterExpenseType() { Id = 0, Name = "Please select" });
+                dataExpenseTypes.Insert(0, new ExpenseType() { Id = 0, Name = "Please select" });
                 cmbExpensesType.DisplayMember = "Name";
                 cmbExpensesType.ValueMember = "Id";
                 cmbExpensesType.DataSource = dataExpenseTypes;

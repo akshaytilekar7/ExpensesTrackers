@@ -52,7 +52,7 @@ namespace ExpenseTracker.Services
             var users = _unitOfWork.GetRepository<User>().GetAll().ToList();
 
             var result = movieRepository.GetAll().OrderBy(x => x.Date).ToList();
-            result.ForEach(i => i.Name = users.FirstOrDefault(x => x.Id == i.UserId).Name); ;
+            result.ForEach(i => i.UserId = users.FirstOrDefault(x => x.Id == i.UserId).Id);
             return result;
         }
     }

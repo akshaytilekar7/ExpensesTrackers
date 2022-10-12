@@ -46,7 +46,7 @@ namespace ExpenseTrackerWin
                 var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month && s.Date.Year == date.Year);
                 foreach (var item in dbIncomes)
                 {
-                    txtTotalIncome.AppendText(item.Name + " : " + item.Amount); //?????
+                    txtTotalIncome.AppendText(item.User.Name + " : " + item.Amount); 
                     txtTotalIncome.AppendText(Environment.NewLine);
                 }
                 txtTotalIncome.AppendText("Total Income : " + Convert.ToString(dbIncomes.Sum(x => x.Amount)));
@@ -102,7 +102,7 @@ namespace ExpenseTrackerWin
                         continue;
 
                     Expense expense = new Expense();
-                    expense.MasterCategoryTypeId = Convert.ToInt32(row.Cells[1].Value);
+                    expense.CategoryTypeId = Convert.ToInt32(row.Cells[1].Value);
                     var date = Convert.ToDateTime(DatePicker.Text);
                     expense.Date = new DateTime(date.Year, date.Month, day);
                     expense.Amount = Convert.ToInt32(row.Cells[2].Value);
@@ -212,7 +212,7 @@ namespace ExpenseTrackerWin
             }
         }
 
-        private static int GetCategoryBasedOnComment(string comment, List<MasterCategoryType> dbCategories)
+        private static int GetCategoryBasedOnComment(string comment, List<CategoryType> dbCategories)
         {
             int defaultCategoryId = dbCategories.First(x => x.Name.Contains("Extra")).Id;
             dbCategories = dbCategories.Where(x => x.CommaSeparatedTags != null).ToList();

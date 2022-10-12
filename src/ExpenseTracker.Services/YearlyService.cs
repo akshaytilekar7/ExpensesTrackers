@@ -25,15 +25,15 @@ namespace ExpenseTracker.Services
 
         public async Task<List<DtoYealry>> GetYearlyData(int year)
         {
-            var repoCategory = _unitOfWork.GetRepository<MasterCategoryType>();
+            var repoCategory = _unitOfWork.GetRepository<CategoryType>();
             var repoExpense = _unitOfWork.GetRepository<Expense>();
             var repoIncomeSource = _unitOfWork.GetRepository<IncomeSource>();
 
-            var lstCategory = repoCategory.GetAll("MasterExpenseType");
+            var lstCategory = repoCategory.GetAll("ExpenseType");
 
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
-            includers.Add(x => x.MasterCategoryType);
-            includers.Add(x => x.MasterCategoryType.MasterExpenseType);
+            includers.Add(x => x.CategoryType);
+            includers.Add(x => x.CategoryType.ExpenseType);
             var lstExpenses = await repoExpense.GetAllAsync(includers);
             lstExpenses = lstExpenses.OrderByDescending(x => x.Id).Where(x => x.Date.Year == year);
 
@@ -43,8 +43,8 @@ namespace ExpenseTracker.Services
             foreach (var itemCategory in lstCategory)
             {
                 DtoYealry dtoYealry = new DtoYealry();
-                dtoYealry.Category = itemCategory.Name + " (" + itemCategory.MasterExpenseType.Name + ")";
-                var lstExpensesByCategory = lstExpenses.Where(e => e.MasterCategoryType.Name == itemCategory.Name);
+                dtoYealry.Category = itemCategory.Name + " (" + itemCategory.ExpenseType.Name + ")";
+                var lstExpensesByCategory = lstExpenses.Where(e => e.CategoryType.Name == itemCategory.Name);
 
                 var expensesByMonth = GetExpensesByMonth(lstExpensesByCategory, 1).ToList();
                 dtoYealry.Jan = expensesByMonth.Sum(x => x.Amount);
@@ -170,7 +170,7 @@ namespace ExpenseTracker.Services
             var month = string.Empty;
             var lstExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
             var income = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate).Sum(x => x.Amount);
-            var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllMasterExpenseType().Select(x => x.Name).Distinct();
+            var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllExpenseType().Select(x => x.Name).Distinct();
 
             
             var percentSum = 0;

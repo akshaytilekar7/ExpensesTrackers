@@ -20,30 +20,30 @@ namespace ExpenseTracker.Services
             _unitOfWork = unitOfWork;
         }
 
-        public List<MasterCategoryType> GetAllMasterCategoryType()
+        public List<CategoryType> GetAllCategoryType()
         {
-            var repository = _unitOfWork.GetRepository<MasterCategoryType>();
-            return repository.GetAll("MasterExpenseType").ToList();
+            var repository = _unitOfWork.GetRepository<CategoryType>();
+            return repository.GetAll("ExpenseType").ToList();
         }
 
-        public List<MasterExpenseType> GetAllMasterExpenseType()
+        public List<ExpenseType> GetAllExpenseType()
         {
-            var repository = _unitOfWork.GetRepository<MasterExpenseType>();
+            var repository = _unitOfWork.GetRepository<ExpenseType>();
             return repository.GetAll().ToList();
         }
 
-        public void SaveMasterExpenseType(List<MasterExpenseType> masterExpenseTypes)
+        public void SaveExpenseType(List<ExpenseType> ExpenseTypes)
         {
-            var repository = _unitOfWork.GetRepository<MasterExpenseType>();
-            var dbMasterExpenseType = repository.GetAll();
+            var repository = _unitOfWork.GetRepository<ExpenseType>();
+            var dbExpenseType = repository.GetAll();
 
-            foreach (var item in masterExpenseTypes)
+            foreach (var item in ExpenseTypes)
             {
                 if (item.Id <= 0)
                 {
                     repository.Add(item);
                 }
-                else if (dbMasterExpenseType.Any(x => x.Id == item.Id))
+                else if (dbExpenseType.Any(x => x.Id == item.Id))
                 {
                     repository.Update(item);
                 }
@@ -51,18 +51,18 @@ namespace ExpenseTracker.Services
             }
         }
 
-        public void SaveMasterCategoryType(List<MasterCategoryType> masterCategoryTypes)
+        public void SaveCategoryType(List<CategoryType> CategoryTypes)
         {
-            var repository = _unitOfWork.GetRepository<MasterCategoryType>();
-            var dbMasterCategoryTypes = repository.GetAll();
+            var repository = _unitOfWork.GetRepository<CategoryType>();
+            var dbCategoryTypes = repository.GetAll();
 
-            foreach (var item in masterCategoryTypes)
+            foreach (var item in CategoryTypes)
             {
                 if (item.Id <= 0)
                 {
                     repository.Add(item);
                 }
-                else if (dbMasterCategoryTypes.Any(x => x.Id == item.Id))
+                else if (dbCategoryTypes.Any(x => x.Id == item.Id))
                 {
                     repository.Update(item);
                 }

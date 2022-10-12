@@ -15,12 +15,12 @@ namespace ExpenseTracker.Core.EFContext
         {
         }
 
-        //public DbSet<Category> Category { get; set; }
         public DbSet<Expense> Expense { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<IncomeSource> IncomeSource { get; set; }
-        public DbSet<MasterExpenseType> MasterExpenseType { get; set; }
-        public DbSet<MasterCategoryType> MasterCategoryType { get; set; }
+        public DbSet<ExpenseType> ExpenseType { get; set; }
+        public DbSet<CategoryType> CategoryType { get; set; }
+        public DbSet<Bank> Bank { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

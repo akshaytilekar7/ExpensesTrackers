@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+﻿using ExpenseTracker.Models.Dto;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace ExpenseTrackerWin.Utility
 {
@@ -14,6 +15,17 @@ namespace ExpenseTrackerWin.Utility
         {
             SortableBindingList<T> sortableBindingList = new(lst);
             return sortableBindingList;
+        }
+
+        public static List<DtoExpense> GenereateSrNo(this List<DtoExpense> dtoExpenses)
+        {
+            int index = 1;
+            for (int i = 0; i < dtoExpenses.Count; i++)
+            {
+                var x = index++;
+                dtoExpenses[i].SrNo = x;
+            }
+            return dtoExpenses;
         }
 
     }

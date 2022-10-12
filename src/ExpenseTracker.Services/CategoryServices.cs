@@ -16,14 +16,14 @@ namespace ExpenseTracker.Services
             _unitOfWork = unitOfWork;
         }
 
-        public bool Add(MasterCategoryType item)
+        public bool Add(CategoryType item)
         {
             bool result = false;
             try
             {
                 if (item != null)
                 {
-                    var repo = _unitOfWork.GetRepository<MasterCategoryType>();
+                    var repo = _unitOfWork.GetRepository<CategoryType>();
                     repo.Add(item);
                     _unitOfWork.Commit();
                     result = true;
@@ -38,9 +38,9 @@ namespace ExpenseTracker.Services
             return result;
         }
 
-        public IList<MasterCategoryType> GetAll()
+        public IList<CategoryType> GetAll()
         {
-            var repo = _unitOfWork.GetRepository<MasterCategoryType>();
+            var repo = _unitOfWork.GetRepository<CategoryType>();
             return repo.GetAll().OrderBy(x => x.Name).ToList();
         }
     }

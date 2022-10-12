@@ -55,8 +55,8 @@ namespace ExpenseTracker.Services
         {
             var repo = _unitOfWork.GetRepository<Expense>();
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
-            includers.Add(x => x.MasterCategoryType);
-            includers.Add(x => x.MasterCategoryType.MasterExpenseType);
+            includers.Add(x => x.CategoryType);
+            includers.Add(x => x.CategoryType.ExpenseType);
             return repo.GetAll(includers).OrderByDescending(x => x.Id).ToList();
         }
 
@@ -73,8 +73,8 @@ namespace ExpenseTracker.Services
             var expenseRepository = _unitOfWork.GetRepository<Expense>();
 
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
-            includers.Add(x => x.MasterCategoryType);
-            includers.Add(x => x.MasterCategoryType.MasterExpenseType);
+            includers.Add(x => x.CategoryType);
+            includers.Add(x => x.CategoryType.ExpenseType);
             IEnumerable<Expense> lstExpenses = await expenseRepository.GetAllAsync(includers);
 
             if (filter.StartDate != DateTime.MinValue && filter.EndDate != DateTime.MinValue)
@@ -84,10 +84,10 @@ namespace ExpenseTracker.Services
                 lstExpenses = lstExpenses.Where(x => x.Amount == filter.Amount);
 
             if (filter.CategoryId > 0)
-                lstExpenses = lstExpenses.Where(x => x.MasterCategoryType.Id == filter.CategoryId);
+                lstExpenses = lstExpenses.Where(x => x.CategoryType.Id == filter.CategoryId);
 
             if (filter.ExpenseTypeId > 0)
-                lstExpenses = lstExpenses.Where(x => x.MasterCategoryType.MasterExpenseType.Id == filter.ExpenseTypeId);
+                lstExpenses = lstExpenses.Where(x => x.CategoryType.ExpenseType.Id == filter.ExpenseTypeId);
 
             if (!string.IsNullOrEmpty(filter.Comment))
                 lstExpenses = lstExpenses.Where(x => x.Comment.ToLower().Contains(filter.Comment.ToLower()));
@@ -102,10 +102,10 @@ namespace ExpenseTracker.Services
             var lstDtoExpense = lstExpenses.Select(s => new DtoExpense()
             {
                 Id = s.Id,
-                CategoryName = s.MasterCategoryType.Name,
+                CategoryName = s.CategoryType.Name,
                 Date = s.Date,
                 Amount = s.Amount,
-                ExpenseType = s.MasterCategoryType.MasterExpenseType.Name, 
+                ExpenseType = s.CategoryType.ExpenseType.Name, 
                 Comment = s.Comment,
                 User = users.FirstOrDefault(x => x.Id == s.UserId).Name
             });

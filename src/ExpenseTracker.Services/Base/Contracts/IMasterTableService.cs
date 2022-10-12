@@ -5,13 +5,13 @@ namespace ExpenseTracker.Services.Base.Contracts
 {
     public interface IMasterTableService
     {
-        List<MasterExpenseType> GetAllMasterExpenseType();
+        List<ExpenseType> GetAllExpenseType();
 
-        List<MasterCategoryType> GetAllMasterCategoryType();
+        List<CategoryType> GetAllCategoryType();
 
-        public void SaveMasterExpenseType(List<MasterExpenseType> lst);
+        public void SaveExpenseType(List<ExpenseType> lst);
 
-        public void SaveMasterCategoryType(List<MasterCategoryType> lst);
+        public void SaveCategoryType(List<CategoryType> lst);
 
     }
 }

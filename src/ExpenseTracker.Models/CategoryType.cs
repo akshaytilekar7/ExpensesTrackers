@@ -1,6 +1,6 @@
 ﻿namespace ExpenseTracker.Models
 {
-    public class MasterCategoryType
+    public class CategoryType
     {
         public int Id { get; set; }
 
@@ -8,10 +8,9 @@
 
         public string CommaSeparatedTags { get; set; }
 
-        public MasterExpenseType MasterExpenseType { get; set; }
+        public ExpenseType ExpenseType { get; set; }
 
-        public int MasterExpenseTypeId { get; set; }
-
+        public int ExpenseTypeId { get; set; }
 
     }
 }

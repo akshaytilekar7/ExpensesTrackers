@@ -34,7 +34,7 @@ namespace ExpenseTrackerWin
             this.dgvExpenseType = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.masterExpenseTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ExpenseTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblExpenseType = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
             this.dgvCategory = new System.Windows.Forms.DataGridView();
@@ -44,7 +44,7 @@ namespace ExpenseTrackerWin
             this.btnSaveExpense = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnSaveCategory = new System.Windows.Forms.Button();
-            this.masterCategoryTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CategoryTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnHome = new System.Windows.Forms.Button();
             this.cmbExpeseType = new System.Windows.Forms.ComboBox();
             this.txtCategory = new System.Windows.Forms.TextBox();
@@ -53,9 +53,9 @@ namespace ExpenseTrackerWin
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnEditSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterExpenseTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExpenseTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterCategoryTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CategoryTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvExpenseType
@@ -84,9 +84,9 @@ namespace ExpenseTrackerWin
             this.Name.HeaderText = "EtName";
             this.Name.Name = "Name";
             // 
-            // masterExpenseTypeBindingSource
+            // ExpenseTypeBindingSource
             // 
-            this.masterExpenseTypeBindingSource.DataSource = typeof(MasterExpenseType);
+            this.ExpenseTypeBindingSource.DataSource = typeof(ExpenseType);
             // 
             // lblExpenseType
             // 
@@ -169,9 +169,9 @@ namespace ExpenseTrackerWin
             this.btnSaveCategory.UseVisualStyleBackColor = true;
             this.btnSaveCategory.Click += new System.EventHandler(this.btnSaveCategory_Click);
             // 
-            // masterCategoryTypeBindingSource
+            // CategoryTypeBindingSource
             // 
-            this.masterCategoryTypeBindingSource.DataSource = typeof(MasterCategoryType);
+            this.CategoryTypeBindingSource.DataSource = typeof(CategoryType);
             // 
             // btnHome
             // 
@@ -256,9 +256,9 @@ namespace ExpenseTrackerWin
             this.Text = "UserSettings";
             this.Load += new System.EventHandler(this.UserSettings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterExpenseTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExpenseTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterCategoryTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CategoryTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,8 +273,8 @@ namespace ExpenseTrackerWin
         private Button btnSaveExpense;
         private Button btnRefresh;
         private Button btnSaveCategory;
-        private BindingSource masterExpenseTypeBindingSource;
-        private BindingSource masterCategoryTypeBindingSource;
+        private BindingSource ExpenseTypeBindingSource;
+        private BindingSource CategoryTypeBindingSource;
         private Button btnHome;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Name;
