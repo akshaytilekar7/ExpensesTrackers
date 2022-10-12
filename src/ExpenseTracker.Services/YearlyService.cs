@@ -191,7 +191,6 @@ namespace ExpenseTracker.Services
             var income = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate).Sum(x => x.Amount);
             var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllExpenseType().Select(x => x.Name).Distinct();
 
-
             var percentSum = 0;
             var dto = new DtoExpenseByExpensesType(month);
             var lstExpenseByCategory = new List<DtoExpenseByExpensesType>();

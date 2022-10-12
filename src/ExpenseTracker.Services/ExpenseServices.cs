@@ -14,12 +14,10 @@ namespace ExpenseTracker.Services
     public class ExpenseServices : IExpenseServices
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IServiceFactory _serviceFactory;
 
         public ExpenseServices(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _serviceFactory = new ServiceFactory(_unitOfWork);
         }
 
         public bool Add(Expense item)

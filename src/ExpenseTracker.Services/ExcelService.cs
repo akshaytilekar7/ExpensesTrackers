@@ -32,14 +32,14 @@ namespace ExpenseTracker.Services
             connection.Open();
             OleDbCommand command = new OleDbCommand("select * from [Sheet1$]", connection);
             OleDbDataReader dr = command.ExecuteReader();
-            var dataTable = new System.Data.DataTable();
+            var dataTable = new DataTable();
             dataTable.Load(dr);
             return dataTable;
         }
 
         public DataTable ConvertCsvToDataTable(string filePath)
         {
-            System.Data.DataTable dt = new System.Data.DataTable();
+            DataTable dt = new DataTable();
             using (StreamReader sr = new StreamReader(filePath))
             {
                 string[] headers = sr.ReadLine().Split(',');

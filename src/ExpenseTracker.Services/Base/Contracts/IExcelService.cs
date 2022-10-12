@@ -1,11 +1,13 @@
-﻿namespace ExpenseTracker.Services.Base.Contracts
+﻿using System.Data;
+
+namespace ExpenseTracker.Services.Base.Contracts
 {
     public interface IExcelService
     {
-        System.Data.DataTable LoadDataTable(string filePath);
+        DataTable LoadDataTable(string filePath);
 
-        System.Data.DataTable ConvertExcelToDataTable(string filePath, bool isXlsx = false);
+        DataTable ConvertExcelToDataTable(string filePath, bool isXlsx = false);
 
-        System.Data.DataTable ConvertCsvToDataTable(string filePath);
+        DataTable ConvertCsvToDataTable(string filePath);
     }
 }

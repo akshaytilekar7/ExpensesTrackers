@@ -37,11 +37,11 @@ namespace ExpenseTrackerWin
             }
         }
 
-        private void FilterData_Load(object sender, EventArgs e)
+        private async void FilterData_Load(object sender, EventArgs e)
         {
             try
             {
-                LoadAllGrid();
+                await LoadAllGrid();
             }
             catch (Exception ex)
             {
@@ -57,31 +57,22 @@ namespace ExpenseTrackerWin
         {
             await LoadExpenseFilterGrid();
             await LoadExpenseByCategoryGrid();
-            // await LoadBankGrid();
             LoadIncomeGrid();
         }
 
         private async Task LoadExpenseFilterGrid()
         {
             var res = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
-            SortableBindingList<DtoExpense> sortableBindingList = new SortableBindingList<DtoExpense>(res.GenereateSrNo());
-            dgvFilter.DataSource = sortableBindingList;
+            dgvFilter.DataSource = res.GenereateSrNo().MakeSortable();
             dgvFilter.SetGridToFit();
         }
 
-        private async Task LoadBankGrid()
-        {
-            //var res = await _serviceFactory.ExpenseServices.GetBankData(GetFilter());
-            //dgvBankOverview.DataSource = res;
-            //dgvBankOverview.SetGridToFit();
-        }
         private async Task LoadExpenseByCategoryGrid()
         {
             try
             {
                 var result = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
-                SortableBindingList<DtoExpenseByExpensesType> sortableBindingList = new SortableBindingList<DtoExpenseByExpensesType>(result);
-                dgvExpenseOverview.DataSource = sortableBindingList;
+                dgvExpenseOverview.DataSource = result.MakeSortable();
                 dgvExpenseOverview.SetGridToFit();
             }
 
@@ -190,7 +181,7 @@ namespace ExpenseTrackerWin
 
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_Click(object sender, EventArgs e)
         {
             List<Expense> lst = new List<Expense>();
             foreach (DataGridViewRow row in dgvFilter.SelectedRows)
@@ -199,7 +190,7 @@ namespace ExpenseTrackerWin
                 lst.Add(new Expense() { Id = id });
             }
             _serviceFactory.ExpenseServices.Delete(lst);
-            LoadAllGrid();
+            await LoadAllGrid();
         }
 
         private void dgvFilter_CellContentClick(object sender, DataGridViewCellEventArgs e)

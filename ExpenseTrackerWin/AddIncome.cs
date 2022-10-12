@@ -1,5 +1,4 @@
 ﻿using ExpenseTracker.Models;
-using ExpenseTracker.Models.Dto;
 using ExpenseTracker.Services.Factory;
 
 namespace ExpenseTrackerWin
