@@ -19,7 +19,7 @@ namespace ExpenseTracker.Models.Dto
 
     }
 
-    public enum Months
+    public enum Models
     {
         January = 1,
         February,

@@ -12,8 +12,6 @@ namespace ExpenseTracker.Services.Base.Contracts
 
         Task<List<DtoExpenseByExpensesType>> GetExpenseByExpensesType(DtoExpenseFilter filter);
 
-        List<DtoIncome> GetIncome(DateTime startDate, DateTime endDate);
-
         Task<List<DtoYearlyExpense>> GetAllMonthsData(int year);
 
         Task<DtoYearlyExpenseByExpensesType> GetAllMonthDataOnExpenseType(int year);

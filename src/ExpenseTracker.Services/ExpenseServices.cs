@@ -120,13 +120,13 @@ namespace ExpenseTracker.Services
             return lstDtoExpense.ToList();
         }
 
-        public async Task<List<DtoBankAmount>> GetBankData()
+        public async Task<List<DtoBank>> GetBankData()
         {
             var repoIncomeSource = _unitOfWork.GetRepository<IncomeSource>();
             List<Expression<Func<IncomeSource, object>>> includers = new List<Expression<Func<IncomeSource, object>>>();
             includers.Add(x => x.User);
             includers.Add(x => x.Bank);
-            List<DtoBankAmount> lstDtoBanks = new List<DtoBankAmount>();
+            List<DtoBank> lstDtoBanks = new List<DtoBank>();
 
             IEnumerable<IncomeSource> lstIncomeSources = await repoIncomeSource.GetAllAsync(includers);
 
@@ -149,7 +149,7 @@ namespace ExpenseTracker.Services
                 int amount = lstIncomeSources.Where(x => x.BankId == _bank.Id).Sum(x => x.Amount);
                 int expense = lstExpenses.Where(x => x.BankId == _bank.Id).Sum(x => x.Amount);
 
-                lstDtoBanks.Add(new DtoBankAmount()
+                lstDtoBanks.Add(new DtoBank()
                 {
                     BankName = _bank.Name,
                     Amount = amount,
@@ -158,7 +158,7 @@ namespace ExpenseTracker.Services
                 });
             }
 
-            lstDtoBanks.Add(new DtoBankAmount()
+            lstDtoBanks.Add(new DtoBank()
             {
                 BankName = "Total",
                 Amount = lstDtoBanks.Sum(x => x.Amount),

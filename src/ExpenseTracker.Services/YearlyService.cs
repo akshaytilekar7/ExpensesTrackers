@@ -156,7 +156,7 @@ namespace ExpenseTracker.Services
 
                 var lst = lstExpenses.Where(x => x.Date >= sDate && x.Date <= eDate).ToList();
                 if (lst.Count() != 0 && lst.Any())
-                    yearlyExpense.Add(new DtoYearlyExpense() { dtoExpenses = lst, Name = ((Months)month).ToString() });
+                    yearlyExpense.Add(new DtoYearlyExpense() { dtoExpenses = lst, Name = ((Models.Dto.Models)month).ToString() });
             }
             return yearlyExpense;
         }
@@ -230,12 +230,6 @@ namespace ExpenseTracker.Services
             return lstExpenseByCategory;
         }
         
-        public List<DtoIncome> GetIncome(DateTime startDate, DateTime endDate)
-        {
-            IEnumerable<DtoIncome> lst = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
-            return lst.ToList();
-        }
-
         private static IEnumerable<Expense> GetExpensesByMonth(IEnumerable<Expense> lstExpensesByCategory, int month)
         {
             return lstExpensesByCategory.Where(ec => ec.Date.Date.Month == month);

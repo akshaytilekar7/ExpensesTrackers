@@ -97,7 +97,7 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                List<DtoIncome> dbIncomes = _serviceFactory.YearlyService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
+                List<DtoIncome> dbIncomes = _serviceFactory.IncomeService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
                 dgvIncome.DataSource = dbIncomes.MakeSortable();
                 dgvIncome.SetGridToFit();
             }
@@ -157,7 +157,7 @@ namespace ExpenseTrackerWin
             List<ExcelDto> dataExpenseTypes = new List<ExcelDto>();
 
             var lstExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
-            var lstIncomes = _serviceFactory.YearlyService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
+            var lstIncomes = _serviceFactory.IncomeService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
             var lstExpenseCategory = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
 
             dataExpenseTypes.Add(new ExcelDto() { DataTable = lstExpense.ToDataTable(), SheetName = "Expense" });

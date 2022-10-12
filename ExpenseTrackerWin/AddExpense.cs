@@ -62,6 +62,7 @@ namespace ExpenseTrackerWin
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            btnUploadFromBackup.Visible = false;
             dgvExpenses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             LoadCombobox();
             SetIncome();

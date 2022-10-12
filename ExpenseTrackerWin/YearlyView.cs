@@ -35,15 +35,9 @@ namespace ExpenseTrackerWin
 
             await LoadExpenseByCategoryGrid();
             await LoadBankGrid();
-            await LoadBankAmountGrid();
         }
+       
         private async Task LoadBankGrid()
-        {
-            //var res = await _serviceFactory.ExpenseServices.GetBankData(new DtoExpenseFilter());
-            //dgvBankOverview.DataSource = res;
-            //dgvBankOverview.SetGridToFit();
-        }
-        private async Task LoadBankAmountGrid()
         {
             var res = await _serviceFactory.ExpenseServices.GetBankData();
             dgvBankAmount.DataSource = res;

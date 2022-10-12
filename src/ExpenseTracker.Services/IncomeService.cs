@@ -63,5 +63,11 @@ namespace ExpenseTracker.Services
                 UserName = x.User.Name
             }).ToList();
         }
+
+        public List<DtoIncome> GetIncome(DateTime startDate, DateTime endDate)
+        {
+            IEnumerable<DtoIncome> lst = GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
+            return lst.ToList();
+        }
     }
 }
