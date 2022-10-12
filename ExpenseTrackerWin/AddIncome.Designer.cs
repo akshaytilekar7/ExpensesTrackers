@@ -38,10 +38,6 @@ namespace ExpenseTrackerWin
             this.btnSave = new System.Windows.Forms.Button();
             this.btnHomePage = new System.Windows.Forms.Button();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.incomeSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtAmount = new System.Windows.Forms.TextBox();
@@ -49,6 +45,12 @@ namespace ExpenseTrackerWin
             this.lblAmount = new System.Windows.Forms.Label();
             this.cmbNames = new System.Windows.Forms.ComboBox();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbBank = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomeSourceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -68,7 +70,7 @@ namespace ExpenseTrackerWin
             // datePicker
             // 
             this.datePicker.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.datePicker.Location = new System.Drawing.Point(250, 90);
+            this.datePicker.Location = new System.Drawing.Point(89, 86);
             this.datePicker.Margin = new System.Windows.Forms.Padding(2);
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(281, 40);
@@ -78,7 +80,7 @@ namespace ExpenseTrackerWin
             // 
             this.Date.AutoSize = true;
             this.Date.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Date.Location = new System.Drawing.Point(179, 90);
+            this.Date.Location = new System.Drawing.Point(18, 86);
             this.Date.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Date.Name = "Date";
             this.Date.Size = new System.Drawing.Size(67, 33);
@@ -119,8 +121,8 @@ namespace ExpenseTrackerWin
             this.dgvIncome.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.dateDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.amountDataGridViewTextBoxColumn});
+            this.amountDataGridViewTextBoxColumn,
+            this.BankName});
             this.dgvIncome.DataSource = this.incomeSourceBindingSource;
             this.dgvIncome.Location = new System.Drawing.Point(351, 157);
             this.dgvIncome.Name = "dgvIncome";
@@ -128,34 +130,9 @@ namespace ExpenseTrackerWin
             this.dgvIncome.Size = new System.Drawing.Size(452, 304);
             this.dgvIncome.TabIndex = 15;
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            // 
             // incomeSourceBindingSource
             // 
-            this.incomeSourceBindingSource.DataSource = typeof(IncomeSource);
+            this.incomeSourceBindingSource.DataSource = typeof(ExpenseTracker.Models.IncomeSource);
             // 
             // btnDelete
             // 
@@ -172,7 +149,7 @@ namespace ExpenseTrackerWin
             // txtAmount
             // 
             this.txtAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtAmount.Location = new System.Drawing.Point(888, 89);
+            this.txtAmount.Location = new System.Drawing.Point(727, 89);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(145, 40);
             this.txtAmount.TabIndex = 18;
@@ -181,7 +158,7 @@ namespace ExpenseTrackerWin
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblName.Location = new System.Drawing.Point(547, 95);
+            this.lblName.Location = new System.Drawing.Point(386, 91);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(80, 33);
@@ -192,7 +169,7 @@ namespace ExpenseTrackerWin
             // 
             this.lblAmount.AutoSize = true;
             this.lblAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblAmount.Location = new System.Drawing.Point(779, 95);
+            this.lblAmount.Location = new System.Drawing.Point(618, 91);
             this.lblAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(104, 33);
@@ -203,14 +180,59 @@ namespace ExpenseTrackerWin
             // 
             this.cmbNames.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbNames.FormattingEnabled = true;
-            this.cmbNames.Location = new System.Drawing.Point(632, 92);
+            this.cmbNames.Location = new System.Drawing.Point(471, 88);
             this.cmbNames.Name = "cmbNames";
             this.cmbNames.Size = new System.Drawing.Size(142, 41);
             this.cmbNames.TabIndex = 21;
             // 
             // userBindingSource
             // 
-            this.userBindingSource.DataSource = typeof(User);
+            this.userBindingSource.DataSource = typeof(ExpenseTracker.Models.User);
+            // 
+            // cmbBank
+            // 
+            this.cmbBank.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(978, 88);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(142, 41);
+            this.cmbBank.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(893, 91);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 33);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Bank";
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            // 
+            // BankName
+            // 
+            this.BankName.DataPropertyName = "BankName";
+            this.BankName.HeaderText = "BankName";
+            this.BankName.Name = "BankName";
             // 
             // AddIncome
             // 
@@ -218,6 +240,8 @@ namespace ExpenseTrackerWin
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1196, 614);
+            this.Controls.Add(this.cmbBank);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbNames);
             this.Controls.Add(this.lblAmount);
             this.Controls.Add(this.lblName);
@@ -251,14 +275,17 @@ namespace ExpenseTrackerWin
         private DataGridView dgvIncome;
         private BindingSource incomeSourceBindingSource;
         private Button btnDelete;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private TextBox txtAmount;
         private Label lblName;
         private Label lblAmount;
         private ComboBox cmbNames;
         private BindingSource userBindingSource;
+        private ComboBox cmbBank;
+        private Label label1;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn BankName;
     }
 }

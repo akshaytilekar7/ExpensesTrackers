@@ -1,4 +1,5 @@
 ﻿using ExpenseTracker.Models;
+using ExpenseTracker.Models.Dto;
 using ExpenseTracker.Services.Factory;
 
 namespace ExpenseTrackerWin
@@ -20,13 +21,26 @@ namespace ExpenseTrackerWin
 
         private void LoadGrid()
         {
-            var lst = _serviceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList();
-            dgvIncome.DataSource = lst;
+            var lstIncome = _serviceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList().Select(x => new DtoIncome()
+            {
+                Amount = x.Amount,
+                BankName = x.Bank.Name,
+                Date = x.Date,
+                Id = x.Id,
+                UserName = x.User.Name
+            }).ToList();
 
-            var users = _serviceFactory.UserService.GetAll();
-            cmbNames.DataSource = users;
+            dgvIncome.DataSource = lstIncome;
+
+            var lstUsers = _serviceFactory.UserService.GetAll();
+            cmbNames.DataSource = lstUsers;
             cmbNames.DisplayMember = "Name";
             cmbNames.ValueMember = "Id";
+
+            var lstBanks = _serviceFactory.BankService.GetAll();
+            cmbBank.DataSource = lstBanks;
+            cmbBank.DisplayMember = "Name";
+            cmbBank.ValueMember = "Id";
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -34,6 +48,7 @@ namespace ExpenseTrackerWin
             income.Date = Convert.ToDateTime(datePicker.Text);
             income.Amount = Convert.ToInt32(txtAmount.Text);
             income.UserId = Convert.ToInt32(cmbNames.SelectedValue);
+            income.BankId = Convert.ToInt32(cmbBank.SelectedValue);
             _serviceFactory.IncomeService.Add(income);
             string message = "Save Data Sucessfully";
             MessageBox.Show(message);

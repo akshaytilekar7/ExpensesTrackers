@@ -107,24 +107,29 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var data = _serviceFactory.MasterTableService.GetAllCategoryType();
-                data.Insert(0, new CategoryType() { Id = 0, Name = "Please select" });
+                var lstCategoryType = _serviceFactory.MasterTableService.GetAllCategoryType().ToList();
+                lstCategoryType.Insert(0, new CategoryType() { Id = 0, Name = "Please select" });
                 cmbCategory.DisplayMember = "Name";
                 cmbCategory.ValueMember = "Id";
-                cmbCategory.DataSource = data;
+                cmbCategory.DataSource = lstCategoryType;
 
-                var dataExpenseTypes = _serviceFactory.MasterTableService.GetAllExpenseType();
-                // TODO 2
-                dataExpenseTypes.Insert(0, new ExpenseType() { Id = 0, Name = "Please select" });
+                var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllExpenseType().ToList();
+                lstExpenseTypes.Insert(0, new ExpenseType() { Id = 0, Name = "Please select" });
                 cmbExpensesType.DisplayMember = "Name";
                 cmbExpensesType.ValueMember = "Id";
-                cmbExpensesType.DataSource = dataExpenseTypes;
+                cmbExpensesType.DataSource = lstExpenseTypes;
 
-                var users = _serviceFactory.UserService.GetAll();
-                users.Insert(0, new User() { Id = 0, Name = "Please select" });
-                cmbUsers.DataSource = users;
+                var lstUsers = _serviceFactory.UserService.GetAll().ToList();
+                lstUsers.Insert(0, new User() { Id = 0, Name = "Please select" });
+                cmbUsers.DataSource = lstUsers;
                 cmbUsers.DisplayMember = "Name";
                 cmbUsers.ValueMember = "Id";
+
+                var lstBanks = _serviceFactory.BankService.GetAll().ToList();
+                lstBanks.Insert(0, new Bank() { Id = 0, Name = "Please select" });
+                cmbBank.DataSource = lstBanks;
+                cmbBank.DisplayMember = "Name";
+                cmbBank.ValueMember = "Id";
             }
             catch (Exception ex)
             {
@@ -224,6 +229,7 @@ namespace ExpenseTrackerWin
                 CategoryId = Convert.ToInt32(cmbCategory.SelectedValue),
                 ExpenseTypeId = Convert.ToInt32(cmbExpensesType.SelectedValue),
                 UserId = Convert.ToInt32(cmbUsers.SelectedValue),
+                BankId = Convert.ToInt32(cmbBank.SelectedValue),
             };
             return filter;
         }

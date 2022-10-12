@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Date = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.dgvExpenses = new System.Windows.Forms.DataGridView();
@@ -58,6 +58,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmbNames = new System.Windows.Forms.ComboBox();
             this.lblName = new System.Windows.Forms.Label();
+            this.cmbBank = new System.Windows.Forms.ComboBox();
+            this.lblBank = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOldData)).BeginInit();
             this.SuspendLayout();
@@ -86,10 +88,10 @@
             // dgvExpenses
             // 
             this.dgvExpenses.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvExpenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvExpenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvExpenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -98,14 +100,14 @@
             this.Category,
             this.Amount,
             this.Comment});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle20;
             this.dgvExpenses.Location = new System.Drawing.Point(34, 116);
             this.dgvExpenses.Name = "dgvExpenses";
             this.dgvExpenses.RowHeadersWidth = 62;
@@ -117,8 +119,8 @@
             // Day
             // 
             this.Day.DataPropertyName = "Day";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Day.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Day.DefaultCellStyle = dataGridViewCellStyle17;
             this.Day.HeaderText = "Day";
             this.Day.MinimumWidth = 8;
             this.Day.Name = "Day";
@@ -128,8 +130,8 @@
             // 
             this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Category.DataPropertyName = "Category";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Category.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Category.DefaultCellStyle = dataGridViewCellStyle18;
             this.Category.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.Category.HeaderText = "Category";
             this.Category.MaxDropDownItems = 5;
@@ -142,8 +144,8 @@
             // Amount
             // 
             this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle19;
             this.Amount.HeaderText = "Amount";
             this.Amount.MinimumWidth = 8;
             this.Amount.Name = "Amount";
@@ -215,12 +217,12 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(809, 52);
+            this.btnDelete.Location = new System.Drawing.Point(877, 49);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(204, 40);
+            this.btnDelete.Size = new System.Drawing.Size(136, 40);
             this.btnDelete.TabIndex = 9;
-            this.btnDelete.Text = "Delete Selected";
+            this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -326,6 +328,7 @@
             this.cmbNames.Name = "cmbNames";
             this.cmbNames.Size = new System.Drawing.Size(142, 41);
             this.cmbNames.TabIndex = 31;
+            this.cmbNames.SelectedIndexChanged += new System.EventHandler(this.cmbNames_SelectedIndexChanged);
             // 
             // lblName
             // 
@@ -338,12 +341,34 @@
             this.lblName.TabIndex = 29;
             this.lblName.Text = "Name";
             // 
+            // cmbBank
+            // 
+            this.cmbBank.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(726, 49);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(142, 41);
+            this.cmbBank.TabIndex = 33;
+            // 
+            // lblBank
+            // 
+            this.lblBank.AutoSize = true;
+            this.lblBank.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblBank.Location = new System.Drawing.Point(641, 52);
+            this.lblBank.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblBank.Name = "lblBank";
+            this.lblBank.Size = new System.Drawing.Size(69, 33);
+            this.lblBank.TabIndex = 32;
+            this.lblBank.Text = "Bank";
+            // 
             // AddExpense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1595, 957);
+            this.Controls.Add(this.cmbBank);
+            this.Controls.Add(this.lblBank);
             this.Controls.Add(this.cmbNames);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.label2);
@@ -404,5 +429,7 @@
         private DataGridViewTextBoxColumn Comment;
         private ComboBox cmbNames;
         private Label lblName;
+        private ComboBox cmbBank;
+        private Label lblBank;
     }
 }

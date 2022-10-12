@@ -10,6 +10,7 @@ namespace ExpenseTracker.Models.Dto
         public int ExpenseTypeId { get; set; }
         public string Comment { get; set; }
         public int UserId { get; set; }
+        public int BankId { get; set; }
 
     }
 }

@@ -52,6 +52,16 @@ namespace ExpenseTrackerWin
             this.button1 = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
+            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
+            this.dgvIncome = new System.Windows.Forms.DataGridView();
+            this.lblExpenseOverview = new System.Windows.Forms.Label();
+            this.lblIncome = new System.Windows.Forms.Label();
+            this.cmbUsers = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbBank = new System.Windows.Forms.ComboBox();
+            this.lblBank = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,13 +70,7 @@ namespace ExpenseTrackerWin
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
-            this.dgvIncome = new System.Windows.Forms.DataGridView();
-            this.lblExpenseOverview = new System.Windows.Forms.Label();
-            this.lblIncome = new System.Windows.Forms.Label();
-            this.cmbUsers = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
@@ -196,7 +200,7 @@ namespace ExpenseTrackerWin
             // 
             // expenseBindingSource
             // 
-            this.expenseBindingSource.DataSource = typeof(Expense);
+            this.expenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Expense);
             // 
             // lblError
             // 
@@ -264,7 +268,8 @@ namespace ExpenseTrackerWin
             this.ExpenseType,
             this.Amount,
             this.Comment,
-            this.User});
+            this.User,
+            this.BankName});
             this.dgvFilter.DataSource = this.dtoExpenseBindingSource;
             this.dgvFilter.Location = new System.Drawing.Point(31, 264);
             this.dgvFilter.Name = "dgvFilter";
@@ -273,6 +278,92 @@ namespace ExpenseTrackerWin
             this.dgvFilter.Size = new System.Drawing.Size(824, 567);
             this.dgvFilter.TabIndex = 26;
             this.dgvFilter.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellContentClick);
+            // 
+            // dtoExpenseBindingSource
+            // 
+            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
+            // 
+            // dgvExpenseOverview
+            // 
+            this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(873, 261);
+            this.dgvExpenseOverview.Name = "dgvExpenseOverview";
+            this.dgvExpenseOverview.RowHeadersWidth = 62;
+            this.dgvExpenseOverview.Size = new System.Drawing.Size(370, 266);
+            this.dgvExpenseOverview.TabIndex = 27;
+            // 
+            // dgvIncome
+            // 
+            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIncome.Location = new System.Drawing.Point(873, 553);
+            this.dgvIncome.Name = "dgvIncome";
+            this.dgvIncome.RowHeadersWidth = 62;
+            this.dgvIncome.Size = new System.Drawing.Size(370, 266);
+            this.dgvIncome.TabIndex = 28;
+            // 
+            // lblExpenseOverview
+            // 
+            this.lblExpenseOverview.AutoSize = true;
+            this.lblExpenseOverview.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblExpenseOverview.Location = new System.Drawing.Point(873, 235);
+            this.lblExpenseOverview.Name = "lblExpenseOverview";
+            this.lblExpenseOverview.Size = new System.Drawing.Size(151, 23);
+            this.lblExpenseOverview.TabIndex = 29;
+            this.lblExpenseOverview.Text = "Expense Overview";
+            // 
+            // lblIncome
+            // 
+            this.lblIncome.AutoSize = true;
+            this.lblIncome.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblIncome.Location = new System.Drawing.Point(873, 527);
+            this.lblIncome.Name = "lblIncome";
+            this.lblIncome.Size = new System.Drawing.Size(68, 23);
+            this.lblIncome.TabIndex = 30;
+            this.lblIncome.Text = "Income";
+            // 
+            // cmbUsers
+            // 
+            this.cmbUsers.FormattingEnabled = true;
+            this.cmbUsers.Location = new System.Drawing.Point(641, 82);
+            this.cmbUsers.Name = "cmbUsers";
+            this.cmbUsers.Size = new System.Drawing.Size(121, 23);
+            this.cmbUsers.TabIndex = 32;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(586, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 15);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "User";
+            // 
+            // cmbBank
+            // 
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(641, 133);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(121, 23);
+            this.cmbBank.TabIndex = 35;
+            // 
+            // lblBank
+            // 
+            this.lblBank.AutoSize = true;
+            this.lblBank.Location = new System.Drawing.Point(586, 139);
+            this.lblBank.Name = "lblBank";
+            this.lblBank.Size = new System.Drawing.Size(33, 15);
+            this.lblBank.TabIndex = 34;
+            this.lblBank.Text = "Bank";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(718, 148);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(6, 5);
+            this.button2.TabIndex = 33;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Id
             // 
@@ -336,64 +427,11 @@ namespace ExpenseTrackerWin
             this.User.HeaderText = "User";
             this.User.Name = "User";
             // 
-            // dtoExpenseBindingSource
+            // BankName
             // 
-            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
-            // 
-            // dgvExpenseOverview
-            // 
-            this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvExpenseOverview.Location = new System.Drawing.Point(873, 261);
-            this.dgvExpenseOverview.Name = "dgvExpenseOverview";
-            this.dgvExpenseOverview.RowHeadersWidth = 62;
-            this.dgvExpenseOverview.Size = new System.Drawing.Size(370, 266);
-            this.dgvExpenseOverview.TabIndex = 27;
-            // 
-            // dgvIncome
-            // 
-            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIncome.Location = new System.Drawing.Point(873, 553);
-            this.dgvIncome.Name = "dgvIncome";
-            this.dgvIncome.RowHeadersWidth = 62;
-            this.dgvIncome.Size = new System.Drawing.Size(370, 266);
-            this.dgvIncome.TabIndex = 28;
-            // 
-            // lblExpenseOverview
-            // 
-            this.lblExpenseOverview.AutoSize = true;
-            this.lblExpenseOverview.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblExpenseOverview.Location = new System.Drawing.Point(873, 235);
-            this.lblExpenseOverview.Name = "lblExpenseOverview";
-            this.lblExpenseOverview.Size = new System.Drawing.Size(151, 23);
-            this.lblExpenseOverview.TabIndex = 29;
-            this.lblExpenseOverview.Text = "Expense Overview";
-            // 
-            // lblIncome
-            // 
-            this.lblIncome.AutoSize = true;
-            this.lblIncome.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(873, 527);
-            this.lblIncome.Name = "lblIncome";
-            this.lblIncome.Size = new System.Drawing.Size(68, 23);
-            this.lblIncome.TabIndex = 30;
-            this.lblIncome.Text = "Income";
-            // 
-            // cmbUsers
-            // 
-            this.cmbUsers.FormattingEnabled = true;
-            this.cmbUsers.Location = new System.Drawing.Point(685, 82);
-            this.cmbUsers.Name = "cmbUsers";
-            this.cmbUsers.Size = new System.Drawing.Size(121, 23);
-            this.cmbUsers.TabIndex = 32;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(586, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 15);
-            this.label2.TabIndex = 31;
-            this.label2.Text = "Expenses Type";
+            this.BankName.DataPropertyName = "BankName";
+            this.BankName.HeaderText = "BankName";
+            this.BankName.Name = "BankName";
             // 
             // ViewExpense
             // 
@@ -402,6 +440,9 @@ namespace ExpenseTrackerWin
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1272, 709);
+            this.Controls.Add(this.cmbBank);
+            this.Controls.Add(this.lblBank);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.cmbUsers);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblIncome);
@@ -471,6 +512,11 @@ namespace ExpenseTrackerWin
         private DataGridView dgvIncome;
         private Label lblExpenseOverview;
         private Label lblIncome;
+        private ComboBox cmbUsers;
+        private Label label2;
+        private ComboBox cmbBank;
+        private Label lblBank;
+        private Button button2;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn SrNo;
         private DataGridViewTextBoxColumn Date;
@@ -479,7 +525,6 @@ namespace ExpenseTrackerWin
         private DataGridViewTextBoxColumn Amount;
         private DataGridViewTextBoxColumn Comment;
         private DataGridViewTextBoxColumn User;
-        private ComboBox cmbUsers;
-        private Label label2;
+        private DataGridViewTextBoxColumn BankName;
     }
 }

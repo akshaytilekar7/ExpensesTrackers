@@ -11,6 +11,7 @@ namespace ExpenseTracker.Services.Factory
         IYearlyService YearlyService { get; }
         IMasterTableService MasterTableService { get; }
         IUserService UserService { get; }
+        IBankService BankService { get; }
 
     }
 }

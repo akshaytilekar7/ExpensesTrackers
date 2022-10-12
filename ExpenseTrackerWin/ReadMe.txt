@@ -7,6 +7,8 @@ run
 	Add-Migration InitialData
 	Update-Database
 
+	Manually add data to User and Bank tables
+
 
 in case of error "1L" 
 soln -  In EF Core 6, there are overloads for both Int32 and Int64 parameters of the UseIdentityColumns method.

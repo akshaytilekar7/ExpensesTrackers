@@ -75,6 +75,8 @@ namespace ExpenseTracker.Services
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
             includers.Add(x => x.CategoryType);
             includers.Add(x => x.CategoryType.ExpenseType);
+            includers.Add(x => x.Bank);
+            includers.Add(x => x.User);
             IEnumerable<Expense> lstExpenses = await expenseRepository.GetAllAsync(includers);
 
             if (filter.StartDate != DateTime.MinValue && filter.EndDate != DateTime.MinValue)
@@ -95,10 +97,13 @@ namespace ExpenseTracker.Services
             if (filter.UserId > 0)
                 lstExpenses = lstExpenses.Where(x => x.UserId == filter.UserId);
 
+            if (filter.BankId > 0)
+                lstExpenses = lstExpenses.Where(x => x.BankId == filter.BankId);
+
             lstExpenses = lstExpenses.OrderBy(x => x.Date);
 
             var userRepository = _unitOfWork.GetRepository<User>();
-            var users = userRepository.GetAll();    
+            var users = userRepository.GetAll();
             var lstDtoExpense = lstExpenses.Select(s => new DtoExpense()
             {
                 Id = s.Id,
@@ -107,7 +112,8 @@ namespace ExpenseTracker.Services
                 Amount = s.Amount,
                 ExpenseType = s.CategoryType.ExpenseType.Name, 
                 Comment = s.Comment,
-                User = users.FirstOrDefault(x => x.Id == s.UserId).Name
+                User = s.User.Name,
+                BankName =  s.Bank.Name
             });
 
             return lstDtoExpense.ToList();

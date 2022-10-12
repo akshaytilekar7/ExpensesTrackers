@@ -71,15 +71,20 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var Categories = _serviceFactory.CategoryServices.GetAll();
+                var Categories = _serviceFactory.CategoryServices.GetAll().ToList();
                 Category.DisplayMember = "Name";
                 Category.ValueMember = "Id";
                 Category.DataSource = Categories;
 
-                List<User> users = _serviceFactory.UserService.GetAll();
-                cmbNames.DataSource = users;
+                var lstUsers = _serviceFactory.UserService.GetAll().ToList();
+                cmbNames.DataSource = lstUsers;
                 cmbNames.DisplayMember = "Name";
                 cmbNames.ValueMember = "Id";
+
+                var lstBanks = _serviceFactory.BankService.GetAll().ToList();
+                cmbBank.DataSource = lstBanks;
+                cmbBank.DisplayMember = "Name";
+                cmbBank.ValueMember = "Id";
             }
             catch (Exception ex)
             {
@@ -107,6 +112,7 @@ namespace ExpenseTrackerWin
                     expense.Date = new DateTime(date.Year, date.Month, day);
                     expense.Amount = Convert.ToInt32(row.Cells[2].Value);
                     expense.Comment = Convert.ToString(row.Cells[3].Value);
+                    expense.BankId = Convert.ToInt32(cmbBank.SelectedValue);
                     expense.UserId = user;
                     listExpense.Add(expense);
                 }
@@ -309,6 +315,11 @@ namespace ExpenseTrackerWin
         {
             listOldData = new List<DtoExpense>();
             dgvOldData.DataSource = null;
+        }
+
+        private void cmbNames_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

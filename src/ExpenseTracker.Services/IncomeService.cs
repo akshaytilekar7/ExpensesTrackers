@@ -4,6 +4,7 @@ using ExpenseTracker.Core.Uow;
 using System.Linq;
 using ExpenseTracker.Services.Base.Contracts;
 using ExpenseTracker.Models;
+using System.Linq.Expressions;
 
 namespace ExpenseTracker.Services
 {
@@ -48,12 +49,11 @@ namespace ExpenseTracker.Services
 
         public IList<IncomeSource> GetAll()
         {
-            var movieRepository = _unitOfWork.GetRepository<IncomeSource>();
-            var users = _unitOfWork.GetRepository<User>().GetAll().ToList();
-
-            var result = movieRepository.GetAll().OrderBy(x => x.Date).ToList();
-            result.ForEach(i => i.UserId = users.FirstOrDefault(x => x.Id == i.UserId).Id);
-            return result;
+            List<Expression<Func<IncomeSource, object>>> includers = new List<Expression<Func<IncomeSource, object>>>();
+            includers.Add(x => x.User);
+            includers.Add(x => x.Bank);
+            var lstUsers = _unitOfWork.GetRepository<IncomeSource>().GetAll(includers).ToList();
+            return lstUsers;
         }
     }
 }

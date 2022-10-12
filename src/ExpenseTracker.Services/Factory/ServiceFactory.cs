@@ -66,5 +66,13 @@ namespace ExpenseTracker.Services.Factory
                 return new UserService(_unitOfWork);
             }
         }
+
+        public IBankService BankService
+        {
+            get
+            {
+                return new BankService(_unitOfWork);
+            }
+        }
     }
 }
