@@ -46,7 +46,9 @@ namespace ExpenseTracker.Services
             foreach (var itemCategory in lstCategory)
             {
                 DtoYealry dtoYealry = new DtoYealry();
-                dtoYealry.Category = itemCategory.Name + " (" + itemCategory.ExpenseType.Name + ")";
+                dtoYealry.Category = itemCategory.Name;
+                dtoYealry.ExpenseType = itemCategory.ExpenseType.Name;
+
                 var lstExpensesByCategory = lstExpenses.Where(e => e.CategoryType.Name == itemCategory.Name);
 
                 var expensesByMonth = GetExpensesByMonth(lstExpensesByCategory, 1).ToList();

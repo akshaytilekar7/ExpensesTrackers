@@ -5,6 +5,9 @@ namespace ExpenseTracker.Models.Dto
     public class DtoYealry
     {
         public string Category { get; set; }
+
+        public string ExpenseType { get; set; }
+
         public int Jan { get; set; }
 
         public IEnumerable<Expense> JanLst  = null;
