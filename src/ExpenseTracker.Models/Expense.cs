@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ExpenseTracker.Models.Common;
+using System;
 
 namespace ExpenseTracker.Models
 {
-    public class Expense
+    public class Expense : BaseEnitity
     {
-        public int Id { get; set; }
         public DateTime Date { get; set; }
         public int Amount { get; set; }
         public string Comment { get; set; }

@@ -1,5 +1,6 @@
 ﻿using ExpenseTracker.Models;
 using ExpenseTracker.Services.Factory;
+using ExpenseTrackerWin.Utility;
 
 namespace ExpenseTrackerWin
 {
@@ -21,7 +22,7 @@ namespace ExpenseTrackerWin
         private void LoadGrid()
         {
             var lstIncome = _serviceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList();
-            dgvIncome.DataSource = lstIncome;
+            dgvIncome.DataSource = lstIncome.MakeSortable();
 
             var lstUsers = _serviceFactory.UserService.GetAll();
             cmbNames.DataSource = lstUsers;
@@ -40,6 +41,7 @@ namespace ExpenseTrackerWin
             income.Amount = Convert.ToInt32(txtAmount.Text);
             income.UserId = Convert.ToInt32(cmbNames.SelectedValue);
             income.BankId = Convert.ToInt32(cmbBank.SelectedValue);
+            income.Comment = Convert.ToString(txtComment.Text);
             _serviceFactory.IncomeService.Add(income);
             string message = "Save Data Sucessfully";
             MessageBox.Show(message);

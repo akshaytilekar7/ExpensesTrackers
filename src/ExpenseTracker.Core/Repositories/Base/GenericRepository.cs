@@ -82,7 +82,7 @@ namespace ExpenseTracker.Core.Repositories.Base
                 query = query.Include(include);
             }
 
-            return query;
+            return query.AsNoTracking();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync<TParamater>(IList<Expression<Func<T, TParamater>>> includeProperties)
@@ -93,7 +93,7 @@ namespace ExpenseTracker.Core.Repositories.Base
                 query = query.Include(include);
             }
 
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public IQueryable<T> RawSql(string query, params object[] parameters)

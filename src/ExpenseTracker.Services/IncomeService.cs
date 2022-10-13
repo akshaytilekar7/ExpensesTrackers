@@ -60,7 +60,8 @@ namespace ExpenseTracker.Services
                 BankName = x.Bank.Name,
                 Date = x.Date,
                 Id = x.Id,
-                UserName = x.User.Name
+                UserName = x.User.Name,
+                Comment = x.Comment
             }).ToList();
         }
 

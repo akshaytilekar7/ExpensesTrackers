@@ -32,7 +32,7 @@ namespace ExpenseTrackerWin
                 services.AddDbContexts(Configuration);
                 services.AddInjections();
                 services.AddIdentity();
-                services.AddTransient<HomePage>();
+                services.AddScoped<HomePage>();
                 });
         }
 

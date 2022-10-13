@@ -1,8 +1,9 @@
-﻿namespace ExpenseTracker.Models
+﻿using ExpenseTracker.Models.Common;
+
+namespace ExpenseTracker.Models
 {
-    public class CategoryType
+    public class CategoryType : BaseEnitity
     {
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

@@ -38,10 +38,6 @@ namespace ExpenseTrackerWin
             this.btnSave = new System.Windows.Forms.Button();
             this.btnHomePage = new System.Windows.Forms.Button();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.incomeSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtAmount = new System.Windows.Forms.TextBox();
@@ -51,6 +47,13 @@ namespace ExpenseTrackerWin
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblComment = new System.Windows.Forms.Label();
+            this.txtComment = new System.Windows.Forms.TextBox();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomeSourceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -70,7 +73,7 @@ namespace ExpenseTrackerWin
             // datePicker
             // 
             this.datePicker.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.datePicker.Location = new System.Drawing.Point(89, 86);
+            this.datePicker.Location = new System.Drawing.Point(84, 4);
             this.datePicker.Margin = new System.Windows.Forms.Padding(2);
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(281, 40);
@@ -80,7 +83,7 @@ namespace ExpenseTrackerWin
             // 
             this.Date.AutoSize = true;
             this.Date.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Date.Location = new System.Drawing.Point(18, 86);
+            this.Date.Location = new System.Drawing.Point(13, 4);
             this.Date.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Date.Name = "Date";
             this.Date.Size = new System.Drawing.Size(67, 33);
@@ -90,7 +93,7 @@ namespace ExpenseTrackerWin
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(350, 481);
+            this.btnSave.Location = new System.Drawing.Point(391, 464);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 52);
             this.btnSave.TabIndex = 13;
@@ -101,7 +104,7 @@ namespace ExpenseTrackerWin
             // btnHomePage
             // 
             this.btnHomePage.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnHomePage.Location = new System.Drawing.Point(654, 481);
+            this.btnHomePage.Location = new System.Drawing.Point(695, 464);
             this.btnHomePage.Name = "btnHomePage";
             this.btnHomePage.Size = new System.Drawing.Size(149, 52);
             this.btnHomePage.TabIndex = 14;
@@ -123,13 +126,112 @@ namespace ExpenseTrackerWin
             this.idDataGridViewTextBoxColumn,
             this.dateDataGridViewTextBoxColumn,
             this.amountDataGridViewTextBoxColumn,
-            this.BankName});
+            this.BankName,
+            this.Comment});
             this.dgvIncome.DataSource = this.incomeSourceBindingSource;
-            this.dgvIncome.Location = new System.Drawing.Point(351, 157);
+            this.dgvIncome.Location = new System.Drawing.Point(282, 140);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.RowTemplate.Height = 25;
-            this.dgvIncome.Size = new System.Drawing.Size(452, 304);
+            this.dgvIncome.Size = new System.Drawing.Size(625, 304);
             this.dgvIncome.TabIndex = 15;
+            // 
+            // incomeSourceBindingSource
+            // 
+            this.incomeSourceBindingSource.DataSource = typeof(ExpenseTracker.Models.IncomeSource);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDelete.Location = new System.Drawing.Point(486, 464);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(204, 52);
+            this.btnDelete.TabIndex = 16;
+            this.btnDelete.Text = "Delete Selected";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtAmount.Location = new System.Drawing.Point(484, 73);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(145, 40);
+            this.txtAmount.TabIndex = 18;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblName.Location = new System.Drawing.Point(383, 10);
+            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(80, 33);
+            this.lblName.TabIndex = 19;
+            this.lblName.Text = "Name";
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblAmount.Location = new System.Drawing.Point(375, 75);
+            this.lblAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(104, 33);
+            this.lblAmount.TabIndex = 20;
+            this.lblAmount.Text = "Amount";
+            // 
+            // cmbNames
+            // 
+            this.cmbNames.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbNames.FormattingEnabled = true;
+            this.cmbNames.Location = new System.Drawing.Point(468, 7);
+            this.cmbNames.Name = "cmbNames";
+            this.cmbNames.Size = new System.Drawing.Size(142, 41);
+            this.cmbNames.TabIndex = 21;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(ExpenseTracker.Models.User);
+            // 
+            // cmbBank
+            // 
+            this.cmbBank.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(762, 4);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(142, 41);
+            this.cmbBank.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(677, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 33);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Bank";
+            // 
+            // lblComment
+            // 
+            this.lblComment.AutoSize = true;
+            this.lblComment.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblComment.Location = new System.Drawing.Point(626, 76);
+            this.lblComment.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblComment.Name = "lblComment";
+            this.lblComment.Size = new System.Drawing.Size(123, 33);
+            this.lblComment.TabIndex = 25;
+            this.lblComment.Text = "Comment";
+            // 
+            // txtComment
+            // 
+            this.txtComment.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtComment.Location = new System.Drawing.Point(762, 76);
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(145, 40);
+            this.txtComment.TabIndex = 24;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -156,84 +258,11 @@ namespace ExpenseTrackerWin
             this.BankName.HeaderText = "BankName";
             this.BankName.Name = "BankName";
             // 
-            // incomeSourceBindingSource
+            // Comment
             // 
-            this.incomeSourceBindingSource.DataSource = typeof(ExpenseTracker.Models.IncomeSource);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(445, 481);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(204, 52);
-            this.btnDelete.TabIndex = 16;
-            this.btnDelete.Text = "Delete Selected";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtAmount.Location = new System.Drawing.Point(727, 89);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(145, 40);
-            this.txtAmount.TabIndex = 18;
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblName.Location = new System.Drawing.Point(386, 91);
-            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(80, 33);
-            this.lblName.TabIndex = 19;
-            this.lblName.Text = "Name";
-            // 
-            // lblAmount
-            // 
-            this.lblAmount.AutoSize = true;
-            this.lblAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblAmount.Location = new System.Drawing.Point(618, 91);
-            this.lblAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(104, 33);
-            this.lblAmount.TabIndex = 20;
-            this.lblAmount.Text = "Amount";
-            // 
-            // cmbNames
-            // 
-            this.cmbNames.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cmbNames.FormattingEnabled = true;
-            this.cmbNames.Location = new System.Drawing.Point(471, 88);
-            this.cmbNames.Name = "cmbNames";
-            this.cmbNames.Size = new System.Drawing.Size(142, 41);
-            this.cmbNames.TabIndex = 21;
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(ExpenseTracker.Models.User);
-            // 
-            // cmbBank
-            // 
-            this.cmbBank.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(978, 88);
-            this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(142, 41);
-            this.cmbBank.TabIndex = 23;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(893, 91);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 33);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Bank";
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.Name = "Comment";
             // 
             // AddIncome
             // 
@@ -241,6 +270,8 @@ namespace ExpenseTrackerWin
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1196, 614);
+            this.Controls.Add(this.lblComment);
+            this.Controls.Add(this.txtComment);
             this.Controls.Add(this.cmbBank);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbNames);
@@ -284,9 +315,12 @@ namespace ExpenseTrackerWin
         private BindingSource userBindingSource;
         private ComboBox cmbBank;
         private Label label1;
+        private Label lblComment;
+        private TextBox txtComment;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn BankName;
+        private DataGridViewTextBoxColumn Comment;
     }
 }
