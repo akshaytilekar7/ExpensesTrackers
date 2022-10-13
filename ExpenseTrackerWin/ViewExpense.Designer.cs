@@ -276,7 +276,7 @@ namespace ExpenseTrackerWin
             this.dgvFilter.DataSource = this.dtoExpenseBindingSource;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.NullValue = null;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -287,7 +287,7 @@ namespace ExpenseTrackerWin
             this.dgvFilter.Name = "dgvFilter";
             this.dgvFilter.RowHeadersWidth = 62;
             this.dgvFilter.RowTemplate.Height = 25;
-            this.dgvFilter.Size = new System.Drawing.Size(824, 567);
+            this.dgvFilter.Size = new System.Drawing.Size(926, 567);
             this.dgvFilter.TabIndex = 26;
             this.dgvFilter.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellContentClick);
             // 
@@ -372,14 +372,14 @@ namespace ExpenseTrackerWin
             this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.NullValue = null;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvExpenseOverview.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvExpenseOverview.Location = new System.Drawing.Point(873, 261);
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(963, 273);
             this.dgvExpenseOverview.Name = "dgvExpenseOverview";
             this.dgvExpenseOverview.RowHeadersWidth = 62;
             this.dgvExpenseOverview.Size = new System.Drawing.Size(370, 266);
@@ -390,14 +390,14 @@ namespace ExpenseTrackerWin
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.NullValue = null;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvIncome.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvIncome.Location = new System.Drawing.Point(873, 553);
+            this.dgvIncome.Location = new System.Drawing.Point(963, 565);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.RowHeadersWidth = 62;
             this.dgvIncome.Size = new System.Drawing.Size(370, 266);
@@ -407,7 +407,7 @@ namespace ExpenseTrackerWin
             // 
             this.lblExpenseOverview.AutoSize = true;
             this.lblExpenseOverview.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblExpenseOverview.Location = new System.Drawing.Point(873, 235);
+            this.lblExpenseOverview.Location = new System.Drawing.Point(963, 247);
             this.lblExpenseOverview.Name = "lblExpenseOverview";
             this.lblExpenseOverview.Size = new System.Drawing.Size(151, 23);
             this.lblExpenseOverview.TabIndex = 29;
@@ -417,7 +417,7 @@ namespace ExpenseTrackerWin
             // 
             this.lblIncome.AutoSize = true;
             this.lblIncome.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(873, 527);
+            this.lblIncome.Location = new System.Drawing.Point(963, 539);
             this.lblIncome.Name = "lblIncome";
             this.lblIncome.Size = new System.Drawing.Size(68, 23);
             this.lblIncome.TabIndex = 30;
@@ -473,7 +473,7 @@ namespace ExpenseTrackerWin
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1272, 630);
+            this.ClientSize = new System.Drawing.Size(1345, 887);
             this.Controls.Add(this.cmbBank);
             this.Controls.Add(this.lblBank);
             this.Controls.Add(this.button2);
