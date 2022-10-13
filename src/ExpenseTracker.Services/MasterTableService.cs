@@ -18,13 +18,13 @@ namespace ExpenseTracker.Services
         public List<CategoryType> GetAllCategoryType()
         {
             var repository = _unitOfWork.GetRepository<CategoryType>();
-            return repository.GetAll("ExpenseType").ToList();
+            return repository.GetAll("ExpenseType").OrderBy(x => x.Name).ToList();
         }
 
         public List<ExpenseType> GetAllExpenseType()
         {
             var repository = _unitOfWork.GetRepository<ExpenseType>();
-            return repository.GetAll().ToList();
+            return repository.GetAll().OrderBy(x => x.Name).ToList();
         }
 
         public void SaveExpenseType(List<ExpenseType> ExpenseTypes)
