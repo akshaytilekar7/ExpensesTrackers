@@ -147,8 +147,11 @@ namespace ExpenseTrackerWin
             if (rowIndex < 0 || columnIndex < 0)
                 return;
 
-            DataGridView grid = (DataGridView)sender;
-            var dtoYealry = (DtoYealry)grid.Rows[rowIndex].DataBoundItem;
+            var dtoYealry = (DtoYealry)dgvYealy.Rows[rowIndex].DataBoundItem;
+
+            dgvYealy.Rows[0].Cells[columnIndex].Style.BackColor = Color.CadetBlue;
+            dgvYealy.Rows[rowIndex].Cells[0].Style.BackColor = Color.CadetBlue;
+
             var lstDetails = GetDetails(columnIndex, dtoYealry);
             dgvTooltip.SetGridToFit();
             dgvTooltip.DataSource = lstDetails.MakeSortable();
@@ -186,6 +189,14 @@ namespace ExpenseTrackerWin
             GridExcel.ExportToExcel(excelDtos, projectDirectory);
 
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
+        }
+
+        private void dgvYealy_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvYealy.Rows[0].Cells[e.ColumnIndex].Style.BackColor = dgvYealy.DefaultCellStyle.BackColor;
+            dgvYealy.Rows[e.RowIndex].Cells[0].Style.BackColor = dgvYealy.DefaultCellStyle.BackColor;
+
+
         }
     }
 }

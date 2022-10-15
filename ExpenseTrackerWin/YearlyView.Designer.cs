@@ -122,6 +122,7 @@
             this.dgvYealy.Size = new System.Drawing.Size(1371, 932);
             this.dgvYealy.TabIndex = 1;
             this.dgvYealy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvYealy.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvYealy_CellLeave);
             this.dgvYealy.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvYealy_CellMouseMove);
             // 
             // Category
