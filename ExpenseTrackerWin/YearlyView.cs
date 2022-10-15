@@ -70,7 +70,7 @@ namespace ExpenseTrackerWin
             IEnumerable<Expense> expenses = new List<Expense>();
             List<DtoDetails> lstDtoTooltip = new List<DtoDetails>();
 
-            switch (columnIndex)
+            switch (columnIndex - 1)
             {
                 case 1:
                     expenses = dtoYealry.JanLst;
