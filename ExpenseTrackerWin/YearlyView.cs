@@ -21,6 +21,7 @@ namespace ExpenseTrackerWin
 
         private async void YearlyView_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             datePickerYearly.Format = DateTimePickerFormat.Custom;
             datePickerYearly.CustomFormat = "yyyy";
             datePickerYearly.ShowUpDown = true;

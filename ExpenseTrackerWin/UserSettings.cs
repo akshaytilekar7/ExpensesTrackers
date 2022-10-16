@@ -80,7 +80,7 @@ namespace ExpenseTrackerWin
 
         private void UserSettings_Load(object sender, EventArgs e)
         {
-
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void LoadExpenseGrid()

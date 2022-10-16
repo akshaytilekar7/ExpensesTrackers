@@ -17,6 +17,7 @@ namespace ExpenseTrackerWin
         private void AddIncome_Load(object sender, EventArgs e)
         {
             LoadGrid();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void LoadGrid()

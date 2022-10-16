@@ -37,7 +37,7 @@ namespace ExpenseTrackerWin
 
         private void HomePage_Load(object sender, EventArgs e)
         {
-
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void btnYealry_Click(object sender, EventArgs e)
