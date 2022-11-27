@@ -72,7 +72,6 @@ namespace ExpenseTracker.Services
         public async Task<List<DtoExpense>> GetExpenseFilter(DtoExpenseFilter filter)
         {
             var expenseRepository = _unitOfWork.GetRepository<Expense>();
-
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
             includers.Add(x => x.CategoryType);
             includers.Add(x => x.CategoryType.ExpenseType);
@@ -106,6 +105,9 @@ namespace ExpenseTracker.Services
 
             var userRepository = _unitOfWork.GetRepository<User>();
             var users = userRepository.GetAll();
+
+            var incomeSourceRepository = _unitOfWork.GetRepository<IncomeSource>();
+
             var lstDtoExpense = lstExpenses.Select(s => new DtoExpense()
             {
                 Id = s.Id,
@@ -115,10 +117,24 @@ namespace ExpenseTracker.Services
                 ExpenseType = s.CategoryType.ExpenseType.Name,
                 Comment = s.Comment,
                 User = s.User.Name,
-                BankName = s.Bank.Name
-            });
+                BankName = s.Bank.Name,
+            }).ToList();
 
-            return lstDtoExpense.ToList();
+            if (filter.BankId > 0)
+            {
+                if (filter.StartDate != DateTime.MinValue && filter.EndDate != DateTime.MinValue)
+                {
+                    var income = incomeSourceRepository.GetAll().Where(x => x.BankId == filter.BankId).Sum(x => x.Amount);
+                    var ExpenseTillStartDate = expenseRepository.GetAll().Where(x => x.Date <= filter.StartDate.AddDays(-1) && x.BankId == filter.BankId).Sum(x => x.Amount);
+                    ExpenseTillStartDate = income - ExpenseTillStartDate;
+                    foreach (var item in lstDtoExpense)
+                    {
+                        ExpenseTillStartDate = ExpenseTillStartDate - item.Amount;
+                        item.Balance = ExpenseTillStartDate;
+                    }
+                }
+            }
+            return lstDtoExpense;
         }
 
         public async Task<List<DtoBank>> GetBankData(DateTime startDate, DateTime endDate)

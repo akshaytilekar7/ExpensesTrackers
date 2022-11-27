@@ -13,6 +13,7 @@ namespace ExpenseTracker.Models.Dto
         public string Comment { get; set; }
         public string User { get; set; }
         public string BankName { get; set; }
+        public int Balance { get; set; }
 
     }
 }
