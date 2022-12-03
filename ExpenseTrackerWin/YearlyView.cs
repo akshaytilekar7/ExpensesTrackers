@@ -176,10 +176,15 @@ namespace ExpenseTrackerWin
 
             var lstMonthDataOnExpenseType = await _serviceFactory.YearlyService.GetAllMonthDataOnExpenseType(year);
             var lstExpenseByExpensesTypes = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
+            var lstBanks = await _serviceFactory.ExpenseServices.GetBankData(filter.StartDate, filter.EndDate);
+
+            List<DtoIncome> lstIncomeYearly = _serviceFactory.IncomeService.GetIncome(filter.StartDate, filter.EndDate).OrderBy(x => x.Date).ToList();
 
             List<ExcelDto> excelDtos = new List<ExcelDto>();
 
-            excelDtos.Add(new ExcelDto() { DataTable = lstYealry.ToDataTable(), SheetName = "Yealry Overview" });
+            excelDtos.Add(new ExcelDto() { DataTable = lstYealry.ToDataTable(), SheetName = "Yearly Overview" });
+            excelDtos.Add(new ExcelDto() { DataTable = lstIncomeYearly.ToDataTable(), SheetName = "Yearly Income" });
+            excelDtos.Add(new ExcelDto() { DataTable = lstBanks.ToDataTable(), SheetName = "Bank Overview" });
 
             foreach (var item in lstAllMonthsData)
                 excelDtos.Add(new ExcelDto() { DataTable = item.dtoExpenses.ToDataTable(), SheetName = item.Name });
