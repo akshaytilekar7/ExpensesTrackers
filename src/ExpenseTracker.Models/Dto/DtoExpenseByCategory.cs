@@ -8,7 +8,7 @@
         }
 
         public string ExpensesType { get; set; }
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
         public string Percent { get; set; }
         public string Month { get; set; }
 

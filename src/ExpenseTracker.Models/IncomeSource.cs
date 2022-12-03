@@ -5,7 +5,7 @@ namespace ExpenseTracker.Models
 {
     public class IncomeSource : BaseEnitity
     {
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
         public DateTime Date { get; set; }
         public string Comment { get; set; }
         public User User { get; set; }

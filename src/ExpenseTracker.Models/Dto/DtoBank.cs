@@ -5,9 +5,9 @@ namespace ExpenseTracker.Models.Dto
     public class DtoBank
     {
         public string BankName { get; set; }
-        public int Amount { get; set; }
-        public int Expense { get; set; }
-        public int Balance { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Expense { get; set; }
+        public decimal Balance { get; set; }
 
     }
 }

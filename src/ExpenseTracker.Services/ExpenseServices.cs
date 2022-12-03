@@ -168,8 +168,8 @@ namespace ExpenseTracker.Services
 
             foreach (var _bank in lstBanks)
             {
-                int amount = lstIncomeSources.Where(x => x.BankId == _bank.Id).Sum(x => x.Amount);
-                int expense = lstExpenses.Where(x => x.BankId == _bank.Id).Sum(x => x.Amount);
+                decimal amount = lstIncomeSources.Where(x => x.BankId == _bank.Id).Sum(x => x.Amount);
+                var expense = lstExpenses.Where(x => x.BankId == _bank.Id).Sum(x => x.Amount);
 
                 lstDtoBanks.Add(new DtoBank()
                 {

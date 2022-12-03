@@ -9,11 +9,11 @@ namespace ExpenseTracker.Models.Dto
         public DateTime Date { get; set; }
         public string CategoryName { get; set; }
         public string ExpenseType { get; set; }
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
         public string Comment { get; set; }
         public string User { get; set; }
         public string BankName { get; set; }
-        public int Balance { get; set; }
+        public decimal Balance { get; set; }
 
     }
 }
