@@ -233,7 +233,25 @@ namespace ExpenseTrackerWin
             return filter;
         }
 
+        private void cmbExpensesType_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var expenseTypeId = Convert.ToInt32(cmbExpensesType.SelectedValue);
+            var lstCategoryType = _serviceFactory.MasterTableService.GetAllCategoryType().Where(x => x.ExpenseTypeId == expenseTypeId).ToList();
+            lstCategoryType.Insert(0, new CategoryType() { Id = 0, Name = "Please select" });
+            cmbCategory.DisplayMember = "Name";
+            cmbCategory.ValueMember = "Id";
+            cmbCategory.DataSource = lstCategoryType;
+        }
 
+        private void cmbUsers_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var userId = Convert.ToInt32(cmbUsers.SelectedValue);
+            var lstBanks = _serviceFactory.BankService.GetAll().Where(x => x.UserId == userId).ToList();
+            lstBanks.Insert(0, new Bank() { Id = 0, Name = "Please select" });
+            cmbBank.DataSource = lstBanks;
+            cmbBank.DisplayMember = "Name";
+            cmbBank.ValueMember = "Id";
+        }
     }
 }
 

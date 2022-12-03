@@ -32,10 +32,10 @@ namespace ExpenseTrackerWin
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblDate = new System.Windows.Forms.Label();
             this.dateStart = new System.Windows.Forms.DateTimePicker();
             this.dateEnd = new System.Windows.Forms.DateTimePicker();
@@ -57,16 +57,6 @@ namespace ExpenseTrackerWin
             this.button1 = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
-            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
-            this.dgvIncome = new System.Windows.Forms.DataGridView();
-            this.lblExpenseOverview = new System.Windows.Forms.Label();
-            this.lblIncome = new System.Windows.Forms.Label();
-            this.cmbUsers = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbBank = new System.Windows.Forms.ComboBox();
-            this.lblBank = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,6 +67,16 @@ namespace ExpenseTrackerWin
             this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
+            this.dgvIncome = new System.Windows.Forms.DataGridView();
+            this.lblExpenseOverview = new System.Windows.Forms.Label();
+            this.lblIncome = new System.Windows.Forms.Label();
+            this.cmbUsers = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbBank = new System.Windows.Forms.ComboBox();
+            this.lblBank = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
@@ -119,7 +119,7 @@ namespace ExpenseTrackerWin
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(31, 85);
+            this.lblCategory.Location = new System.Drawing.Point(326, 88);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(55, 15);
             this.lblCategory.TabIndex = 4;
@@ -128,7 +128,7 @@ namespace ExpenseTrackerWin
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(96, 82);
+            this.cmbCategory.Location = new System.Drawing.Point(391, 85);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(121, 23);
             this.cmbCategory.TabIndex = 5;
@@ -136,15 +136,16 @@ namespace ExpenseTrackerWin
             // cmbExpensesType
             // 
             this.cmbExpensesType.FormattingEnabled = true;
-            this.cmbExpensesType.Location = new System.Drawing.Point(425, 82);
+            this.cmbExpensesType.Location = new System.Drawing.Point(128, 79);
             this.cmbExpensesType.Name = "cmbExpensesType";
             this.cmbExpensesType.Size = new System.Drawing.Size(121, 23);
             this.cmbExpensesType.TabIndex = 7;
+            this.cmbExpensesType.SelectionChangeCommitted += new System.EventHandler(this.cmbExpensesType_SelectionChangeCommitted);
             // 
             // lblExpensesType
             // 
             this.lblExpensesType.AutoSize = true;
-            this.lblExpensesType.Location = new System.Drawing.Point(326, 88);
+            this.lblExpensesType.Location = new System.Drawing.Point(29, 85);
             this.lblExpensesType.Name = "lblExpensesType";
             this.lblExpensesType.Size = new System.Drawing.Size(82, 15);
             this.lblExpensesType.TabIndex = 6;
@@ -295,110 +296,6 @@ namespace ExpenseTrackerWin
             this.dgvFilter.TabIndex = 26;
             this.dgvFilter.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellContentClick);
             // 
-            // dtoExpenseBindingSource
-            // 
-            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
-            // 
-            // dgvExpenseOverview
-            // 
-            this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.NullValue = null;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExpenseOverview.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvExpenseOverview.Location = new System.Drawing.Point(1168, 276);
-            this.dgvExpenseOverview.Name = "dgvExpenseOverview";
-            this.dgvExpenseOverview.RowHeadersWidth = 62;
-            this.dgvExpenseOverview.Size = new System.Drawing.Size(310, 266);
-            this.dgvExpenseOverview.TabIndex = 27;
-            // 
-            // dgvIncome
-            // 
-            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.NullValue = null;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIncome.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvIncome.Location = new System.Drawing.Point(1168, 568);
-            this.dgvIncome.Name = "dgvIncome";
-            this.dgvIncome.RowHeadersWidth = 62;
-            this.dgvIncome.Size = new System.Drawing.Size(310, 266);
-            this.dgvIncome.TabIndex = 28;
-            // 
-            // lblExpenseOverview
-            // 
-            this.lblExpenseOverview.AutoSize = true;
-            this.lblExpenseOverview.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblExpenseOverview.Location = new System.Drawing.Point(1168, 250);
-            this.lblExpenseOverview.Name = "lblExpenseOverview";
-            this.lblExpenseOverview.Size = new System.Drawing.Size(151, 23);
-            this.lblExpenseOverview.TabIndex = 29;
-            this.lblExpenseOverview.Text = "Expense Overview";
-            // 
-            // lblIncome
-            // 
-            this.lblIncome.AutoSize = true;
-            this.lblIncome.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(1168, 542);
-            this.lblIncome.Name = "lblIncome";
-            this.lblIncome.Size = new System.Drawing.Size(68, 23);
-            this.lblIncome.TabIndex = 30;
-            this.lblIncome.Text = "Income";
-            // 
-            // cmbUsers
-            // 
-            this.cmbUsers.FormattingEnabled = true;
-            this.cmbUsers.Location = new System.Drawing.Point(641, 82);
-            this.cmbUsers.Name = "cmbUsers";
-            this.cmbUsers.Size = new System.Drawing.Size(121, 23);
-            this.cmbUsers.TabIndex = 32;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(586, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 15);
-            this.label2.TabIndex = 31;
-            this.label2.Text = "User";
-            // 
-            // cmbBank
-            // 
-            this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(641, 133);
-            this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(121, 23);
-            this.cmbBank.TabIndex = 35;
-            // 
-            // lblBank
-            // 
-            this.lblBank.AutoSize = true;
-            this.lblBank.Location = new System.Drawing.Point(586, 139);
-            this.lblBank.Name = "lblBank";
-            this.lblBank.Size = new System.Drawing.Size(33, 15);
-            this.lblBank.TabIndex = 34;
-            this.lblBank.Text = "Bank";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(718, 148);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(6, 5);
-            this.button2.TabIndex = 33;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -482,6 +379,111 @@ namespace ExpenseTrackerWin
             this.Balance.DefaultCellStyle = dataGridViewCellStyle2;
             this.Balance.HeaderText = "Balance";
             this.Balance.Name = "Balance";
+            // 
+            // dtoExpenseBindingSource
+            // 
+            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
+            // 
+            // dgvExpenseOverview
+            // 
+            this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.NullValue = null;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExpenseOverview.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(1168, 276);
+            this.dgvExpenseOverview.Name = "dgvExpenseOverview";
+            this.dgvExpenseOverview.RowHeadersWidth = 62;
+            this.dgvExpenseOverview.Size = new System.Drawing.Size(310, 266);
+            this.dgvExpenseOverview.TabIndex = 27;
+            // 
+            // dgvIncome
+            // 
+            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.NullValue = null;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIncome.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvIncome.Location = new System.Drawing.Point(1168, 568);
+            this.dgvIncome.Name = "dgvIncome";
+            this.dgvIncome.RowHeadersWidth = 62;
+            this.dgvIncome.Size = new System.Drawing.Size(310, 266);
+            this.dgvIncome.TabIndex = 28;
+            // 
+            // lblExpenseOverview
+            // 
+            this.lblExpenseOverview.AutoSize = true;
+            this.lblExpenseOverview.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblExpenseOverview.Location = new System.Drawing.Point(1168, 250);
+            this.lblExpenseOverview.Name = "lblExpenseOverview";
+            this.lblExpenseOverview.Size = new System.Drawing.Size(151, 23);
+            this.lblExpenseOverview.TabIndex = 29;
+            this.lblExpenseOverview.Text = "Expense Overview";
+            // 
+            // lblIncome
+            // 
+            this.lblIncome.AutoSize = true;
+            this.lblIncome.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblIncome.Location = new System.Drawing.Point(1168, 542);
+            this.lblIncome.Name = "lblIncome";
+            this.lblIncome.Size = new System.Drawing.Size(68, 23);
+            this.lblIncome.TabIndex = 30;
+            this.lblIncome.Text = "Income";
+            // 
+            // cmbUsers
+            // 
+            this.cmbUsers.FormattingEnabled = true;
+            this.cmbUsers.Location = new System.Drawing.Point(641, 82);
+            this.cmbUsers.Name = "cmbUsers";
+            this.cmbUsers.Size = new System.Drawing.Size(121, 23);
+            this.cmbUsers.TabIndex = 32;
+            this.cmbUsers.SelectionChangeCommitted += new System.EventHandler(this.cmbUsers_SelectionChangeCommitted);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(586, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 15);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "User";
+            // 
+            // cmbBank
+            // 
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(641, 133);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(121, 23);
+            this.cmbBank.TabIndex = 35;
+            // 
+            // lblBank
+            // 
+            this.lblBank.AutoSize = true;
+            this.lblBank.Location = new System.Drawing.Point(586, 139);
+            this.lblBank.Name = "lblBank";
+            this.lblBank.Size = new System.Drawing.Size(33, 15);
+            this.lblBank.TabIndex = 34;
+            this.lblBank.Text = "Bank";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(718, 148);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(6, 5);
+            this.button2.TabIndex = 33;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // ViewExpense
             // 
