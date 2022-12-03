@@ -38,6 +38,11 @@ namespace ExpenseTrackerWin
             this.btnSave = new System.Windows.Forms.Button();
             this.btnHomePage = new System.Windows.Forms.Button();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.incomeSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtAmount = new System.Windows.Forms.TextBox();
@@ -49,11 +54,6 @@ namespace ExpenseTrackerWin
             this.label1 = new System.Windows.Forms.Label();
             this.lblComment = new System.Windows.Forms.Label();
             this.txtComment = new System.Windows.Forms.TextBox();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incomeSourceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -135,6 +135,37 @@ namespace ExpenseTrackerWin
             this.dgvIncome.Size = new System.Drawing.Size(625, 304);
             this.dgvIncome.TabIndex = 15;
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            // 
+            // BankName
+            // 
+            this.BankName.DataPropertyName = "BankName";
+            this.BankName.HeaderText = "BankName";
+            this.BankName.Name = "BankName";
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.Name = "Comment";
+            // 
             // incomeSourceBindingSource
             // 
             this.incomeSourceBindingSource.DataSource = typeof(ExpenseTracker.Models.IncomeSource);
@@ -189,6 +220,7 @@ namespace ExpenseTrackerWin
             this.cmbNames.Name = "cmbNames";
             this.cmbNames.Size = new System.Drawing.Size(142, 41);
             this.cmbNames.TabIndex = 21;
+            this.cmbNames.SelectionChangeCommitted += new System.EventHandler(this.cmbNames_SelectionChangeCommitted);
             // 
             // userBindingSource
             // 
@@ -232,37 +264,6 @@ namespace ExpenseTrackerWin
             this.txtComment.Name = "txtComment";
             this.txtComment.Size = new System.Drawing.Size(145, 40);
             this.txtComment.TabIndex = 24;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            // 
-            // BankName
-            // 
-            this.BankName.DataPropertyName = "BankName";
-            this.BankName.HeaderText = "BankName";
-            this.BankName.Name = "BankName";
-            // 
-            // Comment
-            // 
-            this.Comment.DataPropertyName = "Comment";
-            this.Comment.HeaderText = "Comment";
-            this.Comment.Name = "Comment";
             // 
             // AddIncome
             // 

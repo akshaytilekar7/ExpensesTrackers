@@ -67,5 +67,15 @@ namespace ExpenseTrackerWin
             _serviceFactory.IncomeService.Delete(lst);
             LoadGrid();
         }
+
+        private void cmbNames_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var userId = Convert.ToInt32(cmbNames.SelectedValue);
+            var lstBanks = _serviceFactory.BankService.GetAll().Where(x => x.UserId == userId).ToList();
+            cmbBank.DataSource = lstBanks;
+            cmbBank.DisplayMember = "Name";
+            cmbBank.ValueMember = "Id";
+
+        }
     }
 }
