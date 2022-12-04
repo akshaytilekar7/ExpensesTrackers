@@ -36,14 +36,16 @@
             this.Date = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.dgvExpenses = new System.Windows.Forms.DataGridView();
+            this.Day = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btnUpload = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.txtTotalIncome = new System.Windows.Forms.TextBox();
-            this.lblIncome = new System.Windows.Forms.Label();
             this.btnHomePage = new System.Windows.Forms.Button();
             this.btnGeData = new System.Windows.Forms.Button();
             this.dgvOldData = new System.Windows.Forms.DataGridView();
@@ -57,10 +59,6 @@
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.lblBank = new System.Windows.Forms.Label();
             this.btnUploadFromBackup = new System.Windows.Forms.Button();
-            this.Day = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOldData)).BeginInit();
             this.SuspendLayout();
@@ -118,6 +116,48 @@
             this.dgvExpenses.Size = new System.Drawing.Size(979, 767);
             this.dgvExpenses.TabIndex = 2;
             this.dgvExpenses.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpenses_CellContentClick);
+            // 
+            // Day
+            // 
+            this.Day.DataPropertyName = "Day";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Day.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Day.HeaderText = "Day";
+            this.Day.MinimumWidth = 8;
+            this.Day.Name = "Day";
+            this.Day.Width = 52;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Category.DataPropertyName = "Category";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Category.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Category.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Category.HeaderText = "Category";
+            this.Category.MaxDropDownItems = 5;
+            this.Category.MinimumWidth = 100;
+            this.Category.Name = "Category";
+            this.Category.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Amount.HeaderText = "Amount";
+            this.Amount.MinimumWidth = 8;
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 76;
+            // 
+            // Comment
+            // 
+            this.Comment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Comment.HeaderText = "Comment";
+            this.Comment.MinimumWidth = 8;
+            this.Comment.Name = "Comment";
+            this.Comment.Width = 86;
             // 
             // btnSave
             // 
@@ -185,27 +225,6 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // txtTotalIncome
-            // 
-            this.txtTotalIncome.Location = new System.Drawing.Point(1019, 743);
-            this.txtTotalIncome.Multiline = true;
-            this.txtTotalIncome.Name = "txtTotalIncome";
-            this.txtTotalIncome.ReadOnly = true;
-            this.txtTotalIncome.Size = new System.Drawing.Size(149, 140);
-            this.txtTotalIncome.TabIndex = 18;
-            this.txtTotalIncome.TextChanged += new System.EventHandler(this.txtTotalIcome_TextChanged);
-            // 
-            // lblIncome
-            // 
-            this.lblIncome.AutoSize = true;
-            this.lblIncome.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIncome.Location = new System.Drawing.Point(1019, 703);
-            this.lblIncome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblIncome.Name = "lblIncome";
-            this.lblIncome.Size = new System.Drawing.Size(104, 37);
-            this.lblIncome.TabIndex = 19;
-            this.lblIncome.Text = "Income";
             // 
             // btnHomePage
             // 
@@ -333,48 +352,6 @@
             this.btnUploadFromBackup.UseVisualStyleBackColor = true;
             this.btnUploadFromBackup.Click += new System.EventHandler(this.btnUploadFromBackup_Click);
             // 
-            // Day
-            // 
-            this.Day.DataPropertyName = "Day";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Day.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Day.HeaderText = "Day";
-            this.Day.MinimumWidth = 8;
-            this.Day.Name = "Day";
-            this.Day.Width = 52;
-            // 
-            // Category
-            // 
-            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Category.DataPropertyName = "Category";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Category.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Category.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.Category.HeaderText = "Category";
-            this.Category.MaxDropDownItems = 5;
-            this.Category.MinimumWidth = 100;
-            this.Category.Name = "Category";
-            this.Category.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Amount.HeaderText = "Amount";
-            this.Amount.MinimumWidth = 8;
-            this.Amount.Name = "Amount";
-            this.Amount.Width = 76;
-            // 
-            // Comment
-            // 
-            this.Comment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Comment.HeaderText = "Comment";
-            this.Comment.MinimumWidth = 8;
-            this.Comment.Name = "Comment";
-            this.Comment.Width = 86;
-            // 
             // AddExpense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -394,8 +371,6 @@
             this.Controls.Add(this.dgvOldData);
             this.Controls.Add(this.btnGeData);
             this.Controls.Add(this.btnHomePage);
-            this.Controls.Add(this.lblIncome);
-            this.Controls.Add(this.txtTotalIncome);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.button1);
@@ -428,8 +403,6 @@
         private Button btnFilterPage;
         private Button btnUpload;
         private Button btnDelete;
-        private TextBox txtTotalIncome;
-        private Label lblIncome;
         private Button btnHomePage;
         private Button btnGeData;
         private DataGridView dgvOldData;

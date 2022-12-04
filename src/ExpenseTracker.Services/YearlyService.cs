@@ -28,7 +28,6 @@ namespace ExpenseTracker.Services
             var repoCategory = _unitOfWork.GetRepository<CategoryType>();
             var repoExpense = _unitOfWork.GetRepository<Expense>();
             var repoIncomeSource = _unitOfWork.GetRepository<IncomeSource>();
-
             var lstCategory = repoCategory.GetAll("ExpenseType");
 
             List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
@@ -190,7 +189,7 @@ namespace ExpenseTracker.Services
         {
             var month = string.Empty;
             var lstExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
-            var income = _serviceFactory.IncomeService.GetAll().Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate).Sum(x => x.Amount);
+            var income = _serviceFactory.IncomeService.GetIncome(filter.StartDate, filter.EndDate).Sum(x => x.Amount);
             var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllExpenseType().Select(x => x.Name).Distinct();
 
             decimal percentSum = 0;

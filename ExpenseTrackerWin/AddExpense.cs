@@ -33,39 +33,13 @@ namespace ExpenseTrackerWin
 
         private void DatePicker_ValueChanged(object sender, EventArgs e)
         {
-            SetIncome();
         }
 
-        private void SetIncome()
-        {
-            try
-            {
-                txtTotalIncome.Clear();
-                string Total = string.Empty;
-                var date = Convert.ToDateTime(DatePicker.Text);
-                var dbIncomes = _serviceFactory.IncomeService.GetAll().Where(s => s.Date.Month == date.Month && s.Date.Year == date.Year);
-                foreach (var item in dbIncomes)
-                {
-                    txtTotalIncome.AppendText(item.UserName + " : " + item.Amount);
-                    txtTotalIncome.AppendText(Environment.NewLine);
-                }
-                txtTotalIncome.AppendText("Total Income : " + Convert.ToString(dbIncomes.Sum(x => x.Amount)));
-            }
-
-            catch (Exception ex)
-            {
-                var st = string.Empty;
-                if (ex.InnerException != null)
-                    st = ex.InnerException.Message;
-                lblError.Text = "SetIncome : " + ex.Message + " " + st;
-            }
-        }
         private void Form1_Load(object sender, EventArgs e)
         {
             btnUploadFromBackup.Visible = false;
             dgvExpenses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             LoadCombobox();
-            SetIncome();
             this.WindowState = FormWindowState.Maximized;
         }
 
@@ -177,7 +151,7 @@ namespace ExpenseTrackerWin
 
                     DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
                     var excelWhatsAppExpense = lstWhatsAppData
-                        .FirstOrDefault(x => (x.Date.Day == item.Date.Day || x.Date.Day == item.Date.AddDays(1).Day) 
+                        .FirstOrDefault(x => (x.Date.Day == item.Date.Day || x.Date.Day == item.Date.AddDays(1).Day)
                         && x.Amount == item.Amount);
 
                     var comment = excelWhatsAppExpense == null ? string.Empty : excelWhatsAppExpense.Comment?.Trim();

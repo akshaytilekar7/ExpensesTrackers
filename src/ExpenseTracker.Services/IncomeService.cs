@@ -48,12 +48,16 @@ namespace ExpenseTracker.Services
             _unitOfWork.Commit();
         }
 
-        public IList<DtoIncome> GetAll()
+        public List<DtoIncome> GetIncome(DateTime startDate, DateTime endDate)
         {
             List<Expression<Func<IncomeSource, object>>> includers = new List<Expression<Func<IncomeSource, object>>>();
             includers.Add(x => x.User);
             includers.Add(x => x.Bank);
-            var lstUsers = _unitOfWork.GetRepository<IncomeSource>().GetAll(includers).ToList();
+
+            var lstUsers = _unitOfWork.GetRepository<IncomeSource>()
+                .GetAll(includers)
+                .Where(x => x.Date >= startDate && x.Date <= endDate);
+
             return lstUsers.Select(x => new DtoIncome()
             {
                 Amount = x.Amount,
@@ -63,12 +67,6 @@ namespace ExpenseTracker.Services
                 UserName = x.User.Name,
                 Comment = x.Comment
             }).ToList();
-        }
-
-        public List<DtoIncome> GetIncome(DateTime startDate, DateTime endDate)
-        {
-            IEnumerable<DtoIncome> lst = GetAll().Where(x => x.Date >= startDate && x.Date <= endDate);
-            return lst.ToList();
         }
     }
 }

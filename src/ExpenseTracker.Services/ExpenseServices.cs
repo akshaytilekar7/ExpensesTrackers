@@ -52,15 +52,6 @@ namespace ExpenseTracker.Services
             }
         }
 
-        public IList<Expense> GetAll()
-        {
-            var repo = _unitOfWork.GetRepository<Expense>();
-            List<Expression<Func<Expense, object>>> includers = new List<Expression<Func<Expense, object>>>();
-            includers.Add(x => x.CategoryType);
-            includers.Add(x => x.CategoryType.ExpenseType);
-            return repo.GetAll(includers).OrderByDescending(x => x.Id).ToList();
-        }
-
         public void Delete(List<Expense> lst)
         {
             var repository = _unitOfWork.GetRepository<Expense>();
@@ -81,7 +72,13 @@ namespace ExpenseTracker.Services
             IEnumerable<Expense> lstExpenses = await expenseRepository.GetAllAsync(includers);
 
             if (filter.StartDate != DateTime.MinValue && filter.EndDate != DateTime.MinValue)
+            {
                 lstExpenses = lstExpenses.Where(x => x.Date >= filter.StartDate && x.Date <= filter.EndDate);
+            }
+            else
+            {
+                throw new Exception("Date is mandatory");
+            }
 
             if (filter.Amount >= 1)
                 lstExpenses = lstExpenses.Where(x => x.Amount == filter.Amount);

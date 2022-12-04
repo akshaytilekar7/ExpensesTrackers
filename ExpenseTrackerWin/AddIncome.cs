@@ -17,12 +17,14 @@ namespace ExpenseTrackerWin
         private void AddIncome_Load(object sender, EventArgs e)
         {
             LoadGrid();
-            this.WindowState = FormWindowState.Maximized;
+            WindowState = FormWindowState.Maximized;
         }
 
         private void LoadGrid()
         {
-            var lstIncome = _serviceFactory.IncomeService.GetAll().OrderByDescending(x => x.Date).ToList();
+            var startDate = new DateTime(DateTime.Now.Year, 1, 1);
+            var endDate = new DateTime(DateTime.Now.Year, 12, 31);
+            var lstIncome = _serviceFactory.IncomeService.GetIncome(startDate, endDate).OrderByDescending(x => x.Date).ToList();
             dgvIncome.DataSource = lstIncome.MakeSortable();
 
             var lstUsers = _serviceFactory.UserService.GetAll();
