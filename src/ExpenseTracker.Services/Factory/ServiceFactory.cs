@@ -31,7 +31,7 @@ namespace ExpenseTracker.Services.Factory
         {
             get
             {
-                return new IncomeService(_unitOfWork);
+                return new IncomeService(_unitOfWork, this);
             }
         }
 
@@ -74,5 +74,14 @@ namespace ExpenseTracker.Services.Factory
                 return new BankService(_unitOfWork);
             }
         }
+
+        public IOpeningBalancekService OpeningBalanceService
+        {
+            get
+            {
+                return new OpeningBalanceService(_unitOfWork);
+            }
+        }
+
     }
 }

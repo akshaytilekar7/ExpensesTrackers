@@ -6,16 +6,19 @@ using ExpenseTracker.Services.Base.Contracts;
 using ExpenseTracker.Models;
 using System.Linq.Expressions;
 using ExpenseTracker.Models.Dto;
+using ExpenseTracker.Services.Factory;
 
 namespace ExpenseTracker.Services
 {
     public class IncomeService : IIncomeService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IServiceFactory _serviceFactory;
 
-        public IncomeService(IUnitOfWork unitOfWork)
+        public IncomeService(IUnitOfWork unitOfWork, IServiceFactory serviceFactory)
         {
             _unitOfWork = unitOfWork;
+            _serviceFactory = serviceFactory;
         }
 
         public bool Add(IncomeSource item)
@@ -54,11 +57,11 @@ namespace ExpenseTracker.Services
             includers.Add(x => x.User);
             includers.Add(x => x.Bank);
 
-            var lstUsers = _unitOfWork.GetRepository<IncomeSource>()
+            var lstIncomeSource = _unitOfWork.GetRepository<IncomeSource>()
                 .GetAll(includers)
                 .Where(x => x.Date >= startDate && x.Date <= endDate);
 
-            return lstUsers.Select(x => new DtoIncome()
+            var result = lstIncomeSource.Select(x => new DtoIncome()
             {
                 Amount = x.Amount,
                 BankName = x.Bank.Name,
@@ -67,6 +70,28 @@ namespace ExpenseTracker.Services
                 UserName = x.User.Name,
                 Comment = x.Comment
             }).ToList();
+
+            List<Expression<Func<OpeningBalance, object>>> includersOpeningBalance = new List<Expression<Func<OpeningBalance, object>>>();
+            includersOpeningBalance.Add(x => x.Bank);
+            var openingBalance = _unitOfWork.GetRepository<OpeningBalance>()
+                .GetAll(includersOpeningBalance)
+                .Where(x => x.Year == startDate.Year);
+
+            foreach (var item in openingBalance)
+            {
+                var income = new DtoIncome()
+                {
+                    Id = item.Id,
+                    Amount = item.Amount,
+                    BankName = item.Bank.Name,
+                    Date = new DateTime(startDate.Year, 1, 1),
+                    Comment = "opening balance",
+                };
+                result.Insert(0, income);
+            }
+
+            return result;
+
         }
     }
 }

@@ -21,6 +21,7 @@ namespace ExpenseTracker.Core.EFContext
         public DbSet<ExpenseType> ExpenseType { get; set; }
         public DbSet<CategoryType> CategoryType { get; set; }
         public DbSet<Bank> Bank { get; set; }
+        public DbSet<OpeningBalance> OpeningBalance { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
