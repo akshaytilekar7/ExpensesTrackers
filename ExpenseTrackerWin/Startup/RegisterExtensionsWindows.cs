@@ -21,6 +21,7 @@ namespace ExpenseTrackerWin.Startup
 
         public static void AddInjections(this IServiceCollection services)
         {
+            services.AddScoped<IContextFactory, ContextFactory>();
             services.AddScoped<IDatabaseContext, DatabaseContext>();
             services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -30,7 +31,6 @@ namespace ExpenseTrackerWin.Startup
             services.AddScoped(typeof(IServiceFactory), typeof(ServiceFactory));
             services.AddScoped(typeof(IYearlyService), typeof(YearlyService));
             services.AddScoped(typeof(IMasterTableService), typeof(MasterTableService));
-            services.AddScoped<IContextFactory, ContextFactory>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 

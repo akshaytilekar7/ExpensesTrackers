@@ -14,7 +14,7 @@ namespace ExpenseTracker.Core.Factory
         {
         }
 
-        public DbContextOptionsBuilder<DatabaseContext> GetDataContext(int year)
+        public DbContextOptionsBuilder<DatabaseContext> GetDataContext(int year = 2022)
         {
             if (year == -1)
                 year = DateTime.Now.Year;

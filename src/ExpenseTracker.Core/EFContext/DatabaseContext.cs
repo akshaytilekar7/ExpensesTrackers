@@ -3,11 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using ExpenseTracker.Models.Configuration;
 using ExpenseTracker.Models;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using ExpenseTracker.Core.Factory;
+using System;
 
 namespace ExpenseTracker.Core.EFContext
 {
     public class DatabaseContext : IdentityDbContext<ApplicationUser>, IDatabaseContext
     {
+        public DatabaseContext() : base(new ContextFactory().GetDataContext(DateTime.Now.Year).Options)
+        {
+
+        }
         /// <summary>
         /// initializes a new instance of DbContext class.
         /// </summary>
