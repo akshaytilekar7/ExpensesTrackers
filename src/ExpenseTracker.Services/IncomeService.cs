@@ -71,25 +71,6 @@ namespace ExpenseTracker.Services
                 Comment = x.Comment
             }).ToList();
 
-            List<Expression<Func<OpeningBalance, object>>> includersOpeningBalance = new List<Expression<Func<OpeningBalance, object>>>();
-            includersOpeningBalance.Add(x => x.Bank);
-            var openingBalance = _unitOfWork.GetRepository<OpeningBalance>()
-                .GetAll(includersOpeningBalance)
-                .Where(x => x.Year == startDate.Year);
-
-            foreach (var item in openingBalance)
-            {
-                var income = new DtoIncome()
-                {
-                    Id = item.Id,
-                    Amount = item.Amount,
-                    BankName = item.Bank.Name,
-                    Date = new DateTime(startDate.Year, 1, 1),
-                    Comment = "opening balance",
-                };
-                result.Insert(0, income);
-            }
-
             return result;
 
         }

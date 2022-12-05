@@ -74,14 +74,5 @@ namespace ExpenseTracker.Services.Factory
                 return new BankService(_unitOfWork);
             }
         }
-
-        public IOpeningBalancekService OpeningBalanceService
-        {
-            get
-            {
-                return new OpeningBalanceService(_unitOfWork);
-            }
-        }
-
     }
 }

@@ -123,13 +123,6 @@ namespace ExpenseTracker.Services
                 {
                     var income = incomeSourceRepository.GetAll().Where(x => x.BankId == filter.BankId && x.Date.Year == filter.StartDate.Year).Sum(x => x.Amount);
 
-                    List<Expression<Func<OpeningBalance, object>>> includersOpeningBalance = new List<Expression<Func<OpeningBalance, object>>>();
-                    includersOpeningBalance.Add(x => x.Bank);
-                    var openingBalance = _unitOfWork.GetRepository<OpeningBalance>()
-                        .GetAll(includersOpeningBalance)
-                        .FirstOrDefault(x => x.Year == filter.StartDate.Year && x.BankId == filter.BankId).Amount;
-                    income += openingBalance;
-
                     var ExpenseTillStartDate = expenseRepository.GetAll()
                         .Where(x => x.Date <= filter.StartDate.AddDays(-1) && x.BankId == filter.BankId)
                         .Sum(x => x.Amount);
