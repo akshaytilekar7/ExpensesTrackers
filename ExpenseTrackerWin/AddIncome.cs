@@ -44,7 +44,7 @@ namespace ExpenseTrackerWin
             income.Amount = Convert.ToInt32(txtAmount.Text);
             income.UserId = Convert.ToInt32(cmbNames.SelectedValue);
             income.BankId = Convert.ToInt32(cmbBank.SelectedValue);
-            income.Comment = Convert.ToString(txtComment.Text);
+            income.Comment =  Convert.ToString(string.IsNullOrEmpty(txtComment.Text) ? cmbComment.Text : txtAmount.Text);
             _serviceFactory.IncomeService.Add(income);
             string message = "Save Data Sucessfully";
             MessageBox.Show(message);
