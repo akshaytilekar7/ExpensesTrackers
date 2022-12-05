@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ExpenseTracker.Core.EFContext;
-using ExpenseTracker.Models.Configuration;
 using System;
 using System.Data.SqlClient;
 
@@ -11,18 +10,18 @@ namespace ExpenseTracker.Core.Factory
     /// </summary>
     public class ContextFactory : IContextFactory
     {
-
         public ContextFactory()
         {
         }
 
-        public IDatabaseContext DbContext => new DatabaseContext(GetDataContext().Options);
-
-        private DbContextOptionsBuilder<DatabaseContext> GetDataContext()
+        public DbContextOptionsBuilder<DatabaseContext> GetDataContext(int year)
         {
-            ValidateDefaultConnection();
+            if (year == -1)
+                year = DateTime.Now.Year;
 
-            var sqlConnectionBuilder = new SqlConnectionStringBuilder(ConnectionSettings.DefaultConnection);
+            var con = "Server=localhost;Database=ExpenseTracker" + year + "_1;Trusted_Connection=True;";
+
+            var sqlConnectionBuilder = new SqlConnectionStringBuilder(con);
 
             var contextOptionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
 
@@ -30,13 +29,6 @@ namespace ExpenseTracker.Core.Factory
 
             return contextOptionsBuilder;
         }
-
-        private void ValidateDefaultConnection()
-        {
-            if (string.IsNullOrEmpty(ConnectionSettings.DefaultConnection))
-            {
-                throw new ArgumentNullException(nameof(ConnectionSettings.DefaultConnection));
-            }
-        }
+        
     }
 }

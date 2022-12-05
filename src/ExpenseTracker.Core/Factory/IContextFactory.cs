@@ -1,9 +1,10 @@
 ﻿using ExpenseTracker.Core.EFContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.Core.Factory
 {
     public interface IContextFactory
     {
-        IDatabaseContext DbContext { get; }
+        DbContextOptionsBuilder<DatabaseContext> GetDataContext(int year = -1);
     }
 }

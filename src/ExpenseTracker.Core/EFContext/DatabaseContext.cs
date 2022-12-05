@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ExpenseTracker.Models.Configuration;
 using ExpenseTracker.Models;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace ExpenseTracker.Core.EFContext
 {
@@ -21,7 +22,7 @@ namespace ExpenseTracker.Core.EFContext
         public DbSet<ExpenseType> ExpenseType { get; set; }
         public DbSet<CategoryType> CategoryType { get; set; }
         public DbSet<Bank> Bank { get; set; }
-        public DbSet<OpeningBalance> OpeningBalance { get; set; }
+        public DatabaseFacade DatabaseFacade => this.Database;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

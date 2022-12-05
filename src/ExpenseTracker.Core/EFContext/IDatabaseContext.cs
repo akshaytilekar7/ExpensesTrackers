@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@ namespace ExpenseTracker.Core.EFContext
         /// <returns>number of state entries interacted with database</returns>
         int SaveChanges(bool confirmAllTransactions);
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
+        DatabaseFacade Database { get; }
         void Dispose();
     }
 }

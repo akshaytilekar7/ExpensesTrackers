@@ -6,7 +6,6 @@ using ExpenseTracker.Core.EFContext;
 using ExpenseTracker.Core.Factory;
 using ExpenseTracker.Core.Repositories.Base;
 using ExpenseTracker.Core.Repositories.Interfaces;
-
 namespace ExpenseTracker.Core.Uow
 {
     public sealed class UnitOfWork : IUnitOfWork
@@ -15,11 +14,15 @@ namespace ExpenseTracker.Core.Uow
 
         private Dictionary<Type, object> repos;
 
-        public UnitOfWork(IContextFactory contextFactory)
+        public UnitOfWork(IContextFactory contextFactory, int year = -1)
         {
-            dbContext = contextFactory.DbContext;
+            dbContext = new DatabaseContext(contextFactory.GetDataContext(year).Options);
         }
 
+        public bool CanConnect()
+        {
+            return dbContext.Database.CanConnect();
+        }
         public IGenericRepository<TEntity> GetRepository<TEntity>()
             where TEntity : class
         {

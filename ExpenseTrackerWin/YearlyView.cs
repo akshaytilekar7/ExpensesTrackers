@@ -6,17 +6,19 @@ using ExpenseTracker.Services.Factory;
 using System.Data;
 using System.Globalization;
 using ExpenseTracker.Services.Base;
+using ExpenseTracker.Core.Uow;
+using ExpenseTracker.Core.Factory;
 
 namespace ExpenseTrackerWin
 {
     public partial class YearlyView : Form
     {
-        public IServiceFactory _serviceFactory { get; }
+        public IServiceFactory _serviceFactory { get; set; }
 
-        public YearlyView(IServiceFactory serviceFactory)
+        public YearlyView()
         {
             InitializeComponent();
-            _serviceFactory = serviceFactory;
+            _serviceFactory = new ServiceFactory(new UnitOfWork(new ContextFactory(), DateTime.Now.Year));
         }
 
         private async void YearlyView_Load(object sender, EventArgs e)
@@ -30,7 +32,17 @@ namespace ExpenseTrackerWin
 
         private async Task LoadGird()
         {
-            var lstDtoYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(datePickerYearly.Text));
+            int year = Convert.ToInt32(datePickerYearly.Text);
+            var _unitOfWork = new UnitOfWork(new ContextFactory(), year);
+            if (!_unitOfWork.CanConnect())
+            {
+                MessageBox.Show("Database does not exist : " + year + " Setting to current year");
+                datePickerYearly.Value = DateTime.Now;
+                return;
+            }
+            _serviceFactory = new ServiceFactory(_unitOfWork);
+
+            var lstDtoYealry = await _serviceFactory.YearlyService.GetYearlyData(year);
             dgvYealy.DataSource = lstDtoYealry.MakeSortable();
             dgvYealy.SetGridToFit();
 

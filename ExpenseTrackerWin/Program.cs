@@ -29,7 +29,6 @@ namespace ExpenseTrackerWin
         static IHostBuilder CreateHostBuilder()
         {
             return Host.CreateDefaultBuilder().ConfigureServices((context, services) => {
-                services.AddDbContexts(Configuration);
                 services.AddInjections();
                 services.AddIdentity();
                 services.AddScoped<HomePage>();

@@ -17,16 +17,7 @@ namespace ExpenseTrackerWin.Startup
 {
     public static class RegisterExtensionsWindows
     {
-        public static void AddDbContexts(this IServiceCollection services, IConfiguration configuration)
-        {
-            var contextConnectionString = ConnectionSettings.DefaultConnection;
-
-            services.AddDbContext<DatabaseContext>(x => x.UseSqlServer(contextConnectionString, o =>
-            {
-                o.EnableRetryOnFailure(3);
-            })
-            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking), ServiceLifetime.Transient); // 
-        }
+     
 
         public static void AddInjections(this IServiceCollection services)
         {
