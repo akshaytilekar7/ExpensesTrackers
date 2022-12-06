@@ -116,11 +116,11 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvYealy.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvYealy.Location = new System.Drawing.Point(439, 10);
+            this.dgvYealy.Location = new System.Drawing.Point(439, -2);
             this.dgvYealy.Name = "dgvYealy";
             this.dgvYealy.RowHeadersWidth = 62;
             this.dgvYealy.RowTemplate.Height = 25;
-            this.dgvYealy.Size = new System.Drawing.Size(1516, 1110);
+            this.dgvYealy.Size = new System.Drawing.Size(1462, 1110);
             this.dgvYealy.TabIndex = 1;
             this.dgvYealy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dgvYealy.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvYealy_CellLeave);
