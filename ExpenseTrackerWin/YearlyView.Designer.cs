@@ -301,7 +301,7 @@
             this.dgvBankAmount.Location = new System.Drawing.Point(12, 57);
             this.dgvBankAmount.Name = "dgvBankAmount";
             this.dgvBankAmount.RowTemplate.Height = 25;
-            this.dgvBankAmount.Size = new System.Drawing.Size(421, 174);
+            this.dgvBankAmount.Size = new System.Drawing.Size(421, 137);
             this.dgvBankAmount.TabIndex = 43;
             // 
             // dgvExpenseOverview
@@ -315,7 +315,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvExpenseOverview.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvExpenseOverview.Location = new System.Drawing.Point(12, 237);
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(12, 200);
             this.dgvExpenseOverview.Name = "dgvExpenseOverview";
             this.dgvExpenseOverview.RowTemplate.Height = 25;
             this.dgvExpenseOverview.Size = new System.Drawing.Size(421, 320);
@@ -332,10 +332,10 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvTooltip.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvTooltip.Location = new System.Drawing.Point(12, 563);
+            this.dgvTooltip.Location = new System.Drawing.Point(12, 526);
             this.dgvTooltip.Name = "dgvTooltip";
             this.dgvTooltip.RowTemplate.Height = 25;
-            this.dgvTooltip.Size = new System.Drawing.Size(421, 507);
+            this.dgvTooltip.Size = new System.Drawing.Size(421, 544);
             this.dgvTooltip.TabIndex = 41;
             // 
             // YearlyView
