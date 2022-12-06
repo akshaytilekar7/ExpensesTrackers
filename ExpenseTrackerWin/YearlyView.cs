@@ -133,7 +133,7 @@ namespace ExpenseTrackerWin
             {
                 return expenses.Select(x => new DtoDetails
                 {
-                    Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.DayOfWeek.ToString(),
+                    Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.ToString("ddd"),
                     Amount = x.Amount,
                     Comment = x.Comment,
                     BankName = x.Bank.Name,

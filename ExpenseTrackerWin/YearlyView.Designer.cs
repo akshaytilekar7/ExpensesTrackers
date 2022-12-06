@@ -254,9 +254,9 @@
             // 
             // btnHome
             // 
-            this.btnHome.Location = new System.Drawing.Point(358, 57);
+            this.btnHome.Location = new System.Drawing.Point(254, 10);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(75, 23);
+            this.btnHome.Size = new System.Drawing.Size(75, 40);
             this.btnHome.TabIndex = 2;
             this.btnHome.Text = "Home";
             this.btnHome.UseVisualStyleBackColor = true;
@@ -277,9 +277,9 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(358, 101);
+            this.btnExport.Location = new System.Drawing.Point(335, 10);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.Size = new System.Drawing.Size(75, 38);
             this.btnExport.TabIndex = 6;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
@@ -290,7 +290,7 @@
             this.dgvBankAmount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
@@ -301,7 +301,7 @@
             this.dgvBankAmount.Location = new System.Drawing.Point(12, 57);
             this.dgvBankAmount.Name = "dgvBankAmount";
             this.dgvBankAmount.RowTemplate.Height = 25;
-            this.dgvBankAmount.Size = new System.Drawing.Size(312, 206);
+            this.dgvBankAmount.Size = new System.Drawing.Size(421, 174);
             this.dgvBankAmount.TabIndex = 43;
             // 
             // dgvExpenseOverview
@@ -309,16 +309,16 @@
             this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvExpenseOverview.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvExpenseOverview.Location = new System.Drawing.Point(12, 268);
+            this.dgvExpenseOverview.Location = new System.Drawing.Point(12, 237);
             this.dgvExpenseOverview.Name = "dgvExpenseOverview";
             this.dgvExpenseOverview.RowTemplate.Height = 25;
-            this.dgvExpenseOverview.Size = new System.Drawing.Size(421, 289);
+            this.dgvExpenseOverview.Size = new System.Drawing.Size(421, 320);
             this.dgvExpenseOverview.TabIndex = 42;
             // 
             // dgvTooltip
@@ -326,7 +326,7 @@
             this.dgvTooltip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
