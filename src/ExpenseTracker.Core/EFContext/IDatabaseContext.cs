@@ -9,8 +9,7 @@ namespace ExpenseTracker.Core.EFContext
     public interface IDatabaseContext
     {
         /// <returns>set for the specified entity</returns>
-        DbSet<TEntity> Set<TEntity>()
-            where TEntity : class;
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         /// <returns>number of state entries interacted with database</returns>
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
@@ -25,6 +24,8 @@ namespace ExpenseTracker.Core.EFContext
         int SaveChanges(bool confirmAllTransactions);
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         DatabaseFacade Database { get; }
+        //void OnConfiguring(DbContextOptionsBuilder optionsBuilder);
+
         void Dispose();
     }
 }

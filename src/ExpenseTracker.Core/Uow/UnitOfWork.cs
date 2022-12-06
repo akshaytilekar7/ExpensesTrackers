@@ -14,9 +14,14 @@ namespace ExpenseTracker.Core.Uow
 
         private Dictionary<Type, object> repos;
 
-        public UnitOfWork(IContextFactory contextFactory, int year = -1)
+        public UnitOfWork(IContextFactory contextFactory)
         {
-            dbContext = new DatabaseContext(contextFactory.GetDataContext(year).Options);
+            dbContext = new DatabaseContext(contextFactory.GetDataContext().Options);
+            // never uccomment unless u want to create database 
+            //if (!dbContext.Database.CanConnect())
+            //{
+            //    dbContext.Database.EnsureCreated();
+            //}
         }
 
         public bool CanConnect()

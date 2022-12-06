@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ExpenseTracker.Core.EFContext;
 using ExpenseTracker.Core.Factory;
@@ -12,16 +10,17 @@ using ExpenseTracker.Models.Configuration;
 using ExpenseTracker.Services;
 using ExpenseTracker.Services.Base.Contracts;
 using ExpenseTracker.Services.Factory;
+using ExpenseTracker.Core;
+using Microsoft.Extensions.Configuration;
 
 namespace ExpenseTrackerWin.Startup
 {
     public static class RegisterExtensionsWindows
     {
-     
-
-        public static void AddInjections(this IServiceCollection services)
+        public static void AddInjections(this IServiceCollection services, IConfiguration Configuration)
         {
-            services.AddScoped<IContextFactory, ContextFactory>();
+            services.AddScoped<IMyConfig, MyConfig>();
+            services.AddScoped<IContextFactory, DefaultContextFactory>();
             services.AddScoped<IDatabaseContext, DatabaseContext>();
             services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

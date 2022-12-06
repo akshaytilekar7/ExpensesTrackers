@@ -5,6 +5,8 @@ using ExpenseTracker.Services.Factory;
 using System.Data;
 using ExpenseTracker.Services.Base;
 using ExpenseTracker.Models;
+using ExpenseTracker.Core;
+using Microsoft.Extensions.Options;
 
 namespace ExpenseTrackerWin
 {
@@ -13,11 +15,14 @@ namespace ExpenseTrackerWin
 
         List<Expense> listExpense = new List<Expense>();
         List<DtoExpense> listOldData = new List<DtoExpense>();
+
+        public IOptions<MyConfig> MyConfig { get; }
         IServiceFactory _serviceFactory { get; }
 
-        public AddExpense(IServiceFactory serviceFactory)
+        public AddExpense(IOptions<MyConfig> myConfig, IServiceFactory serviceFactory)
         {
             InitializeComponent();
+            MyConfig = myConfig;
             _serviceFactory = serviceFactory;
         }
 
@@ -126,7 +131,7 @@ namespace ExpenseTrackerWin
 
         private void btnFilterPage_Click(object sender, EventArgs e)
         {
-            ViewExpense Check = new ViewExpense(_serviceFactory);
+            ViewExpense Check = new ViewExpense(MyConfig, _serviceFactory);
             Check.Show();
             Hide();
         }
@@ -256,7 +261,7 @@ namespace ExpenseTrackerWin
 
         private void btnHomePage_Click(object sender, EventArgs e)
         {
-            HomePage Check = new HomePage(_serviceFactory);
+            HomePage Check = new HomePage(MyConfig, _serviceFactory);
             Check.Show();
             Hide();
         }

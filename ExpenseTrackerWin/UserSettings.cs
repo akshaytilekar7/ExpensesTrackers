@@ -1,15 +1,20 @@
 ﻿using ExpenseTracker.Services.Factory;
 using ExpenseTracker.Models;
 using System.Data;
+using ExpenseTracker.Core;
+using Microsoft.Extensions.Options;
+
 namespace ExpenseTrackerWin
 {
     public partial class UserSettings : Form
     {
+        public IOptions<MyConfig> MyConfig { get; }
         public IServiceFactory _serviceFactory { get; }
 
-        public UserSettings(IServiceFactory serviceFactory)
+        public UserSettings(IOptions<MyConfig> myConfig, IServiceFactory serviceFactory)
         {
             InitializeComponent();
+            MyConfig = myConfig;
             _serviceFactory = serviceFactory;
             LoadExpenseGrid();
             LoadCategoryGrid();
@@ -148,7 +153,7 @@ namespace ExpenseTrackerWin
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            HomePage Check = new HomePage(_serviceFactory);
+            HomePage Check = new HomePage(MyConfig, _serviceFactory);
             Check.Show();
             Hide();
         }

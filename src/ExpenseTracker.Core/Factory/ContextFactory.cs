@@ -2,24 +2,26 @@
 using ExpenseTracker.Core.EFContext;
 using System;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Options;
 
 namespace ExpenseTracker.Core.Factory
 {
-    /// <summary>
-    /// context factory for ef
-    /// </summary>
-    public class ContextFactory : IContextFactory
+    public class DefaultContextFactory : IContextFactory
     {
-        public ContextFactory()
+        public DefaultContextFactory(IOptions<MyConfig> myConfig)
         {
+            MyConfig = myConfig;
         }
 
-        public DbContextOptionsBuilder<DatabaseContext> GetDataContext(int year = 2022)
-        {
-            if (year == -1)
-                year = DateTime.Now.Year;
+        public IOptions<MyConfig> MyConfig { get; }
 
-            var con = "Server=localhost;Database=ExpenseTracker" + year + "_1;Trusted_Connection=True;";
+        public DbContextOptionsBuilder<DatabaseContext> GetDataContext()
+        {
+            var dbName = "ExpenseTracker";
+            if (MyConfig.Value.UseDatabaseDummy)
+                dbName = "Dummy";
+
+            var con = "Server=localhost;Database=" + dbName + DateTime.Now.Year + "_1;Trusted_Connection=True;";
 
             var sqlConnectionBuilder = new SqlConnectionStringBuilder(con);
 
@@ -29,6 +31,36 @@ namespace ExpenseTracker.Core.Factory
 
             return contextOptionsBuilder;
         }
-        
+
+    }
+
+    public class SpecialContextFactory : IContextFactory
+    {
+        public IOptions<MyConfig> MyConfig { get; }
+        public SpecialContextFactory(IOptions<MyConfig> myConfig, int year)
+        {
+            MyConfig = myConfig;
+            Year = year;
+        }
+
+        public int Year { get; }
+
+        public DbContextOptionsBuilder<DatabaseContext> GetDataContext()
+        {
+            var dbName = "ExpenseTracker";
+            if (MyConfig.Value.UseDatabaseDummy)
+                dbName = "Dummy";
+
+            var con = "Server=localhost;Database=" + dbName + Year + "_1;Trusted_Connection=True;";
+
+            var sqlConnectionBuilder = new SqlConnectionStringBuilder(con);
+
+            var contextOptionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+
+            contextOptionsBuilder.UseSqlServer(sqlConnectionBuilder.ConnectionString);
+
+            return contextOptionsBuilder;
+        }
+
     }
 }

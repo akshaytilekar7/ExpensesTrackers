@@ -1,3 +1,4 @@
+using ExpenseTracker.Core;
 using ExpenseTrackerWin.Startup;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,20 +20,23 @@ namespace ExpenseTrackerWin
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json");  //reloadOnChange: true
             Configuration = builder.Build();
 
             var host = CreateHostBuilder().Build();
             ServiceProvider = host.Services;
-            Application.Run(ServiceProvider.GetRequiredService<HomePage>()); 
+            Application.Run(ServiceProvider.GetRequiredService<HomePage>());
         }
         static IHostBuilder CreateHostBuilder()
         {
-            return Host.CreateDefaultBuilder().ConfigureServices((context, services) => {
-                services.AddInjections();
+            return Host.CreateDefaultBuilder().ConfigureServices((context, services) =>
+            {
+                services.Configure<MyConfig>(Configuration.GetSection("MyConfig"));
+                services.AddInjections(Configuration);
                 services.AddIdentity();
                 services.AddScoped<HomePage>();
-                });
+            });
         }
 
     }

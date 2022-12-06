@@ -4,15 +4,20 @@ using ExpenseTracker.Models;
 using ExpenseTracker.Models.Dto;
 using ExpenseTracker.Services.Factory;
 using ExpenseTracker.Services.Base;
+using ExpenseTracker.Core;
+using Microsoft.Extensions.Options;
+
 namespace ExpenseTrackerWin
 {
     public partial class ViewExpense : Form
     {
+        public IOptions<MyConfig> MyConfig { get; }
         public IServiceFactory _serviceFactory { get; }
 
-        public ViewExpense(IServiceFactory serviceFactory)
+        public ViewExpense(IOptions<MyConfig> myConfig, IServiceFactory serviceFactory)
         {
             InitializeComponent();
+            MyConfig = myConfig;
             _serviceFactory = serviceFactory;
             dgvFilter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFilter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
@@ -162,7 +167,7 @@ namespace ExpenseTrackerWin
 
         private void btnForm1_Click(object sender, EventArgs e)
         {
-            HomePage Check = new HomePage(_serviceFactory);
+            HomePage Check = new HomePage(MyConfig, _serviceFactory);
             Check.Show();
             Hide();
         }

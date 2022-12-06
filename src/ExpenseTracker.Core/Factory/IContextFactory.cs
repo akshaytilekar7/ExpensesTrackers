@@ -5,6 +5,6 @@ namespace ExpenseTracker.Core.Factory
 {
     public interface IContextFactory
     {
-        DbContextOptionsBuilder<DatabaseContext> GetDataContext(int year = -1);
+        DbContextOptionsBuilder<DatabaseContext> GetDataContext();
     }
 }

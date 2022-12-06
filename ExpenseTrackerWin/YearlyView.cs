@@ -8,17 +8,21 @@ using System.Globalization;
 using ExpenseTracker.Services.Base;
 using ExpenseTracker.Core.Uow;
 using ExpenseTracker.Core.Factory;
+using ExpenseTracker.Core;
+using Microsoft.Extensions.Options;
 
 namespace ExpenseTrackerWin
 {
     public partial class YearlyView : Form
     {
         public IServiceFactory _serviceFactory { get; set; }
+        public IOptions<MyConfig> MyConfig { get; }
 
-        public YearlyView()
+        public YearlyView(IOptions<MyConfig> myConfig)
         {
             InitializeComponent();
-            _serviceFactory = new ServiceFactory(new UnitOfWork(new ContextFactory(), DateTime.Now.Year));
+            MyConfig = myConfig;
+            _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, DateTime.Now.Year)));
         }
 
         private async void YearlyView_Load(object sender, EventArgs e)
@@ -33,10 +37,10 @@ namespace ExpenseTrackerWin
         private async Task LoadGird()
         {
             int year = Convert.ToInt32(datePickerYearly.Text);
-            var _unitOfWork = new UnitOfWork(new ContextFactory(), year);
+            var _unitOfWork = new UnitOfWork(new SpecialContextFactory(MyConfig, year));
             if (!_unitOfWork.CanConnect())
             {
-                MessageBox.Show("Database does not exist : " + year + " Setting to current year");
+                MessageBox.Show("Database does not exist : " + year + ". Setting view to current year");
                 datePickerYearly.Value = DateTime.Now;
                 return;
             }
@@ -141,7 +145,7 @@ namespace ExpenseTrackerWin
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            HomePage Check = new HomePage(_serviceFactory);
+            HomePage Check = new HomePage(MyConfig, _serviceFactory);
             Check.Show();
             Hide();
         }

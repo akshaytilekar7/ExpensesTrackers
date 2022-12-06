@@ -1,17 +1,21 @@
-﻿using ExpenseTracker.Models;
+﻿using ExpenseTracker.Core;
+using ExpenseTracker.Models;
 using ExpenseTracker.Services.Factory;
 using ExpenseTrackerWin.Utility;
+using Microsoft.Extensions.Options;
 
 namespace ExpenseTrackerWin
 {
     public partial class AddIncome : Form
     {
-        public AddIncome(IServiceFactory serviceFactory)
+        public AddIncome(IOptions<MyConfig> myConfig, IServiceFactory serviceFactory)
         {
             InitializeComponent();
+            MyConfig = myConfig;
             _serviceFactory = serviceFactory;
         }
 
+        public IOptions<MyConfig> MyConfig { get; }
         private IServiceFactory _serviceFactory { get; }
 
         private void AddIncome_Load(object sender, EventArgs e)
@@ -44,7 +48,7 @@ namespace ExpenseTrackerWin
             income.Amount = Convert.ToInt32(txtAmount.Text);
             income.UserId = Convert.ToInt32(cmbNames.SelectedValue);
             income.BankId = Convert.ToInt32(cmbBank.SelectedValue);
-            income.Comment =  Convert.ToString(string.IsNullOrEmpty(txtComment.Text) ? cmbComment.Text : txtAmount.Text);
+            income.Comment = Convert.ToString(string.IsNullOrEmpty(txtComment.Text) ? cmbComment.Text : txtAmount.Text);
             _serviceFactory.IncomeService.Add(income);
             string message = "Save Data Sucessfully";
             MessageBox.Show(message);
@@ -53,7 +57,7 @@ namespace ExpenseTrackerWin
 
         private void btnHomePage_Click(object sender, EventArgs e)
         {
-            HomePage Check = new HomePage(_serviceFactory);
+            HomePage Check = new HomePage(MyConfig, _serviceFactory);
             Check.Show();
             Hide();
         }
