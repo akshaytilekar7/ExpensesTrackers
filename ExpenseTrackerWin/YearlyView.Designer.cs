@@ -72,9 +72,11 @@
             // 
             // datePickerYearly
             // 
-            this.datePickerYearly.Location = new System.Drawing.Point(28, 27);
+            this.datePickerYearly.CalendarFont = new System.Drawing.Font("Calibri", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.datePickerYearly.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.datePickerYearly.Location = new System.Drawing.Point(3, 10);
             this.datePickerYearly.Name = "datePickerYearly";
-            this.datePickerYearly.Size = new System.Drawing.Size(200, 23);
+            this.datePickerYearly.Size = new System.Drawing.Size(245, 40);
             this.datePickerYearly.TabIndex = 0;
             this.datePickerYearly.ValueChanged += new System.EventHandler(this.datePickerYearly_ValueChanged);
             // 
@@ -119,7 +121,7 @@
             this.dgvYealy.Name = "dgvYealy";
             this.dgvYealy.RowHeadersWidth = 62;
             this.dgvYealy.RowTemplate.Height = 25;
-            this.dgvYealy.Size = new System.Drawing.Size(1371, 932);
+            this.dgvYealy.Size = new System.Drawing.Size(1371, 975);
             this.dgvYealy.TabIndex = 1;
             this.dgvYealy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dgvYealy.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvYealy_CellLeave);
@@ -352,7 +354,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1924, 1028);
+            this.ClientSize = new System.Drawing.Size(1924, 1043);
             this.Controls.Add(this.dgvBankAmount);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnExport);
