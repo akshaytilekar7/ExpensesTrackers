@@ -32,6 +32,8 @@ namespace ExpenseTrackerWin
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblError = new System.Windows.Forms.Label();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.Date = new System.Windows.Forms.Label();
@@ -95,7 +97,7 @@ namespace ExpenseTrackerWin
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(355, 779);
+            this.btnSave.Location = new System.Drawing.Point(314, 780);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 52);
             this.btnSave.TabIndex = 13;
@@ -106,7 +108,7 @@ namespace ExpenseTrackerWin
             // btnHomePage
             // 
             this.btnHomePage.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnHomePage.Location = new System.Drawing.Point(659, 779);
+            this.btnHomePage.Location = new System.Drawing.Point(618, 780);
             this.btnHomePage.Name = "btnHomePage";
             this.btnHomePage.Size = new System.Drawing.Size(149, 52);
             this.btnHomePage.TabIndex = 14;
@@ -119,10 +121,19 @@ namespace ExpenseTrackerWin
             this.dgvIncome.AllowUserToAddRows = false;
             this.dgvIncome.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.NullValue = null;
             this.dgvIncome.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvIncome.AutoGenerateColumns = false;
             this.dgvIncome.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIncome.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIncome.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -131,10 +142,18 @@ namespace ExpenseTrackerWin
             this.BankName,
             this.Comment});
             this.dgvIncome.DataSource = this.incomeSourceBindingSource;
-            this.dgvIncome.Location = new System.Drawing.Point(223, 140);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIncome.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvIncome.Location = new System.Drawing.Point(117, 140);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.RowTemplate.Height = 25;
-            this.dgvIncome.Size = new System.Drawing.Size(684, 633);
+            this.dgvIncome.Size = new System.Drawing.Size(846, 633);
             this.dgvIncome.TabIndex = 15;
             // 
             // idDataGridViewTextBoxColumn
@@ -175,7 +194,7 @@ namespace ExpenseTrackerWin
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(450, 779);
+            this.btnDelete.Location = new System.Drawing.Point(409, 780);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(204, 52);
@@ -220,7 +239,7 @@ namespace ExpenseTrackerWin
             this.cmbNames.FormattingEnabled = true;
             this.cmbNames.Location = new System.Drawing.Point(511, 7);
             this.cmbNames.Name = "cmbNames";
-            this.cmbNames.Size = new System.Drawing.Size(142, 41);
+            this.cmbNames.Size = new System.Drawing.Size(188, 41);
             this.cmbNames.TabIndex = 21;
             this.cmbNames.SelectionChangeCommitted += new System.EventHandler(this.cmbNames_SelectionChangeCommitted);
             // 
@@ -276,11 +295,11 @@ namespace ExpenseTrackerWin
             "Avalara Shares",
             "Sandvik Salary",
             "Opening Balance",
-            "Pragati Aii",
+            "Pragati Aai",
             "FD Interest"});
             this.cmbComment.Location = new System.Drawing.Point(511, 75);
             this.cmbComment.Name = "cmbComment";
-            this.cmbComment.Size = new System.Drawing.Size(142, 41);
+            this.cmbComment.Size = new System.Drawing.Size(188, 41);
             this.cmbComment.TabIndex = 27;
             // 
             // label2
