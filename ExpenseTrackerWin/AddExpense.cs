@@ -156,7 +156,7 @@ namespace ExpenseTrackerWin
 
                     DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
                     var excelWhatsAppExpense = lstWhatsAppData
-                        .FirstOrDefault(x => (x.Date.Day == item.Date.Day || x.Date.Day == item.Date.AddDays(1).Day)
+                        .FirstOrDefault(x => (x.Date.Day == item.Date.Day || x.Date.Day == item.Date.AddDays(-1).Day)
                         && x.Amount == item.Amount);
 
                     var comment = excelWhatsAppExpense == null ? string.Empty : excelWhatsAppExpense.Comment?.Trim();
