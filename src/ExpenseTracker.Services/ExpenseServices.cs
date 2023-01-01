@@ -134,6 +134,8 @@ namespace ExpenseTracker.Services
                     }
                 }
             }
+
+            lstDtoExpense.OrderBy(x => x.Id);
             return lstDtoExpense;
         }
 

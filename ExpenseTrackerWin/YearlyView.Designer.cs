@@ -35,7 +35,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.datePickerYearly = new System.Windows.Forms.DateTimePicker();
             this.dgvYealy = new System.Windows.Forms.DataGridView();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +60,7 @@
             this.dgvBankAmount = new System.Windows.Forms.DataGridView();
             this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
             this.dgvTooltip = new System.Windows.Forms.DataGridView();
+            this.cmbDatabasePicker = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvYealy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryBindingSource)).BeginInit();
@@ -69,16 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseOverview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTooltip)).BeginInit();
             this.SuspendLayout();
-            // 
-            // datePickerYearly
-            // 
-            this.datePickerYearly.CalendarFont = new System.Drawing.Font("Calibri", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.datePickerYearly.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.datePickerYearly.Location = new System.Drawing.Point(3, 10);
-            this.datePickerYearly.Name = "datePickerYearly";
-            this.datePickerYearly.Size = new System.Drawing.Size(245, 40);
-            this.datePickerYearly.TabIndex = 0;
-            this.datePickerYearly.ValueChanged += new System.EventHandler(this.datePickerYearly_ValueChanged);
             // 
             // dgvYealy
             // 
@@ -301,10 +291,10 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvBankAmount.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvBankAmount.Location = new System.Drawing.Point(12, 57);
+            this.dgvBankAmount.Location = new System.Drawing.Point(12, 56);
             this.dgvBankAmount.Name = "dgvBankAmount";
             this.dgvBankAmount.RowTemplate.Height = 25;
-            this.dgvBankAmount.Size = new System.Drawing.Size(398, 137);
+            this.dgvBankAmount.Size = new System.Drawing.Size(398, 138);
             this.dgvBankAmount.TabIndex = 43;
             // 
             // dgvExpenseOverview
@@ -341,12 +331,23 @@
             this.dgvTooltip.Size = new System.Drawing.Size(398, 544);
             this.dgvTooltip.TabIndex = 41;
             // 
+            // cmbDatabasePicker
+            // 
+            this.cmbDatabasePicker.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cmbDatabasePicker.FormattingEnabled = true;
+            this.cmbDatabasePicker.Location = new System.Drawing.Point(12, 13);
+            this.cmbDatabasePicker.Name = "cmbDatabasePicker";
+            this.cmbDatabasePicker.Size = new System.Drawing.Size(227, 31);
+            this.cmbDatabasePicker.TabIndex = 44;
+            this.cmbDatabasePicker.SelectedIndexChanged += new System.EventHandler(this.cmbDatabasePicker_SelectedIndexChanged);
+            // 
             // YearlyView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1924, 1062);
+            this.Controls.Add(this.cmbDatabasePicker);
             this.Controls.Add(this.dgvBankAmount);
             this.Controls.Add(this.dgvExpenseOverview);
             this.Controls.Add(this.dgvTooltip);
@@ -354,7 +355,6 @@
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.dgvYealy);
-            this.Controls.Add(this.datePickerYearly);
             this.Name = "YearlyView";
             this.Text = "YearlyView";
             this.Load += new System.EventHandler(this.YearlyView_Load);
@@ -371,8 +371,6 @@
         }
 
         #endregion
-
-        private DateTimePicker datePickerYearly;
         private DataGridView dgvYealy;
         private Button btnHome;
         private Label lblTotal;
@@ -399,5 +397,6 @@
         private DataGridViewTextBoxColumn November;
         private DataGridViewTextBoxColumn December;
         private DataGridViewTextBoxColumn CatogoryTotal;
+        private ComboBox cmbDatabasePicker;
     }
 }
