@@ -160,7 +160,7 @@ namespace ExpenseTrackerWin
                         && x.Amount == item.Amount);
 
                     var comment = excelWhatsAppExpense == null ? string.Empty : excelWhatsAppExpense.Comment?.Trim();
-                    cComment.Value = comment;
+                    cComment.Value = comment?.Trim();
 
                     DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
                     var dbCategories = _serviceFactory.CategoryServices.GetAll();
