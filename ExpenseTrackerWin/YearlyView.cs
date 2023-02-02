@@ -33,7 +33,8 @@ namespace ExpenseTrackerWin
             foreach (var item in MyConfig.Value.Database)
                 cmbDatabasePicker.Items.Add(item);
             cmbDatabasePicker.Items.Add(DateTime.Now.Year);
-            await LoadGird();
+
+            cmbDatabasePicker.SelectedIndex = cmbDatabasePicker.Items.Count - 1;
         }
 
         private async Task LoadGird()
