@@ -25,7 +25,7 @@ namespace ExpenseTrackerWin
             _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, DateTime.Now.Year)));
         }
 
-        private async void YearlyView_Load(object sender, EventArgs e)
+        private void YearlyView_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
             cmbDatabasePicker.Items.Add("Please select");
