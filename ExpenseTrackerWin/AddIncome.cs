@@ -81,7 +81,6 @@ namespace ExpenseTrackerWin
             cmbBank.DataSource = lstBanks;
             cmbBank.DisplayMember = "Name";
             cmbBank.ValueMember = "Id";
-
         }
     }
 }

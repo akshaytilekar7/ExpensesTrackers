@@ -308,6 +308,7 @@
             this.cmbNames.Size = new System.Drawing.Size(142, 41);
             this.cmbNames.TabIndex = 31;
             this.cmbNames.SelectedIndexChanged += new System.EventHandler(this.cmbNames_SelectedIndexChanged);
+            this.cmbNames.SelectionChangeCommitted += new System.EventHandler(this.cmbNames_SelectionChangeCommitted);
             // 
             // lblName
             // 
