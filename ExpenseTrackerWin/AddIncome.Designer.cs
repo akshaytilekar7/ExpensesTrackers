@@ -54,8 +54,6 @@ namespace ExpenseTrackerWin
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblComment = new System.Windows.Forms.Label();
-            this.txtComment = new System.Windows.Forms.TextBox();
             this.cmbComment = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
@@ -267,25 +265,6 @@ namespace ExpenseTrackerWin
             this.label1.TabIndex = 22;
             this.label1.Text = "Bank";
             // 
-            // lblComment
-            // 
-            this.lblComment.AutoSize = true;
-            this.lblComment.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblComment.Location = new System.Drawing.Point(714, 76);
-            this.lblComment.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(78, 33);
-            this.lblComment.TabIndex = 25;
-            this.lblComment.Text = "Other";
-            // 
-            // txtComment
-            // 
-            this.txtComment.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtComment.Location = new System.Drawing.Point(805, 77);
-            this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(145, 40);
-            this.txtComment.TabIndex = 24;
-            // 
             // cmbComment
             // 
             this.cmbComment.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -321,8 +300,6 @@ namespace ExpenseTrackerWin
             this.ClientSize = new System.Drawing.Size(1196, 843);
             this.Controls.Add(this.cmbComment);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblComment);
-            this.Controls.Add(this.txtComment);
             this.Controls.Add(this.cmbBank);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbNames);
@@ -366,8 +343,6 @@ namespace ExpenseTrackerWin
         private BindingSource userBindingSource;
         private ComboBox cmbBank;
         private Label label1;
-        private Label lblComment;
-        private TextBox txtComment;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
