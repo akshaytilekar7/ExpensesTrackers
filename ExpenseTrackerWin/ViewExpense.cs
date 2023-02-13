@@ -226,7 +226,7 @@ namespace ExpenseTrackerWin
         {
             var filter = new DtoExpenseFilter()
             {
-                Amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToInt32(txtAmount.Text),
+                Amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToDecimal(txtAmount.Text),
                 Comment = txtComment.Text,
                 StartDate = dateStart.Value.Date,
                 EndDate = dateEnd.Value.Date,

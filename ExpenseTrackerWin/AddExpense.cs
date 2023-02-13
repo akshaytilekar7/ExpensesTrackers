@@ -91,7 +91,7 @@ namespace ExpenseTrackerWin
                     expense.CategoryTypeId = Convert.ToInt32(row.Cells[1].Value);
                     var date = Convert.ToDateTime(DatePicker.Text);
                     expense.Date = new DateTime(date.Year, date.Month, day);
-                    expense.Amount = Convert.ToInt32(row.Cells[2].Value);
+                    expense.Amount = Convert.ToDecimal(row.Cells[2].Value);
                     expense.Comment = Convert.ToString(row.Cells[3].Value);
                     expense.BankId = Convert.ToInt32(cmbBank.SelectedValue);
                     expense.UserId = user;
@@ -279,7 +279,7 @@ namespace ExpenseTrackerWin
             if (!string.IsNullOrEmpty(txtAmount.Text))
             {
                 listOldData = new List<DtoExpense>();
-                expenseFilter.Amount = Convert.ToInt32(txtAmount.Text);
+                expenseFilter.Amount = Convert.ToDecimal(txtAmount.Text);
             }
 
             List<DtoExpense> newOldaData = await _serviceFactory.ExpenseServices.GetExpenseFilter(expenseFilter);

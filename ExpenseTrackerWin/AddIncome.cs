@@ -45,7 +45,7 @@ namespace ExpenseTrackerWin
         {
             IncomeSource income = new IncomeSource();
             income.Date = Convert.ToDateTime(datePicker.Text);
-            income.Amount = Convert.ToInt32(txtAmount.Text);
+            income.Amount = Convert.ToDecimal(txtAmount.Text);
             income.UserId = Convert.ToInt32(cmbNames.SelectedValue);
             income.BankId = Convert.ToInt32(cmbBank.SelectedValue);
             income.Comment = Convert.ToString(string.IsNullOrEmpty(txtComment.Text) ? cmbComment.Text : txtAmount.Text);
