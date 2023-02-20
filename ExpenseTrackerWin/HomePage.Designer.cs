@@ -34,6 +34,7 @@
             this.btnYealry = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
             this.btnUserSettings = new System.Windows.Forms.Button();
+            this.btnYearlyTotal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAddExpensed
@@ -110,12 +111,26 @@
             this.btnUserSettings.UseVisualStyleBackColor = true;
             this.btnUserSettings.Click += new System.EventHandler(this.btnUserSettings_Click);
             // 
+            // btnYearlyTotal
+            // 
+            this.btnYearlyTotal.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnYearlyTotal.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnYearlyTotal.Location = new System.Drawing.Point(564, 498);
+            this.btnYearlyTotal.Margin = new System.Windows.Forms.Padding(2);
+            this.btnYearlyTotal.Name = "btnYearlyTotal";
+            this.btnYearlyTotal.Size = new System.Drawing.Size(303, 55);
+            this.btnYearlyTotal.TabIndex = 6;
+            this.btnYearlyTotal.Text = "Yealry Total";
+            this.btnYearlyTotal.UseVisualStyleBackColor = true;
+            this.btnYearlyTotal.Click += new System.EventHandler(this.btnYearlyTotal_Click);
+            // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1454, 692);
+            this.Controls.Add(this.btnYearlyTotal);
             this.Controls.Add(this.btnUserSettings);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.btnYealry);
@@ -140,5 +155,6 @@
         private Button btnYealry;
         private Label lblHeader;
         private Button btnUserSettings;
+        private Button btnYearlyTotal;
     }
 }

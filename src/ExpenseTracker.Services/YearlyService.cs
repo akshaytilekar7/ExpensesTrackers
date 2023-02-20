@@ -20,7 +20,7 @@ namespace ExpenseTracker.Services
         public YearlyService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _serviceFactory = new ServiceFactory(_unitOfWork);
+            _serviceFactory = new ServiceFactory(_unitOfWork, null);
         }
 
         public async Task<List<DtoYealry>> GetYearlyData(int year)

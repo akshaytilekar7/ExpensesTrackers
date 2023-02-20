@@ -1,15 +1,19 @@
-﻿using ExpenseTracker.Core.Uow;
+﻿using ExpenseTracker.Core;
+using ExpenseTracker.Core.Uow;
 using ExpenseTracker.Services.Base.Contracts;
+using Microsoft.Extensions.Options;
 
 namespace ExpenseTracker.Services.Factory
 {
     public class ServiceFactory : IServiceFactory
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IOptions<MyConfig> myConfig;
 
-        public ServiceFactory(IUnitOfWork unitOfWork)
+        public ServiceFactory(IUnitOfWork unitOfWork, IOptions<MyConfig> myConfig)
         {
             _unitOfWork = unitOfWork;
+            this.myConfig = myConfig;
         }
         public ICategoryServices CategoryServices
         {
@@ -72,6 +76,14 @@ namespace ExpenseTracker.Services.Factory
             get
             {
                 return new BankService(_unitOfWork);
+            }
+        }
+
+        public IYearlyTotalService YearlyTotalService
+        {
+            get
+            {
+                return new YearlyTotalService(_unitOfWork, myConfig);
             }
         }
     }

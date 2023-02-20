@@ -57,5 +57,12 @@ namespace ExpenseTrackerWin
             Check.Show();
             Hide();
         }
+
+        private void btnYearlyTotal_Click(object sender, EventArgs e)
+        {
+            YearlyTotalView Check = new YearlyTotalView(MyConfig);
+            Check.Show();
+            Hide();
+        }
     }
 }

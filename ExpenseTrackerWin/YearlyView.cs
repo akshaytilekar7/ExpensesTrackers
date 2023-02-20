@@ -22,7 +22,7 @@ namespace ExpenseTrackerWin
         {
             InitializeComponent();
             MyConfig = myConfig;
-            _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, DateTime.Now.Year)));
+            _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, DateTime.Now.Year)), myConfig);
         }
 
         private void YearlyView_Load(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace ExpenseTrackerWin
             //    datePickerYearly.Value = DateTime.Now;
             //    return;
             //}
-            _serviceFactory = new ServiceFactory(_unitOfWork);
+            _serviceFactory = new ServiceFactory(_unitOfWork, MyConfig);
 
             var lstDtoYealry = await _serviceFactory.YearlyService.GetYearlyData(year);
             dgvYealy.DataSource = lstDtoYealry.MakeSortable();
