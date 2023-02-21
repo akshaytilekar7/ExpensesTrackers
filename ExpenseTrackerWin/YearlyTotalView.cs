@@ -44,5 +44,27 @@ namespace ExpenseTrackerWin
             Check.Show();
             Hide();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            int columnIndex = e.ColumnIndex;
+
+            if (rowIndex < 0 || columnIndex < 0)
+                return;
+
+            //dataGridView1.Rows[0].Cells[columnIndex].Style.BackColor = Color.CadetBlue;
+            dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = Color.CadetBlue;
+            //dataGridView1.Rows[rowIndex].Cells[0].Style.BackColor = Color.CadetBlue;
+
+        }
+
+        private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = dataGridView1.DefaultCellStyle.BackColor;
+
+            //dataGridView1.Rows[0].Cells[e.ColumnIndex].Style.BackColor = dataGridView1.DefaultCellStyle.BackColor;
+            //dataGridView1.Rows[e.RowIndex].Cells[0].Style.BackColor = dataGridView1.DefaultCellStyle.BackColor;
+        }
     }
 }
