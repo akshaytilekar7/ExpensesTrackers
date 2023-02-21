@@ -7,5 +7,7 @@ namespace ExpenseTracker.Services.Base.Contracts
     public interface IYearlyTotalService
     {
         List<DtoYealryTotal> GetYearlyData();
+
+        Task<List<DtoExpense>> GetYearlyForTooltip(int year, string category);
     }
 }

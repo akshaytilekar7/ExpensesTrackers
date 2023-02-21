@@ -9,7 +9,6 @@ using System.Data;
 using System;
 using ExpenseTracker.Services.Factory;
 using System.Threading.Tasks;
-using System.Linq.Expressions;
 using Microsoft.Extensions.Options;
 using ExpenseTracker.Core;
 
@@ -48,5 +47,23 @@ namespace ExpenseTracker.Services
             return dtoYealries.OrderBy(x => x.Category).ToList();
         }
 
+        public async Task<List<DtoExpense>> GetYearlyForTooltip(int year, string category)
+        {
+            // var _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(myConfig, year)), myConfig);
+            var _categoryRepository = _unitOfWork.GetRepository<CategoryType>();
+            CategoryType dbCategory = _categoryRepository.FindBy(x => x.Name == category).FirstOrDefault();
+            if (dbCategory == null)
+                return new List<DtoExpense>();
+
+            DtoExpenseFilter dtoExpenseFilter = new DtoExpenseFilter()
+            {
+                CategoryId = dbCategory.Id,
+                StartDate = new DateTime(year, 1, 1),
+                EndDate = new DateTime(year, 12, 31),
+            };
+
+            var lstDtoExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(dtoExpenseFilter);
+            return lstDtoExpense;
+        }
     }
 }

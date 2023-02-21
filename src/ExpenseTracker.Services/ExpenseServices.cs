@@ -135,7 +135,26 @@ namespace ExpenseTracker.Services
                 }
             }
 
-            lstDtoExpense.OrderBy(x => x.Id);
+            lstDtoExpense = lstDtoExpense.OrderBy(x => x.Id).ToList();
+
+            //List<int> indexes = new List<int>();
+            //var month = lstDtoExpense.FirstOrDefault().Date.Month;
+            //if (filter.StartDate.Month != filter.EndDate.Month)
+            //{
+            //    for (int i = 0; i < lstDtoExpense.Count; i++)
+            //    {
+            //        DtoExpense item = lstDtoExpense[i];
+            //        if (item.Date.Month != month)
+            //        {
+            //            month = item.Date.Month;
+            //            indexes.Add(i);
+            //        }
+            //    }
+            //}
+            //foreach (var item in indexes)
+            //{
+            //    lstDtoExpense.Insert(item, new DtoExpense());
+            //}
             return lstDtoExpense;
         }
 

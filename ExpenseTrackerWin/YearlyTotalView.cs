@@ -60,5 +60,34 @@ namespace ExpenseTrackerWin
         {
             dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = dataGridView1.DefaultCellStyle.BackColor;
         }
+
+        private async void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvExpenseByCategory.Rows.Clear();
+            dgvExpenseByCategory.Refresh();
+            lblWait.Text = "Loading...";
+            int rowIndex = e.RowIndex;
+            int columnIndex = e.ColumnIndex;
+
+            if (rowIndex < 0 || columnIndex < 0)
+                return;
+
+            var selectedCategory = Convert.ToString(dataGridView1.Rows[rowIndex].Cells[0].Value);
+            int selectedYear = -1;
+
+            if (!int.TryParse(dataGridView1.SelectedCells[0].OwningColumn.HeaderText, out selectedYear))
+            {
+                lblWait.Text = string.Empty;
+                return;
+            }
+            var _unitOfWork = new UnitOfWork(new SpecialContextFactory(MyConfig, selectedYear));
+            _serviceFactory = new ServiceFactory(_unitOfWork, MyConfig);
+
+            var lstDtoYealry = await _serviceFactory.YearlyTotalService.GetYearlyForTooltip(selectedYear, selectedCategory);
+
+            dgvExpenseByCategory.DataSource = lstDtoYealry.GenereateSrNo().MakeSortable();
+            dgvExpenseByCategory.SetGridToFit();
+            lblWait.Text = string.Empty;
+        }
     }
 }
