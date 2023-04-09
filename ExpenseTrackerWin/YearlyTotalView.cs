@@ -89,5 +89,25 @@ namespace ExpenseTrackerWin
             dgvExpenseByCategory.SetGridToFit();
             lblWait.Text = string.Empty;
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in dataGridView1.Rows)
+            {
+                if (r.Cells[1] != null && r.Cells[1].Value != null)
+                {
+                    if ((r.Cells[1].Value).ToString().ToUpper().Contains(txtSearch.Text.ToUpper()))
+                    {
+                        dataGridView1.Rows[r.Index].Visible = true;
+                        dataGridView1.Rows[r.Index].Selected = true;
+                    }
+                    else
+                    {
+                        dataGridView1.CurrentCell = null;
+                        dataGridView1.Rows[r.Index].Visible = false;
+                    }
+                }
+            }
+        }
     }
 }

@@ -75,14 +75,15 @@
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtoYealryTotalBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvExpenseByCategory = new System.Windows.Forms.DataGridView();
-            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblWait = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expenseTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblWait = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryTotalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseByCategory)).BeginInit();
@@ -390,20 +391,6 @@
             this.dgvExpenseByCategory.Size = new System.Drawing.Size(678, 888);
             this.dgvExpenseByCategory.TabIndex = 5;
             // 
-            // dtoExpenseBindingSource
-            // 
-            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
-            // 
-            // lblWait
-            // 
-            this.lblWait.AutoSize = true;
-            this.lblWait.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblWait.ForeColor = System.Drawing.Color.Red;
-            this.lblWait.Location = new System.Drawing.Point(93, 5);
-            this.lblWait.Name = "lblWait";
-            this.lblWait.Size = new System.Drawing.Size(0, 33);
-            this.lblWait.TabIndex = 6;
-            // 
             // Date
             // 
             this.Date.DataPropertyName = "Date";
@@ -446,12 +433,35 @@
             this.BankName.HeaderText = "BankName";
             this.BankName.Name = "BankName";
             // 
+            // dtoExpenseBindingSource
+            // 
+            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
+            // 
+            // lblWait
+            // 
+            this.lblWait.AutoSize = true;
+            this.lblWait.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblWait.ForeColor = System.Drawing.Color.Red;
+            this.lblWait.Location = new System.Drawing.Point(1020, 5);
+            this.lblWait.Name = "lblWait";
+            this.lblWait.Size = new System.Drawing.Size(0, 33);
+            this.lblWait.TabIndex = 6;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(93, 12);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(100, 23);
+            this.txtSearch.TabIndex = 7;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // YearlyTotalView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1486, 1013);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblWait);
             this.Controls.Add(this.dgvExpenseByCategory);
             this.Controls.Add(this.dataGridView1);
@@ -510,5 +520,6 @@
         private DataGridViewTextBoxColumn Amount;
         private DataGridViewTextBoxColumn Comment;
         private DataGridViewTextBoxColumn BankName;
+        private TextBox txtSearch;
     }
 }
