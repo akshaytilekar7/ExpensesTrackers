@@ -13,5 +13,7 @@ namespace ExpenseTracker.Models
 
         public int ExpenseTypeId { get; set; }
 
+        public decimal? ExpectedAmount { get; set; }
+
     }
 }

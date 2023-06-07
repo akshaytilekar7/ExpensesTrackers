@@ -36,8 +36,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvYealy = new System.Windows.Forms.DataGridView();
+            this.dtoYealryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dtoYealryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnHome = new System.Windows.Forms.Button();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnExport = new System.Windows.Forms.Button();
+            this.dgvBankAmount = new System.Windows.Forms.DataGridView();
+            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
+            this.dgvTooltip = new System.Windows.Forms.DataGridView();
+            this.cmbDatabasePicker = new System.Windows.Forms.ComboBox();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExpectedAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Jan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Feb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.March = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,16 +62,6 @@
             this.November = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.December = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CatogoryTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtoYealryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.dtoYealryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnHome = new System.Windows.Forms.Button();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnExport = new System.Windows.Forms.Button();
-            this.dgvBankAmount = new System.Windows.Forms.DataGridView();
-            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
-            this.dgvTooltip = new System.Windows.Forms.DataGridView();
-            this.cmbDatabasePicker = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvYealy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryBindingSource)).BeginInit();
@@ -83,6 +84,7 @@
             this.dgvYealy.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Category,
             this.ExpenseType,
+            this.ExpectedAmount,
             this.Jan,
             this.Feb,
             this.March,
@@ -116,124 +118,6 @@
             this.dgvYealy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dgvYealy.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvYealy_CellLeave);
             this.dgvYealy.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvYealy_CellMouseMove);
-            // 
-            // Category
-            // 
-            this.Category.DataPropertyName = "Category";
-            this.Category.HeaderText = "Category";
-            this.Category.MinimumWidth = 8;
-            this.Category.Name = "Category";
-            this.Category.Width = 150;
-            // 
-            // ExpenseType
-            // 
-            this.ExpenseType.DataPropertyName = "ExpenseType";
-            this.ExpenseType.HeaderText = "ExpenseType";
-            this.ExpenseType.Name = "ExpenseType";
-            // 
-            // Jan
-            // 
-            this.Jan.DataPropertyName = "Jan";
-            this.Jan.HeaderText = "Jan";
-            this.Jan.MinimumWidth = 8;
-            this.Jan.Name = "Jan";
-            this.Jan.Width = 150;
-            // 
-            // Feb
-            // 
-            this.Feb.DataPropertyName = "Feb";
-            this.Feb.HeaderText = "Feb";
-            this.Feb.MinimumWidth = 8;
-            this.Feb.Name = "Feb";
-            this.Feb.Width = 150;
-            // 
-            // March
-            // 
-            this.March.DataPropertyName = "March";
-            this.March.HeaderText = "March";
-            this.March.MinimumWidth = 8;
-            this.March.Name = "March";
-            this.March.Width = 150;
-            // 
-            // April
-            // 
-            this.April.DataPropertyName = "April";
-            this.April.HeaderText = "April";
-            this.April.MinimumWidth = 8;
-            this.April.Name = "April";
-            this.April.Width = 150;
-            // 
-            // May
-            // 
-            this.May.DataPropertyName = "May";
-            this.May.HeaderText = "May";
-            this.May.MinimumWidth = 8;
-            this.May.Name = "May";
-            this.May.Width = 150;
-            // 
-            // June
-            // 
-            this.June.DataPropertyName = "June";
-            this.June.HeaderText = "June";
-            this.June.MinimumWidth = 8;
-            this.June.Name = "June";
-            this.June.Width = 150;
-            // 
-            // July
-            // 
-            this.July.DataPropertyName = "July";
-            this.July.HeaderText = "July";
-            this.July.MinimumWidth = 8;
-            this.July.Name = "July";
-            this.July.Width = 150;
-            // 
-            // August
-            // 
-            this.August.DataPropertyName = "August";
-            this.August.HeaderText = "August";
-            this.August.MinimumWidth = 8;
-            this.August.Name = "August";
-            this.August.Width = 150;
-            // 
-            // September
-            // 
-            this.September.DataPropertyName = "September";
-            this.September.HeaderText = "September";
-            this.September.MinimumWidth = 8;
-            this.September.Name = "September";
-            this.September.Width = 150;
-            // 
-            // October
-            // 
-            this.October.DataPropertyName = "October";
-            this.October.HeaderText = "October";
-            this.October.MinimumWidth = 8;
-            this.October.Name = "October";
-            this.October.Width = 150;
-            // 
-            // November
-            // 
-            this.November.DataPropertyName = "November";
-            this.November.HeaderText = "November";
-            this.November.MinimumWidth = 8;
-            this.November.Name = "November";
-            this.November.Width = 150;
-            // 
-            // December
-            // 
-            this.December.DataPropertyName = "December";
-            this.December.HeaderText = "December";
-            this.December.MinimumWidth = 8;
-            this.December.Name = "December";
-            this.December.Width = 150;
-            // 
-            // CatogoryTotal
-            // 
-            this.CatogoryTotal.DataPropertyName = "CatogoryTotal";
-            this.CatogoryTotal.HeaderText = "CatogoryTotal";
-            this.CatogoryTotal.MinimumWidth = 8;
-            this.CatogoryTotal.Name = "CatogoryTotal";
-            this.CatogoryTotal.Width = 150;
             // 
             // dtoYealryBindingSource1
             // 
@@ -341,6 +225,130 @@
             this.cmbDatabasePicker.TabIndex = 44;
             this.cmbDatabasePicker.SelectedIndexChanged += new System.EventHandler(this.cmbDatabasePicker_SelectedIndexChanged);
             // 
+            // Category
+            // 
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Category";
+            this.Category.MinimumWidth = 8;
+            this.Category.Name = "Category";
+            this.Category.Width = 150;
+            // 
+            // ExpenseType
+            // 
+            this.ExpenseType.DataPropertyName = "ExpenseType";
+            this.ExpenseType.HeaderText = "ExpenseType";
+            this.ExpenseType.Name = "ExpenseType";
+            // 
+            // ExpectedAmount
+            // 
+            this.ExpectedAmount.DataPropertyName = "ExpectedAmount";
+            this.ExpectedAmount.HeaderText = "ExpectedAmount";
+            this.ExpectedAmount.Name = "ExpectedAmount";
+            // 
+            // Jan
+            // 
+            this.Jan.DataPropertyName = "Jan";
+            this.Jan.HeaderText = "Jan";
+            this.Jan.MinimumWidth = 8;
+            this.Jan.Name = "Jan";
+            this.Jan.Width = 150;
+            // 
+            // Feb
+            // 
+            this.Feb.DataPropertyName = "Feb";
+            this.Feb.HeaderText = "Feb";
+            this.Feb.MinimumWidth = 8;
+            this.Feb.Name = "Feb";
+            this.Feb.Width = 150;
+            // 
+            // March
+            // 
+            this.March.DataPropertyName = "March";
+            this.March.HeaderText = "March";
+            this.March.MinimumWidth = 8;
+            this.March.Name = "March";
+            this.March.Width = 150;
+            // 
+            // April
+            // 
+            this.April.DataPropertyName = "April";
+            this.April.HeaderText = "April";
+            this.April.MinimumWidth = 8;
+            this.April.Name = "April";
+            this.April.Width = 150;
+            // 
+            // May
+            // 
+            this.May.DataPropertyName = "May";
+            this.May.HeaderText = "May";
+            this.May.MinimumWidth = 8;
+            this.May.Name = "May";
+            this.May.Width = 150;
+            // 
+            // June
+            // 
+            this.June.DataPropertyName = "June";
+            this.June.HeaderText = "June";
+            this.June.MinimumWidth = 8;
+            this.June.Name = "June";
+            this.June.Width = 150;
+            // 
+            // July
+            // 
+            this.July.DataPropertyName = "July";
+            this.July.HeaderText = "July";
+            this.July.MinimumWidth = 8;
+            this.July.Name = "July";
+            this.July.Width = 150;
+            // 
+            // August
+            // 
+            this.August.DataPropertyName = "August";
+            this.August.HeaderText = "August";
+            this.August.MinimumWidth = 8;
+            this.August.Name = "August";
+            this.August.Width = 150;
+            // 
+            // September
+            // 
+            this.September.DataPropertyName = "September";
+            this.September.HeaderText = "September";
+            this.September.MinimumWidth = 8;
+            this.September.Name = "September";
+            this.September.Width = 150;
+            // 
+            // October
+            // 
+            this.October.DataPropertyName = "October";
+            this.October.HeaderText = "October";
+            this.October.MinimumWidth = 8;
+            this.October.Name = "October";
+            this.October.Width = 150;
+            // 
+            // November
+            // 
+            this.November.DataPropertyName = "November";
+            this.November.HeaderText = "November";
+            this.November.MinimumWidth = 8;
+            this.November.Name = "November";
+            this.November.Width = 150;
+            // 
+            // December
+            // 
+            this.December.DataPropertyName = "December";
+            this.December.HeaderText = "December";
+            this.December.MinimumWidth = 8;
+            this.December.Name = "December";
+            this.December.Width = 150;
+            // 
+            // CatogoryTotal
+            // 
+            this.CatogoryTotal.DataPropertyName = "CatogoryTotal";
+            this.CatogoryTotal.HeaderText = "CatogoryTotal";
+            this.CatogoryTotal.MinimumWidth = 8;
+            this.CatogoryTotal.Name = "CatogoryTotal";
+            this.CatogoryTotal.Width = 150;
+            // 
             // YearlyView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -382,8 +390,10 @@
         private Button btnExport;
         private Label label3;
         private DataGridView dgvBankAmount;
+        private ComboBox cmbDatabasePicker;
         private DataGridViewTextBoxColumn Category;
         private DataGridViewTextBoxColumn ExpenseType;
+        private DataGridViewTextBoxColumn ExpectedAmount;
         private DataGridViewTextBoxColumn Jan;
         private DataGridViewTextBoxColumn Feb;
         private DataGridViewTextBoxColumn March;
@@ -397,6 +407,5 @@
         private DataGridViewTextBoxColumn November;
         private DataGridViewTextBoxColumn December;
         private DataGridViewTextBoxColumn CatogoryTotal;
-        private ComboBox cmbDatabasePicker;
     }
 }

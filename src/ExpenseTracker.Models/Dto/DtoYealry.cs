@@ -8,6 +8,8 @@ namespace ExpenseTracker.Models.Dto
 
         public string ExpenseType { get; set; }
 
+        public decimal? ExpectedAmount { get; set; }
+
         public decimal Jan { get; set; }
 
         public IEnumerable<Expense> JanLst  = null;

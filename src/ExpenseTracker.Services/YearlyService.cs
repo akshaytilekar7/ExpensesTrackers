@@ -47,6 +47,7 @@ namespace ExpenseTracker.Services
                 DtoYealry dtoYealry = new DtoYealry();
                 dtoYealry.Category = itemCategory.Name;
                 dtoYealry.ExpenseType = itemCategory.ExpenseType.Name;
+                dtoYealry.ExpectedAmount = itemCategory.ExpectedAmount;
 
                 var lstExpensesByCategory = lstExpenses.Where(e => e.CategoryType.Name == itemCategory.Name);
 

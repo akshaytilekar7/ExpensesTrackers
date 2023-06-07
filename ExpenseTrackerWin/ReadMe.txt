@@ -2,10 +2,10 @@
 	set default prroject to **WIN.project
 
 run
-
-	Add-Migration InitialTables
-	Add-Migration InitialData
-	Update-Database
+	select project -> core
+		Add-Migration ExpectedAmount
+		Add-Migration InitialData
+		Update-Database
 
 	Manually add data to User and Bank tables
 

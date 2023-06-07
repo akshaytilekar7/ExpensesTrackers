@@ -56,6 +56,23 @@ namespace ExpenseTrackerWin
             dgvYealy.DataSource = lstDtoYealry.MakeSortable();
             dgvYealy.SetGridToFit();
 
+            foreach (DataGridViewRow row in dgvYealy.Rows)
+            {
+                int count = 0;
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    count++;
+                    if (count > 2)
+                    {
+                        var expectedAmount = Convert.ToDecimal(row.Cells[2].Value == null ? 0 : row.Cells[2].Value);
+                        if (expectedAmount == -1) continue;
+                        var actualAmount = Convert.ToDecimal(cell.Value);
+                        if (actualAmount > expectedAmount)
+                            cell.Style.BackColor = Color.Orange;
+                    }
+                }
+            }
+
             await LoadExpenseByCategoryGrid();
             await LoadBankGrid();
         }
@@ -87,6 +104,8 @@ namespace ExpenseTrackerWin
             var lst = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
             dgvExpenseOverview.DataSource = lst.MakeSortable(); ;
             dgvExpenseOverview.SetGridToFit();
+
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
