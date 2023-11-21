@@ -3,6 +3,7 @@ using ExpenseTracker.Models;
 using System.Data;
 using ExpenseTracker.Core;
 using Microsoft.Extensions.Options;
+using ExpenseTrackerWin.Utility;
 
 namespace ExpenseTrackerWin
 {
@@ -18,6 +19,7 @@ namespace ExpenseTrackerWin
             _serviceFactory = serviceFactory;
             LoadExpenseGrid();
             LoadCategoryGrid();
+            
         }
 
         private void btnSaveExpense_Click(object sender, EventArgs e)

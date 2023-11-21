@@ -24,6 +24,7 @@ namespace ExpenseTrackerWin
             InitializeComponent();
             MyConfig = myConfig;
             _serviceFactory = serviceFactory;
+
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using ExpenseTracker.Core;
 using ExpenseTracker.Services.Factory;
+using ExpenseTrackerWin.Utility;
 using Microsoft.Extensions.Options;
 
 namespace ExpenseTrackerWin
@@ -12,6 +13,7 @@ namespace ExpenseTrackerWin
             InitializeComponent();
             MyConfig = myConfig;
             _serviceFactory = serviceFactory;
+            
         }
 
         public IOptions<MyConfig> MyConfig { get; }

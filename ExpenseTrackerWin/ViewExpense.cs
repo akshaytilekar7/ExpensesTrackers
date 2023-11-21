@@ -25,6 +25,7 @@ namespace ExpenseTrackerWin
             dateEnd.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
             LoadCombobox();
             this.WindowState = FormWindowState.Maximized;
+            
         }
 
         private async void btnSearch_Click(object sender, EventArgs e)

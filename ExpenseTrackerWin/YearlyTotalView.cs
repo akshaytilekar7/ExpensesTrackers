@@ -1,11 +1,5 @@
 ﻿using ExpenseTrackerWin.Utility;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using ExpenseTracker.Models;
-using ExpenseTracker.Models.Dto;
 using ExpenseTracker.Services.Factory;
-using System.Data;
-using System.Globalization;
-using ExpenseTracker.Services.Base;
 using ExpenseTracker.Core.Uow;
 using ExpenseTracker.Core.Factory;
 using ExpenseTracker.Core;
@@ -23,6 +17,7 @@ namespace ExpenseTrackerWin
             InitializeComponent();
             MyConfig = myConfig;
             _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, DateTime.Now.Year)), myConfig);
+            
         }
 
         private void YearlyView_Load(object sender, EventArgs e)
@@ -65,6 +60,7 @@ namespace ExpenseTrackerWin
         {
             dgvExpenseByCategory.Rows.Clear();
             dgvExpenseByCategory.Refresh();
+            lblWait.ForeColor = Color.Red;
             lblWait.Text = "Loading...";
             int rowIndex = e.RowIndex;
             int columnIndex = e.ColumnIndex;
@@ -75,7 +71,7 @@ namespace ExpenseTrackerWin
             var selectedCategory = Convert.ToString(dataGridView1.Rows[rowIndex].Cells[0].Value);
             int selectedYear = -1;
 
-            if (!int.TryParse(dataGridView1.SelectedCells[0].OwningColumn.HeaderText, out selectedYear))
+            if (!int.TryParse(dataGridView1.Columns[e.ColumnIndex].HeaderText, out selectedYear))
             {
                 lblWait.Text = string.Empty;
                 return;

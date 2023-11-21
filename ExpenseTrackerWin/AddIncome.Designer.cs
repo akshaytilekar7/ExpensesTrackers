@@ -74,30 +74,27 @@ namespace ExpenseTrackerWin
             // 
             // datePicker
             // 
-            this.datePicker.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.datePicker.Location = new System.Drawing.Point(155, 10);
             this.datePicker.Margin = new System.Windows.Forms.Padding(2);
             this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(185, 40);
+            this.datePicker.Size = new System.Drawing.Size(200, 23);
             this.datePicker.TabIndex = 7;
             // 
             // Date
             // 
             this.Date.AutoSize = true;
-            this.Date.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Date.Location = new System.Drawing.Point(65, 15);
             this.Date.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(67, 33);
+            this.Date.Size = new System.Drawing.Size(31, 15);
             this.Date.TabIndex = 6;
             this.Date.Text = "Date";
             // 
             // btnSave
             // 
-            this.btnSave.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(314, 780);
+            this.btnSave.Location = new System.Drawing.Point(396, 791);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(90, 52);
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -105,12 +102,11 @@ namespace ExpenseTrackerWin
             // 
             // btnHomePage
             // 
-            this.btnHomePage.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnHomePage.Location = new System.Drawing.Point(618, 780);
+            this.btnHomePage.Location = new System.Drawing.Point(477, 791);
             this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(149, 52);
+            this.btnHomePage.Size = new System.Drawing.Size(73, 23);
             this.btnHomePage.TabIndex = 14;
-            this.btnHomePage.Text = "Home page";
+            this.btnHomePage.Text = "Home";
             this.btnHomePage.UseVisualStyleBackColor = true;
             this.btnHomePage.Click += new System.EventHandler(this.btnHomePage_Click);
             // 
@@ -191,11 +187,10 @@ namespace ExpenseTrackerWin
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(409, 780);
+            this.btnDelete.Location = new System.Drawing.Point(555, 791);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(204, 52);
+            this.btnDelete.Size = new System.Drawing.Size(97, 23);
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Delete Selected";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -203,41 +198,37 @@ namespace ExpenseTrackerWin
             // 
             // txtAmount
             // 
-            this.txtAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtAmount.Location = new System.Drawing.Point(174, 70);
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(145, 40);
+            this.txtAmount.Size = new System.Drawing.Size(145, 23);
             this.txtAmount.TabIndex = 18;
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblName.Location = new System.Drawing.Point(383, 10);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(80, 33);
+            this.lblName.Size = new System.Drawing.Size(39, 15);
             this.lblName.TabIndex = 19;
             this.lblName.Text = "Name";
             // 
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
-            this.lblAmount.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblAmount.Location = new System.Drawing.Point(65, 76);
             this.lblAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(104, 33);
+            this.lblAmount.Size = new System.Drawing.Size(51, 15);
             this.lblAmount.TabIndex = 20;
             this.lblAmount.Text = "Amount";
             // 
             // cmbNames
             // 
-            this.cmbNames.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbNames.FormattingEnabled = true;
             this.cmbNames.Location = new System.Drawing.Point(511, 7);
             this.cmbNames.Name = "cmbNames";
-            this.cmbNames.Size = new System.Drawing.Size(188, 41);
+            this.cmbNames.Size = new System.Drawing.Size(121, 23);
             this.cmbNames.TabIndex = 21;
             this.cmbNames.SelectionChangeCommitted += new System.EventHandler(this.cmbNames_SelectionChangeCommitted);
             // 
@@ -247,27 +238,24 @@ namespace ExpenseTrackerWin
             // 
             // cmbBank
             // 
-            this.cmbBank.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbBank.FormattingEnabled = true;
             this.cmbBank.Location = new System.Drawing.Point(805, 5);
             this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(142, 41);
+            this.cmbBank.Size = new System.Drawing.Size(142, 23);
             this.cmbBank.TabIndex = 23;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(723, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 33);
+            this.label1.Size = new System.Drawing.Size(33, 15);
             this.label1.TabIndex = 22;
             this.label1.Text = "Bank";
             // 
             // cmbComment
             // 
-            this.cmbComment.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbComment.FormattingEnabled = true;
             this.cmbComment.Items.AddRange(new object[] {
             "Avalara Salary",
@@ -278,17 +266,16 @@ namespace ExpenseTrackerWin
             "FD Interest"});
             this.cmbComment.Location = new System.Drawing.Point(511, 75);
             this.cmbComment.Name = "cmbComment";
-            this.cmbComment.Size = new System.Drawing.Size(188, 41);
+            this.cmbComment.Size = new System.Drawing.Size(188, 23);
             this.cmbComment.TabIndex = 27;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(383, 77);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 33);
+            this.label2.Size = new System.Drawing.Size(61, 15);
             this.label2.TabIndex = 26;
             this.label2.Text = "Comment";
             // 

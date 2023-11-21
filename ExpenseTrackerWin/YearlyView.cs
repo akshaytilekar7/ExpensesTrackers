@@ -23,6 +23,7 @@ namespace ExpenseTrackerWin
             InitializeComponent();
             MyConfig = myConfig;
             _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, DateTime.Now.Year)), myConfig);
+            
         }
 
         private void YearlyView_Load(object sender, EventArgs e)
@@ -200,7 +201,7 @@ namespace ExpenseTrackerWin
             dgvYealy.Rows[0].Cells[columnIndex].Style.BackColor = Color.CadetBlue;
             dgvYealy.Rows[rowIndex].Cells[0].Style.BackColor = Color.CadetBlue;
 
-            var lstDetails = GetDetails(columnIndex, dtoYealry);
+            var lstDetails = GetDetails(columnIndex - 1, dtoYealry);
             dgvTooltip.SetGridToFit();
             dgvTooltip.DataSource = lstDetails.MakeSortable();
         }

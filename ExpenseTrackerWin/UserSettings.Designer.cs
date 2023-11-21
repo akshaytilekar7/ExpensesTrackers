@@ -86,7 +86,7 @@ namespace ExpenseTrackerWin
             // 
             // ExpenseTypeBindingSource
             // 
-            this.ExpenseTypeBindingSource.DataSource = typeof(ExpenseType);
+            this.ExpenseTypeBindingSource.DataSource = typeof(ExpenseTracker.Models.ExpenseType);
             // 
             // lblExpenseType
             // 
@@ -171,11 +171,11 @@ namespace ExpenseTrackerWin
             // 
             // CategoryTypeBindingSource
             // 
-            this.CategoryTypeBindingSource.DataSource = typeof(CategoryType);
+            this.CategoryTypeBindingSource.DataSource = typeof(ExpenseTracker.Models.CategoryType);
             // 
             // btnHome
             // 
-            this.btnHome.Location = new System.Drawing.Point(111, 12);
+            this.btnHome.Location = new System.Drawing.Point(99, 12);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(75, 23);
             this.btnHome.TabIndex = 7;

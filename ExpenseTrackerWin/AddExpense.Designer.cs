@@ -43,7 +43,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnUpload = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnHomePage = new System.Windows.Forms.Button();
@@ -66,21 +65,19 @@
             // Date
             // 
             this.Date.AutoSize = true;
-            this.Date.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Date.Location = new System.Drawing.Point(34, 52);
             this.Date.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(67, 33);
+            this.Date.Size = new System.Drawing.Size(31, 15);
             this.Date.TabIndex = 0;
             this.Date.Text = "Date";
             // 
             // DatePicker
             // 
-            this.DatePicker.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DatePicker.Location = new System.Drawing.Point(114, 50);
             this.DatePicker.Margin = new System.Windows.Forms.Padding(2);
             this.DatePicker.Name = "DatePicker";
-            this.DatePicker.Size = new System.Drawing.Size(281, 40);
+            this.DatePicker.Size = new System.Drawing.Size(281, 23);
             this.DatePicker.TabIndex = 1;
             this.DatePicker.ValueChanged += new System.EventHandler(this.DatePicker_ValueChanged);
             // 
@@ -161,10 +158,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(229, 889);
+            this.btnSave.Location = new System.Drawing.Point(37, 889);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(90, 55);
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -172,10 +168,9 @@
             // 
             // btnClear
             // 
-            this.btnClear.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClear.Location = new System.Drawing.Point(325, 889);
+            this.btnClear.Location = new System.Drawing.Point(114, 889);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(88, 55);
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -192,23 +187,12 @@
             this.lblError.Size = new System.Drawing.Size(0, 15);
             this.lblError.TabIndex = 5;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(630, 19);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(6, 5);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // btnUpload
             // 
-            this.btnUpload.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnUpload.Location = new System.Drawing.Point(418, 889);
+            this.btnUpload.Location = new System.Drawing.Point(194, 889);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(169, 56);
+            this.btnUpload.Size = new System.Drawing.Size(108, 24);
             this.btnUpload.TabIndex = 8;
             this.btnUpload.Text = "Upload Data";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -216,11 +200,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(877, 49);
+            this.btnDelete.Location = new System.Drawing.Point(400, 890);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(136, 40);
+            this.btnDelete.Size = new System.Drawing.Size(76, 23);
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -228,12 +211,11 @@
             // 
             // btnHomePage
             // 
-            this.btnHomePage.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnHomePage.Location = new System.Drawing.Point(592, 890);
+            this.btnHomePage.Location = new System.Drawing.Point(306, 889);
             this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(181, 55);
+            this.btnHomePage.Size = new System.Drawing.Size(89, 23);
             this.btnHomePage.TabIndex = 20;
-            this.btnHomePage.Text = "Home page";
+            this.btnHomePage.Text = "Home";
             this.btnHomePage.UseVisualStyleBackColor = true;
             this.btnHomePage.Click += new System.EventHandler(this.btnHomePage_Click);
             // 
@@ -301,11 +283,10 @@
             // 
             // cmbNames
             // 
-            this.cmbNames.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbNames.FormattingEnabled = true;
             this.cmbNames.Location = new System.Drawing.Point(494, 49);
             this.cmbNames.Name = "cmbNames";
-            this.cmbNames.Size = new System.Drawing.Size(142, 41);
+            this.cmbNames.Size = new System.Drawing.Size(142, 23);
             this.cmbNames.TabIndex = 31;
             this.cmbNames.SelectedIndexChanged += new System.EventHandler(this.cmbNames_SelectedIndexChanged);
             this.cmbNames.SelectionChangeCommitted += new System.EventHandler(this.cmbNames_SelectionChangeCommitted);
@@ -313,41 +294,37 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblName.Location = new System.Drawing.Point(409, 52);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(80, 33);
+            this.lblName.Size = new System.Drawing.Size(39, 15);
             this.lblName.TabIndex = 29;
             this.lblName.Text = "Name";
             // 
             // cmbBank
             // 
-            this.cmbBank.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(726, 49);
+            this.cmbBank.Location = new System.Drawing.Point(744, 51);
             this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(142, 41);
+            this.cmbBank.Size = new System.Drawing.Size(142, 23);
             this.cmbBank.TabIndex = 33;
             // 
             // lblBank
             // 
             this.lblBank.AutoSize = true;
-            this.lblBank.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblBank.Location = new System.Drawing.Point(641, 52);
+            this.lblBank.Location = new System.Drawing.Point(661, 56);
             this.lblBank.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBank.Name = "lblBank";
-            this.lblBank.Size = new System.Drawing.Size(69, 33);
+            this.lblBank.Size = new System.Drawing.Size(33, 15);
             this.lblBank.TabIndex = 32;
             this.lblBank.Text = "Bank";
             // 
             // btnUploadFromBackup
             // 
-            this.btnUploadFromBackup.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnUploadFromBackup.Location = new System.Drawing.Point(778, 890);
+            this.btnUploadFromBackup.Location = new System.Drawing.Point(480, 890);
             this.btnUploadFromBackup.Margin = new System.Windows.Forms.Padding(2);
             this.btnUploadFromBackup.Name = "btnUploadFromBackup";
-            this.btnUploadFromBackup.Size = new System.Drawing.Size(283, 56);
+            this.btnUploadFromBackup.Size = new System.Drawing.Size(204, 23);
             this.btnUploadFromBackup.TabIndex = 34;
             this.btnUploadFromBackup.Text = "Upload from backup";
             this.btnUploadFromBackup.UseVisualStyleBackColor = true;
@@ -374,7 +351,6 @@
             this.Controls.Add(this.btnHomePage);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpload);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSave);
@@ -400,7 +376,6 @@
         private Button btnSave;
         private Button btnClear;
         private Label lblError;
-        private Button button1;
         private Button btnFilterPage;
         private Button btnUpload;
         private Button btnDelete;

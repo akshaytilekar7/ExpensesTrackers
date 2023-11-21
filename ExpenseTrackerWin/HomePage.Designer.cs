@@ -39,11 +39,10 @@
             // 
             // btnAddExpensed
             // 
-            this.btnAddExpensed.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddExpensed.Location = new System.Drawing.Point(380, 377);
+            this.btnAddExpensed.Location = new System.Drawing.Point(538, 356);
             this.btnAddExpensed.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddExpensed.Name = "btnAddExpensed";
-            this.btnAddExpensed.Size = new System.Drawing.Size(303, 55);
+            this.btnAddExpensed.Size = new System.Drawing.Size(136, 23);
             this.btnAddExpensed.TabIndex = 0;
             this.btnAddExpensed.Text = "Add Expenses";
             this.btnAddExpensed.UseVisualStyleBackColor = true;
@@ -51,12 +50,10 @@
             // 
             // btnAddIncome
             // 
-            this.btnAddIncome.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAddIncome.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddIncome.Location = new System.Drawing.Point(380, 286);
+            this.btnAddIncome.Location = new System.Drawing.Point(538, 316);
             this.btnAddIncome.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddIncome.Name = "btnAddIncome";
-            this.btnAddIncome.Size = new System.Drawing.Size(303, 54);
+            this.btnAddIncome.Size = new System.Drawing.Size(136, 23);
             this.btnAddIncome.TabIndex = 1;
             this.btnAddIncome.Text = "Add Income";
             this.btnAddIncome.UseVisualStyleBackColor = true;
@@ -64,11 +61,10 @@
             // 
             // btnViewExpense
             // 
-            this.btnViewExpense.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnViewExpense.Location = new System.Drawing.Point(751, 286);
+            this.btnViewExpense.Location = new System.Drawing.Point(694, 316);
             this.btnViewExpense.Margin = new System.Windows.Forms.Padding(2);
             this.btnViewExpense.Name = "btnViewExpense";
-            this.btnViewExpense.Size = new System.Drawing.Size(303, 54);
+            this.btnViewExpense.Size = new System.Drawing.Size(146, 23);
             this.btnViewExpense.TabIndex = 2;
             this.btnViewExpense.Text = "Monthly Expense";
             this.btnViewExpense.UseVisualStyleBackColor = true;
@@ -76,12 +72,10 @@
             // 
             // btnYealry
             // 
-            this.btnYealry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnYealry.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnYealry.Location = new System.Drawing.Point(751, 377);
+            this.btnYealry.Location = new System.Drawing.Point(694, 356);
             this.btnYealry.Margin = new System.Windows.Forms.Padding(2);
             this.btnYealry.Name = "btnYealry";
-            this.btnYealry.Size = new System.Drawing.Size(303, 55);
+            this.btnYealry.Size = new System.Drawing.Size(146, 23);
             this.btnYealry.TabIndex = 3;
             this.btnYealry.Text = "Yealry Expense";
             this.btnYealry.UseVisualStyleBackColor = true;
@@ -100,12 +94,10 @@
             // 
             // btnUserSettings
             // 
-            this.btnUserSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnUserSettings.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnUserSettings.Location = new System.Drawing.Point(21, 616);
             this.btnUserSettings.Margin = new System.Windows.Forms.Padding(2);
             this.btnUserSettings.Name = "btnUserSettings";
-            this.btnUserSettings.Size = new System.Drawing.Size(168, 55);
+            this.btnUserSettings.Size = new System.Drawing.Size(88, 23);
             this.btnUserSettings.TabIndex = 5;
             this.btnUserSettings.Text = "Admin";
             this.btnUserSettings.UseVisualStyleBackColor = true;
@@ -113,12 +105,10 @@
             // 
             // btnYearlyTotal
             // 
-            this.btnYearlyTotal.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnYearlyTotal.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnYearlyTotal.Location = new System.Drawing.Point(564, 498);
+            this.btnYearlyTotal.Location = new System.Drawing.Point(617, 393);
             this.btnYearlyTotal.Margin = new System.Windows.Forms.Padding(2);
             this.btnYearlyTotal.Name = "btnYearlyTotal";
-            this.btnYearlyTotal.Size = new System.Drawing.Size(303, 55);
+            this.btnYearlyTotal.Size = new System.Drawing.Size(150, 23);
             this.btnYearlyTotal.TabIndex = 6;
             this.btnYearlyTotal.Text = "Yealry Total";
             this.btnYearlyTotal.UseVisualStyleBackColor = true;

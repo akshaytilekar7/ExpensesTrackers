@@ -442,14 +442,14 @@
             this.lblWait.AutoSize = true;
             this.lblWait.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblWait.ForeColor = System.Drawing.Color.Red;
-            this.lblWait.Location = new System.Drawing.Point(1020, 5);
+            this.lblWait.Location = new System.Drawing.Point(1002, 7);
             this.lblWait.Name = "lblWait";
             this.lblWait.Size = new System.Drawing.Size(0, 33);
             this.lblWait.TabIndex = 6;
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(93, 12);
+            this.txtSearch.Location = new System.Drawing.Point(93, 16);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(100, 23);
             this.txtSearch.TabIndex = 7;
@@ -468,7 +468,7 @@
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnHome);
             this.Name = "YearlyTotalView";
-            this.Text = "YearlyView";
+            this.Text = "YearlyTotalView";
             this.Load += new System.EventHandler(this.YearlyView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryTotalBindingSource)).EndInit();

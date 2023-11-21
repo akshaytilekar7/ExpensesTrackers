@@ -22,6 +22,7 @@ namespace ExpenseTrackerWin
         {
             LoadGrid();
             WindowState = FormWindowState.Maximized;
+            
         }
 
         private void LoadGrid()
@@ -29,6 +30,7 @@ namespace ExpenseTrackerWin
             var startDate = new DateTime(DateTime.Now.Year, 1, 1);
             var endDate = new DateTime(DateTime.Now.Year, 12, 31);
             var lstIncome = _serviceFactory.IncomeService.GetIncome(startDate, endDate).OrderByDescending(x => x.Date).ToList();
+            dgvIncome.SetGridToFit();
             dgvIncome.DataSource = lstIncome.MakeSortable();
 
             var lstUsers = _serviceFactory.UserService.GetAll();
