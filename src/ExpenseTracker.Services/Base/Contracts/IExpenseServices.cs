@@ -11,7 +11,6 @@ namespace ExpenseTracker.Services.Base.Contracts
         bool Add(Expense item);
         void Add(List<Expense> lst);
         void Delete(List<Expense> lst);
-        Task<List<DtoExpense>> GetExpenseFilter(DtoExpenseFilter expenseFilter);
-        Task<List<DtoBank>> GetBankData(DateTime startDate, DateTime endDate);
+        Task<List<DtoExpense>> GetExpense(DtoExpenseFilter expenseFilter);
     }
 }

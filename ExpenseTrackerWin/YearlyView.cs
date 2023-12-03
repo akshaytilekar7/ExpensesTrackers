@@ -86,7 +86,7 @@ namespace ExpenseTrackerWin
             int year = Convert.ToInt32(cmbDatabasePicker.Text);
             var startDate = new DateTime(year, 1, 1);
             var endDate = new DateTime(year, 12, 31);
-            var lstBanks = await _serviceFactory.ExpenseServices.GetBankData(startDate, endDate);
+            var lstBanks = await _serviceFactory.BankService.GetBankData(startDate, endDate);
             dgvBankAmount.DataSource = lstBanks;
             dgvBankAmount.SetGridToFit();
         }
@@ -227,7 +227,7 @@ namespace ExpenseTrackerWin
 
             var lstMonthDataOnExpenseType = await _serviceFactory.YearlyService.GetAllMonthDataOnExpenseType(year);
             var lstExpenseByExpensesTypes = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
-            var lstBanks = await _serviceFactory.ExpenseServices.GetBankData(filter.StartDate, filter.EndDate);
+            var lstBanks = await _serviceFactory.BankService.GetBankData(filter.StartDate, filter.EndDate);
 
             List<DtoIncome> lstIncomeYearly = _serviceFactory.IncomeService.GetIncome(filter.StartDate, filter.EndDate).OrderBy(x => x.Date).ToList();
 

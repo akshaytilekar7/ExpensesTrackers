@@ -283,7 +283,7 @@ namespace ExpenseTrackerWin
                 expenseFilter.Amount = Convert.ToDecimal(txtAmount.Text);
             }
 
-            List<DtoExpense> newOldaData = await _serviceFactory.ExpenseServices.GetExpenseFilter(expenseFilter);
+            List<DtoExpense> newOldaData = await _serviceFactory.ExpenseServices.GetExpense(expenseFilter);
             listOldData.AddRange(newOldaData);
             listOldData = listOldData.GenereateSrNo().ToList();
             dgvOldData.DataSource = listOldData.MakeSortable();

@@ -26,7 +26,7 @@ namespace ExpenseTrackerWin
 
             var host = CreateHostBuilder().Build();
             ServiceProvider = host.Services;
-            Application.Run(ServiceProvider.GetRequiredService<HomePage>());
+            Application.Run(ServiceProvider.GetRequiredService<Index>());
         }
         static IHostBuilder CreateHostBuilder()
         {
@@ -35,7 +35,7 @@ namespace ExpenseTrackerWin
                 services.Configure<MyConfig>(Configuration.GetSection("MyConfig"));
                 services.AddInjections(Configuration);
                 services.AddIdentity();
-                services.AddScoped<HomePage>();
+                services.AddScoped<Index>();
             });
         }
 

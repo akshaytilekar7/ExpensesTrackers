@@ -147,7 +147,7 @@ namespace ExpenseTracker.Services
                 EndDate = new DateTime(year, 12, 31),
             };
 
-            List<DtoExpense> lstExpenses = await _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
+            List<DtoExpense> lstExpenses = await _serviceFactory.ExpenseServices.GetExpense(filter);
 
             int[] lstMonths = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
             List<DtoYearlyExpense> yearlyExpense = new List<DtoYearlyExpense>();
@@ -189,7 +189,7 @@ namespace ExpenseTracker.Services
         public async Task<List<DtoExpenseByExpensesType>> GetExpenseByExpensesType(DtoExpenseFilter filter)
         {
             var month = string.Empty;
-            var lstExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(filter);
+            var lstExpense = await _serviceFactory.ExpenseServices.GetExpense(filter);
             var income = _serviceFactory.IncomeService.GetIncome(filter.StartDate, filter.EndDate).Sum(x => x.Amount);
             var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllExpenseType().Select(x => x.Name).Distinct();
 

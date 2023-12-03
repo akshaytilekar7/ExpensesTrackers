@@ -62,7 +62,7 @@ namespace ExpenseTracker.Services
                 EndDate = new DateTime(year, 12, 31),
             };
 
-            var lstDtoExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(dtoExpenseFilter);
+            var lstDtoExpense = await _serviceFactory.ExpenseServices.GetExpense(dtoExpenseFilter);
             return lstDtoExpense;
         }
     }

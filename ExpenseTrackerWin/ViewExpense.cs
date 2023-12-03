@@ -69,7 +69,7 @@ namespace ExpenseTrackerWin
 
         private async Task LoadExpenseFilterGrid()
         {
-            var res = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
+            var res = await _serviceFactory.ExpenseServices.GetExpense(GetFilter());
             dgvFilter.DataSource = res.GenereateSrNo().MakeSortable();
             dgvFilter.SetGridToFit();
         }
@@ -154,7 +154,7 @@ namespace ExpenseTrackerWin
 
             List<ExcelDto> dataExpenseTypes = new List<ExcelDto>();
 
-            var lstExpense = await _serviceFactory.ExpenseServices.GetExpenseFilter(GetFilter());
+            var lstExpense = await _serviceFactory.ExpenseServices.GetExpense(GetFilter());
             var lstIncomes = _serviceFactory.IncomeService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
             var lstExpenseCategory = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
 
