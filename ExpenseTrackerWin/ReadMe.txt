@@ -1,4 +1,4 @@
-﻿Open packahe manager console
+﻿Open package manager console
 	set default prroject to **WIN.project
 
 run
