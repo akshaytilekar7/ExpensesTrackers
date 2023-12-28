@@ -78,7 +78,5 @@ namespace ExpenseTracker.Services
 
             return lstDtoBanks;
         }
-
-
     }
 }

@@ -29,17 +29,14 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Date = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.dgvExpenses = new System.Windows.Forms.DataGridView();
-            this.Day = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
@@ -57,6 +54,10 @@
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.lblBank = new System.Windows.Forms.Label();
             this.btnUploadFromBackup = new System.Windows.Forms.Button();
+            this.Day = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOldData)).BeginInit();
             this.SuspendLayout();
@@ -95,16 +96,16 @@
             this.Category,
             this.Amount,
             this.Comment});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExpenses.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvExpenses.Location = new System.Drawing.Point(34, 116);
             this.dgvExpenses.Name = "dgvExpenses";
             this.dgvExpenses.RowHeadersWidth = 62;
@@ -112,48 +113,6 @@
             this.dgvExpenses.Size = new System.Drawing.Size(979, 767);
             this.dgvExpenses.TabIndex = 2;
             this.dgvExpenses.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpenses_CellContentClick);
-            // 
-            // Day
-            // 
-            this.Day.DataPropertyName = "Day";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Day.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Day.HeaderText = "Day";
-            this.Day.MinimumWidth = 8;
-            this.Day.Name = "Day";
-            this.Day.Width = 52;
-            // 
-            // Category
-            // 
-            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Category.DataPropertyName = "Category";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Category.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Category.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.Category.HeaderText = "Category";
-            this.Category.MaxDropDownItems = 5;
-            this.Category.MinimumWidth = 100;
-            this.Category.Name = "Category";
-            this.Category.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Amount.HeaderText = "Amount";
-            this.Amount.MinimumWidth = 8;
-            this.Amount.Name = "Amount";
-            this.Amount.Width = 76;
-            // 
-            // Comment
-            // 
-            this.Comment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Comment.HeaderText = "Comment";
-            this.Comment.MinimumWidth = 8;
-            this.Comment.Name = "Comment";
-            this.Comment.Width = 86;
             // 
             // btnSave
             // 
@@ -318,6 +277,50 @@
             this.btnUploadFromBackup.Text = "Upload from backup";
             this.btnUploadFromBackup.UseVisualStyleBackColor = true;
             this.btnUploadFromBackup.Click += new System.EventHandler(this.btnUploadFromBackup_Click);
+            // 
+            // Day
+            // 
+            this.Day.DataPropertyName = "Day";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Day.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Day.HeaderText = "Day";
+            this.Day.MinimumWidth = 8;
+            this.Day.Name = "Day";
+            this.Day.Width = 52;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Category.DataPropertyName = "Category";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Category.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Category.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Category.HeaderText = "Category";
+            this.Category.MaxDropDownItems = 5;
+            this.Category.MinimumWidth = 100;
+            this.Category.Name = "Category";
+            this.Category.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Amount.HeaderText = "Amount";
+            this.Amount.MinimumWidth = 8;
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 76;
+            // 
+            // Comment
+            // 
+            this.Comment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Comment.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Comment.HeaderText = "Comment";
+            this.Comment.MinimumWidth = 8;
+            this.Comment.Name = "Comment";
+            this.Comment.Width = 86;
             // 
             // AddExpense
             // 
