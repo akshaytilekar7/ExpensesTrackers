@@ -20,3 +20,7 @@ to solve error
 
 	
 	Add-Migration UserTable
+
+
+	revert in case
+	-	major changes 1

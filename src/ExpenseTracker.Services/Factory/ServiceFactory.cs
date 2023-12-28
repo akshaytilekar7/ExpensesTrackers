@@ -15,6 +15,7 @@ namespace ExpenseTracker.Services.Factory
             _unitOfWork = unitOfWork;
             this.myConfig = myConfig;
         }
+
         public ICategoryServices CategoryServices
         {
             get
@@ -23,11 +24,11 @@ namespace ExpenseTracker.Services.Factory
             }
         }
 
-        public IExpenseServices ExpenseServices
+        public ITransactionServices TransactionServices
         {
             get
             {
-                return new ExpenseServices(_unitOfWork);
+                return new TransactionServices(_unitOfWork);
             }
         }
 
@@ -79,11 +80,11 @@ namespace ExpenseTracker.Services.Factory
             }
         }
 
-        public IYearlyTotalService YearlyTotalService
+        public IDecadeService DecadeServices
         {
             get
             {
-                return new YearlyTotalService(_unitOfWork, myConfig);
+                return new DecadeService(_unitOfWork, myConfig);
             }
         }
     }

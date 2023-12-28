@@ -15,21 +15,21 @@ namespace ExpenseTracker.Services
             _unitOfWork = unitOfWork;
         }
 
-        public List<CategoryType> GetAllCategoryType()
+        public List<SubCategory> GetAllSubCategory()
         {
-            var repository = _unitOfWork.GetRepository<CategoryType>();
-            return repository.GetAll("ExpenseType").OrderBy(x => x.Name).ToList();
+            var repository = _unitOfWork.GetRepository<SubCategory>();
+            return repository.GetAll("Category").OrderBy(x => x.Name).ToList();
         }
 
-        public List<ExpenseType> GetAllExpenseType()
+        public List<Category> GetAllCategory()
         {
-            var repository = _unitOfWork.GetRepository<ExpenseType>();
+            var repository = _unitOfWork.GetRepository<Category>();
             return repository.GetAll().OrderBy(x => x.Name).ToList();
         }
 
-        public void SaveExpenseType(List<ExpenseType> ExpenseTypes)
+        public void AddCategory(List<Category> ExpenseTypes)
         {
-            var repository = _unitOfWork.GetRepository<ExpenseType>();
+            var repository = _unitOfWork.GetRepository<Category>();
             var dbExpenseType = repository.GetAll();
 
             foreach (var item in ExpenseTypes)
@@ -46,9 +46,9 @@ namespace ExpenseTracker.Services
             }
         }
 
-        public void SaveCategoryType(List<CategoryType> CategoryTypes)
+        public void AddSubCategory(List<SubCategory> CategoryTypes)
         {
-            var repository = _unitOfWork.GetRepository<CategoryType>();
+            var repository = _unitOfWork.GetRepository<SubCategory>();
             var dbCategoryTypes = repository.GetAll();
 
             foreach (var item in CategoryTypes)

@@ -6,12 +6,12 @@ namespace ExpenseTracker.Services.Base.Contracts
 {
     public interface IYearlyService
     {
-        Task<List<DtoYealry>> GetYearlyData(int year);
+        Task<List<DtoYealryView>> GetYearlyData(int year);
 
-        Task<List<DtoExpenseByExpensesType>> GetExpenseByExpensesType(DtoExpenseFilter filter);
+        Task<List<DtoTransactionsByCategory>> GetExpenseByExpensesType(DtoTransactionFilter filter);
 
-        Task<List<DtoYearlyExpense>> GetAllMonthsData(int year);
+        Task<List<DtoYearlyTransaction>> GetTransactions(int year);
 
-        Task<DtoYearlyExpenseByExpensesType> GetAllMonthDataOnExpenseType(int year);
+        Task<DtoYearlyTransactionByCategory> GetAllMonthDataOnExpenseType(int year);
     }
 }

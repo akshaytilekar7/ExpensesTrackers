@@ -38,7 +38,6 @@ namespace ExpenseTrackerWin
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.Date = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnHomePage = new System.Windows.Forms.Button();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,23 +91,13 @@ namespace ExpenseTrackerWin
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(396, 791);
+            this.btnSave.Location = new System.Drawing.Point(422, 791);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnHomePage
-            // 
-            this.btnHomePage.Location = new System.Drawing.Point(477, 791);
-            this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(73, 23);
-            this.btnHomePage.TabIndex = 14;
-            this.btnHomePage.Text = "Home";
-            this.btnHomePage.UseVisualStyleBackColor = true;
-            this.btnHomePage.Click += new System.EventHandler(this.btnHomePage_Click);
             // 
             // dgvIncome
             // 
@@ -183,11 +172,11 @@ namespace ExpenseTrackerWin
             // 
             // incomeSourceBindingSource
             // 
-            this.incomeSourceBindingSource.DataSource = typeof(ExpenseTracker.Models.IncomeSource);
+            this.incomeSourceBindingSource.DataSource = typeof(ExpenseTracker.Models.Income);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(555, 791);
+            this.btnDelete.Location = new System.Drawing.Point(502, 791);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(97, 23);
@@ -295,7 +284,6 @@ namespace ExpenseTrackerWin
             this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.dgvIncome);
-            this.Controls.Add(this.btnHomePage);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.datePicker);
@@ -318,7 +306,6 @@ namespace ExpenseTrackerWin
         private DateTimePicker datePicker;
         private Label Date;
         private Button btnSave;
-        private Button btnHomePage;
         private DataGridView dgvIncome;
         private BindingSource incomeSourceBindingSource;
         private Button btnDelete;

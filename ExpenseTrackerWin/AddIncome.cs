@@ -45,7 +45,7 @@ namespace ExpenseTrackerWin
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            IncomeSource income = new IncomeSource();
+            Income income = new Income();
             income.Date = Convert.ToDateTime(datePicker.Text);
             income.Amount = Convert.ToDecimal(txtAmount.Text);
             income.UserId = Convert.ToInt32(cmbNames.SelectedValue);
@@ -66,11 +66,11 @@ namespace ExpenseTrackerWin
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            List<IncomeSource> lst = new List<IncomeSource>();
+            List<Income> lst = new List<Income>();
             foreach (DataGridViewRow row in dgvIncome.SelectedRows)
             {
                 int id = Convert.ToInt32(row.Cells[0].Value);
-                lst.Add(new IncomeSource() { Id = id });
+                lst.Add(new Income() { Id = id });
             }
             _serviceFactory.IncomeService.Delete(lst);
             LoadGrid();

@@ -2,13 +2,13 @@
 
 namespace ExpenseTracker.Models.Dto
 {
-    public class DtoExpense
+    public class DtoTransaction
     {
         public int Id { get; set; }
         public int SrNo { get; set; }
         public DateTime Date { get; set; }
+        public string SubCategoryName { get; set; }
         public string CategoryName { get; set; }
-        public string ExpenseType { get; set; }
         public decimal Amount { get; set; }
         public string Comment { get; set; }
         public string User { get; set; }

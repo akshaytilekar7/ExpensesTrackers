@@ -33,18 +33,18 @@ namespace ExpenseTracker.Core.EFContext
             if (!optionsBuilder.IsConfigured)
             {
                 var dbName = "ExpenseTracker";
-                var connectionString = "Server=localhost;Database=" + dbName + DateTime.Now.Year + "_1;Trusted_Connection=True;";
+                var connectionString = "Server=localhost;Database=" + dbName + DateTime.Now.Year + ";Trusted_Connection=True;";
                 optionsBuilder.UseSqlServer(connectionString);
             }
 
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<Expense> Expense { get; set; }
+        public DbSet<Transaction> Transaction { get; set; }
         public DbSet<User> User { get; set; }
-        public DbSet<IncomeSource> IncomeSource { get; set; }
-        public DbSet<ExpenseType> ExpenseType { get; set; }
-        public DbSet<CategoryType> CategoryType { get; set; }
+        public DbSet<Income> Income { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<Bank> Bank { get; set; }
         public DbSet<YealyTotal> YealyTotal { get; set; }
         public DatabaseFacade DatabaseFacade => this.Database;

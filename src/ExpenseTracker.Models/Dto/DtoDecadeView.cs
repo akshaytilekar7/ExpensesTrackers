@@ -1,9 +1,9 @@
 ﻿namespace ExpenseTracker.Models.Dto
 {
-    public class DtoYealryTotal
+    public class DtoDecadeView
     {
+        public string SubCategory { get; set; }
         public string Category { get; set; }
-        public string ExpenseType { get; set; }
         public decimal Year2022 { get; set; }
         public decimal Year2023 { get; set; }
         public decimal Year2024 { get; set; }

@@ -97,7 +97,7 @@ namespace ExpenseTrackerWin
                 return;
 
             int year = Convert.ToInt32(cmbDatabasePicker.Text);
-            var filter = new DtoExpenseFilter()
+            var filter = new DtoTransactionFilter()
             {
                 StartDate = new DateTime(year, 1, 1),
                 EndDate = new DateTime(year, 12, 31),
@@ -114,9 +114,9 @@ namespace ExpenseTrackerWin
             SetTooltipGrid(sender, e.RowIndex, e.ColumnIndex);
         }
 
-        private static List<DtoDetails> GetDetails(int columnIndex, DtoYealry dtoYealry)
+        private static List<DtoDetails> GetDetails(int columnIndex, DtoYealryView dtoYealry)
         {
-            IEnumerable<Expense> expenses = new List<Expense>();
+            IEnumerable<Transaction> expenses = new List<Transaction>();
             List<DtoDetails> lstDtoTooltip = new List<DtoDetails>();
 
             switch (columnIndex - 1)
@@ -196,7 +196,7 @@ namespace ExpenseTrackerWin
             if (rowIndex < 0 || columnIndex < 0)
                 return;
 
-            var dtoYealry = (DtoYealry)dgvYealy.Rows[rowIndex].DataBoundItem;
+            var dtoYealry = (DtoYealryView)dgvYealy.Rows[rowIndex].DataBoundItem;
 
             dgvYealy.Rows[0].Cells[columnIndex].Style.BackColor = Color.CadetBlue;
             dgvYealy.Rows[rowIndex].Cells[0].Style.BackColor = Color.CadetBlue;
@@ -216,14 +216,14 @@ namespace ExpenseTrackerWin
             projectDirectory += "\\ExcelFiles\\Output\\OutputYearly_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
 
             int year = Convert.ToInt32(cmbDatabasePicker.Text);
-            var filter = new DtoExpenseFilter()
+            var filter = new DtoTransactionFilter()
             {
                 StartDate = new DateTime(year, 1, 1),
                 EndDate = new DateTime(year, 12, 31),
             };
 
             var lstYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(cmbDatabasePicker.Text));
-            var lstAllMonthsData = await _serviceFactory.YearlyService.GetAllMonthsData(year);
+            var lstAllMonthsData = await _serviceFactory.YearlyService.GetTransactions(year);
 
             var lstMonthDataOnExpenseType = await _serviceFactory.YearlyService.GetAllMonthDataOnExpenseType(year);
             var lstExpenseByExpensesTypes = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
@@ -238,7 +238,7 @@ namespace ExpenseTrackerWin
             excelDtos.Add(new ExcelDto() { DataTable = lstBanks.ToDataTable(), SheetName = "Bank Overview" });
 
             foreach (var item in lstAllMonthsData)
-                excelDtos.Add(new ExcelDto() { DataTable = item.dtoExpenses.ToDataTable(), SheetName = item.Name });
+                excelDtos.Add(new ExcelDto() { DataTable = item.dtoTransaction.ToDataTable(), SheetName = item.Name });
 
             excelDtos.Add(new ExcelDto() { DataTable = lstMonthDataOnExpenseType.dtoExpenseByCategories.ToDataTable(), SheetName = "Percentage overview" });
             excelDtos.Add(new ExcelDto() { DataTable = lstExpenseByExpensesTypes.ToDataTable(), SheetName = "Yealry Expense By Categories" });

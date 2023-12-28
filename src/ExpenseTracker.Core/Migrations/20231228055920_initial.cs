@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExpenseTracker.Core.Migrations
 {
-    public partial class InitialTables : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,29 +49,17 @@ namespace ExpenseTracker.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bank",
+                name: "Category",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bank", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExpenseType",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExpenseType", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,11 +69,36 @@ namespace ExpenseTracker.Core.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "YealyTotal",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SubCategory = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Year2022 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Year2023 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Year2024 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Year2025 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Year2026 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Year2027 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Year2028 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Year2029 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Year2030 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_YealyTotal", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,48 +208,72 @@ namespace ExpenseTracker.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryType",
+                name: "SubCategory",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CommaSeparatedTags = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExpenseTypeId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    ExpectedAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryType", x => x.Id);
+                    table.PrimaryKey("PK_SubCategory", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CategoryType_ExpenseType_ExpenseTypeId",
-                        column: x => x.ExpenseTypeId,
-                        principalTable: "ExpenseType",
+                        name: "FK_SubCategory_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "IncomeSource",
+                name: "Bank",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Amount = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    BankId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IncomeSource", x => x.Id);
+                    table.PrimaryKey("PK_Bank", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_IncomeSource_Bank_BankId",
+                        name: "FK_Bank_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Income",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    BankId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Income", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Income_Bank_BankId",
                         column: x => x.BankId,
                         principalTable: "Bank",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_IncomeSource_User_UserId",
+                        name: "FK_Income_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
@@ -244,24 +281,38 @@ namespace ExpenseTracker.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Expense",
+                name: "Transaction",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CategoryTypeId = table.Column<int>(type: "int", nullable: false),
-                    Amount = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    SubCategoryId = table.Column<int>(type: "int", nullable: false),
+                    BankId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Expense", x => x.Id);
+                    table.PrimaryKey("PK_Transaction", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Expense_CategoryType_CategoryTypeId",
-                        column: x => x.CategoryTypeId,
-                        principalTable: "CategoryType",
+                        name: "FK_Transaction_Bank_BankId",
+                        column: x => x.BankId,
+                        principalTable: "Bank",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transaction_SubCategory_SubCategoryId",
+                        column: x => x.SubCategoryId,
+                        principalTable: "SubCategory",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transaction_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -306,23 +357,38 @@ namespace ExpenseTracker.Core.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryType_ExpenseTypeId",
-                table: "CategoryType",
-                column: "ExpenseTypeId");
+                name: "IX_Bank_UserId",
+                table: "Bank",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Expense_CategoryTypeId",
-                table: "Expense",
-                column: "CategoryTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_IncomeSource_BankId",
-                table: "IncomeSource",
+                name: "IX_Income_BankId",
+                table: "Income",
                 column: "BankId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_IncomeSource_UserId",
-                table: "IncomeSource",
+                name: "IX_Income_UserId",
+                table: "Income",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubCategory_CategoryId",
+                table: "SubCategory",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transaction_BankId",
+                table: "Transaction",
+                column: "BankId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transaction_SubCategoryId",
+                table: "Transaction",
+                column: "SubCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transaction_UserId",
+                table: "Transaction",
                 column: "UserId");
         }
 
@@ -344,10 +410,13 @@ namespace ExpenseTracker.Core.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Expense");
+                name: "Income");
 
             migrationBuilder.DropTable(
-                name: "IncomeSource");
+                name: "Transaction");
+
+            migrationBuilder.DropTable(
+                name: "YealyTotal");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -356,16 +425,16 @@ namespace ExpenseTracker.Core.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "CategoryType");
+                name: "Bank");
 
             migrationBuilder.DropTable(
-                name: "Bank");
+                name: "SubCategory");
 
             migrationBuilder.DropTable(
                 name: "User");
 
             migrationBuilder.DropTable(
-                name: "ExpenseType");
+                name: "Category");
         }
     }
 }

@@ -45,7 +45,6 @@
             this.lblError = new System.Windows.Forms.Label();
             this.btnUpload = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnHomePage = new System.Windows.Forms.Button();
             this.btnGeData = new System.Windows.Forms.Button();
             this.dgvOldData = new System.Windows.Forms.DataGridView();
             this.dpDate = new System.Windows.Forms.DateTimePicker();
@@ -200,7 +199,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(400, 890);
+            this.btnDelete.Location = new System.Drawing.Point(306, 889);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(76, 23);
@@ -208,16 +207,6 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnHomePage
-            // 
-            this.btnHomePage.Location = new System.Drawing.Point(306, 889);
-            this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(89, 23);
-            this.btnHomePage.TabIndex = 20;
-            this.btnHomePage.Text = "Home";
-            this.btnHomePage.UseVisualStyleBackColor = true;
-            this.btnHomePage.Click += new System.EventHandler(this.btnHomePage_Click);
             // 
             // btnGeData
             // 
@@ -321,7 +310,7 @@
             // 
             // btnUploadFromBackup
             // 
-            this.btnUploadFromBackup.Location = new System.Drawing.Point(480, 890);
+            this.btnUploadFromBackup.Location = new System.Drawing.Point(386, 889);
             this.btnUploadFromBackup.Margin = new System.Windows.Forms.Padding(2);
             this.btnUploadFromBackup.Name = "btnUploadFromBackup";
             this.btnUploadFromBackup.Size = new System.Drawing.Size(204, 23);
@@ -348,7 +337,6 @@
             this.Controls.Add(this.dpDate);
             this.Controls.Add(this.dgvOldData);
             this.Controls.Add(this.btnGeData);
-            this.Controls.Add(this.btnHomePage);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.lblError);
@@ -379,7 +367,6 @@
         private Button btnFilterPage;
         private Button btnUpload;
         private Button btnDelete;
-        private Button btnHomePage;
         private Button btnGeData;
         private DataGridView dgvOldData;
         private DateTimePicker dpDate;

@@ -35,8 +35,8 @@ namespace ExpenseTrackerWin
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpenseTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblExpenseType = new System.Windows.Forms.Label();
-            this.lblCategory = new System.Windows.Forms.Label();
+            this.lblMainCategory = new System.Windows.Forms.Label();
+            this.lblSubCategory = new System.Windows.Forms.Label();
             this.dgvCategory = new System.Windows.Forms.DataGridView();
             this.ctId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctExpenseType = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -84,27 +84,23 @@ namespace ExpenseTrackerWin
             this.Name.HeaderText = "EtName";
             this.Name.Name = "Name";
             // 
-            // ExpenseTypeBindingSource
+            // lblMainCategory
             // 
-            this.ExpenseTypeBindingSource.DataSource = typeof(ExpenseTracker.Models.ExpenseType);
+            this.lblMainCategory.AutoSize = true;
+            this.lblMainCategory.Location = new System.Drawing.Point(18, 39);
+            this.lblMainCategory.Name = "lblMainCategory";
+            this.lblMainCategory.Size = new System.Drawing.Size(80, 15);
+            this.lblMainCategory.TabIndex = 1;
+            this.lblMainCategory.Text = "Add Category";
             // 
-            // lblExpenseType
+            // lblSubCategory
             // 
-            this.lblExpenseType.AutoSize = true;
-            this.lblExpenseType.Location = new System.Drawing.Point(18, 39);
-            this.lblExpenseType.Name = "lblExpenseType";
-            this.lblExpenseType.Size = new System.Drawing.Size(102, 15);
-            this.lblExpenseType.TabIndex = 1;
-            this.lblExpenseType.Text = "Add Expense Type";
-            // 
-            // lblCategory
-            // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(623, 16);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(80, 15);
-            this.lblCategory.TabIndex = 3;
-            this.lblCategory.Text = "Add Category";
+            this.lblSubCategory.AutoSize = true;
+            this.lblSubCategory.Location = new System.Drawing.Point(623, 16);
+            this.lblSubCategory.Name = "lblSubCategory";
+            this.lblSubCategory.Size = new System.Drawing.Size(103, 15);
+            this.lblSubCategory.TabIndex = 3;
+            this.lblSubCategory.Text = "Add Sub Category";
             // 
             // dgvCategory
             // 
@@ -169,10 +165,6 @@ namespace ExpenseTrackerWin
             this.btnSaveCategory.UseVisualStyleBackColor = true;
             this.btnSaveCategory.Click += new System.EventHandler(this.btnSaveCategory_Click);
             // 
-            // CategoryTypeBindingSource
-            // 
-            this.CategoryTypeBindingSource.DataSource = typeof(ExpenseTracker.Models.CategoryType);
-            // 
             // btnHome
             // 
             this.btnHome.Location = new System.Drawing.Point(99, 12);
@@ -203,18 +195,18 @@ namespace ExpenseTrackerWin
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(624, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 15);
+            this.label1.Size = new System.Drawing.Size(55, 15);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Expense Type";
+            this.label1.Text = "Category";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(775, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 15);
+            this.label2.Size = new System.Drawing.Size(113, 15);
             this.label2.TabIndex = 11;
-            this.label2.Text = "CategoryName";
+            this.label2.Text = "Sub Category Name";
             // 
             // txtId
             // 
@@ -249,9 +241,9 @@ namespace ExpenseTrackerWin
             this.Controls.Add(this.btnSaveCategory);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnSaveExpense);
-            this.Controls.Add(this.lblCategory);
+            this.Controls.Add(this.lblSubCategory);
             this.Controls.Add(this.dgvCategory);
-            this.Controls.Add(this.lblExpenseType);
+            this.Controls.Add(this.lblMainCategory);
             this.Controls.Add(this.dgvExpenseType);
             this.Text = "UserSettings";
             this.Load += new System.EventHandler(this.UserSettings_Load);
@@ -267,8 +259,8 @@ namespace ExpenseTrackerWin
         #endregion
 
         private DataGridView dgvExpenseType;
-        private Label lblExpenseType;
-        private Label lblCategory;
+        private Label lblMainCategory;
+        private Label lblSubCategory;
         private DataGridView dgvCategory;
         private Button btnSaveExpense;
         private Button btnRefresh;

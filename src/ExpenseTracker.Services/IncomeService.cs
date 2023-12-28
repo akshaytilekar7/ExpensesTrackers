@@ -21,14 +21,14 @@ namespace ExpenseTracker.Services
             _serviceFactory = serviceFactory;
         }
 
-        public bool Add(IncomeSource item)
+        public bool Add(Income item)
         {
             bool result = false;
             try
             {
                 if (item != null)
                 {
-                    var movieRepository = _unitOfWork.GetRepository<IncomeSource>();
+                    var movieRepository = _unitOfWork.GetRepository<Income>();
                     movieRepository.Add(item);
                     _unitOfWork.Commit();
                     result = true;
@@ -43,9 +43,9 @@ namespace ExpenseTracker.Services
             return result;
         }
 
-        public void Delete(List<IncomeSource> lst)
+        public void Delete(List<Income> lst)
         {
-            var repository = _unitOfWork.GetRepository<IncomeSource>();
+            var repository = _unitOfWork.GetRepository<Income>();
             foreach (var item in lst)
                 repository.HardDelete(item);
             _unitOfWork.Commit();
@@ -53,11 +53,11 @@ namespace ExpenseTracker.Services
 
         public List<DtoIncome> GetIncome(DateTime startDate, DateTime endDate)
         {
-            List<Expression<Func<IncomeSource, object>>> includers = new List<Expression<Func<IncomeSource, object>>>();
+            List<Expression<Func<Income, object>>> includers = new List<Expression<Func<Income, object>>>();
             includers.Add(x => x.User);
             includers.Add(x => x.Bank);
 
-            var lstIncomeSource = _unitOfWork.GetRepository<IncomeSource>()
+            var lstIncomeSource = _unitOfWork.GetRepository<Income>()
                 .GetAll(includers)
                 .Where(x => x.Date >= startDate && x.Date <= endDate);
 

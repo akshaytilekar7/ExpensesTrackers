@@ -31,20 +31,20 @@ namespace ExpenseTrackerWin
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblDate = new System.Windows.Forms.Label();
             this.dateStart = new System.Windows.Forms.DateTimePicker();
             this.dateEnd = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblCategory = new System.Windows.Forms.Label();
+            this.lblSubCategory = new System.Windows.Forms.Label();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.cmbExpensesType = new System.Windows.Forms.ComboBox();
-            this.lblExpensesType = new System.Windows.Forms.Label();
+            this.lblCategoryMain = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.txtComment = new System.Windows.Forms.TextBox();
@@ -54,14 +54,12 @@ namespace ExpenseTrackerWin
             this.expenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblError = new System.Windows.Forms.Label();
             this.btnExcel = new System.Windows.Forms.Button();
-            this.btnForm1 = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExpenseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,14 +111,14 @@ namespace ExpenseTrackerWin
             this.label1.TabIndex = 2;
             this.label1.Text = "To";
             // 
-            // lblCategory
+            // lblSubCategory
             // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(394, 82);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(55, 15);
-            this.lblCategory.TabIndex = 4;
-            this.lblCategory.Text = "Category";
+            this.lblSubCategory.AutoSize = true;
+            this.lblSubCategory.Location = new System.Drawing.Point(394, 82);
+            this.lblSubCategory.Name = "lblSubCategory";
+            this.lblSubCategory.Size = new System.Drawing.Size(75, 15);
+            this.lblSubCategory.TabIndex = 4;
+            this.lblSubCategory.Text = "SubCategory";
             // 
             // cmbCategory
             // 
@@ -139,14 +137,14 @@ namespace ExpenseTrackerWin
             this.cmbExpensesType.TabIndex = 7;
             this.cmbExpensesType.SelectionChangeCommitted += new System.EventHandler(this.cmbExpensesType_SelectionChangeCommitted);
             // 
-            // lblExpensesType
+            // lblCategoryMain
             // 
-            this.lblExpensesType.AutoSize = true;
-            this.lblExpensesType.Location = new System.Drawing.Point(29, 85);
-            this.lblExpensesType.Name = "lblExpensesType";
-            this.lblExpensesType.Size = new System.Drawing.Size(82, 15);
-            this.lblExpensesType.TabIndex = 6;
-            this.lblExpensesType.Text = "Expenses Type";
+            this.lblCategoryMain.AutoSize = true;
+            this.lblCategoryMain.Location = new System.Drawing.Point(29, 85);
+            this.lblCategoryMain.Name = "lblCategoryMain";
+            this.lblCategoryMain.Size = new System.Drawing.Size(55, 15);
+            this.lblCategoryMain.TabIndex = 6;
+            this.lblCategoryMain.Text = "Category";
             // 
             // lblAmount
             // 
@@ -202,7 +200,7 @@ namespace ExpenseTrackerWin
             // 
             // expenseBindingSource
             // 
-            this.expenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Expense);
+            this.expenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Transaction);
             // 
             // lblError
             // 
@@ -223,20 +221,9 @@ namespace ExpenseTrackerWin
             this.btnExcel.UseVisualStyleBackColor = true;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
-            // btnForm1
-            // 
-            this.btnForm1.Location = new System.Drawing.Point(271, 185);
-            this.btnForm1.Margin = new System.Windows.Forms.Padding(2);
-            this.btnForm1.Name = "btnForm1";
-            this.btnForm1.Size = new System.Drawing.Size(75, 23);
-            this.btnForm1.TabIndex = 19;
-            this.btnForm1.Text = "Home";
-            this.btnForm1.UseVisualStyleBackColor = true;
-            this.btnForm1.Click += new System.EventHandler(this.btnForm1_Click);
-            // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(350, 185);
+            this.btnDelete.Location = new System.Drawing.Point(283, 185);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
@@ -247,12 +234,12 @@ namespace ExpenseTrackerWin
             // 
             // dgvFilter
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvFilter.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvFilter.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFilter.AutoGenerateColumns = false;
             this.dgvFilter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFilter.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -260,22 +247,21 @@ namespace ExpenseTrackerWin
             this.SrNo,
             this.Date,
             this.CategoryName,
-            this.ExpenseType,
             this.Amount,
             this.Comment,
             this.User,
             this.BankName,
             this.Balance});
             this.dgvFilter.DataSource = this.dtoExpenseBindingSource;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.NullValue = null;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvFilter.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.NullValue = null;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFilter.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFilter.Location = new System.Drawing.Point(12, 239);
             this.dgvFilter.Name = "dgvFilter";
             this.dgvFilter.RowHeadersWidth = 62;
@@ -316,20 +302,12 @@ namespace ExpenseTrackerWin
             this.CategoryName.Name = "CategoryName";
             this.CategoryName.Width = 150;
             // 
-            // ExpenseType
-            // 
-            this.ExpenseType.DataPropertyName = "ExpenseType";
-            this.ExpenseType.HeaderText = "ExpenseType";
-            this.ExpenseType.MinimumWidth = 8;
-            this.ExpenseType.Name = "ExpenseType";
-            this.ExpenseType.Width = 150;
-            // 
             // Amount
             // 
             this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.NullValue = null;
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle2;
             this.Amount.HeaderText = "Amount";
             this.Amount.MinimumWidth = 8;
             this.Amount.Name = "Amount";
@@ -362,28 +340,28 @@ namespace ExpenseTrackerWin
             // Balance
             // 
             this.Balance.DataPropertyName = "Balance";
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.Balance.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Balance.DefaultCellStyle = dataGridViewCellStyle3;
             this.Balance.HeaderText = "Balance";
             this.Balance.Name = "Balance";
             // 
             // dtoExpenseBindingSource
             // 
-            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
+            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoTransaction);
             // 
             // dgvExpenseOverview
             // 
             this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.NullValue = null;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExpenseOverview.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.NullValue = null;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExpenseOverview.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvExpenseOverview.Location = new System.Drawing.Point(1311, 4);
             this.dgvExpenseOverview.Name = "dgvExpenseOverview";
             this.dgvExpenseOverview.RowHeadersWidth = 62;
@@ -393,15 +371,15 @@ namespace ExpenseTrackerWin
             // dgvIncome
             // 
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.NullValue = null;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIncome.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.NullValue = null;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIncome.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvIncome.Location = new System.Drawing.Point(1311, 336);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.RowHeadersWidth = 62;
@@ -458,7 +436,6 @@ namespace ExpenseTrackerWin
             this.Controls.Add(this.dgvExpenseOverview);
             this.Controls.Add(this.dgvFilter);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnForm1);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnClear);
@@ -468,9 +445,9 @@ namespace ExpenseTrackerWin
             this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.lblAmount);
             this.Controls.Add(this.cmbExpensesType);
-            this.Controls.Add(this.lblExpensesType);
+            this.Controls.Add(this.lblCategoryMain);
             this.Controls.Add(this.cmbCategory);
-            this.Controls.Add(this.lblCategory);
+            this.Controls.Add(this.lblSubCategory);
             this.Controls.Add(this.dateEnd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateStart);
@@ -494,10 +471,10 @@ namespace ExpenseTrackerWin
         private DateTimePicker dateStart;
         private DateTimePicker dateEnd;
         private Label label1;
-        private Label lblCategory;
+        private Label lblSubCategory;
         private ComboBox cmbCategory;
         private ComboBox cmbExpensesType;
-        private Label lblExpensesType;
+        private Label lblCategoryMain;
         private Label lblAmount;
         private TextBox txtAmount;
         private TextBox txtComment;
@@ -509,7 +486,6 @@ namespace ExpenseTrackerWin
         private Label lblError;
         private DataGridViewTextBoxColumn Category;
         private Button btnExcel;
-        private Button btnForm1;
         private Button button1;
         private Button btnDelete;
         private DataGridView dgvFilter;

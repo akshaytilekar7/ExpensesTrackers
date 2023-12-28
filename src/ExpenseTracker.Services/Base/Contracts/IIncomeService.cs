@@ -7,8 +7,8 @@ namespace ExpenseTracker.Services.Base.Contracts
 {
     public interface IIncomeService
     {
-        bool Add(IncomeSource item);
-        void Delete(List<IncomeSource> lst);
+        bool Add(Income item);
+        void Delete(List<Income> lst);
         List<DtoIncome> GetIncome(DateTime startDate, DateTime endDate);
 
     }

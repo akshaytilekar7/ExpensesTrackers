@@ -15,6 +15,8 @@ namespace ExpenseTrackerWin
 {
     public partial class Index : Form
     {
+        IServiceFactory _serviceFactory { get; }
+
         public Index(IOptions<MyConfig> myConfig, IServiceFactory serviceFactory)
         {
             InitializeComponent();
@@ -41,8 +43,6 @@ namespace ExpenseTrackerWin
         }
 
         public IOptions<MyConfig> MyConfig { get; }
-        IServiceFactory _serviceFactory { get; }
-
         private void addExpenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddExpense addExpense = new AddExpense(MyConfig, _serviceFactory);
@@ -146,6 +146,21 @@ namespace ExpenseTrackerWin
                 // Set text color
                 button.ForeColor = Color.Black;
             }
+        }
+
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserSettings obj = new UserSettings(MyConfig, _serviceFactory);
+            panleIndexPage.Controls.Clear();
+
+            // Create and add the new form to the panel
+            obj.TopLevel = false;
+            obj.FormBorderStyle = FormBorderStyle.None;
+            obj.Dock = DockStyle.Fill;
+            panleIndexPage.Controls.Add(obj);
+            ApplyCommonButtonStyle(obj.Controls.OfType<Button>());
+            // Show the form
+            obj.Show();
         }
     }
 }

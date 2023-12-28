@@ -37,6 +37,7 @@
             this.yearlyOverviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panleIndexPage = new System.Windows.Forms.Panel();
+            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +53,8 @@
             this.viewExpenseToolStripMenuItem,
             this.addIncomeToolStripMenuItem,
             this.yearlyOverviewToolStripMenuItem,
-            this.historyToolStripMenuItem});
+            this.historyToolStripMenuItem,
+            this.adminToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1711, 24);
@@ -101,6 +103,13 @@
             this.panleIndexPage.Size = new System.Drawing.Size(1686, 938);
             this.panleIndexPage.TabIndex = 2;
             // 
+            // adminToolStripMenuItem
+            // 
+            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.adminToolStripMenuItem.Text = "Admin";
+            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -128,5 +137,6 @@
         private ToolStripMenuItem yearlyOverviewToolStripMenuItem;
         private ToolStripMenuItem historyToolStripMenuItem;
         private Panel panleIndexPage;
+        private ToolStripMenuItem adminToolStripMenuItem;
     }
 }

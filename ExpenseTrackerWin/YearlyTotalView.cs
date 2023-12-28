@@ -28,7 +28,7 @@ namespace ExpenseTrackerWin
 
         private void LoadGird()
         {
-            var lstDtoYealry = _serviceFactory.YearlyTotalService.GetYearlyData();
+            var lstDtoYealry = _serviceFactory.DecadeServices.GetDecadeData();
             dataGridView1.DataSource = lstDtoYealry.MakeSortable();
             dataGridView1.SetGridToFit();
         }
@@ -79,7 +79,7 @@ namespace ExpenseTrackerWin
             var _unitOfWork = new UnitOfWork(new SpecialContextFactory(MyConfig, selectedYear));
             _serviceFactory = new ServiceFactory(_unitOfWork, MyConfig);
 
-            var lstDtoYealry = await _serviceFactory.YearlyTotalService.GetYearlyForTooltip(selectedYear, selectedCategory);
+            var lstDtoYealry = await _serviceFactory.DecadeServices.GetYearlyForTooltip(selectedYear, selectedCategory);
 
             dgvExpenseByCategory.DataSource = lstDtoYealry.GenereateSrNo().MakeSortable();
             dgvExpenseByCategory.SetGridToFit();

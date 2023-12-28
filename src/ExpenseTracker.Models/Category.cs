@@ -2,7 +2,7 @@
 
 namespace ExpenseTracker.Models
 {
-    public class ExpenseType : BaseEnitity
+    public class Category : BaseEnitity
     {
 
         public string Name { get; set; }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseTracker.Core.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221203062325_UserBankrelation")]
-    partial class UserBankrelation
+    [Migration("20231228055920_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,7 +48,7 @@ namespace ExpenseTracker.Core.Migrations
                     b.ToTable("Bank");
                 });
 
-            modelBuilder.Entity("ExpenseTracker.Models.CategoryType", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,23 +56,15 @@ namespace ExpenseTracker.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1, 1);
 
-                    b.Property<string>("CommaSeparatedTags")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("ExpenseTypeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExpenseTypeId");
-
-                    b.ToTable("CategoryType");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("ExpenseTracker.Models.Configuration.ApplicationUser", b =>
@@ -140,7 +132,7 @@ namespace ExpenseTracker.Core.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ExpenseTracker.Models.Expense", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.Income", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -152,9 +144,6 @@ namespace ExpenseTracker.Core.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("BankId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Comment")
@@ -173,14 +162,12 @@ namespace ExpenseTracker.Core.Migrations
 
                     b.HasIndex("BankId");
 
-                    b.HasIndex("CategoryTypeId");
-
                     b.HasIndex("UserId");
 
-                    b.ToTable("Expense");
+                    b.ToTable("Income");
                 });
 
-            modelBuilder.Entity("ExpenseTracker.Models.ExpenseType", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.SubCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -188,18 +175,29 @@ namespace ExpenseTracker.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1, 1);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CommaSeparatedTags")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("ExpectedAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExpenseType");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SubCategory");
                 });
 
-            modelBuilder.Entity("ExpenseTracker.Models.IncomeSource", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -222,6 +220,9 @@ namespace ExpenseTracker.Core.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -229,9 +230,11 @@ namespace ExpenseTracker.Core.Migrations
 
                     b.HasIndex("BankId");
 
+                    b.HasIndex("SubCategoryId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("IncomeSource");
+                    b.ToTable("Transaction");
                 });
 
             modelBuilder.Entity("ExpenseTracker.Models.User", b =>
@@ -254,6 +257,55 @@ namespace ExpenseTracker.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.Models.YealyTotal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1, 1);
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SubCategory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Year2022")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Year2023")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Year2024")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2025")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2026")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2027")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2028")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2029")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2030")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("YealyTotal");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -398,28 +450,11 @@ namespace ExpenseTracker.Core.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ExpenseTracker.Models.CategoryType", b =>
-                {
-                    b.HasOne("ExpenseTracker.Models.ExpenseType", "ExpenseType")
-                        .WithMany()
-                        .HasForeignKey("ExpenseTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ExpenseType");
-                });
-
-            modelBuilder.Entity("ExpenseTracker.Models.Expense", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.Income", b =>
                 {
                     b.HasOne("ExpenseTracker.Models.Bank", "Bank")
                         .WithMany()
                         .HasForeignKey("BankId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ExpenseTracker.Models.CategoryType", "CategoryType")
-                        .WithMany()
-                        .HasForeignKey("CategoryTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -430,17 +465,32 @@ namespace ExpenseTracker.Core.Migrations
                         .IsRequired();
 
                     b.Navigation("Bank");
-
-                    b.Navigation("CategoryType");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ExpenseTracker.Models.IncomeSource", b =>
+            modelBuilder.Entity("ExpenseTracker.Models.SubCategory", b =>
+                {
+                    b.HasOne("ExpenseTracker.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.Models.Transaction", b =>
                 {
                     b.HasOne("ExpenseTracker.Models.Bank", "Bank")
                         .WithMany()
                         .HasForeignKey("BankId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ExpenseTracker.Models.SubCategory", "SubCategory")
+                        .WithMany()
+                        .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -451,6 +501,8 @@ namespace ExpenseTracker.Core.Migrations
                         .IsRequired();
 
                     b.Navigation("Bank");
+
+                    b.Navigation("SubCategory");
 
                     b.Navigation("User");
                 });

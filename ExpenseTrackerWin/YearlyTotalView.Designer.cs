@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,8 +44,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Jan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Feb = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,11 +58,21 @@
             this.November = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.December = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CatogoryTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnHome = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expenseTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtoYealryTotalBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgvExpenseByCategory = new System.Windows.Forms.DataGridView();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.expenseTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblWait = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubCategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.year2022DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.year2023DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year2024 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,17 +83,6 @@
             this.Year2029 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year2030 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtoYealryTotalBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvExpenseByCategory = new System.Windows.Forms.DataGridView();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expenseTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblWait = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryTotalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseByCategory)).BeginInit();
@@ -202,16 +201,6 @@
             this.CatogoryTotal.Name = "CatogoryTotal";
             this.CatogoryTotal.Width = 150;
             // 
-            // btnHome
-            // 
-            this.btnHome.Location = new System.Drawing.Point(12, 12);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(75, 28);
-            this.btnHome.TabIndex = 2;
-            this.btnHome.Text = "Home";
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
-            // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
@@ -236,8 +225,8 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.categoryDataGridViewTextBoxColumn,
-            this.expenseTypeDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn1,
+            this.SubCategoryName,
             this.year2022DataGridViewTextBoxColumn,
             this.year2023DataGridViewTextBoxColumn,
             this.Year2024,
@@ -266,17 +255,102 @@
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellLeave);
             // 
-            // categoryDataGridViewTextBoxColumn
+            // dtoYealryTotalBindingSource
             // 
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            this.dtoYealryTotalBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoDecadeView);
             // 
-            // expenseTypeDataGridViewTextBoxColumn
+            // dgvExpenseByCategory
             // 
-            this.expenseTypeDataGridViewTextBoxColumn.DataPropertyName = "ExpenseType";
-            this.expenseTypeDataGridViewTextBoxColumn.HeaderText = "Expense Type";
-            this.expenseTypeDataGridViewTextBoxColumn.Name = "expenseTypeDataGridViewTextBoxColumn";
+            this.dgvExpenseByCategory.AutoGenerateColumns = false;
+            this.dgvExpenseByCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvExpenseByCategory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Date,
+            this.CategoryName,
+            this.Amount,
+            this.Comment,
+            this.BankName});
+            this.dgvExpenseByCategory.DataSource = this.dtoExpenseBindingSource;
+            this.dgvExpenseByCategory.Location = new System.Drawing.Point(1147, 48);
+            this.dgvExpenseByCategory.Name = "dgvExpenseByCategory";
+            this.dgvExpenseByCategory.RowTemplate.Height = 25;
+            this.dgvExpenseByCategory.Size = new System.Drawing.Size(678, 888);
+            this.dgvExpenseByCategory.TabIndex = 5;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            dataGridViewCellStyle14.Format = "D";
+            dataGridViewCellStyle14.NullValue = null;
+            this.Date.DefaultCellStyle = dataGridViewCellStyle14;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "CategoryName";
+            this.CategoryName.Name = "CategoryName";
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle15.Format = "N2";
+            dataGridViewCellStyle15.NullValue = null;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle15;
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.Name = "Comment";
+            // 
+            // BankName
+            // 
+            this.BankName.DataPropertyName = "BankName";
+            this.BankName.HeaderText = "BankName";
+            this.BankName.Name = "BankName";
+            // 
+            // dtoExpenseBindingSource
+            // 
+            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoTransaction);
+            // 
+            // expenseTypeDataGridViewTextBoxColumn1
+            // 
+            this.expenseTypeDataGridViewTextBoxColumn1.DataPropertyName = "ExpenseType";
+            this.expenseTypeDataGridViewTextBoxColumn1.HeaderText = "ExpenseType";
+            this.expenseTypeDataGridViewTextBoxColumn1.Name = "expenseTypeDataGridViewTextBoxColumn1";
+            // 
+            // lblWait
+            // 
+            this.lblWait.AutoSize = true;
+            this.lblWait.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblWait.ForeColor = System.Drawing.Color.Red;
+            this.lblWait.Location = new System.Drawing.Point(1002, 7);
+            this.lblWait.Name = "lblWait";
+            this.lblWait.Size = new System.Drawing.Size(0, 33);
+            this.lblWait.TabIndex = 6;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(12, 12);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(100, 23);
+            this.txtSearch.TabIndex = 7;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Category";
+            this.dataGridViewTextBoxColumn1.HeaderText = "CategoryName";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // SubCategoryName
+            // 
+            this.SubCategoryName.DataPropertyName = "SubCategory";
+            this.SubCategoryName.HeaderText = "SubCategoryName";
+            this.SubCategoryName.Name = "SubCategoryName";
             // 
             // year2022DataGridViewTextBoxColumn
             // 
@@ -369,92 +443,6 @@
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
             // 
-            // dtoYealryTotalBindingSource
-            // 
-            this.dtoYealryTotalBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoYealryTotal);
-            // 
-            // dgvExpenseByCategory
-            // 
-            this.dgvExpenseByCategory.AutoGenerateColumns = false;
-            this.dgvExpenseByCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvExpenseByCategory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Date,
-            this.CategoryName,
-            this.expenseTypeDataGridViewTextBoxColumn1,
-            this.Amount,
-            this.Comment,
-            this.BankName});
-            this.dgvExpenseByCategory.DataSource = this.dtoExpenseBindingSource;
-            this.dgvExpenseByCategory.Location = new System.Drawing.Point(1147, 48);
-            this.dgvExpenseByCategory.Name = "dgvExpenseByCategory";
-            this.dgvExpenseByCategory.RowTemplate.Height = 25;
-            this.dgvExpenseByCategory.Size = new System.Drawing.Size(678, 888);
-            this.dgvExpenseByCategory.TabIndex = 5;
-            // 
-            // Date
-            // 
-            this.Date.DataPropertyName = "Date";
-            dataGridViewCellStyle14.Format = "D";
-            dataGridViewCellStyle14.NullValue = null;
-            this.Date.DefaultCellStyle = dataGridViewCellStyle14;
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            // 
-            // CategoryName
-            // 
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "CategoryName";
-            this.CategoryName.Name = "CategoryName";
-            // 
-            // expenseTypeDataGridViewTextBoxColumn1
-            // 
-            this.expenseTypeDataGridViewTextBoxColumn1.DataPropertyName = "ExpenseType";
-            this.expenseTypeDataGridViewTextBoxColumn1.HeaderText = "ExpenseType";
-            this.expenseTypeDataGridViewTextBoxColumn1.Name = "expenseTypeDataGridViewTextBoxColumn1";
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle15.Format = "N2";
-            dataGridViewCellStyle15.NullValue = null;
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle15;
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
-            // 
-            // Comment
-            // 
-            this.Comment.DataPropertyName = "Comment";
-            this.Comment.HeaderText = "Comment";
-            this.Comment.Name = "Comment";
-            // 
-            // BankName
-            // 
-            this.BankName.DataPropertyName = "BankName";
-            this.BankName.HeaderText = "BankName";
-            this.BankName.Name = "BankName";
-            // 
-            // dtoExpenseBindingSource
-            // 
-            this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoExpense);
-            // 
-            // lblWait
-            // 
-            this.lblWait.AutoSize = true;
-            this.lblWait.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblWait.ForeColor = System.Drawing.Color.Red;
-            this.lblWait.Location = new System.Drawing.Point(1002, 7);
-            this.lblWait.Name = "lblWait";
-            this.lblWait.Size = new System.Drawing.Size(0, 33);
-            this.lblWait.TabIndex = 6;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(93, 16);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(100, 23);
-            this.txtSearch.TabIndex = 7;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
             // YearlyTotalView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -466,7 +454,6 @@
             this.Controls.Add(this.dgvExpenseByCategory);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.btnHome);
             this.Name = "YearlyTotalView";
             this.Text = "YearlyTotalView";
             this.Load += new System.EventHandler(this.YearlyView_Load);
@@ -480,7 +467,6 @@
         }
 
         #endregion
-        private Button btnHome;
         private Label lblTotal;
         private Label label3;
         private DataGridViewTextBoxColumn Category;
@@ -499,18 +485,7 @@
         private DataGridViewTextBoxColumn CatogoryTotal;
         private DataGridView dataGridView1;
         private BindingSource dtoYealryTotalBindingSource;
-        private DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn expenseTypeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn year2022DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn year2023DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn Year2024;
-        private DataGridViewTextBoxColumn Year2025;
-        private DataGridViewTextBoxColumn Year2026;
-        private DataGridViewTextBoxColumn Year2027;
-        private DataGridViewTextBoxColumn Year2028;
-        private DataGridViewTextBoxColumn Year2029;
-        private DataGridViewTextBoxColumn Year2030;
-        private DataGridViewTextBoxColumn Total;
         private DataGridView dgvExpenseByCategory;
         private BindingSource dtoExpenseBindingSource;
         private Label lblWait;
@@ -521,5 +496,17 @@
         private DataGridViewTextBoxColumn Comment;
         private DataGridViewTextBoxColumn BankName;
         private TextBox txtSearch;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn SubCategoryName;
+        private DataGridViewTextBoxColumn year2022DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn year2023DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn Year2024;
+        private DataGridViewTextBoxColumn Year2025;
+        private DataGridViewTextBoxColumn Year2026;
+        private DataGridViewTextBoxColumn Year2027;
+        private DataGridViewTextBoxColumn Year2028;
+        private DataGridViewTextBoxColumn Year2029;
+        private DataGridViewTextBoxColumn Year2030;
+        private DataGridViewTextBoxColumn Total;
     }
 }

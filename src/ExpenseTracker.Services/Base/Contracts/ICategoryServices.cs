@@ -5,7 +5,7 @@ namespace ExpenseTracker.Services.Base.Contracts
 {
     public interface ICategoryServices
     {
-        bool Add(CategoryType item);
-        IList<CategoryType> GetAll();
+        bool Add(SubCategory item);
+        IList<SubCategory> GetAll();
     }
 }

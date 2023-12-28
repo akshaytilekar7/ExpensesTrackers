@@ -69,7 +69,7 @@ namespace ExpenseTrackerWin
 
         private async Task LoadExpenseFilterGrid()
         {
-            var res = await _serviceFactory.ExpenseServices.GetExpense(GetFilter());
+            var res = await _serviceFactory.TransactionServices.GetTransactions(GetFilter());
             dgvFilter.DataSource = res.GenereateSrNo().MakeSortable();
             dgvFilter.SetGridToFit();
         }
@@ -112,14 +112,14 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var lstCategoryType = _serviceFactory.MasterTableService.GetAllCategoryType().ToList();
-                lstCategoryType.Insert(0, new CategoryType() { Id = 0, Name = "Please select" });
+                var lstCategoryType = _serviceFactory.MasterTableService.GetAllSubCategory().ToList();
+                lstCategoryType.Insert(0, new SubCategory() { Id = 0, Name = "Please select" });
                 cmbCategory.DisplayMember = "Name";
                 cmbCategory.ValueMember = "Id";
                 cmbCategory.DataSource = lstCategoryType;
 
-                var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllExpenseType().ToList();
-                lstExpenseTypes.Insert(0, new ExpenseType() { Id = 0, Name = "Please select" });
+                var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllCategory().ToList();
+                lstExpenseTypes.Insert(0, new Category() { Id = 0, Name = "Please select" });
                 cmbExpensesType.DisplayMember = "Name";
                 cmbExpensesType.ValueMember = "Id";
                 cmbExpensesType.DataSource = lstExpenseTypes;
@@ -154,7 +154,7 @@ namespace ExpenseTrackerWin
 
             List<ExcelDto> dataExpenseTypes = new List<ExcelDto>();
 
-            var lstExpense = await _serviceFactory.ExpenseServices.GetExpense(GetFilter());
+            var lstExpense = await _serviceFactory.TransactionServices.GetTransactions(GetFilter());
             var lstIncomes = _serviceFactory.IncomeService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
             var lstExpenseCategory = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
 
@@ -190,13 +190,13 @@ namespace ExpenseTrackerWin
 
         private async void btnDelete_Click(object sender, EventArgs e)
         {
-            List<Expense> lst = new List<Expense>();
+            List<Transaction> lst = new List<Transaction>();
             foreach (DataGridViewRow row in dgvFilter.SelectedRows)
             {
                 int id = Convert.ToInt32(row.Cells["Id"].Value);
-                lst.Add(new Expense() { Id = id });
+                lst.Add(new Transaction() { Id = id });
             }
-            _serviceFactory.ExpenseServices.Delete(lst);
+            _serviceFactory.TransactionServices.Delete(lst);
             await LoadAllGrid();
         }
 
@@ -223,16 +223,16 @@ namespace ExpenseTrackerWin
             dgvFilter.Refresh();
         }
 
-        private DtoExpenseFilter GetFilter()
+        private DtoTransactionFilter GetFilter()
         {
-            var filter = new DtoExpenseFilter()
+            var filter = new DtoTransactionFilter()
             {
                 Amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToDecimal(txtAmount.Text),
                 Comment = txtComment.Text,
                 StartDate = dateStart.Value.Date,
                 EndDate = dateEnd.Value.Date,
-                CategoryId = Convert.ToInt32(cmbCategory.SelectedValue),
-                ExpenseTypeId = Convert.ToInt32(cmbExpensesType.SelectedValue),
+                SubCategoryId = Convert.ToInt32(cmbCategory.SelectedValue),
+                CategoryId = Convert.ToInt32(cmbExpensesType.SelectedValue),
                 UserId = Convert.ToInt32(cmbUsers.SelectedValue),
                 BankId = Convert.ToInt32(cmbBank.SelectedValue),
             };
@@ -242,8 +242,8 @@ namespace ExpenseTrackerWin
         private void cmbExpensesType_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var expenseTypeId = Convert.ToInt32(cmbExpensesType.SelectedValue);
-            var lstCategoryType = _serviceFactory.MasterTableService.GetAllCategoryType().Where(x => x.ExpenseTypeId == expenseTypeId).ToList();
-            lstCategoryType.Insert(0, new CategoryType() { Id = 0, Name = "Please select" });
+            var lstCategoryType = _serviceFactory.MasterTableService.GetAllSubCategory().Where(x => x.CategoryId == expenseTypeId).ToList();
+            lstCategoryType.Insert(0, new SubCategory() { Id = 0, Name = "Please select" });
             cmbCategory.DisplayMember = "Name";
             cmbCategory.ValueMember = "Id";
             cmbCategory.DataSource = lstCategoryType;

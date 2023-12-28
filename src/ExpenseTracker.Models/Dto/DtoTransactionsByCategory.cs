@@ -1,13 +1,13 @@
 ﻿namespace ExpenseTracker.Models.Dto
 {
-    public class DtoExpenseByExpensesType
+    public class DtoTransactionsByCategory
     {
-        public DtoExpenseByExpensesType(string month)
+        public DtoTransactionsByCategory(string month)
         {
             Month = month;
         }
 
-        public string ExpensesType { get; set; }
+        public string CategoryName { get; set; } //TODO
         public decimal Amount { get; set; }
         public string Percent { get; set; }
         public string Month { get; set; }

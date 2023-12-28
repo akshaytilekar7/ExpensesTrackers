@@ -21,7 +21,7 @@ namespace ExpenseTracker.Core.Factory
             if (MyConfig.Value.UseDatabaseDummy)
                 dbName = "Dummy";
 
-            var con = "Server=localhost;Database=" + dbName + DateTime.Now.Year + "_1;Trusted_Connection=True;";
+            var con = "Server=localhost;Database=" + dbName + DateTime.Now.Year + ";Trusted_Connection=True;";
 
             var sqlConnectionBuilder = new SqlConnectionStringBuilder(con);
 
@@ -51,7 +51,7 @@ namespace ExpenseTracker.Core.Factory
             if (MyConfig.Value.UseDatabaseDummy)
                 dbName = "Dummy";
 
-            var con = "Server=localhost;Database=" + dbName + Year + "_1;Trusted_Connection=True;";
+            var con = "Server=localhost;Database=" + dbName + Year + ";Trusted_Connection=True;";
 
             var sqlConnectionBuilder = new SqlConnectionStringBuilder(con);
 

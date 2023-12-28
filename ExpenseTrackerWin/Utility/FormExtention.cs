@@ -48,7 +48,7 @@ namespace ExpenseTrackerWin.Utility
             return sortableBindingList;
         }
 
-        public static List<DtoExpense> GenereateSrNo(this List<DtoExpense> dtoExpenses)
+        public static List<DtoTransaction> GenereateSrNo(this List<DtoTransaction> dtoExpenses)
         {
             int index = 1;
             for (int i = 0; i < dtoExpenses.Count; i++)

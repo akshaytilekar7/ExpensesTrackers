@@ -26,7 +26,7 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var list = new List<ExpenseType>();
+                var list = new List<Category>();
                 foreach (DataGridViewRow row in dgvExpenseType.Rows)
                 {
                     int id = 0;
@@ -39,12 +39,12 @@ namespace ExpenseTrackerWin
                     if (string.IsNullOrEmpty(name))
                         continue;
 
-                    ExpenseType obj = new ExpenseType();
+                    Category obj = new Category();
                     obj.Id = id;
                     obj.Name = name;
                     list.Add(obj);
                 }
-                _serviceFactory.MasterTableService.SaveExpenseType(list);
+                _serviceFactory.MasterTableService.AddCategory(list);
 
                 string message = "Save Data Sucessfully";
                 list.Clear();
@@ -61,14 +61,14 @@ namespace ExpenseTrackerWin
 
         private void btnSaveCategory_Click(object sender, EventArgs e)
         {
-            CategoryType CategoryType = new CategoryType();
+            SubCategory CategoryType = new SubCategory();
             CategoryType.Name = txtCategory.Text;
             if (!string.IsNullOrEmpty(txtId.Text))
                 CategoryType.Id = Convert.ToInt32(txtId.Text);
 
-            CategoryType.ExpenseTypeId = Convert.ToInt32(cmbExpeseType.SelectedValue);
+            CategoryType.CategoryId = Convert.ToInt32(cmbExpeseType.SelectedValue);
 
-            _serviceFactory.MasterTableService.SaveCategoryType(new List<CategoryType>() { CategoryType });
+            _serviceFactory.MasterTableService.AddSubCategory(new List<SubCategory>() { CategoryType });
             LoadCategoryGrid();
             Clear();
         }
@@ -93,7 +93,7 @@ namespace ExpenseTrackerWin
         private void LoadExpenseGrid()
         {
             dgvExpenseType.Rows.Clear();
-            var lstExpense = _serviceFactory.MasterTableService.GetAllExpenseType();
+            var lstExpense = _serviceFactory.MasterTableService.GetAllSubCategory();
 
             int index = 0;
             foreach (var item in lstExpense)
@@ -117,14 +117,14 @@ namespace ExpenseTrackerWin
         private void LoadCategoryGrid()
         {
             dgvCategory.Rows.Clear();
-            var lstExpenses = _serviceFactory.MasterTableService.GetAllExpenseType();
+            var lstExpenses = _serviceFactory.MasterTableService.GetAllCategory();
             cmbExpeseType.DataSource = lstExpenses;
             cmbExpeseType.DisplayMember = "Name";
             cmbExpeseType.ValueMember = "Id";
 
-            var lstCategories = _serviceFactory.MasterTableService.GetAllCategoryType().OrderBy(x => x.ExpenseType.Name).ToList();
+            var lstCategories = _serviceFactory.MasterTableService.GetAllSubCategory().OrderBy(x => x.Category.Name).ToList();
             if (!lstCategories.Any())
-                lstCategories.Add(new CategoryType());
+                lstCategories.Add(new SubCategory());
 
             this.dgvCategory.AllowUserToAddRows = true;
 
@@ -139,8 +139,8 @@ namespace ExpenseTrackerWin
                 cExpense.DisplayMember = "Name";
                 cExpense.ValueMember = "Id";
                 cExpense.DataSource = lstExpenses;
-                if (item.ExpenseType != null)
-                    cExpense.Value = item.ExpenseType.Id;
+                if (item.Category != null)
+                    cExpense.Value = item.Category.Id;
 
                 DataGridViewTextBoxCell cName = new DataGridViewTextBoxCell();
                 cName.Value = item.Name;
@@ -162,7 +162,7 @@ namespace ExpenseTrackerWin
 
         private void dgvCategory_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            var dbExpense = _serviceFactory.MasterTableService.GetAllExpenseType();
+            var dbExpense = _serviceFactory.MasterTableService.GetAllCategory();
 
             var row = e.Row;
 
@@ -182,8 +182,8 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var dbExpense = _serviceFactory.MasterTableService.GetAllExpenseType();
-                var list = new List<CategoryType>();
+                var dbExpense = _serviceFactory.MasterTableService.GetAllCategory();
+                var list = new List<SubCategory>();
                 foreach (DataGridViewRow row in dgvCategory.Rows)
                 {
                     int id = 0;
@@ -198,13 +198,13 @@ namespace ExpenseTrackerWin
                     if (string.IsNullOrEmpty(name))
                         continue;
 
-                    CategoryType obj = new CategoryType();
+                    SubCategory obj = new SubCategory();
                     obj.Id = id;
                     obj.Name = name;
-                    obj.ExpenseTypeId = expenseId;
+                    obj.CategoryId = expenseId;
                     list.Add(obj);
                 }
-                _serviceFactory.MasterTableService.SaveCategoryType(list);
+                _serviceFactory.MasterTableService.AddSubCategory(list);
 
                 string message = "Edit Data Sucessfully";
                 list.Clear();

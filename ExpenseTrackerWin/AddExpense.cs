@@ -13,8 +13,8 @@ namespace ExpenseTrackerWin
     public partial class AddExpense : Form
     {
 
-        List<Expense> listExpense = new List<Expense>();
-        List<DtoExpense> listOldData = new List<DtoExpense>();
+        List<Transaction> listExpense = new List<Transaction>();
+        List<DtoTransaction> listOldData = new List<DtoTransaction>();
 
         public IOptions<MyConfig> MyConfig { get; }
         IServiceFactory _serviceFactory { get; }
@@ -88,8 +88,8 @@ namespace ExpenseTrackerWin
                     if (day == 0)
                         continue;
 
-                    Expense expense = new Expense();
-                    expense.CategoryTypeId = Convert.ToInt32(row.Cells[1].Value);
+                    Transaction expense = new Transaction();
+                    expense.SubCategoryId = Convert.ToInt32(row.Cells[1].Value);
                     var date = Convert.ToDateTime(DatePicker.Text);
                     expense.Date = new DateTime(date.Year, date.Month, day);
                     expense.Amount = Convert.ToDecimal(row.Cells[2].Value);
@@ -98,7 +98,7 @@ namespace ExpenseTrackerWin
                     expense.UserId = user;
                     listExpense.Add(expense);
                 }
-                _serviceFactory.ExpenseServices.Add(listExpense);
+                _serviceFactory.TransactionServices.Add(listExpense);
 
                 string message = "Save Data Sucessfully";
                 listExpense.Clear();
@@ -142,8 +142,8 @@ namespace ExpenseTrackerWin
             try
             {
                 ClearGrid();
-                IList<DtoExpense> lstBankStatementData = GetBankStatementData();
-                IList<DtoExpense> lstWhatsAppData = GetWhatsAppData();
+                IList<DtoTransaction> lstBankStatementData = GetBankStatementData();
+                IList<DtoTransaction> lstWhatsAppData = GetWhatsAppData();
 
                 int index = 0;
                 foreach (var item in lstBankStatementData)
@@ -202,7 +202,7 @@ namespace ExpenseTrackerWin
             }
         }
 
-        private static int GetCategoryBasedOnComment(string comment, List<CategoryType> dbCategories)
+        private static int GetCategoryBasedOnComment(string comment, List<SubCategory> dbCategories)
         {
             int defaultCategoryId = dbCategories.First(x => x.Name.Contains("Extra")).Id;
             dbCategories = dbCategories.Where(x => x.CommaSeparatedTags != null).ToList();
@@ -219,7 +219,7 @@ namespace ExpenseTrackerWin
             return defaultCategoryId;
         }
 
-        private IList<DtoExpense> GetWhatsAppData()
+        private IList<DtoTransaction> GetWhatsAppData()
         {
             var date = Convert.ToDateTime(DatePicker.Text);
             string projectDirectory2 = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
@@ -227,11 +227,11 @@ namespace ExpenseTrackerWin
             projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Year + ".xls";
 
             DataTable bankStatement = _serviceFactory.ExcelService.LoadDataTable(projectDirectory2);
-            var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoExpense>();
+            var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoTransaction>();
             return lstExpenseBankStatement;
         }
 
-        private List<DtoExpense> GetBankStatementData()
+        private List<DtoTransaction> GetBankStatementData()
         {
             var date = Convert.ToDateTime(DatePicker.Text);
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
@@ -239,7 +239,7 @@ namespace ExpenseTrackerWin
             projectDirectory += "\\ExcelFiles\\Input\\" + date.Year + ".xls";
 
             DataTable dt = _serviceFactory.ExcelService.LoadDataTable(projectDirectory);
-            var lstExpense = dt.DatatableToClass<DtoExpense>();
+            var lstExpense = dt.DatatableToClass<DtoTransaction>();
             return lstExpense.Where(x => x.Amount > 0 && x.Date.Date >= date.Date).ToList();
         }
 
@@ -275,15 +275,15 @@ namespace ExpenseTrackerWin
         private async void btnGeData_Click(object sender, EventArgs e)
         {
             var date = Convert.ToDateTime(dpDate.Text);
-            DtoExpenseFilter expenseFilter = new DtoExpenseFilter() { StartDate = date, EndDate = date };
+            DtoTransactionFilter expenseFilter = new DtoTransactionFilter() { StartDate = date, EndDate = date };
 
             if (!string.IsNullOrEmpty(txtAmount.Text))
             {
-                listOldData = new List<DtoExpense>();
+                listOldData = new List<DtoTransaction>();
                 expenseFilter.Amount = Convert.ToDecimal(txtAmount.Text);
             }
 
-            List<DtoExpense> newOldaData = await _serviceFactory.ExpenseServices.GetExpense(expenseFilter);
+            List<DtoTransaction> newOldaData = await _serviceFactory.TransactionServices.GetTransactions(expenseFilter);
             listOldData.AddRange(newOldaData);
             listOldData = listOldData.GenereateSrNo().ToList();
             dgvOldData.DataSource = listOldData.MakeSortable();
@@ -297,7 +297,7 @@ namespace ExpenseTrackerWin
 
         private void brnOldDataCleat_Click(object sender, EventArgs e)
         {
-            listOldData = new List<DtoExpense>();
+            listOldData = new List<DtoTransaction>();
             dgvOldData.DataSource = null;
         }
 
@@ -311,7 +311,7 @@ namespace ExpenseTrackerWin
             try
             {
                 ClearGrid();
-                IList<DtoExpense> lstBankStatementData = GetBankStatementData();
+                IList<DtoTransaction> lstBankStatementData = GetBankStatementData();
 
                 int index = 0;
                 foreach (var item in lstBankStatementData)

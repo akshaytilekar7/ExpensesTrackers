@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace ExpenseTracker.Services.Base.Contracts
 {
-    public interface IYearlyTotalService
+    public interface IDecadeService
     {
-        List<DtoYealryTotal> GetYearlyData();
+        List<DtoDecadeView> GetDecadeData();
 
-        Task<List<DtoExpense>> GetYearlyForTooltip(int year, string category);
+        Task<List<DtoTransaction>> GetYearlyForTooltip(int year, string category);
     }
 }
