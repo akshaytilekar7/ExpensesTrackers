@@ -35,7 +35,7 @@ namespace ExpenseTracker.Core.EFContext
             if (!optionsBuilder.IsConfigured)
             {
                 var dbName = "DbExpenseTracker";
-                var connectionString = "Server=localhost;Database=" + dbName + 2023 + ";Trusted_Connection=True;";
+                var connectionString = "Server=localhost;Database=" + dbName + 2022 + ";Trusted_Connection=True;";
                 optionsBuilder.UseSqlServer(connectionString);
             }
 

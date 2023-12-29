@@ -81,26 +81,37 @@ namespace ExpenseTracker.Core.Migrations
            CREATE PROCEDURE GetBanksSummaryForYear
                 @Year INT
                 AS
-                BEGIN
-                    DECLARE @StartDate DATETIME = CAST(@Year AS VARCHAR) + '-01-01';
-                    DECLARE @EndDate DATETIME = DATEADD(SECOND, -1, DATEADD(YEAR, 1, @StartDate));
-
+             BEGIN
+                SELECT
+                    b.Name AS BankName,
+                    ISNULL(i.TotalIncome, 0) AS TotalIncome,
+                    ISNULL(t.TotalTransaction, 0) AS TotalExpense,
+                    ISNULL(i.TotalIncome, 0) - ISNULL(t.TotalTransaction, 0) AS Balance
+                FROM
+                    [dbo].[Bank] b
+                LEFT JOIN (
                     SELECT
-                        B.Name AS BankName,
-                        ISNULL(SUM(I.Amount), 0) AS TotalIncome,
-                        ISNULL(SUM(T.Amount), 0) AS TotalExpense,
-                        ISNULL(SUM(I.Amount), 0) - ISNULL(SUM(T.Amount), 0) AS Balance
+                        BankId,
+                        SUM(Amount) AS TotalIncome
                     FROM
-                        dbo.Bank B
-                    LEFT JOIN
-                        dbo.Income I ON B.Id = I.BankId AND I.Date BETWEEN @StartDate AND @EndDate
-                    LEFT JOIN
-                        dbo.[Transaction] T ON B.Id = T.BankId AND T.Date BETWEEN @StartDate AND @EndDate
+                        [dbo].[Income]
+                    WHERE
+                        YEAR(Date) = @Year
                     GROUP BY
-                        B.Id, B.Name
-                    ORDER BY
-                        B.Name;
-                END;
+                        BankId
+                ) i ON b.Id = i.BankId
+                LEFT JOIN (
+                    SELECT
+                        BankId,
+                        SUM(Amount) AS TotalTransaction
+                    FROM
+                        [dbo].[Transaction]
+                    WHERE
+                        YEAR(Date) = @Year
+                    GROUP BY
+                        BankId
+                ) t ON b.Id = t.BankId;
+            END;
         ");
 
 

@@ -135,8 +135,8 @@ namespace ExpenseTrackerWin
             if (rowIndex < 0 || columnIndex < 0)
                 return;
 
-            dgvYearly.Rows[0].Cells[columnIndex].Style.BackColor = Color.CadetBlue;
-            dgvYearly.Rows[rowIndex].Cells[0].Style.BackColor = Color.CadetBlue;
+            //dgvYearly.Rows[0].Cells[columnIndex].Style.BackColor = Color.CadetBlue;
+            //dgvYearly.Rows[rowIndex].Cells[0].Style.BackColor = Color.CadetBlue;
 
             var lstDetails = await GetDetails(columnIndex, rowIndex);
             dgvTooltip.SetGridToFit();
@@ -187,10 +187,8 @@ namespace ExpenseTrackerWin
 
         private void dgvYearly_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            dgvYearly.Rows[0].Cells[e.ColumnIndex].Style.BackColor = dgvYearly.DefaultCellStyle.BackColor;
-            dgvYearly.Rows[e.RowIndex].Cells[0].Style.BackColor = dgvYearly.DefaultCellStyle.BackColor;
-
-
+            //dgvYearly.Rows[0].Cells[e.ColumnIndex].Style.BackColor = dgvYearly.DefaultCellStyle.BackColor;
+            //dgvYearly.Rows[e.RowIndex].Cells[0].Style.BackColor = dgvYearly.DefaultCellStyle.BackColor;
         }
 
         private async void cmbDatabasePicker_SelectedIndexChanged(object sender, EventArgs e)
