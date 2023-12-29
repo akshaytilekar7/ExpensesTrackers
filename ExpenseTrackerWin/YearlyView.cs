@@ -23,7 +23,7 @@ namespace ExpenseTrackerWin
             InitializeComponent();
             MyConfig = myConfig;
             _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, DateTime.Now.Year)), myConfig);
-            
+
         }
 
         private void YearlyView_Load(object sender, EventArgs e)
@@ -53,11 +53,11 @@ namespace ExpenseTrackerWin
             //}
             _serviceFactory = new ServiceFactory(_unitOfWork, MyConfig);
 
-            var lstDtoYealry = await _serviceFactory.YearlyService.GetYearlyData(year);
-            dgvYealy.DataSource = lstDtoYealry.MakeSortable();
-            dgvYealy.SetGridToFit();
+            var lstDtoYealry = await _serviceFactory.YearlyService.GetTransactionByYear(year);
+            dgvYearly.DataSource = lstDtoYealry.MakeSortable();
+            dgvYearly.SetGridToFit();
 
-            foreach (DataGridViewRow row in dgvYealy.Rows)
+            foreach (DataGridViewRow row in dgvYearly.Rows)
             {
                 int count = 0;
                 foreach (DataGridViewCell cell in row.Cells)
@@ -74,7 +74,6 @@ namespace ExpenseTrackerWin
                 }
             }
 
-            await LoadExpenseByCategoryGrid();
             await LoadBankGrid();
         }
 
@@ -86,27 +85,9 @@ namespace ExpenseTrackerWin
             int year = Convert.ToInt32(cmbDatabasePicker.Text);
             var startDate = new DateTime(year, 1, 1);
             var endDate = new DateTime(year, 12, 31);
-            var lstBanks = await _serviceFactory.BankService.GetBankData(startDate, endDate);
+            var lstBanks = await _serviceFactory.YearlyService.GetBankSummary(DateTime.Now.Year);
             dgvBankAmount.DataSource = lstBanks;
             dgvBankAmount.SetGridToFit();
-        }
-
-        private async Task LoadExpenseByCategoryGrid()
-        {
-            if (string.IsNullOrEmpty(cmbDatabasePicker.Text) || cmbDatabasePicker.Text == "Please select")
-                return;
-
-            int year = Convert.ToInt32(cmbDatabasePicker.Text);
-            var filter = new DtoTransactionFilter()
-            {
-                StartDate = new DateTime(year, 1, 1),
-                EndDate = new DateTime(year, 12, 31),
-            };
-            var lst = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
-            dgvExpenseOverview.DataSource = lst.MakeSortable(); ;
-            dgvExpenseOverview.SetGridToFit();
-
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -114,65 +95,14 @@ namespace ExpenseTrackerWin
             SetTooltipGrid(sender, e.RowIndex, e.ColumnIndex);
         }
 
-        private static List<DtoDetails> GetDetails(int columnIndex, DtoYealryView dtoYealry)
+        private async Task<List<TransactionByMonth>> GetDetails(int columnIndex, int rowIndex)
         {
-            IEnumerable<Transaction> expenses = new List<Transaction>();
-            List<DtoDetails> lstDtoTooltip = new List<DtoDetails>();
+            var name = dgvYearly.Rows[rowIndex].Cells[1].Value;
 
-            switch (columnIndex - 1)
-            {
-                case 1:
-                    expenses = dtoYealry.JanLst;
-                    break;
-                case 2:
-                    expenses = dtoYealry.FebLst;
-                    break;
-                case 3:
-                    expenses = dtoYealry.MarchLst;
-                    break;
-                case 4:
-                    expenses = dtoYealry.AprilLst;
-                    break;
-                case 5:
-                    expenses = dtoYealry.MayLst;
-                    break;
-                case 6:
-                    expenses = dtoYealry.JuneLst;
-                    break;
-                case 7:
-                    expenses = dtoYealry.JulyLst;
-                    break;
-                case 8:
-                    expenses = dtoYealry.AugustLst;
-                    break;
-                case 9:
-                    expenses = dtoYealry.SeptemberLst;
-                    break;
-                case 10:
-                    expenses = dtoYealry.OctoberLst;
-                    break;
-                case 11:
-                    expenses = dtoYealry.NovemberLst;
-                    break;
-                case 12:
-                    expenses = dtoYealry.DecemberLst;
-                    break;
-                default:
-                    break;
-            }
+            var obj = _serviceFactory.SubCategoryServices.GetAll().FirstOrDefault(x => x.Name.Equals(name.ToString()));
 
-            if (expenses != null && expenses.Any())
-            {
-                return expenses.Select(x => new DtoDetails
-                {
-                    Date = x.Date.Day + " " + x.Date.ToString("MMM", CultureInfo.InvariantCulture) + " " + x.Date.ToString("ddd"),
-                    Amount = x.Amount,
-                    Comment = x.Comment,
-                    BankName = x.Bank.Name,
-                    UserName = x.User.Name
-                }).ToList();
-            }
-            return lstDtoTooltip;
+            List<TransactionByMonth> lstDtoYealry = await _serviceFactory.YearlyService.GetTransactionByMonth(DateTime.Now.Year, columnIndex - 1, obj.Id);
+            return lstDtoYealry;
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -187,21 +117,19 @@ namespace ExpenseTrackerWin
             await LoadGird();
         }
 
-        private void dgvYealy_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvYearly_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
         }
 
-        private void SetTooltipGrid(object sender, int rowIndex, int columnIndex)
+        private async void SetTooltipGrid(object sender, int rowIndex, int columnIndex)
         {
             if (rowIndex < 0 || columnIndex < 0)
                 return;
 
-            var dtoYealry = (DtoYealryView)dgvYealy.Rows[rowIndex].DataBoundItem;
+            dgvYearly.Rows[0].Cells[columnIndex].Style.BackColor = Color.CadetBlue;
+            dgvYearly.Rows[rowIndex].Cells[0].Style.BackColor = Color.CadetBlue;
 
-            dgvYealy.Rows[0].Cells[columnIndex].Style.BackColor = Color.CadetBlue;
-            dgvYealy.Rows[rowIndex].Cells[0].Style.BackColor = Color.CadetBlue;
-
-            var lstDetails = GetDetails(columnIndex - 1, dtoYealry);
+            var lstDetails = await GetDetails(columnIndex, rowIndex);
             dgvTooltip.SetGridToFit();
             dgvTooltip.DataSource = lstDetails.MakeSortable();
         }
@@ -248,10 +176,10 @@ namespace ExpenseTrackerWin
             MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }
 
-        private void dgvYealy_CellLeave(object sender, DataGridViewCellEventArgs e)
+        private void dgvYearly_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            dgvYealy.Rows[0].Cells[e.ColumnIndex].Style.BackColor = dgvYealy.DefaultCellStyle.BackColor;
-            dgvYealy.Rows[e.RowIndex].Cells[0].Style.BackColor = dgvYealy.DefaultCellStyle.BackColor;
+            dgvYearly.Rows[0].Cells[e.ColumnIndex].Style.BackColor = dgvYearly.DefaultCellStyle.BackColor;
+            dgvYearly.Rows[e.RowIndex].Cells[0].Style.BackColor = dgvYearly.DefaultCellStyle.BackColor;
 
 
         }
@@ -259,8 +187,7 @@ namespace ExpenseTrackerWin
         private async void cmbDatabasePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvBankAmount.DataSource = null;
-            dgvExpenseOverview.DataSource = null;
-            dgvYealy.DataSource = null;
+            dgvYearly.DataSource = null;
             dgvTooltip.DataSource = null;
             await LoadGird();
         }

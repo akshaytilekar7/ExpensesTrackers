@@ -4,6 +4,7 @@ namespace ExpenseTracker.Services.Factory
 {
     public interface IServiceFactory
     {
+        ISubCategoryServices SubCategoryServices { get; }
         ICategoryServices CategoryServices { get; }
         ITransactionServices TransactionServices { get; }
         IIncomeService IncomeService { get; }

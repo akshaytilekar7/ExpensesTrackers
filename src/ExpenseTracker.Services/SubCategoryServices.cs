@@ -6,18 +6,18 @@ using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Services
 {
-    public class CategoryServices : ICategoryServices
+    public class SubCategoryServices : ISubCategoryServices
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryServices(IUnitOfWork unitOfWork)
+        public SubCategoryServices(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public IList<Category> GetAll()
+        public IList<SubCategory> GetAll()
         {
-            var repo = _unitOfWork.GetRepository<Category>();
+            var repo = _unitOfWork.GetRepository<SubCategory>();
             return repo.GetAll().OrderBy(x => x.Name).ToList();
         }
     }

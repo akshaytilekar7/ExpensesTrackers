@@ -16,6 +16,14 @@ namespace ExpenseTracker.Services.Factory
             this.myConfig = myConfig;
         }
 
+        public ISubCategoryServices SubCategoryServices
+        {
+            get
+            {
+                return new SubCategoryServices(_unitOfWork);
+            }
+        }
+
         public ICategoryServices CategoryServices
         {
             get

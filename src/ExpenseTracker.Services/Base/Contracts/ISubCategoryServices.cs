@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ExpenseTracker.Services.Base.Contracts
 {
-    public interface ICategoryServices
+    public interface ISubCategoryServices
     {
         IList<SubCategory> GetAll();
     }

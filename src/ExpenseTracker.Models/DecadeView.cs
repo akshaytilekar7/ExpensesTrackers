@@ -2,7 +2,7 @@
 
 namespace ExpenseTracker.Models
 {
-    public class YealyTotal : BaseEnitity
+    public class DecadeView : BaseEnitity
     {
         public string SubCategory { get; set; }
         public string Category { get; set; }

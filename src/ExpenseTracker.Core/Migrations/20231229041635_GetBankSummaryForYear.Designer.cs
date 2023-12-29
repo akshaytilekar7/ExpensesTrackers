@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseTracker.Core.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231228055920_initial")]
-    partial class initial
+    [Migration("20231229041635_GetBankSummaryForYear")]
+    partial class GetBankSummaryForYear
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,6 +130,142 @@ namespace ExpenseTracker.Core.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("ExpenseTracker.Models.DecadeView", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1, 1);
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SubCategory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Year2022")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Year2023")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Year2024")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2025")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2026")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2027")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2028")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2029")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Year2030")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("YealyTotal");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.Models.Dto.BankByYear", b =>
+                {
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("BankName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalExpense")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TotalIncome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("BankByYear");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.Models.Dto.TransactionByMonth", b =>
+                {
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Bank")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SubCategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("TransactionByMonth");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.Models.Dto.TransactionByYear", b =>
+                {
+                    b.Property<decimal>("April")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("August")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("December")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("February")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("January")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("July")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("June")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("March")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("May")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("November")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("October")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("September")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SubCategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("TransactionByYear");
                 });
 
             modelBuilder.Entity("ExpenseTracker.Models.Income", b =>
@@ -257,55 +393,6 @@ namespace ExpenseTracker.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("ExpenseTracker.Models.YealyTotal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1, 1);
-
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SubCategory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Year2022")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Year2023")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Year2024")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Year2025")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Year2026")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Year2027")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Year2028")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Year2029")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Year2030")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("YealyTotal");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

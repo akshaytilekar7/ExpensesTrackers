@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExpenseTracker.Core.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,6 +49,19 @@ namespace ExpenseTracker.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BankByYear",
+                columns: table => new
+                {
+                    BankName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalIncome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalExpense = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
                 {
@@ -60,6 +73,44 @@ namespace ExpenseTracker.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TransactionByMonth",
+                columns: table => new
+                {
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Bank = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TransactionByYear",
+                columns: table => new
+                {
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    January = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    February = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    March = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    April = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    May = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    June = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    July = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    August = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    September = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    October = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    November = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    December = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
                 });
 
             migrationBuilder.CreateTable(
@@ -410,10 +461,19 @@ namespace ExpenseTracker.Core.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BankByYear");
+
+            migrationBuilder.DropTable(
                 name: "Income");
 
             migrationBuilder.DropTable(
                 name: "Transaction");
+
+            migrationBuilder.DropTable(
+                name: "TransactionByMonth");
+
+            migrationBuilder.DropTable(
+                name: "TransactionByYear");
 
             migrationBuilder.DropTable(
                 name: "YealyTotal");

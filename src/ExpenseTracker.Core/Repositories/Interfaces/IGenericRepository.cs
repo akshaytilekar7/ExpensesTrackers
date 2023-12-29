@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using ExpenseTracker.Models.Dto;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.Core.Repositories.Interfaces
@@ -65,6 +66,11 @@ namespace ExpenseTracker.Core.Repositories.Interfaces
 
         public IQueryable<T> GetAll<TParamater>(IList<Expression<Func<T, TParamater>>> includeProperties);
 
+        Task<List<TransactionByYear>> GetTransactionByYear(int year);
+
+        Task<List<TransactionByMonth>> GetTransactionByMonth(int year, int month, int subCategoryId);
+
+        Task<List<BankByYear>> GetBankSummary(int year);
 
     }
 }

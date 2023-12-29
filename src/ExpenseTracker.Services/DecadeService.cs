@@ -28,7 +28,7 @@ namespace ExpenseTracker.Services
 
         public List<DtoDecadeView> GetDecadeData()
         {
-            var repoYealyTotal = _unitOfWork.GetRepository<YealyTotal>();
+            var repoYealyTotal = _unitOfWork.GetRepository<DecadeView>();
             var yearlyData = repoYealyTotal.GetAll();
 
             List<DtoDecadeView> dtoYealries = new List<DtoDecadeView>();
@@ -40,7 +40,8 @@ namespace ExpenseTracker.Services
                 dtoYealry.Category = year.Category;
                 dtoYealry.Year2022 = Convert.ToDecimal(year.Year2022);
                 dtoYealry.Year2023 = Convert.ToDecimal(year.Year2023);
-                dtoYealry.Total = dtoYealry.Year2022 + dtoYealry.Year2023;
+                dtoYealry.Year2024 = Convert.ToDecimal(year.Year2024);
+                dtoYealry.Total = dtoYealry.Year2022 + dtoYealry.Year2023 + dtoYealry.Year2024;
                 dtoYealries.Add(dtoYealry);
             }
 

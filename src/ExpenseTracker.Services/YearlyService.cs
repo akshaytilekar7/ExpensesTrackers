@@ -239,5 +239,22 @@ namespace ExpenseTracker.Services
             return lstExpensesByCategory.Where(ec => ec.Date.Date.Month == month);
         }
 
+        public async Task<List<TransactionByYear>> GetTransactionByYear(int year)
+        {
+            var repoExpense = _unitOfWork.GetRepository<Transaction>();
+            return await repoExpense.GetTransactionByYear(year);
+        }
+
+        public async Task<List<TransactionByMonth>> GetTransactionByMonth(int year, int month, int subCategoryId)
+        {
+            var repoExpense = _unitOfWork.GetRepository<Transaction>();
+            return await repoExpense.GetTransactionByMonth(year, month, subCategoryId);
+        }
+
+        public async Task<List<BankByYear>> GetBankSummary(int year)
+        {
+            var repoExpense = _unitOfWork.GetRepository<Transaction>();
+            return await repoExpense.GetBankSummary(year);
+        }
     }
 }

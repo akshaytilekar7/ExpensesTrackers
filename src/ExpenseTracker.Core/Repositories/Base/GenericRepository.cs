@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ExpenseTracker.Core.EFContext;
 using ExpenseTracker.Core.Repositories.Interfaces;
+using ExpenseTracker.Models.Dto;
+using System.Data.SqlClient;
 
 namespace ExpenseTracker.Core.Repositories.Base
 {
@@ -121,9 +123,31 @@ namespace ExpenseTracker.Core.Repositories.Base
         {
             return dbSet.Remove(entity).State;
         }
+
         public virtual EntityState Update(T entity)
         {
             return dbSet.Update(entity).State;
+        }
+
+        public async Task<List<TransactionByYear>> GetTransactionByYear(int year)
+        {
+            return await _context.Set<TransactionByYear>()
+                      .FromSqlRaw("EXEC GetTransactionsByYear {0}", year)
+                      .ToListAsync();
+        }
+
+        public async Task<List<TransactionByMonth>> GetTransactionByMonth(int year, int month, int subCategoryId)
+        {
+            return await _context.Set<TransactionByMonth>()
+                      .FromSqlRaw("EXEC GetTransactionsByMonth {0}, {1}, {2}", year, month, subCategoryId)
+                      .ToListAsync();
+        }
+
+        public async Task<List<BankByYear>> GetBankSummary(int year)
+        {
+            return await _context.Set<BankByYear>()
+                      .FromSqlRaw("EXEC GetBanksSummaryForYear {0}", year)
+                      .ToListAsync();
         }
     }
 }

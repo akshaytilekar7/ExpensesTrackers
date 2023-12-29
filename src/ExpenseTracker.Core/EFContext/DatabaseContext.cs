@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using ExpenseTracker.Core.Factory;
 using Microsoft.Extensions.Options;
 using System;
+using ExpenseTracker.Models.Dto;
 
 namespace ExpenseTracker.Core.EFContext
 {
@@ -46,11 +47,18 @@ namespace ExpenseTracker.Core.EFContext
         public DbSet<Category> Category { get; set; }
         public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<Bank> Bank { get; set; }
-        public DbSet<YealyTotal> YealyTotal { get; set; }
+        public DbSet<DecadeView> YealyTotal { get; set; }
+        public DbSet<TransactionByYear> TransactionByYear { get; set; }
+        public DbSet<TransactionByMonth> TransactionByMonth { get; set; }
+        public DbSet<BankByYear> BankByYear { get; set; }
+
         public DatabaseFacade DatabaseFacade => this.Database;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<TransactionByYear>().HasNoKey();
+            modelBuilder.Entity<TransactionByMonth>().HasNoKey();
+            modelBuilder.Entity<BankByYear>().HasNoKey();
             base.OnModelCreating(modelBuilder);
         }
 
