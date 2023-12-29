@@ -29,18 +29,19 @@ namespace ExpenseTrackerWin
 
         private async void LoadGird()
         {
-            var years = new int[] { 2023 };
+            var years = new int[] { 2022 ,2023 };
             List<SubCategoryData> subCategories = new List<SubCategoryData>();
-            var res = _serviceFactory.SubCategoryServices.GetAll();
+            var res = _serviceFactory.MasterTableService.GetAllSubCategory();
             foreach (var item in res)
                 subCategories.Add(new SubCategoryData() { SubCategoryName = item.Name, CategoryName = item.Category.Name });
 
             foreach (var year in years)
             {
-                _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, year)), MyConfig);
 
                 if (year == 2023)
                 {
+                    _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, year)), MyConfig);
+
                     List<ExpenseByCategoryForYear>? data = await _serviceFactory.YearlyService.GetExpenseByCategoryForYear(year);
 
                     foreach (var x in data)
@@ -53,12 +54,14 @@ namespace ExpenseTrackerWin
 
                 if (year == 2022)
                 {
-                    List<ExpenseByCategoryForYear>? data = await _serviceFactory.YearlyService.GetExpenseByCategoryForYear(year);
-                    foreach (var x in data)
+                    _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, year)), MyConfig);
+
+                    List<ExpenseByCategoryForYear> list = await _serviceFactory.YearlyService.GetExpenseByCategoryForYear(year);
+                    foreach (ExpenseByCategoryForYear item in list)
                     {
-                        var itemToUpdate = subCategories.FirstOrDefault(item => item.SubCategoryName == x.Name);
+                        var itemToUpdate = subCategories.FirstOrDefault(c => c.SubCategoryName == item.Name);
                         if (itemToUpdate != null)
-                            itemToUpdate.Year2023 = x.Year;
+                            itemToUpdate.Year2022 = item.Year;
                     }
                 }
             }
@@ -114,7 +117,7 @@ namespace ExpenseTrackerWin
             var _unitOfWork = new UnitOfWork(new SpecialContextFactory(MyConfig, selectedYear));
             _serviceFactory = new ServiceFactory(_unitOfWork, MyConfig);
 
-            var lstDtoYealry = await _serviceFactory.DecadeServices.GetYearlyForTooltip(selectedYear, selectedCategory);
+            var lstDtoYealry = await _serviceFactory.TransactionServices.GetYearlyForTooltip(selectedYear, selectedCategory);
 
             dgvExpenseByCategory.DataSource = lstDtoYealry.GenereateSrNo().MakeSortable();
             dgvExpenseByCategory.SetGridToFit();

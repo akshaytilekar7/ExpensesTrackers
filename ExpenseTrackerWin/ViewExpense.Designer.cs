@@ -36,7 +36,6 @@ namespace ExpenseTrackerWin
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblDate = new System.Windows.Forms.Label();
             this.dateStart = new System.Windows.Forms.DateTimePicker();
             this.dateEnd = new System.Windows.Forms.DateTimePicker();
@@ -66,7 +65,6 @@ namespace ExpenseTrackerWin
             this.BankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtoExpenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvExpenseOverview = new System.Windows.Forms.DataGridView();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
             this.cmbUsers = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -75,7 +73,6 @@ namespace ExpenseTrackerWin
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseOverview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.SuspendLayout();
             // 
@@ -350,9 +347,9 @@ namespace ExpenseTrackerWin
             // 
             this.dtoExpenseBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoTransaction);
             // 
-            // dgvExpenseOverview
+            // dgvIncome
             // 
-            this.dgvExpenseOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -361,25 +358,7 @@ namespace ExpenseTrackerWin
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExpenseOverview.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvExpenseOverview.Location = new System.Drawing.Point(1311, 4);
-            this.dgvExpenseOverview.Name = "dgvExpenseOverview";
-            this.dgvExpenseOverview.RowHeadersWidth = 62;
-            this.dgvExpenseOverview.Size = new System.Drawing.Size(474, 326);
-            this.dgvExpenseOverview.TabIndex = 27;
-            // 
-            // dgvIncome
-            // 
-            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.NullValue = null;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIncome.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvIncome.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvIncome.Location = new System.Drawing.Point(1311, 336);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.RowHeadersWidth = 62;
@@ -433,7 +412,6 @@ namespace ExpenseTrackerWin
             this.Controls.Add(this.cmbUsers);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvIncome);
-            this.Controls.Add(this.dgvExpenseOverview);
             this.Controls.Add(this.dgvFilter);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnExcel);
@@ -458,7 +436,6 @@ namespace ExpenseTrackerWin
             ((System.ComponentModel.ISupportInitialize)(this.expenseBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseOverview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -490,7 +467,6 @@ namespace ExpenseTrackerWin
         private Button btnDelete;
         private DataGridView dgvFilter;
         private BindingSource dtoExpenseBindingSource;
-        private DataGridView dgvExpenseOverview;
         private DataGridView dgvIncome;
         private ComboBox cmbUsers;
         private Label label2;

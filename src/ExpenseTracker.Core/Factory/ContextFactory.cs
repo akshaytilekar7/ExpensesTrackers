@@ -17,11 +17,11 @@ namespace ExpenseTracker.Core.Factory
 
         public DbContextOptionsBuilder<DatabaseContext> GetDataContext()
         {
-            var dbName = "ExpenseTracker";
+            var dbName = "DbExpenseTracker";
             if (MyConfig.Value.UseDatabaseDummy)
                 dbName = "Dummy";
 
-            var con = "Server=localhost;Database=" + dbName + DateTime.Now.Year + ";Trusted_Connection=True;";
+            var con = "Server=localhost;Database=" + dbName + 2023 + ";Trusted_Connection=True;";
 
             var sqlConnectionBuilder = new SqlConnectionStringBuilder(con);
 
@@ -47,7 +47,7 @@ namespace ExpenseTracker.Core.Factory
 
         public DbContextOptionsBuilder<DatabaseContext> GetDataContext()
         {
-            var dbName = "ExpenseTracker";
+            var dbName = "DbExpenseTracker";
             if (MyConfig.Value.UseDatabaseDummy)
                 dbName = "Dummy";
 

@@ -17,7 +17,7 @@ namespace ExpenseTracker.Core.Uow
         public UnitOfWork(IContextFactory contextFactory)
         {
             dbContext = new DatabaseContext(contextFactory.GetDataContext().Options);
-            // never uccomment unless u want to create database 
+            // never uncomment unless u want to create database 
             //if (!dbContext.Database.CanConnect())
             //{
             //    dbContext.Database.EnsureCreated();

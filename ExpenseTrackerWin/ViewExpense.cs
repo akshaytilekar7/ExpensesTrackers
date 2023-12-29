@@ -63,7 +63,6 @@ namespace ExpenseTrackerWin
         private async Task LoadAllGrid()
         {
             await LoadExpenseFilterGrid();
-            await LoadExpenseByCategoryGrid();
             LoadIncomeGrid();
         }
 
@@ -74,23 +73,6 @@ namespace ExpenseTrackerWin
             dgvFilter.SetGridToFit();
         }
 
-        private async Task LoadExpenseByCategoryGrid()
-        {
-            try
-            {
-                var result = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
-                dgvExpenseOverview.DataSource = result.MakeSortable();
-                dgvExpenseOverview.SetGridToFit();
-            }
-
-            catch (Exception ex)
-            {
-                var st = string.Empty;
-                if (ex.InnerException != null)
-                    st = ex.InnerException.Message;
-                lblError.Text = "SetTotalAmount : " + ex.Message + " " + st;
-            }
-        }
         private void LoadIncomeGrid()
         {
             try
@@ -148,22 +130,22 @@ namespace ExpenseTrackerWin
 
         private async void btnExcel_Click(object sender, EventArgs e)
         {
-            string workingDirectory = Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            projectDirectory += "\\ExcelFiles\\Output\\Output.xls";
+            //string workingDirectory = Environment.CurrentDirectory;
+            //string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            //projectDirectory += "\\ExcelFiles\\Output\\Output.xls";
 
-            List<ExcelDto> dataExpenseTypes = new List<ExcelDto>();
+            //List<ExcelDto> dataExpenseTypes = new List<ExcelDto>();
 
-            var lstExpense = await _serviceFactory.TransactionServices.GetTransactions(GetFilter());
-            var lstIncomes = _serviceFactory.IncomeService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
-            var lstExpenseCategory = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
+            //var lstExpense = await _serviceFactory.TransactionServices.GetTransactions(GetFilter());
+            //var lstIncomes = _serviceFactory.IncomeService.GetIncome(dateStart.Value.Date, dateEnd.Value.Date);
+            //var lstExpenseCategory = await _serviceFactory.YearlyService.GetExpenseByExpensesType(GetFilter());
 
-            dataExpenseTypes.Add(new ExcelDto() { DataTable = lstExpense.GenereateSrNo().ToDataTable(), SheetName = "Expense" });
-            dataExpenseTypes.Add(new ExcelDto() { DataTable = lstIncomes.ToDataTable(), SheetName = "Income" });
-            dataExpenseTypes.Add(new ExcelDto() { DataTable = lstExpenseCategory.ToDataTable(), SheetName = "Overview" });
+            //dataExpenseTypes.Add(new ExcelDto() { DataTable = lstExpense.GenereateSrNo().ToDataTable(), SheetName = "Expense" });
+            //dataExpenseTypes.Add(new ExcelDto() { DataTable = lstIncomes.ToDataTable(), SheetName = "Income" });
+            //dataExpenseTypes.Add(new ExcelDto() { DataTable = lstExpenseCategory.ToDataTable(), SheetName = "Overview" });
 
-            GridExcel.ExportToExcel(dataExpenseTypes, projectDirectory);
-            MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
+            //GridExcel.ExportToExcel(dataExpenseTypes, projectDirectory);
+            //MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }
 
         private void btnForm1_Click(object sender, EventArgs e)
@@ -215,9 +197,6 @@ namespace ExpenseTrackerWin
 
             dgvIncome.Rows.Clear();
             dgvIncome.Refresh();
-
-            dgvExpenseOverview.Rows.Clear();
-            dgvExpenseOverview.Refresh();
 
             dgvFilter.Rows.Clear();
             dgvFilter.Refresh();

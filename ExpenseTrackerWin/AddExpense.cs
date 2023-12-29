@@ -53,7 +53,7 @@ namespace ExpenseTrackerWin
         {
             try
             {
-                var Categories = _serviceFactory.SubCategoryServices.GetAll().ToList();
+                var Categories = _serviceFactory.MasterTableService.GetAllSubCategory().ToList();
                 Category.DisplayMember = "Name";
                 Category.ValueMember = "Id";
                 Category.DataSource = Categories;
@@ -164,7 +164,7 @@ namespace ExpenseTrackerWin
                     cComment.Value = comment?.Trim();
 
                     DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
-                    var dbCategories = _serviceFactory.SubCategoryServices.GetAll();
+                    var dbCategories = _serviceFactory.MasterTableService.GetAllSubCategory();
                     cCategory.DisplayMember = "Name";
                     cCategory.ValueMember = "Id";
                     cCategory.DataSource = dbCategories;
@@ -327,7 +327,7 @@ namespace ExpenseTrackerWin
                     cComment.Value = item.Comment;
 
                     DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
-                    var dbCategories = _serviceFactory.SubCategoryServices.GetAll();
+                    var dbCategories = _serviceFactory.MasterTableService.GetAllSubCategory();
                     cCategory.DisplayMember = "Name";
                     cCategory.ValueMember = "Id";
                     cCategory.DataSource = dbCategories;

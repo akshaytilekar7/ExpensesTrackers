@@ -82,10 +82,13 @@ namespace ExpenseTrackerWin
             if (string.IsNullOrEmpty(cmbDatabasePicker.Text) || cmbDatabasePicker.Text == "Please select")
                 return;
 
+
             int year = Convert.ToInt32(cmbDatabasePicker.Text);
-            var startDate = new DateTime(year, 1, 1);
-            var endDate = new DateTime(year, 12, 31);
-            var lstBanks = await _serviceFactory.YearlyService.GetBankSummary(DateTime.Now.Year);
+            var _unitOfWork = new UnitOfWork(new SpecialContextFactory(MyConfig, year));
+
+            _serviceFactory = new ServiceFactory(_unitOfWork, MyConfig);
+
+            var lstBanks = await _serviceFactory.YearlyService.GetBankSummary(year);
             dgvBankAmount.DataSource = lstBanks;
             dgvBankAmount.SetGridToFit();
         }
@@ -97,11 +100,17 @@ namespace ExpenseTrackerWin
 
         private async Task<List<TransactionByMonth>> GetDetails(int columnIndex, int rowIndex)
         {
+            int year = Convert.ToInt32(cmbDatabasePicker.Text);
+            var _unitOfWork = new UnitOfWork(new SpecialContextFactory(MyConfig, year));
+            _serviceFactory = new ServiceFactory(_unitOfWork, MyConfig);
+
+            var lstBanks = await _serviceFactory.YearlyService.GetBankSummary(year);
+
             var name = dgvYearly.Rows[rowIndex].Cells[1].Value;
 
-            var obj = _serviceFactory.SubCategoryServices.GetAll().FirstOrDefault(x => x.Name.Equals(name.ToString()));
+            var obj = _serviceFactory.MasterTableService.GetAllSubCategory().FirstOrDefault(x => x.Name.Equals(name.ToString()));
 
-            List<TransactionByMonth> lstDtoYealry = await _serviceFactory.YearlyService.GetTransactionByMonth(DateTime.Now.Year, columnIndex - 1, obj.Id);
+            List<TransactionByMonth> lstDtoYealry = await _serviceFactory.YearlyService.GetTransactionByMonth(year, columnIndex - 1, obj.Id);
             return lstDtoYealry;
         }
 
@@ -136,44 +145,44 @@ namespace ExpenseTrackerWin
 
         private async void btnExport_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cmbDatabasePicker.Text) || cmbDatabasePicker.Text == "Please select")
-                return;
+            //if (string.IsNullOrEmpty(cmbDatabasePicker.Text) || cmbDatabasePicker.Text == "Please select")
+            //    return;
 
-            string workingDirectory = Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            projectDirectory += "\\ExcelFiles\\Output\\OutputYearly_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
+            //string workingDirectory = Environment.CurrentDirectory;
+            //string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            //projectDirectory += "\\ExcelFiles\\Output\\OutputYearly_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.TimeOfDay.Minutes + "_" + DateTime.Now.TimeOfDay.Seconds + ".xls";
 
-            int year = Convert.ToInt32(cmbDatabasePicker.Text);
-            var filter = new DtoTransactionFilter()
-            {
-                StartDate = new DateTime(year, 1, 1),
-                EndDate = new DateTime(year, 12, 31),
-            };
+            //int year = Convert.ToInt32(cmbDatabasePicker.Text);
+            //var filter = new DtoTransactionFilter()
+            //{
+            //    StartDate = new DateTime(year, 1, 1),
+            //    EndDate = new DateTime(year, 12, 31),
+            //};
 
-            var lstYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(cmbDatabasePicker.Text));
-            var lstAllMonthsData = await _serviceFactory.YearlyService.GetTransactions(year);
+            //var lstYealry = await _serviceFactory.YearlyService.GetYearlyData(Convert.ToInt32(cmbDatabasePicker.Text));
+            //var lstAllMonthsData = await _serviceFactory.YearlyService.GetTransactions(year);
 
-            var lstMonthDataOnExpenseType = await _serviceFactory.YearlyService.GetAllMonthDataOnExpenseType(year);
-            var lstExpenseByExpensesTypes = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
-            var lstBanks = await _serviceFactory.BankService.GetBankData(filter.StartDate, filter.EndDate);
+            //var lstMonthDataOnExpenseType = await _serviceFactory.YearlyService.GetAllMonthDataOnExpenseType(year);
+            //var lstExpenseByExpensesTypes = await _serviceFactory.YearlyService.GetExpenseByExpensesType(filter);
+            //var lstBanks = await _serviceFactory.BankService.GetBankData(filter.StartDate, filter.EndDate);
 
-            List<DtoIncome> lstIncomeYearly = _serviceFactory.IncomeService.GetIncome(filter.StartDate, filter.EndDate).OrderBy(x => x.Date).ToList();
+            //List<DtoIncome> lstIncomeYearly = _serviceFactory.IncomeService.GetIncome(filter.StartDate, filter.EndDate).OrderBy(x => x.Date).ToList();
 
-            List<ExcelDto> excelDtos = new List<ExcelDto>();
+            //List<ExcelDto> excelDtos = new List<ExcelDto>();
 
-            excelDtos.Add(new ExcelDto() { DataTable = lstYealry.ToDataTable(), SheetName = "Yearly Overview" });
-            excelDtos.Add(new ExcelDto() { DataTable = lstIncomeYearly.ToDataTable(), SheetName = "Yearly Income" });
-            excelDtos.Add(new ExcelDto() { DataTable = lstBanks.ToDataTable(), SheetName = "Bank Overview" });
+            //excelDtos.Add(new ExcelDto() { DataTable = lstYealry.ToDataTable(), SheetName = "Yearly Overview" });
+            //excelDtos.Add(new ExcelDto() { DataTable = lstIncomeYearly.ToDataTable(), SheetName = "Yearly Income" });
+            //excelDtos.Add(new ExcelDto() { DataTable = lstBanks.ToDataTable(), SheetName = "Bank Overview" });
 
-            foreach (var item in lstAllMonthsData)
-                excelDtos.Add(new ExcelDto() { DataTable = item.dtoTransaction.ToDataTable(), SheetName = item.Name });
+            //foreach (var item in lstAllMonthsData)
+            //    excelDtos.Add(new ExcelDto() { DataTable = item.dtoTransaction.ToDataTable(), SheetName = item.Name });
 
-            excelDtos.Add(new ExcelDto() { DataTable = lstMonthDataOnExpenseType.dtoExpenseByCategories.ToDataTable(), SheetName = "Percentage overview" });
-            excelDtos.Add(new ExcelDto() { DataTable = lstExpenseByExpensesTypes.ToDataTable(), SheetName = "Yealry Expense By Categories" });
+            //excelDtos.Add(new ExcelDto() { DataTable = lstMonthDataOnExpenseType.dtoExpenseByCategories.ToDataTable(), SheetName = "Percentage overview" });
+            //excelDtos.Add(new ExcelDto() { DataTable = lstExpenseByExpensesTypes.ToDataTable(), SheetName = "Yealry Expense By Categories" });
 
-            GridExcel.ExportToExcel(excelDtos, projectDirectory);
+            //GridExcel.ExportToExcel(excelDtos, projectDirectory);
 
-            MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
+            //MessageBox.Show("Data saved in Excel format at location " + projectDirectory.ToUpper() + " Successfully Saved");
         }
 
         private void dgvYearly_CellLeave(object sender, DataGridViewCellEventArgs e)

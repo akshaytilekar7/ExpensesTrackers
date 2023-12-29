@@ -16,22 +16,6 @@ namespace ExpenseTracker.Services.Factory
             this.myConfig = myConfig;
         }
 
-        public ISubCategoryServices SubCategoryServices
-        {
-            get
-            {
-                return new SubCategoryServices(_unitOfWork);
-            }
-        }
-
-        public ICategoryServices CategoryServices
-        {
-            get
-            {
-                return new CategoryServices(_unitOfWork);
-            }
-        }
-
         public ITransactionServices TransactionServices
         {
             get
@@ -85,14 +69,6 @@ namespace ExpenseTracker.Services.Factory
             get
             {
                 return new BankService(_unitOfWork);
-            }
-        }
-
-        public IDecadeService DecadeServices
-        {
-            get
-            {
-                return new DecadeService(_unitOfWork, myConfig);
             }
         }
     }

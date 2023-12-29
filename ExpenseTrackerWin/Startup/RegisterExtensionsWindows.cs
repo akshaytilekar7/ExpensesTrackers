@@ -25,7 +25,6 @@ namespace ExpenseTrackerWin.Startup
             services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(ITransactionServices), typeof(TransactionServices));
-            services.AddScoped(typeof(ISubCategoryServices), typeof(SubCategoryServices));
             services.AddScoped(typeof(IExcelService), typeof(ExcelService));
             services.AddScoped(typeof(IServiceFactory), typeof(ServiceFactory));
             services.AddScoped(typeof(IYearlyService), typeof(YearlyService));

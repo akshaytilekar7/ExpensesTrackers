@@ -132,25 +132,26 @@ namespace ExpenseTracker.Services
 
             lstDtoTransactions = lstDtoTransactions.OrderBy(x => x.Id).ToList();
 
-            //List<int> indexes = new List<int>();
-            //var month = lstDtoExpense.FirstOrDefault().Date.Month;
-            //if (filter.StartDate.Month != filter.EndDate.Month)
-            //{
-            //    for (int i = 0; i < lstDtoExpense.Count; i++)
-            //    {
-            //        DtoExpense item = lstDtoExpense[i];
-            //        if (item.Date.Month != month)
-            //        {
-            //            month = item.Date.Month;
-            //            indexes.Add(i);
-            //        }
-            //    }
-            //}
-            //foreach (var item in indexes)
-            //{
-            //    lstDtoExpense.Insert(item, new DtoExpense());
-            //}
+            
             return lstDtoTransactions;
+        }
+
+        public async Task<List<DtoTransaction>> GetYearlyForTooltip(int year, string category)
+        {
+            var _categoryRepository = _unitOfWork.GetRepository<SubCategory>();
+            SubCategory dbCategory = _categoryRepository.FindBy(x => x.Name == category).FirstOrDefault();
+            if (dbCategory == null)
+                return new List<DtoTransaction>();
+
+            DtoTransactionFilter dtoExpenseFilter = new DtoTransactionFilter()
+            {
+                SubCategoryId = dbCategory.Id,
+                StartDate = new DateTime(year, 1, 1),
+                EndDate = new DateTime(year, 12, 31),
+            };
+
+            var lstDtoExpense = await GetTransactions(dtoExpenseFilter);
+            return lstDtoExpense;
         }
 
     }

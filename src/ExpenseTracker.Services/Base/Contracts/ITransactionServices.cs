@@ -12,5 +12,7 @@ namespace ExpenseTracker.Services.Base.Contracts
         void Add(List<Transaction> lst);
         void Delete(List<Transaction> lst);
         Task<List<DtoTransaction>> GetTransactions(DtoTransactionFilter expenseFilter);
+
+        Task<List<DtoTransaction>> GetYearlyForTooltip(int year, string category);
     }
 }

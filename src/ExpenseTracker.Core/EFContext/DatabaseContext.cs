@@ -31,10 +31,11 @@ namespace ExpenseTracker.Core.EFContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // AKSHAY MAIN DB
             if (!optionsBuilder.IsConfigured)
             {
-                var dbName = "ExpenseTracker";
-                var connectionString = "Server=localhost;Database=" + dbName + DateTime.Now.Year + ";Trusted_Connection=True;";
+                var dbName = "DbExpenseTracker";
+                var connectionString = "Server=localhost;Database=" + dbName + 2023 + ";Trusted_Connection=True;";
                 optionsBuilder.UseSqlServer(connectionString);
             }
 

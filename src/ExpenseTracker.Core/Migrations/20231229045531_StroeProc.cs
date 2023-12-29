@@ -116,7 +116,7 @@ namespace ExpenseTracker.Core.Migrations
                 INNER JOIN
                     [dbo].[SubCategory] SC ON T.SubCategoryId = SC.Id
                 WHERE
-                    YEAR(T.Date) = 2023
+                    YEAR(T.Date) = @Year
                 GROUP BY
                     SC.Name;
             END;

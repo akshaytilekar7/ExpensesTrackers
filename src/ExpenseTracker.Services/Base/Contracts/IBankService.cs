@@ -9,7 +9,5 @@ namespace ExpenseTracker.Services.Base.Contracts
     public interface IBankService
     {
         List<Bank> GetAll();
-
-        Task<List<DtoBank>> GetBankData(DateTime startDate, DateTime endDate);
     }
 }
