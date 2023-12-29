@@ -16,6 +16,7 @@ namespace ExpenseTracker.Core.Migrations
                  SELECT
                     c.[Name] as CategoryName,
 					sc.[Name] as SubCategoryName,
+                    sc.ExpectedAmount as ExpectedAmount,
                     SUM(CASE WHEN YEAR(trans.[Date]) = @year and MONTH(trans.[Date]) = 1 THEN trans.[Amount] ELSE 0 END) AS January,
                     SUM(CASE WHEN YEAR(trans.[Date]) = @year and MONTH(trans.[Date]) = 2 THEN trans.[Amount] ELSE 0 END) AS February,
                     SUM(CASE WHEN YEAR(trans.[Date]) = @year and MONTH(trans.[Date]) = 3 THEN trans.[Amount] ELSE 0 END) AS March,
@@ -36,7 +37,7 @@ namespace ExpenseTracker.Core.Migrations
                     WHERE
                     YEAR(trans.[Date]) = @year 
                     GROUP BY
-                    c.[Name], sc.[Name];
+                    c.[Name], sc.[Name],sc.ExpectedAmount ;
              END;
         ");
 

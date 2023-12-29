@@ -110,7 +110,7 @@ namespace ExpenseTrackerWin
 
             var obj = _serviceFactory.MasterTableService.GetAllSubCategory().FirstOrDefault(x => x.Name.Equals(name.ToString()));
 
-            List<TransactionByMonth> lstDtoYealry = await _serviceFactory.YearlyService.GetTransactionByMonth(year, columnIndex - 1, obj.Id);
+            List<TransactionByMonth> lstDtoYealry = await _serviceFactory.YearlyService.GetTransactionByMonth(year, columnIndex - 2, obj.Id);
             return lstDtoYealry;
         }
 

@@ -4,6 +4,7 @@
     {
         public string CategoryName { get; set; }
         public string SubCategoryName { get; set; }
+        public decimal ExpectedAmount { get; set; }
         public decimal January { get; set; }
         public decimal February { get; set; }
         public decimal March { get; set; }
