@@ -50,7 +50,6 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.year2022DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.year2023DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtoYealryTotalBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvExpenseByCategory = new System.Windows.Forms.DataGridView();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,7 +61,6 @@
             this.lblWait = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvAllYears = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dtoYealryTotalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseByCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllYears)).BeginInit();
@@ -207,10 +205,6 @@
             this.year2023DataGridViewTextBoxColumn.HeaderText = "2023";
             this.year2023DataGridViewTextBoxColumn.Name = "year2023DataGridViewTextBoxColumn";
             // 
-            // dtoYealryTotalBindingSource
-            // 
-            this.dtoYealryTotalBindingSource.DataSource = typeof(ExpenseTracker.Models.Dto.DtoDecadeView);
-            // 
             // dgvExpenseByCategory
             // 
             this.dgvExpenseByCategory.AutoGenerateColumns = false;
@@ -318,7 +312,6 @@
             this.Name = "YearlyTotalView";
             this.Text = "YearlyTotalView";
             this.Load += new System.EventHandler(this.YearlyView_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dtoYealryTotalBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseByCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllYears)).EndInit();
@@ -344,7 +337,6 @@
         private DataGridViewTextBoxColumn November;
         private DataGridViewTextBoxColumn December;
         private DataGridViewTextBoxColumn CatogoryTotal;
-        private BindingSource dtoYealryTotalBindingSource;
         private DataGridViewTextBoxColumn expenseTypeDataGridViewTextBoxColumn;
         private DataGridView dgvExpenseByCategory;
         private BindingSource dtoExpenseBindingSource;

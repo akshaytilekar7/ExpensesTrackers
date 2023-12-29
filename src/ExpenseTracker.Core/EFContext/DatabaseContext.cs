@@ -48,7 +48,6 @@ namespace ExpenseTracker.Core.EFContext
         public DbSet<Category> Category { get; set; }
         public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<Bank> Bank { get; set; }
-        public DbSet<DecadeView> YealyTotal { get; set; }
         public DbSet<TransactionByYear> TransactionByYear { get; set; }
         public DbSet<TransactionByMonth> TransactionByMonth { get; set; }
         public DbSet<BankByYear> BankByYear { get; set; }
