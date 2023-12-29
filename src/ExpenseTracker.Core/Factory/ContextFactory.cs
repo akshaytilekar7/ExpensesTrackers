@@ -21,7 +21,9 @@ namespace ExpenseTracker.Core.Factory
             if (MyConfig.Value.UseDatabaseDummy)
                 dbName = "Dummy";
 
-            var con = "Server=localhost;Database=" + dbName + 2022 + ";Trusted_Connection=True;";
+            // AKSHAY MAIN DB
+
+            var con = "Server=localhost;Database=" + dbName + 2023 + ";Trusted_Connection=True;";
 
             var sqlConnectionBuilder = new SqlConnectionStringBuilder(con);
 
