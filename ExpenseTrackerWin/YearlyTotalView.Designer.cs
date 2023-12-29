@@ -31,19 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Jan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Feb = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,7 +48,8 @@
             this.December = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CatogoryTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.year2022DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.year2023DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtoYealryTotalBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvExpenseByCategory = new System.Windows.Forms.DataGridView();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,22 +61,11 @@
             this.expenseTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblWait = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubCategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.year2022DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.year2023DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year2024 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year2025 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year2026 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year2027 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year2028 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year2029 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year2030 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dgvAllYears = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryTotalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseByCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAllYears)).BeginInit();
             this.SuspendLayout();
             // 
             // Category
@@ -210,50 +189,23 @@
             this.lblTotal.Size = new System.Drawing.Size(0, 26);
             this.lblTotal.TabIndex = 3;
             // 
-            // dataGridView1
+            // year2022DataGridViewTextBoxColumn
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.SubCategoryName,
-            this.year2022DataGridViewTextBoxColumn,
-            this.year2023DataGridViewTextBoxColumn,
-            this.Year2024,
-            this.Year2025,
-            this.Year2026,
-            this.Year2027,
-            this.Year2028,
-            this.Year2029,
-            this.Year2030,
-            this.Total});
-            this.dataGridView1.DataSource = this.dtoYealryTotalBindingSource;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 48);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1129, 953);
-            this.dataGridView1.TabIndex = 4;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            this.dataGridView1.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellLeave);
+            this.year2022DataGridViewTextBoxColumn.DataPropertyName = "Year2022";
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.year2022DataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.year2022DataGridViewTextBoxColumn.HeaderText = "2022";
+            this.year2022DataGridViewTextBoxColumn.Name = "year2022DataGridViewTextBoxColumn";
+            // 
+            // year2023DataGridViewTextBoxColumn
+            // 
+            this.year2023DataGridViewTextBoxColumn.DataPropertyName = "Year2023";
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.year2023DataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.year2023DataGridViewTextBoxColumn.HeaderText = "2023";
+            this.year2023DataGridViewTextBoxColumn.Name = "year2023DataGridViewTextBoxColumn";
             // 
             // dtoYealryTotalBindingSource
             // 
@@ -279,9 +231,9 @@
             // Date
             // 
             this.Date.DataPropertyName = "Date";
-            dataGridViewCellStyle14.Format = "D";
-            dataGridViewCellStyle14.NullValue = null;
-            this.Date.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle3.Format = "D";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Date.DefaultCellStyle = dataGridViewCellStyle3;
             this.Date.HeaderText = "Date";
             this.Date.Name = "Date";
             // 
@@ -294,9 +246,9 @@
             // Amount
             // 
             this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle15.Format = "N2";
-            dataGridViewCellStyle15.NullValue = null;
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
             this.Amount.HeaderText = "Amount";
             this.Amount.Name = "Amount";
             // 
@@ -340,108 +292,17 @@
             this.txtSearch.TabIndex = 7;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // dataGridViewTextBoxColumn1
+            // dgvAllYears
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Category";
-            this.dataGridViewTextBoxColumn1.HeaderText = "CategoryName";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // SubCategoryName
-            // 
-            this.SubCategoryName.DataPropertyName = "SubCategory";
-            this.SubCategoryName.HeaderText = "SubCategoryName";
-            this.SubCategoryName.Name = "SubCategoryName";
-            // 
-            // year2022DataGridViewTextBoxColumn
-            // 
-            this.year2022DataGridViewTextBoxColumn.DataPropertyName = "Year2022";
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.year2022DataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.year2022DataGridViewTextBoxColumn.HeaderText = "2022";
-            this.year2022DataGridViewTextBoxColumn.Name = "year2022DataGridViewTextBoxColumn";
-            // 
-            // year2023DataGridViewTextBoxColumn
-            // 
-            this.year2023DataGridViewTextBoxColumn.DataPropertyName = "Year2023";
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.year2023DataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.year2023DataGridViewTextBoxColumn.HeaderText = "2023";
-            this.year2023DataGridViewTextBoxColumn.Name = "year2023DataGridViewTextBoxColumn";
-            // 
-            // Year2024
-            // 
-            this.Year2024.DataPropertyName = "Year2024";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.Format = "N2";
-            this.Year2024.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Year2024.HeaderText = "2024";
-            this.Year2024.Name = "Year2024";
-            // 
-            // Year2025
-            // 
-            this.Year2025.DataPropertyName = "Year2025";
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.Format = "N2";
-            this.Year2025.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Year2025.HeaderText = "2025";
-            this.Year2025.Name = "Year2025";
-            // 
-            // Year2026
-            // 
-            this.Year2026.DataPropertyName = "Year2026";
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle7.Format = "N2";
-            this.Year2026.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Year2026.HeaderText = "2026";
-            this.Year2026.Name = "Year2026";
-            // 
-            // Year2027
-            // 
-            this.Year2027.DataPropertyName = "Year2027";
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.Format = "N2";
-            this.Year2027.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Year2027.HeaderText = "2027";
-            this.Year2027.Name = "Year2027";
-            // 
-            // Year2028
-            // 
-            this.Year2028.DataPropertyName = "Year2028";
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.Year2028.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Year2028.HeaderText = "2028";
-            this.Year2028.Name = "Year2028";
-            // 
-            // Year2029
-            // 
-            this.Year2029.DataPropertyName = "Year2029";
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle10.Format = "N2";
-            this.Year2029.DefaultCellStyle = dataGridViewCellStyle10;
-            this.Year2029.HeaderText = "2029";
-            this.Year2029.Name = "Year2029";
-            // 
-            // Year2030
-            // 
-            this.Year2030.DataPropertyName = "Year2030";
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle11.Format = "N2";
-            this.Year2030.DefaultCellStyle = dataGridViewCellStyle11;
-            this.Year2030.HeaderText = "2030";
-            this.Year2030.Name = "Year2030";
-            // 
-            // Total
-            // 
-            this.Total.DataPropertyName = "Total";
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.Total.DefaultCellStyle = dataGridViewCellStyle12;
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
+            this.dgvAllYears.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAllYears.Location = new System.Drawing.Point(15, 41);
+            this.dgvAllYears.Name = "dgvAllYears";
+            this.dgvAllYears.RowTemplate.Height = 25;
+            this.dgvAllYears.Size = new System.Drawing.Size(1126, 816);
+            this.dgvAllYears.TabIndex = 8;
+            this.dgvAllYears.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvAllYears.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dgvAllYears.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellLeave);
             // 
             // YearlyTotalView
             // 
@@ -449,18 +310,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1486, 1013);
+            this.Controls.Add(this.dgvAllYears);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblWait);
             this.Controls.Add(this.dgvExpenseByCategory);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblTotal);
             this.Name = "YearlyTotalView";
             this.Text = "YearlyTotalView";
             this.Load += new System.EventHandler(this.YearlyView_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoYealryTotalBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenseByCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtoExpenseBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAllYears)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -483,7 +344,6 @@
         private DataGridViewTextBoxColumn November;
         private DataGridViewTextBoxColumn December;
         private DataGridViewTextBoxColumn CatogoryTotal;
-        private DataGridView dataGridView1;
         private BindingSource dtoYealryTotalBindingSource;
         private DataGridViewTextBoxColumn expenseTypeDataGridViewTextBoxColumn;
         private DataGridView dgvExpenseByCategory;
@@ -496,17 +356,8 @@
         private DataGridViewTextBoxColumn Comment;
         private DataGridViewTextBoxColumn BankName;
         private TextBox txtSearch;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn SubCategoryName;
         private DataGridViewTextBoxColumn year2022DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn year2023DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn Year2024;
-        private DataGridViewTextBoxColumn Year2025;
-        private DataGridViewTextBoxColumn Year2026;
-        private DataGridViewTextBoxColumn Year2027;
-        private DataGridViewTextBoxColumn Year2028;
-        private DataGridViewTextBoxColumn Year2029;
-        private DataGridViewTextBoxColumn Year2030;
-        private DataGridViewTextBoxColumn Total;
+        private DataGridView dgvAllYears;
     }
 }

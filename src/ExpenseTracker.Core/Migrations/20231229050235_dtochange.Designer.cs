@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseTracker.Core.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231229034049_InitialData")]
-    partial class InitialData
+    [Migration("20231229050235_dtochange")]
+    partial class dtochange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -192,10 +192,21 @@ namespace ExpenseTracker.Core.Migrations
                     b.Property<decimal>("TotalExpense")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("TotalIncome")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("TotalIncome")
+                        .HasColumnType("decimal(18,2)");
 
                     b.ToTable("BankByYear");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.Models.Dto.ExpenseByCategoryForYear", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Year")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.ToTable("ExpenseByCategoryForYear");
                 });
 
             modelBuilder.Entity("ExpenseTracker.Models.Dto.TransactionByMonth", b =>

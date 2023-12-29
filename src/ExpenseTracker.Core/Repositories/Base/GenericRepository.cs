@@ -149,5 +149,12 @@ namespace ExpenseTracker.Core.Repositories.Base
                       .FromSqlRaw("EXEC GetBanksSummaryForYear {0}", year)
                       .ToListAsync();
         }
+
+        public async Task<List<ExpenseByCategoryForYear>> GetExpenseByCategoryForYear(int year)
+        {
+            return await _context.Set<ExpenseByCategoryForYear>()
+                      .FromSqlRaw("EXEC GetExpenseByCategoryForYear {0}", year)
+                      .ToListAsync();
+        }
     }
 }

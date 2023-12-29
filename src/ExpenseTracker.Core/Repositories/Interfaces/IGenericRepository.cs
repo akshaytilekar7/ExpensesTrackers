@@ -72,5 +72,7 @@ namespace ExpenseTracker.Core.Repositories.Interfaces
 
         Task<List<BankByYear>> GetBankSummary(int year);
 
+        Task<List<ExpenseByCategoryForYear>> GetExpenseByCategoryForYear(int year);
+
     }
 }

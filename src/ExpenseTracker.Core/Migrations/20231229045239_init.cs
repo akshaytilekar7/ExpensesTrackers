@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExpenseTracker.Core.Migrations
 {
-    public partial class Initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,7 +53,7 @@ namespace ExpenseTracker.Core.Migrations
                 columns: table => new
                 {
                     BankName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TotalIncome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TotalExpense = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
@@ -73,6 +73,17 @@ namespace ExpenseTracker.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExpenseByCategoryForYear",
+                columns: table => new
+                {
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Year = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
                 });
 
             migrationBuilder.CreateTable(
@@ -462,6 +473,9 @@ namespace ExpenseTracker.Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "BankByYear");
+
+            migrationBuilder.DropTable(
+                name: "ExpenseByCategoryForYear");
 
             migrationBuilder.DropTable(
                 name: "Income");

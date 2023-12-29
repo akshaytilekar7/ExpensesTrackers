@@ -33,19 +33,19 @@ namespace ExpenseTracker.Services
 
             List<DtoDecadeView> dtoYealries = new List<DtoDecadeView>();
 
-            foreach (var year in yearlyData)
-            {
-                DtoDecadeView dtoYealry = new DtoDecadeView();
-                dtoYealry.SubCategory = year.SubCategory;
-                dtoYealry.Category = year.Category;
-                dtoYealry.Year2022 = Convert.ToDecimal(year.Year2022);
-                dtoYealry.Year2023 = Convert.ToDecimal(year.Year2023);
-                dtoYealry.Year2024 = Convert.ToDecimal(year.Year2024);
-                dtoYealry.Total = dtoYealry.Year2022 + dtoYealry.Year2023 + dtoYealry.Year2024;
-                dtoYealries.Add(dtoYealry);
-            }
+            //foreach (var year in yearlyData)
+            //{
+            //    DtoDecadeView dtoYealry = new DtoDecadeView();
+            //    dtoYealry.SubCategory = year.SubCategory;
+            //    dtoYealry.Category = year.Category;
+            //    dtoYealry.Year2022 = Convert.ToDecimal(year.Year2022);
+            //    dtoYealry.Year2023 = Convert.ToDecimal(year.Year2023);
+            //    dtoYealry.Year2024 = Convert.ToDecimal(year.Year2024);
+            //    dtoYealry.Total = dtoYealry.Year2022 + dtoYealry.Year2023 + dtoYealry.Year2024;
+            //    dtoYealries.Add(dtoYealry);
+            //}
 
-            return dtoYealries.OrderBy(x => x.SubCategory).ToList();
+            return dtoYealries.ToList();
         }
 
         public async Task<List<DtoTransaction>> GetYearlyForTooltip(int year, string category)

@@ -19,5 +19,7 @@ namespace ExpenseTracker.Services.Base.Contracts
         Task<List<TransactionByMonth>> GetTransactionByMonth(int year, int month, int subCategoryId);
 
         Task<List<BankByYear>> GetBankSummary(int year);
+
+        Task<List<ExpenseByCategoryForYear>> GetExpenseByCategoryForYear(int year);
     }
 }

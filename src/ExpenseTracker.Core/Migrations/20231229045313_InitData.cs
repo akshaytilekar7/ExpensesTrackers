@@ -4,7 +4,7 @@
 
 namespace ExpenseTracker.Core.Migrations
 {
-    public partial class InitialData : Migration
+    public partial class InitData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

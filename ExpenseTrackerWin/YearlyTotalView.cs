@@ -4,6 +4,7 @@ using ExpenseTracker.Core.Uow;
 using ExpenseTracker.Core.Factory;
 using ExpenseTracker.Core;
 using Microsoft.Extensions.Options;
+using ExpenseTracker.Models.Dto;
 
 namespace ExpenseTrackerWin
 {
@@ -16,8 +17,8 @@ namespace ExpenseTrackerWin
         {
             InitializeComponent();
             MyConfig = myConfig;
-            _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, DateTime.Now.Year)), myConfig);
-            
+            _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, DateTime.Now.Year)), MyConfig);
+
         }
 
         private void YearlyView_Load(object sender, EventArgs e)
@@ -26,11 +27,43 @@ namespace ExpenseTrackerWin
             LoadGird();
         }
 
-        private void LoadGird()
+        private async void LoadGird()
         {
-            var lstDtoYealry = _serviceFactory.DecadeServices.GetDecadeData();
-            dataGridView1.DataSource = lstDtoYealry.MakeSortable();
-            dataGridView1.SetGridToFit();
+            var years = new int[] { 2023 };
+            List<SubCategoryData> subCategories = new List<SubCategoryData>();
+            var res = _serviceFactory.SubCategoryServices.GetAll();
+            foreach (var item in res)
+                subCategories.Add(new SubCategoryData() { SubCategoryName = item.Name, CategoryName = item.Category.Name });
+
+            foreach (var year in years)
+            {
+                _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, year)), MyConfig);
+
+                if (year == 2023)
+                {
+                    List<ExpenseByCategoryForYear>? data = await _serviceFactory.YearlyService.GetExpenseByCategoryForYear(year);
+
+                    foreach (var x in data)
+                    {
+                        var itemToUpdate = subCategories.FirstOrDefault(item => item.SubCategoryName == x.Name);
+                        if (itemToUpdate != null)
+                            itemToUpdate.Year2023 = x.Year;
+                    }
+                }
+
+                if (year == 2022)
+                {
+                    List<ExpenseByCategoryForYear>? data = await _serviceFactory.YearlyService.GetExpenseByCategoryForYear(year);
+                    foreach (var x in data)
+                    {
+                        var itemToUpdate = subCategories.FirstOrDefault(item => item.SubCategoryName == x.Name);
+                        if (itemToUpdate != null)
+                            itemToUpdate.Year2023 = x.Year;
+                    }
+                }
+            }
+            dgvAllYears.DataSource = subCategories.MakeSortable();
+            dgvAllYears.SetGridToFit();
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -48,12 +81,12 @@ namespace ExpenseTrackerWin
             if (rowIndex < 0 || columnIndex < 0)
                 return;
 
-            dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = Color.CadetBlue;
+            dgvAllYears.Rows[rowIndex].DefaultCellStyle.BackColor = Color.CadetBlue;
         }
 
         private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = dataGridView1.DefaultCellStyle.BackColor;
+            dgvAllYears.Rows[e.RowIndex].DefaultCellStyle.BackColor = dgvAllYears.DefaultCellStyle.BackColor;
         }
 
         private async void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -68,14 +101,16 @@ namespace ExpenseTrackerWin
             if (rowIndex < 0 || columnIndex < 0)
                 return;
 
-            var selectedCategory = Convert.ToString(dataGridView1.Rows[rowIndex].Cells[0].Value);
+            var selectedCategory = Convert.ToString(dgvAllYears.Rows[rowIndex].Cells[1].Value);
             int selectedYear = -1;
 
-            if (!int.TryParse(dataGridView1.Columns[e.ColumnIndex].HeaderText, out selectedYear))
-            {
-                lblWait.Text = string.Empty;
-                return;
-            }
+            var year = dgvAllYears.Columns[e.ColumnIndex].HeaderText;
+
+            if (year.Contains("2023"))
+                selectedYear = 2023;
+            if (year.Contains("2022"))
+                selectedYear = 2022;
+
             var _unitOfWork = new UnitOfWork(new SpecialContextFactory(MyConfig, selectedYear));
             _serviceFactory = new ServiceFactory(_unitOfWork, MyConfig);
 
@@ -88,19 +123,19 @@ namespace ExpenseTrackerWin
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow r in dataGridView1.Rows)
+            foreach (DataGridViewRow r in dgvAllYears.Rows)
             {
                 if (r.Cells[1] != null && r.Cells[1].Value != null)
                 {
                     if ((r.Cells[1].Value).ToString().ToUpper().Contains(txtSearch.Text.ToUpper()))
                     {
-                        dataGridView1.Rows[r.Index].Visible = true;
-                        dataGridView1.Rows[r.Index].Selected = true;
+                        dgvAllYears.Rows[r.Index].Visible = true;
+                        dgvAllYears.Rows[r.Index].Selected = true;
                     }
                     else
                     {
-                        dataGridView1.CurrentCell = null;
-                        dataGridView1.Rows[r.Index].Visible = false;
+                        dgvAllYears.CurrentCell = null;
+                        dgvAllYears.Rows[r.Index].Visible = false;
                     }
                 }
             }

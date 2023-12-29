@@ -51,6 +51,7 @@ namespace ExpenseTracker.Core.EFContext
         public DbSet<TransactionByYear> TransactionByYear { get; set; }
         public DbSet<TransactionByMonth> TransactionByMonth { get; set; }
         public DbSet<BankByYear> BankByYear { get; set; }
+        public DbSet<ExpenseByCategoryForYear> ExpenseByCategoryForYear { get; set; }
 
         public DatabaseFacade DatabaseFacade => this.Database;
 
@@ -58,6 +59,7 @@ namespace ExpenseTracker.Core.EFContext
         {
             modelBuilder.Entity<TransactionByYear>().HasNoKey();
             modelBuilder.Entity<TransactionByMonth>().HasNoKey();
+            modelBuilder.Entity<ExpenseByCategoryForYear>().HasNoKey();
             modelBuilder.Entity<BankByYear>().HasNoKey();
             base.OnModelCreating(modelBuilder);
         }

@@ -256,5 +256,11 @@ namespace ExpenseTracker.Services
             var repoExpense = _unitOfWork.GetRepository<Transaction>();
             return await repoExpense.GetBankSummary(year);
         }
+
+        public async Task<List<ExpenseByCategoryForYear>> GetExpenseByCategoryForYear(int year)
+        {
+            var repoExpense = _unitOfWork.GetRepository<Transaction>();
+            return await repoExpense.GetExpenseByCategoryForYear(year);
+        }
     }
 }
