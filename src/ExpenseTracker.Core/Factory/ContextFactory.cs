@@ -23,7 +23,7 @@ namespace ExpenseTracker.Core.Factory
 
             // AKSHAY MAIN DB
 
-            var con = "Server=localhost;Database=" + dbName + 2023 + ";Trusted_Connection=True;";
+            var con = "Server=localhost;Database=" + dbName + 2024 + ";Trusted_Connection=True;";
 
             var sqlConnectionBuilder = new SqlConnectionStringBuilder(con);
 

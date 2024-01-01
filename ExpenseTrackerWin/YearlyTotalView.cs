@@ -29,7 +29,7 @@ namespace ExpenseTrackerWin
 
         private async void LoadGird()
         {
-            var years = new int[] { 2022 ,2023 };
+            var years = new int[] { 2022 ,2023, 2024 };
             List<SubCategoryData> subCategories = new List<SubCategoryData>();
             var res = _serviceFactory.MasterTableService.GetAllSubCategory();
             foreach (var item in res)
@@ -62,6 +62,18 @@ namespace ExpenseTrackerWin
                         var itemToUpdate = subCategories.FirstOrDefault(c => c.SubCategoryName == item.Name);
                         if (itemToUpdate != null)
                             itemToUpdate.Year2022 = item.Year;
+                    }
+                }
+                if (year == 2024)
+                {
+                    _serviceFactory = new ServiceFactory(new UnitOfWork(new SpecialContextFactory(MyConfig, year)), MyConfig);
+
+                    List<ExpenseByCategoryForYear> list = await _serviceFactory.YearlyService.GetExpenseByCategoryForYear(year);
+                    foreach (ExpenseByCategoryForYear item in list)
+                    {
+                        var itemToUpdate = subCategories.FirstOrDefault(c => c.SubCategoryName == item.Name);
+                        if (itemToUpdate != null)
+                            itemToUpdate.Year2024 = item.Year;
                     }
                 }
             }
@@ -113,6 +125,8 @@ namespace ExpenseTrackerWin
                 selectedYear = 2023;
             if (year.Contains("2022"))
                 selectedYear = 2022;
+            if (year.Contains("2024"))
+                selectedYear = 2024;
 
             var _unitOfWork = new UnitOfWork(new SpecialContextFactory(MyConfig, selectedYear));
             _serviceFactory = new ServiceFactory(_unitOfWork, MyConfig);
