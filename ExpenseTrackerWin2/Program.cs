@@ -1,17 +1,42 @@
-namespace ExpenseTrackerWin2
+using ExpenseTracker.Core;
+using ExpenseTrackerWin2.Startup;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace ExpenseTrackerWin2;
+
+internal static class Program
 {
-    internal static class Program
+    public static IConfiguration Configuration { get; set; }
+    public static IServiceProvider ServiceProvider { get; private set; }
+
+    /// <summary>
+    ///  The main entry point for the application.
+    /// </summary>
+    [STAThread]
+    static void Main()
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Index());
-        }
+        Application.SetHighDpiMode(HighDpiMode.SystemAware);
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        var builder = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json");  //reloadOnChange: true
+        Configuration = builder.Build();
+
+        var host = CreateHostBuilder().Build();
+        ServiceProvider = host.Services;
+        Application.Run(ServiceProvider.GetRequiredService<Index>());
     }
+    static IHostBuilder CreateHostBuilder()
+    {
+        return Host.CreateDefaultBuilder().ConfigureServices((context, services) =>
+        {
+            services.Configure<MyConfig>(Configuration.GetSection("MyConfig"));
+            services.AddInjections(Configuration);
+            services.AddIdentity();
+            services.AddScoped<Index>();
+        });
+    }
+
 }
