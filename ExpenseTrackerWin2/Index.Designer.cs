@@ -32,11 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Index));
             materialTab = new MaterialSkin.Controls.MaterialTabControl();
             tabDashboard = new TabPage();
+            panel2 = new Panel();
             dgvYearly = new DataGridView();
-            dgvTooltip = new DataGridView();
+            panel1 = new Panel();
             dgvBankAmount = new DataGridView();
             cmbDatabasePicker = new MaterialSkin.Controls.MaterialComboBox();
+            dgvTooltip = new DataGridView();
             tabAddIncome = new TabPage();
+            txtAmount = new MaterialSkin.Controls.MaterialTextBox();
             cmbComment = new MaterialSkin.Controls.MaterialComboBox();
             cmbBank = new MaterialSkin.Controls.MaterialComboBox();
             cmbNames = new MaterialSkin.Controls.MaterialComboBox();
@@ -47,12 +50,13 @@
             tabHistory = new TabPage();
             tabUserSetting = new TabPage();
             menubarImages = new ImageList(components);
-            txtAmount = new MaterialSkin.Controls.MaterialTextBox();
             materialTab.SuspendLayout();
             tabDashboard.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvYearly).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvTooltip).BeginInit();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBankAmount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvTooltip).BeginInit();
             tabAddIncome.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,10 +81,8 @@
             // 
             // tabDashboard
             // 
-            tabDashboard.Controls.Add(dgvYearly);
-            tabDashboard.Controls.Add(dgvTooltip);
-            tabDashboard.Controls.Add(dgvBankAmount);
-            tabDashboard.Controls.Add(cmbDatabasePicker);
+            tabDashboard.Controls.Add(panel2);
+            tabDashboard.Controls.Add(panel1);
             tabDashboard.ImageKey = "Dashboard.png";
             tabDashboard.Location = new Point(4, 39);
             tabDashboard.Name = "tabDashboard";
@@ -89,30 +91,42 @@
             tabDashboard.Text = "Dashboard";
             tabDashboard.UseVisualStyleBackColor = true;
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(dgvYearly);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(352, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1568, 780);
+            panel2.TabIndex = 5;
+            // 
             // dgvYearly
             // 
             dgvYearly.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvYearly.Dock = DockStyle.Right;
-            dgvYearly.Location = new Point(453, 0);
+            dgvYearly.Dock = DockStyle.Fill;
+            dgvYearly.Location = new Point(0, 0);
             dgvYearly.Name = "dgvYearly";
-            dgvYearly.Size = new Size(1467, 780);
+            dgvYearly.Size = new Size(1568, 780);
             dgvYearly.TabIndex = 3;
             dgvYearly.CellContentClick += dgvYearly_CellContentClick;
             // 
-            // dgvTooltip
+            // panel1
             // 
-            dgvTooltip.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTooltip.Location = new Point(65, 352);
-            dgvTooltip.Name = "dgvTooltip";
-            dgvTooltip.Size = new Size(382, 423);
-            dgvTooltip.TabIndex = 2;
+            panel1.Controls.Add(dgvBankAmount);
+            panel1.Controls.Add(cmbDatabasePicker);
+            panel1.Controls.Add(dgvTooltip);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(352, 780);
+            panel1.TabIndex = 4;
             // 
             // dgvBankAmount
             // 
             dgvBankAmount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBankAmount.Location = new Point(65, 60);
+            dgvBankAmount.Location = new Point(44, 58);
             dgvBankAmount.Name = "dgvBankAmount";
-            dgvBankAmount.Size = new Size(382, 286);
+            dgvBankAmount.Size = new Size(302, 297);
             dgvBankAmount.TabIndex = 1;
             // 
             // cmbDatabasePicker
@@ -130,7 +144,7 @@
             cmbDatabasePicker.IntegralHeight = false;
             cmbDatabasePicker.ItemHeight = 43;
             cmbDatabasePicker.Items.AddRange(new object[] { "2022", "2023", "2024" });
-            cmbDatabasePicker.Location = new Point(65, 5);
+            cmbDatabasePicker.Location = new Point(225, 0);
             cmbDatabasePicker.MaxDropDownItems = 4;
             cmbDatabasePicker.MouseState = MaterialSkin.MouseState.OUT;
             cmbDatabasePicker.Name = "cmbDatabasePicker";
@@ -139,6 +153,14 @@
             cmbDatabasePicker.TabIndex = 0;
             cmbDatabasePicker.SelectedIndexChanged += cmbDatabasePicker_SelectedIndexChanged;
             cmbDatabasePicker.SelectedValueChanged += cmbDatabasePicker_SelectedValueChanged;
+            // 
+            // dgvTooltip
+            // 
+            dgvTooltip.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTooltip.Location = new Point(44, 361);
+            dgvTooltip.Name = "dgvTooltip";
+            dgvTooltip.Size = new Size(302, 416);
+            dgvTooltip.TabIndex = 2;
             // 
             // tabAddIncome
             // 
@@ -156,6 +178,23 @@
             tabAddIncome.Text = "Add Income";
             tabAddIncome.UseVisualStyleBackColor = true;
             tabAddIncome.Click += tabAddIncome_Click;
+            // 
+            // txtAmount
+            // 
+            txtAmount.AnimateReadOnly = false;
+            txtAmount.BorderStyle = BorderStyle.None;
+            txtAmount.Depth = 0;
+            txtAmount.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtAmount.LeadingIcon = null;
+            txtAmount.Location = new Point(77, 74);
+            txtAmount.MaxLength = 50;
+            txtAmount.MouseState = MaterialSkin.MouseState.OUT;
+            txtAmount.Multiline = false;
+            txtAmount.Name = "txtAmount";
+            txtAmount.Size = new Size(100, 50);
+            txtAmount.TabIndex = 14;
+            txtAmount.Text = "";
+            txtAmount.TrailingIcon = null;
             // 
             // cmbComment
             // 
@@ -297,23 +336,6 @@
             menubarImages.Images.SetKeyName(5, "AddIncome.png");
             menubarImages.Images.SetKeyName(6, "AddExpenses.png");
             // 
-            // txtAmount
-            // 
-            txtAmount.AnimateReadOnly = false;
-            txtAmount.BorderStyle = BorderStyle.None;
-            txtAmount.Depth = 0;
-            txtAmount.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtAmount.LeadingIcon = null;
-            txtAmount.Location = new Point(77, 74);
-            txtAmount.MaxLength = 50;
-            txtAmount.MouseState = MaterialSkin.MouseState.OUT;
-            txtAmount.Multiline = false;
-            txtAmount.Name = "txtAmount";
-            txtAmount.Size = new Size(100, 50);
-            txtAmount.TabIndex = 14;
-            txtAmount.Text = "";
-            txtAmount.TrailingIcon = null;
-            // 
             // Index
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -326,9 +348,11 @@
             Text = "Expense Tracker";
             materialTab.ResumeLayout(false);
             tabDashboard.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvYearly).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvTooltip).EndInit();
+            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvBankAmount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvTooltip).EndInit();
             tabAddIncome.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -353,5 +377,7 @@
         private MaterialSkin.Controls.MaterialComboBox cmbComment;
         private MaterialSkin.Controls.MaterialComboBox cmbBank;
         private MaterialSkin.Controls.MaterialTextBox txtAmount;
+        private Panel panel2;
+        private Panel panel1;
     }
 }
