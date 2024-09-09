@@ -746,6 +746,7 @@
             tabViewTransactions.TabIndex = 2;
             tabViewTransactions.Text = "View Transactions";
             tabViewTransactions.UseVisualStyleBackColor = true;
+            tabViewTransactions.Click += tabViewTransactions_Click;
             // 
             // dgvFilter
             // 

@@ -28,6 +28,7 @@ public partial class Index : MaterialForm
         materialSkinManager.AddFormToManage(this);
         materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
         materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey900, Primary.BlueGrey900, Primary.BlueGrey500, Accent.DeepOrange700, TextShade.WHITE);
+        LoadCombobox();
     }
 
 
@@ -373,8 +374,8 @@ public partial class Index : MaterialForm
             EndDate = dateEnd.Value.Date,
             SubCategoryId = Convert.ToInt32(cmbCategory.SelectedValue),
             CategoryId = Convert.ToInt32(cmbExpensesType.SelectedValue),
-            UserId = Convert.ToInt32(cmbUsers.SelectedValue),
-            BankId = Convert.ToInt32(cmbBank.SelectedValue),
+            UserId = Convert.ToInt32(cmbVTUser.SelectedValue),
+            BankId = Convert.ToInt32(cmbVTBanks.SelectedValue),
         };
         return filter;
     }
@@ -426,5 +427,47 @@ public partial class Index : MaterialForm
 
         dgvFilter.Rows.Clear();
         dgvFilter.Refresh();
+    }
+
+    private void tabViewTransactions_Click(object sender, EventArgs e)
+    {
+    }
+
+    private void LoadCombobox()
+    {
+        try
+        {
+            var lstCategoryType = _serviceFactory.MasterTableService.GetAllSubCategory().ToList();
+            lstCategoryType.Insert(0, new SubCategory() { Id = 0, Name = "Please select" });
+            cmbCategory.DisplayMember = "Name";
+            cmbCategory.ValueMember = "Id";
+            cmbCategory.DataSource = lstCategoryType;
+
+            var lstExpenseTypes = _serviceFactory.MasterTableService.GetAllCategory().ToList();
+            lstExpenseTypes.Insert(0, new Category() { Id = 0, Name = "Please select" });
+            cmbExpensesType.DisplayMember = "Name";
+            cmbExpensesType.ValueMember = "Id";
+            cmbExpensesType.DataSource = lstExpenseTypes;
+
+            var lstUsers = _serviceFactory.UserService.GetAll().ToList();
+            lstUsers.Insert(0, new User() { Id = 0, Name = "Please select" });
+            cmbVTUser.DataSource = lstUsers;
+            cmbVTUser.DisplayMember = "Name";
+            cmbVTUser.ValueMember = "Id";
+
+            var lstBanks = _serviceFactory.BankService.GetAll().ToList();
+            lstBanks.Insert(0, new Bank() { Id = 0, Name = "Please select" });
+            cmbVTBanks.DataSource = lstBanks;
+            cmbVTBanks.DisplayMember = "Name";
+            cmbVTBanks.ValueMember = "Id";
+        }
+        catch (Exception ex)
+        {
+            var st = string.Empty;
+            if (ex.InnerException != null)
+                st = ex.InnerException.Message;
+            lblVTError.Text = "LoadCombobox : " + ex.Message + " " + st;
+        }
+
     }
 }
