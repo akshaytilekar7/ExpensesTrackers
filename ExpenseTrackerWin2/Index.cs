@@ -8,7 +8,8 @@ using ExpenseTrackerWin2.Utility;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Microsoft.Extensions.Options;
-using System.Windows.Forms;
+using System.Data;
+using ExpenseTracker.Services.Base;
 
 namespace ExpenseTrackerWin2;
 
@@ -187,5 +188,243 @@ public partial class Index : MaterialForm
         }
         _serviceFactory.IncomeService.Delete(lst);
         LoadGrid();
+    }
+
+    List<Transaction> listExpense = new List<Transaction>();
+    List<DtoTransaction> listOldData = new List<DtoTransaction>();
+
+    private void btnATSave_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var user = Convert.ToInt32(cmbNames.SelectedValue);
+            foreach (DataGridViewRow row in dgvExpenses.Rows)
+            {
+                int day = Convert.ToInt32(row.Cells[0].Value);
+                if (day == 0)
+                    continue;
+
+                Transaction expense = new Transaction();
+                expense.SubCategoryId = Convert.ToInt32(row.Cells[1].Value);
+                var date = Convert.ToDateTime(datePickerAT.Text);
+                expense.Date = new DateTime(date.Year, date.Month, day);
+                expense.Amount = Convert.ToDecimal(row.Cells[2].Value);
+                expense.Comment = Convert.ToString(row.Cells[3].Value);
+                expense.BankId = Convert.ToInt32(cmbBank.SelectedValue);
+                expense.UserId = user;
+                listExpense.Add(expense);
+            }
+            _serviceFactory.TransactionServices.Add(listExpense);
+
+            string message = "Save Data Sucessfully";
+            listExpense.Clear();
+            dgvExpenses.Rows.Clear();
+            dgvExpenses.Refresh();
+            MessageBox.Show(message);
+
+        }
+        catch (Exception ex)
+        {
+            var st = string.Empty;
+            if (ex.InnerException != null)
+                st = ex.InnerException.Message;
+            lblATError.Text = "btnSave_Click : " + ex.Message + " " + st;
+        }
+    }
+
+    private void ClearGrid()
+    {
+        dgvExpenses.Rows.Clear();
+        dgvExpenses.Refresh();
+    }
+
+    private IList<DtoTransaction> GetWhatsAppData()
+    {
+        var date = Convert.ToDateTime(datePickerAT.Text);
+        string projectDirectory2 = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+        //projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Month + "_" + date.Year + ".xls";
+        projectDirectory2 += "\\ExcelFiles\\Input\\W_" + date.Year + ".xls";
+
+        DataTable bankStatement = _serviceFactory.ExcelService.LoadDataTable(projectDirectory2);
+        var lstExpenseBankStatement = bankStatement.DatatableToClass<DtoTransaction>();
+        return lstExpenseBankStatement;
+    }
+
+    private List<DtoTransaction> GetBankStatementData()
+    {
+        var date = Convert.ToDateTime(datePickerAT.Text);
+        string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+        //projectDirectory += "\\ExcelFiles\\Input\\" + date.Month + "_" + date.Year + ".xls";
+        projectDirectory += "\\ExcelFiles\\Input\\" + date.Year + ".xls";
+
+        DataTable dt = _serviceFactory.ExcelService.LoadDataTable(projectDirectory);
+        var lstExpense = dt.DatatableToClass<DtoTransaction>();
+        return lstExpense.Where(x => x.Amount > 0 && x.Date.Date >= date.Date).ToList();
+    }
+
+    private void btnATUpload_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            ClearGrid();
+            IList<DtoTransaction> lstBankStatementData = GetBankStatementData();
+            IList<DtoTransaction> lstWhatsAppData = GetWhatsAppData();
+
+            int index = 0;
+            foreach (var item in lstBankStatementData)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                DataGridViewTextBoxCell cDay = new DataGridViewTextBoxCell();
+                cDay.Value = item.Date.Day;
+
+                DataGridViewTextBoxCell cAmount = new DataGridViewTextBoxCell();
+                cAmount.Value = item.Amount;
+
+                DataGridViewTextBoxCell cComment = new DataGridViewTextBoxCell();
+                var excelWhatsAppExpense = lstWhatsAppData
+                    .FirstOrDefault(x => (x.Date.Day == item.Date.Day || x.Date.Day == item.Date.AddDays(-1).Day)
+                    && x.Amount == item.Amount);
+
+                var comment = excelWhatsAppExpense == null ? string.Empty : excelWhatsAppExpense.Comment?.Trim();
+                cComment.Value = comment?.Trim();
+
+                DataGridViewComboBoxCell cCategory = new DataGridViewComboBoxCell();
+                var dbCategories = _serviceFactory.MasterTableService.GetAllSubCategory();
+                cCategory.DisplayMember = "Name";
+                cCategory.ValueMember = "Id";
+                cCategory.DataSource = dbCategories;
+
+                if (!string.IsNullOrEmpty(comment))
+                {
+                    comment = comment.Trim();
+                    var dbCategory = dbCategories.FirstOrDefault(x => x.Name.ToLower().Contains(comment.ToLower()));
+                    if (dbCategory != null)
+                        cCategory.Value = dbCategory.Id;
+                    else
+                    {
+                        int categoryId = GetCategoryBasedOnComment(comment, dbCategories.ToList());
+                        if (categoryId != 0)
+                            cCategory.Value = categoryId;
+                    }
+                }
+
+                row.Cells.Add(cDay);
+                row.Cells.Add(cCategory);
+                row.Cells.Add(cAmount);
+                row.Cells.Add(cComment);
+
+                this.dgvExpenses.Rows.Add(row);
+                index++;
+            }
+            this.dgvExpenses.SetGridToFit();
+        }
+        catch (Exception ex)
+        {
+            var st = string.Empty;
+            if (ex.InnerException != null)
+                st = ex.InnerException.Message;
+            lblATError.Text = "btnUpload_Click : " + ex.Message + " " + st;
+        }
+    }
+
+    private static int GetCategoryBasedOnComment(string comment, List<SubCategory> dbCategories)
+    {
+        int defaultCategoryId = dbCategories.First(x => x.Name.Contains("Extra")).Id;
+        dbCategories = dbCategories.Where(x => x.CommaSeparatedTags != null).ToList();
+        foreach (var category in dbCategories)
+        {
+            var listCommaSeparatedTags = category.CommaSeparatedTags.Split(",").Select(x => x.Trim()).ToList();
+            listCommaSeparatedTags = listCommaSeparatedTags.Where(x => x != " ").ToList();
+            var CommaSeparatedComment = comment.Split(" ").Select(x => x.Trim());
+            var isSameExist = CommaSeparatedComment.Intersect(listCommaSeparatedTags).Any();
+            if (isSameExist)
+                return category.Id;
+        }
+
+        return defaultCategoryId;
+    }
+
+    private void btnATClear_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            listExpense.Clear();
+            dgvExpenses.Rows.Clear();
+            dgvExpenses.Refresh();
+        }
+        catch (Exception ex)
+        {
+            lblATError.Text = "btnClear_Click : " + ex.Message;
+        }
+    }
+
+    private async Task LoadAllGrid()
+    {
+        await LoadExpenseFilterGrid();
+    }
+
+    private DtoTransactionFilter GetFilter()
+    {
+        var filter = new DtoTransactionFilter()
+        {
+            Amount = string.IsNullOrEmpty(txtAmount.Text) ? 0 : Convert.ToDecimal(txtAmount.Text),
+            Comment = txtComment.Text,
+            StartDate = dateStart.Value.Date,
+            EndDate = dateEnd.Value.Date,
+            SubCategoryId = Convert.ToInt32(cmbCategory.SelectedValue),
+            CategoryId = Convert.ToInt32(cmbExpensesType.SelectedValue),
+            UserId = Convert.ToInt32(cmbUsers.SelectedValue),
+            BankId = Convert.ToInt32(cmbBank.SelectedValue),
+        };
+        return filter;
+    }
+
+    private async Task LoadExpenseFilterGrid()
+    {
+        var res = await _serviceFactory.TransactionServices.GetTransactions(GetFilter());
+        dgvFilter.DataSource = res.GenereateSrNo().MakeSortable();
+        dgvFilter.SetGridToFit();
+    }
+    private async void btnVTSearch_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            lblATError.Text = string.Empty;
+            await LoadAllGrid();
+        }
+        catch (Exception ex)
+        {
+            var st = string.Empty;
+            if (ex.InnerException != null)
+                st = ex.InnerException.Message;
+            lblVTError.Text = "btnSearch_Click : " + ex.Message + " " + st;
+        }
+    }
+
+    private async void btnVTDelete_Click(object sender, EventArgs e)
+    {
+        List<Transaction> lst = new List<Transaction>();
+        foreach (DataGridViewRow row in dgvFilter.SelectedRows)
+        {
+            int id = Convert.ToInt32(row.Cells["Id"].Value);
+            lst.Add(new Transaction() { Id = id });
+        }
+        _serviceFactory.TransactionServices.Delete(lst);
+        await LoadAllGrid();
+    }
+
+    private void btnVTClear_Click(object sender, EventArgs e)
+    {
+        lblVTError.Text = string.Empty;
+        txtAmount.Clear();
+        txtComment.Clear();
+        cmbCategory.ResetText();
+        cmbExpensesType.ResetText();
+
+        dgvIncome.Rows.Clear();
+        dgvIncome.Refresh();
+
+        dgvFilter.Rows.Clear();
+        dgvFilter.Refresh();
     }
 }

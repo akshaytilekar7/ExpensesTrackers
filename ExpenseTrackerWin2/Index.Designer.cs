@@ -29,10 +29,19 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Index));
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             materialTab = new MaterialSkin.Controls.MaterialTabControl();
             tabDashboard = new TabPage();
             panel2 = new Panel();
@@ -42,6 +51,11 @@
             cmbDatabasePicker = new MaterialSkin.Controls.MaterialComboBox();
             dgvTooltip = new DataGridView();
             tabAddIncome = new TabPage();
+            btnDelete = new MaterialSkin.Controls.MaterialButton();
+            btnSave = new MaterialSkin.Controls.MaterialButton();
+            dgvIncome = new DataGridView();
+            BankName = new DataGridViewTextBoxColumn();
+            Comment = new DataGridViewTextBoxColumn();
             lblName = new Label();
             lblBank = new Label();
             lblComment = new Label();
@@ -53,16 +67,49 @@
             cmbNames = new MaterialSkin.Controls.MaterialComboBox();
             datePicker = new DateTimePicker();
             tabAddTransactions = new TabPage();
+            lblATError = new Label();
+            btnATClear = new MaterialSkin.Controls.MaterialButton();
+            btnATUpload = new MaterialSkin.Controls.MaterialButton();
+            btnATSave = new MaterialSkin.Controls.MaterialButton();
+            dgvExpenses = new DataGridView();
+            Day = new DataGridViewTextBoxColumn();
+            Category = new DataGridViewComboBoxColumn();
+            Amount = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            cmbATBank = new MaterialSkin.Controls.MaterialComboBox();
+            cmbATnames = new MaterialSkin.Controls.MaterialComboBox();
+            datePickerAT = new DateTimePicker();
+            label1 = new Label();
+            label2 = new Label();
+            lblBDate = new Label();
             tabViewTransactions = new TabPage();
-            tabViewInomce = new TabPage();
+            dgvFilter = new DataGridView();
+            User = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            Balance = new DataGridViewTextBoxColumn();
+            lblVTError = new Label();
+            cmbVTBanks = new MaterialSkin.Controls.MaterialComboBox();
+            cmbVTUser = new MaterialSkin.Controls.MaterialComboBox();
+            cmbCategory = new MaterialSkin.Controls.MaterialComboBox();
+            cmbExpensesType = new MaterialSkin.Controls.MaterialComboBox();
+            btnVTDelete = new MaterialSkin.Controls.MaterialButton();
+            btnVTClear = new MaterialSkin.Controls.MaterialButton();
+            btnVTSearch = new MaterialSkin.Controls.MaterialButton();
+            label3 = new Label();
+            label4 = new Label();
+            txtComment = new TextBox();
+            label5 = new Label();
+            txtVTAmount = new TextBox();
+            label6 = new Label();
+            lblCategoryMain = new Label();
+            lblSubCategory = new Label();
+            dateEnd = new DateTimePicker();
+            label7 = new Label();
+            dateStart = new DateTimePicker();
+            lblDate = new Label();
             tabHistory = new TabPage();
             tabUserSetting = new TabPage();
             menubarImages = new ImageList(components);
-            dgvIncome = new DataGridView();
-            BankName = new DataGridViewTextBoxColumn();
-            Comment = new DataGridViewTextBoxColumn();
-            btnSave = new MaterialSkin.Controls.MaterialButton();
-            btnDelete = new MaterialSkin.Controls.MaterialButton();
             materialTab.SuspendLayout();
             tabDashboard.SuspendLayout();
             panel2.SuspendLayout();
@@ -72,6 +119,10 @@
             ((System.ComponentModel.ISupportInitialize)dgvTooltip).BeginInit();
             tabAddIncome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvIncome).BeginInit();
+            tabAddTransactions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvExpenses).BeginInit();
+            tabViewTransactions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFilter).BeginInit();
             SuspendLayout();
             // 
             // materialTab
@@ -80,7 +131,6 @@
             materialTab.Controls.Add(tabAddIncome);
             materialTab.Controls.Add(tabAddTransactions);
             materialTab.Controls.Add(tabViewTransactions);
-            materialTab.Controls.Add(tabViewInomce);
             materialTab.Controls.Add(tabHistory);
             materialTab.Controls.Add(tabUserSetting);
             materialTab.Depth = 0;
@@ -200,6 +250,90 @@
             tabAddIncome.Text = "Add Income";
             tabAddIncome.UseVisualStyleBackColor = true;
             tabAddIncome.Click += tabAddIncome_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnDelete.Depth = 0;
+            btnDelete.HighEmphasis = true;
+            btnDelete.Icon = null;
+            btnDelete.Location = new Point(584, 694);
+            btnDelete.Margin = new Padding(4, 6, 4, 6);
+            btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            btnDelete.Name = "btnDelete";
+            btnDelete.NoAccentTextColor = Color.Empty;
+            btnDelete.Size = new Size(73, 36);
+            btnDelete.TabIndex = 24;
+            btnDelete.Text = "Delete";
+            btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnDelete.UseAccentColor = false;
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnSave
+            // 
+            btnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSave.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnSave.Depth = 0;
+            btnSave.HighEmphasis = true;
+            btnSave.Icon = null;
+            btnSave.Location = new Point(502, 694);
+            btnSave.Margin = new Padding(4, 6, 4, 6);
+            btnSave.MouseState = MaterialSkin.MouseState.HOVER;
+            btnSave.Name = "btnSave";
+            btnSave.NoAccentTextColor = Color.Empty;
+            btnSave.Size = new Size(64, 36);
+            btnSave.TabIndex = 23;
+            btnSave.Text = "Save";
+            btnSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnSave.UseAccentColor = false;
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
+            // dgvIncome
+            // 
+            dgvIncome.AllowUserToAddRows = false;
+            dgvIncome.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = SystemColors.ControlLight;
+            dataGridViewCellStyle1.Font = new Font("Calibri", 14.25F);
+            dataGridViewCellStyle1.NullValue = null;
+            dgvIncome.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvIncome.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvIncome.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvIncome.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvIncome.Columns.AddRange(new DataGridViewColumn[] { BankName, Comment });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Calibri", 14.25F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvIncome.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvIncome.Location = new Point(157, 136);
+            dgvIncome.Name = "dgvIncome";
+            dgvIncome.Size = new Size(846, 549);
+            dgvIncome.TabIndex = 21;
+            // 
+            // BankName
+            // 
+            BankName.DataPropertyName = "BankName";
+            BankName.HeaderText = "BankName";
+            BankName.Name = "BankName";
+            // 
+            // Comment
+            // 
+            Comment.DataPropertyName = "Comment";
+            Comment.HeaderText = "Comment";
+            Comment.Name = "Comment";
             // 
             // lblName
             // 
@@ -340,6 +474,17 @@
             // 
             // tabAddTransactions
             // 
+            tabAddTransactions.Controls.Add(lblATError);
+            tabAddTransactions.Controls.Add(btnATClear);
+            tabAddTransactions.Controls.Add(btnATUpload);
+            tabAddTransactions.Controls.Add(btnATSave);
+            tabAddTransactions.Controls.Add(dgvExpenses);
+            tabAddTransactions.Controls.Add(cmbATBank);
+            tabAddTransactions.Controls.Add(cmbATnames);
+            tabAddTransactions.Controls.Add(datePickerAT);
+            tabAddTransactions.Controls.Add(label1);
+            tabAddTransactions.Controls.Add(label2);
+            tabAddTransactions.Controls.Add(lblBDate);
             tabAddTransactions.ImageKey = "AddExpenses.png";
             tabAddTransactions.Location = new Point(4, 39);
             tabAddTransactions.Name = "tabAddTransactions";
@@ -349,8 +494,250 @@
             tabAddTransactions.Text = "Add Transactions";
             tabAddTransactions.UseVisualStyleBackColor = true;
             // 
+            // lblATError
+            // 
+            lblATError.AutoSize = true;
+            lblATError.Location = new Point(119, 3);
+            lblATError.Margin = new Padding(2, 0, 2, 0);
+            lblATError.Name = "lblATError";
+            lblATError.Size = new Size(0, 15);
+            lblATError.TabIndex = 43;
+            // 
+            // btnATClear
+            // 
+            btnATClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnATClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnATClear.Depth = 0;
+            btnATClear.HighEmphasis = true;
+            btnATClear.Icon = null;
+            btnATClear.Location = new Point(494, 733);
+            btnATClear.Margin = new Padding(4, 6, 4, 6);
+            btnATClear.MouseState = MaterialSkin.MouseState.HOVER;
+            btnATClear.Name = "btnATClear";
+            btnATClear.NoAccentTextColor = Color.Empty;
+            btnATClear.Size = new Size(66, 36);
+            btnATClear.TabIndex = 42;
+            btnATClear.Text = "Clear";
+            btnATClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnATClear.UseAccentColor = false;
+            btnATClear.UseVisualStyleBackColor = true;
+            btnATClear.Click += btnATClear_Click;
+            // 
+            // btnATUpload
+            // 
+            btnATUpload.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnATUpload.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnATUpload.Depth = 0;
+            btnATUpload.HighEmphasis = true;
+            btnATUpload.Icon = null;
+            btnATUpload.Location = new Point(408, 733);
+            btnATUpload.Margin = new Padding(4, 6, 4, 6);
+            btnATUpload.MouseState = MaterialSkin.MouseState.HOVER;
+            btnATUpload.Name = "btnATUpload";
+            btnATUpload.NoAccentTextColor = Color.Empty;
+            btnATUpload.Size = new Size(78, 36);
+            btnATUpload.TabIndex = 41;
+            btnATUpload.Text = "Upload";
+            btnATUpload.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnATUpload.UseAccentColor = false;
+            btnATUpload.UseVisualStyleBackColor = true;
+            btnATUpload.Click += btnATUpload_Click;
+            // 
+            // btnATSave
+            // 
+            btnATSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnATSave.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnATSave.Depth = 0;
+            btnATSave.HighEmphasis = true;
+            btnATSave.Icon = null;
+            btnATSave.Location = new Point(336, 733);
+            btnATSave.Margin = new Padding(4, 6, 4, 6);
+            btnATSave.MouseState = MaterialSkin.MouseState.HOVER;
+            btnATSave.Name = "btnATSave";
+            btnATSave.NoAccentTextColor = Color.Empty;
+            btnATSave.Size = new Size(64, 36);
+            btnATSave.TabIndex = 40;
+            btnATSave.Text = "Save";
+            btnATSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnATSave.UseAccentColor = false;
+            btnATSave.UseVisualStyleBackColor = true;
+            btnATSave.Click += btnATSave_Click;
+            // 
+            // dgvExpenses
+            // 
+            dgvExpenses.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle4.BackColor = Color.Gainsboro;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Transparent;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dgvExpenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvExpenses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvExpenses.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvExpenses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvExpenses.Columns.AddRange(new DataGridViewColumn[] { Day, Category, Amount, dataGridViewTextBoxColumn1 });
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Window;
+            dataGridViewCellStyle9.Font = new Font("Calibri", 20.25F);
+            dataGridViewCellStyle9.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = null;
+            dataGridViewCellStyle9.SelectionBackColor = Color.Transparent;
+            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
+            dgvExpenses.DefaultCellStyle = dataGridViewCellStyle9;
+            dgvExpenses.Location = new Point(51, 87);
+            dgvExpenses.Name = "dgvExpenses";
+            dgvExpenses.RowHeadersWidth = 62;
+            dgvExpenses.Size = new Size(979, 637);
+            dgvExpenses.TabIndex = 39;
+            // 
+            // Day
+            // 
+            Day.DataPropertyName = "Day";
+            dataGridViewCellStyle5.Font = new Font("Calibri", 20.25F);
+            Day.DefaultCellStyle = dataGridViewCellStyle5;
+            Day.HeaderText = "Day";
+            Day.MinimumWidth = 8;
+            Day.Name = "Day";
+            Day.Width = 52;
+            // 
+            // Category
+            // 
+            Category.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Category.DataPropertyName = "Category";
+            dataGridViewCellStyle6.Font = new Font("Calibri", 20.25F);
+            Category.DefaultCellStyle = dataGridViewCellStyle6;
+            Category.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
+            Category.HeaderText = "Category";
+            Category.MaxDropDownItems = 5;
+            Category.MinimumWidth = 100;
+            Category.Name = "Category";
+            Category.Resizable = DataGridViewTriState.True;
+            Category.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // Amount
+            // 
+            Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle7.Font = new Font("Calibri", 20.25F);
+            Amount.DefaultCellStyle = dataGridViewCellStyle7;
+            Amount.HeaderText = "Amount";
+            Amount.MinimumWidth = 8;
+            Amount.Name = "Amount";
+            Amount.Width = 76;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle8.Font = new Font("Calibri", 20.25F);
+            dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewTextBoxColumn1.HeaderText = "Comment";
+            dataGridViewTextBoxColumn1.MinimumWidth = 8;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 86;
+            // 
+            // cmbATBank
+            // 
+            cmbATBank.AutoResize = false;
+            cmbATBank.BackColor = Color.FromArgb(255, 255, 255);
+            cmbATBank.Depth = 0;
+            cmbATBank.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbATBank.DropDownHeight = 174;
+            cmbATBank.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbATBank.DropDownWidth = 121;
+            cmbATBank.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbATBank.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbATBank.FormattingEnabled = true;
+            cmbATBank.IntegralHeight = false;
+            cmbATBank.ItemHeight = 43;
+            cmbATBank.Location = new Point(818, 35);
+            cmbATBank.MaxDropDownItems = 4;
+            cmbATBank.MouseState = MaterialSkin.MouseState.OUT;
+            cmbATBank.Name = "cmbATBank";
+            cmbATBank.Size = new Size(121, 49);
+            cmbATBank.StartIndex = 0;
+            cmbATBank.TabIndex = 38;
+            // 
+            // cmbATnames
+            // 
+            cmbATnames.AutoResize = false;
+            cmbATnames.BackColor = Color.FromArgb(255, 255, 255);
+            cmbATnames.Depth = 0;
+            cmbATnames.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbATnames.DropDownHeight = 174;
+            cmbATnames.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbATnames.DropDownWidth = 121;
+            cmbATnames.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbATnames.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbATnames.IntegralHeight = false;
+            cmbATnames.ItemHeight = 43;
+            cmbATnames.Location = new Point(555, 37);
+            cmbATnames.MaxDropDownItems = 4;
+            cmbATnames.MouseState = MaterialSkin.MouseState.OUT;
+            cmbATnames.Name = "cmbATnames";
+            cmbATnames.Size = new Size(121, 49);
+            cmbATnames.StartIndex = 0;
+            cmbATnames.TabIndex = 0;
+            // 
+            // datePickerAT
+            // 
+            datePickerAT.Location = new Point(181, 38);
+            datePickerAT.Margin = new Padding(2);
+            datePickerAT.Name = "datePickerAT";
+            datePickerAT.Size = new Size(281, 23);
+            datePickerAT.TabIndex = 36;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(746, 44);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(33, 15);
+            label1.TabIndex = 35;
+            label1.Text = "Bank";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(494, 40);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(39, 15);
+            label2.TabIndex = 34;
+            label2.Text = "Name";
+            // 
+            // lblBDate
+            // 
+            lblBDate.AutoSize = true;
+            lblBDate.Location = new Point(119, 40);
+            lblBDate.Margin = new Padding(2, 0, 2, 0);
+            lblBDate.Name = "lblBDate";
+            lblBDate.Size = new Size(31, 15);
+            lblBDate.TabIndex = 33;
+            lblBDate.Text = "Date";
+            // 
             // tabViewTransactions
             // 
+            tabViewTransactions.Controls.Add(dgvFilter);
+            tabViewTransactions.Controls.Add(lblVTError);
+            tabViewTransactions.Controls.Add(cmbVTBanks);
+            tabViewTransactions.Controls.Add(cmbVTUser);
+            tabViewTransactions.Controls.Add(cmbCategory);
+            tabViewTransactions.Controls.Add(cmbExpensesType);
+            tabViewTransactions.Controls.Add(btnVTDelete);
+            tabViewTransactions.Controls.Add(btnVTClear);
+            tabViewTransactions.Controls.Add(btnVTSearch);
+            tabViewTransactions.Controls.Add(label3);
+            tabViewTransactions.Controls.Add(label4);
+            tabViewTransactions.Controls.Add(txtComment);
+            tabViewTransactions.Controls.Add(label5);
+            tabViewTransactions.Controls.Add(txtVTAmount);
+            tabViewTransactions.Controls.Add(label6);
+            tabViewTransactions.Controls.Add(lblCategoryMain);
+            tabViewTransactions.Controls.Add(lblSubCategory);
+            tabViewTransactions.Controls.Add(dateEnd);
+            tabViewTransactions.Controls.Add(label7);
+            tabViewTransactions.Controls.Add(dateStart);
+            tabViewTransactions.Controls.Add(lblDate);
             tabViewTransactions.ImageKey = "ViewExpenses.png";
             tabViewTransactions.Location = new Point(4, 39);
             tabViewTransactions.Name = "tabViewTransactions";
@@ -360,15 +747,311 @@
             tabViewTransactions.Text = "View Transactions";
             tabViewTransactions.UseVisualStyleBackColor = true;
             // 
-            // tabViewInomce
+            // dgvFilter
             // 
-            tabViewInomce.ImageKey = "ViewIncome.png";
-            tabViewInomce.Location = new Point(4, 39);
-            tabViewInomce.Name = "tabViewInomce";
-            tabViewInomce.Size = new Size(1920, 780);
-            tabViewInomce.TabIndex = 3;
-            tabViewInomce.Text = "View Inomce";
-            tabViewInomce.UseVisualStyleBackColor = true;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle10.Font = new Font("Calibri", 14.25F);
+            dataGridViewCellStyle10.ForeColor = Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(0, 0, 192);
+            dataGridViewCellStyle10.SelectionForeColor = Color.White;
+            dgvFilter.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dgvFilter.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFilter.Columns.AddRange(new DataGridViewColumn[] { User, dataGridViewTextBoxColumn5, Balance });
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Window;
+            dataGridViewCellStyle12.Font = new Font("Calibri", 14.25F);
+            dataGridViewCellStyle12.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle12.NullValue = null;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            dgvFilter.DefaultCellStyle = dataGridViewCellStyle12;
+            dgvFilter.Location = new Point(6, 220);
+            dgvFilter.Name = "dgvFilter";
+            dgvFilter.RowHeadersWidth = 62;
+            dgvFilter.Size = new Size(1268, 520);
+            dgvFilter.TabIndex = 61;
+            // 
+            // User
+            // 
+            User.DataPropertyName = "User";
+            User.HeaderText = "User";
+            User.MinimumWidth = 8;
+            User.Name = "User";
+            User.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.DataPropertyName = "BankName";
+            dataGridViewTextBoxColumn5.HeaderText = "BankName";
+            dataGridViewTextBoxColumn5.MinimumWidth = 8;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // Balance
+            // 
+            Balance.DataPropertyName = "Balance";
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = null;
+            Balance.DefaultCellStyle = dataGridViewCellStyle11;
+            Balance.HeaderText = "Balance";
+            Balance.Name = "Balance";
+            // 
+            // lblVTError
+            // 
+            lblVTError.AutoSize = true;
+            lblVTError.Location = new Point(148, 219);
+            lblVTError.Name = "lblVTError";
+            lblVTError.Size = new Size(0, 15);
+            lblVTError.TabIndex = 60;
+            // 
+            // cmbVTBanks
+            // 
+            cmbVTBanks.AutoResize = false;
+            cmbVTBanks.BackColor = Color.FromArgb(255, 255, 255);
+            cmbVTBanks.Depth = 0;
+            cmbVTBanks.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbVTBanks.DropDownHeight = 174;
+            cmbVTBanks.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbVTBanks.DropDownWidth = 121;
+            cmbVTBanks.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbVTBanks.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbVTBanks.FormattingEnabled = true;
+            cmbVTBanks.IntegralHeight = false;
+            cmbVTBanks.ItemHeight = 43;
+            cmbVTBanks.Location = new Point(838, 124);
+            cmbVTBanks.MaxDropDownItems = 4;
+            cmbVTBanks.MouseState = MaterialSkin.MouseState.OUT;
+            cmbVTBanks.Name = "cmbVTBanks";
+            cmbVTBanks.Size = new Size(200, 49);
+            cmbVTBanks.StartIndex = 0;
+            cmbVTBanks.TabIndex = 59;
+            // 
+            // cmbVTUser
+            // 
+            cmbVTUser.AutoResize = false;
+            cmbVTUser.BackColor = Color.FromArgb(255, 255, 255);
+            cmbVTUser.Depth = 0;
+            cmbVTUser.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbVTUser.DropDownHeight = 174;
+            cmbVTUser.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbVTUser.DropDownWidth = 121;
+            cmbVTUser.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbVTUser.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbVTUser.FormattingEnabled = true;
+            cmbVTUser.IntegralHeight = false;
+            cmbVTUser.ItemHeight = 43;
+            cmbVTUser.Location = new Point(838, 64);
+            cmbVTUser.MaxDropDownItems = 4;
+            cmbVTUser.MouseState = MaterialSkin.MouseState.OUT;
+            cmbVTUser.Name = "cmbVTUser";
+            cmbVTUser.Size = new Size(200, 49);
+            cmbVTUser.StartIndex = 0;
+            cmbVTUser.TabIndex = 58;
+            // 
+            // cmbCategory
+            // 
+            cmbCategory.AutoResize = false;
+            cmbCategory.BackColor = Color.FromArgb(255, 255, 255);
+            cmbCategory.Depth = 0;
+            cmbCategory.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbCategory.DropDownHeight = 174;
+            cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCategory.DropDownWidth = 121;
+            cmbCategory.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbCategory.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbCategory.FormattingEnabled = true;
+            cmbCategory.IntegralHeight = false;
+            cmbCategory.ItemHeight = 43;
+            cmbCategory.Location = new Point(552, 64);
+            cmbCategory.MaxDropDownItems = 4;
+            cmbCategory.MouseState = MaterialSkin.MouseState.OUT;
+            cmbCategory.Name = "cmbCategory";
+            cmbCategory.Size = new Size(200, 49);
+            cmbCategory.StartIndex = 0;
+            cmbCategory.TabIndex = 58;
+            // 
+            // cmbExpensesType
+            // 
+            cmbExpensesType.AutoResize = false;
+            cmbExpensesType.BackColor = Color.FromArgb(255, 255, 255);
+            cmbExpensesType.Depth = 0;
+            cmbExpensesType.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbExpensesType.DropDownHeight = 174;
+            cmbExpensesType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbExpensesType.DropDownWidth = 121;
+            cmbExpensesType.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbExpensesType.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbExpensesType.FormattingEnabled = true;
+            cmbExpensesType.IntegralHeight = false;
+            cmbExpensesType.ItemHeight = 43;
+            cmbExpensesType.Location = new Point(187, 64);
+            cmbExpensesType.MaxDropDownItems = 4;
+            cmbExpensesType.MouseState = MaterialSkin.MouseState.OUT;
+            cmbExpensesType.Name = "cmbExpensesType";
+            cmbExpensesType.Size = new Size(200, 49);
+            cmbExpensesType.StartIndex = 0;
+            cmbExpensesType.TabIndex = 55;
+            // 
+            // btnVTDelete
+            // 
+            btnVTDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnVTDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnVTDelete.Depth = 0;
+            btnVTDelete.HighEmphasis = true;
+            btnVTDelete.Icon = null;
+            btnVTDelete.Location = new Point(370, 175);
+            btnVTDelete.Margin = new Padding(4, 6, 4, 6);
+            btnVTDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            btnVTDelete.Name = "btnVTDelete";
+            btnVTDelete.NoAccentTextColor = Color.Empty;
+            btnVTDelete.Size = new Size(73, 36);
+            btnVTDelete.TabIndex = 54;
+            btnVTDelete.Text = "Delete";
+            btnVTDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnVTDelete.UseAccentColor = false;
+            btnVTDelete.UseVisualStyleBackColor = true;
+            btnVTDelete.Click += btnVTDelete_Click;
+            // 
+            // btnVTClear
+            // 
+            btnVTClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnVTClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnVTClear.Depth = 0;
+            btnVTClear.HighEmphasis = true;
+            btnVTClear.Icon = null;
+            btnVTClear.Location = new Point(462, 175);
+            btnVTClear.Margin = new Padding(4, 6, 4, 6);
+            btnVTClear.MouseState = MaterialSkin.MouseState.HOVER;
+            btnVTClear.Name = "btnVTClear";
+            btnVTClear.NoAccentTextColor = Color.Empty;
+            btnVTClear.Size = new Size(66, 36);
+            btnVTClear.TabIndex = 53;
+            btnVTClear.Text = "Clear";
+            btnVTClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnVTClear.UseAccentColor = false;
+            btnVTClear.UseVisualStyleBackColor = true;
+            btnVTClear.Click += btnVTClear_Click;
+            // 
+            // btnVTSearch
+            // 
+            btnVTSearch.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnVTSearch.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnVTSearch.Depth = 0;
+            btnVTSearch.HighEmphasis = true;
+            btnVTSearch.Icon = null;
+            btnVTSearch.Location = new Point(273, 175);
+            btnVTSearch.Margin = new Padding(4, 6, 4, 6);
+            btnVTSearch.MouseState = MaterialSkin.MouseState.HOVER;
+            btnVTSearch.Name = "btnVTSearch";
+            btnVTSearch.NoAccentTextColor = Color.Empty;
+            btnVTSearch.Size = new Size(78, 36);
+            btnVTSearch.TabIndex = 52;
+            btnVTSearch.Text = "Search";
+            btnVTSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnVTSearch.UseAccentColor = false;
+            btnVTSearch.UseVisualStyleBackColor = true;
+            btnVTSearch.Click += btnVTSearch_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(778, 131);
+            label3.Name = "label3";
+            label3.Size = new Size(33, 15);
+            label3.TabIndex = 50;
+            label3.Text = "Bank";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(778, 80);
+            label4.Name = "label4";
+            label4.Size = new Size(30, 15);
+            label4.TabIndex = 48;
+            label4.Text = "User";
+            // 
+            // txtComment
+            // 
+            txtComment.Location = new Point(552, 129);
+            txtComment.Name = "txtComment";
+            txtComment.Size = new Size(200, 23);
+            txtComment.TabIndex = 47;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(453, 129);
+            label5.Name = "label5";
+            label5.Size = new Size(61, 15);
+            label5.TabIndex = 46;
+            label5.Text = "Comment";
+            // 
+            // txtVTAmount
+            // 
+            txtVTAmount.Location = new Point(187, 129);
+            txtVTAmount.Name = "txtVTAmount";
+            txtVTAmount.Size = new Size(200, 23);
+            txtVTAmount.TabIndex = 45;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(90, 137);
+            label6.Name = "label6";
+            label6.Size = new Size(51, 15);
+            label6.TabIndex = 44;
+            label6.Text = "Amount";
+            // 
+            // lblCategoryMain
+            // 
+            lblCategoryMain.AutoSize = true;
+            lblCategoryMain.Location = new Point(88, 84);
+            lblCategoryMain.Name = "lblCategoryMain";
+            lblCategoryMain.Size = new Size(55, 15);
+            lblCategoryMain.TabIndex = 42;
+            lblCategoryMain.Text = "Category";
+            // 
+            // lblSubCategory
+            // 
+            lblSubCategory.AutoSize = true;
+            lblSubCategory.Location = new Point(453, 81);
+            lblSubCategory.Name = "lblSubCategory";
+            lblSubCategory.Size = new Size(75, 15);
+            lblSubCategory.TabIndex = 40;
+            lblSubCategory.Text = "SubCategory";
+            // 
+            // dateEnd
+            // 
+            dateEnd.Location = new Point(552, 18);
+            dateEnd.Name = "dateEnd";
+            dateEnd.Size = new Size(200, 23);
+            dateEnd.TabIndex = 39;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(450, 24);
+            label7.Name = "label7";
+            label7.Size = new Size(19, 15);
+            label7.TabIndex = 38;
+            label7.Text = "To";
+            // 
+            // dateStart
+            // 
+            dateStart.Location = new Point(187, 24);
+            dateStart.Name = "dateStart";
+            dateStart.Size = new Size(200, 23);
+            dateStart.TabIndex = 37;
+            // 
+            // lblDate
+            // 
+            lblDate.AutoSize = true;
+            lblDate.Location = new Point(90, 30);
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(35, 15);
+            lblDate.TabIndex = 36;
+            lblDate.Text = "From";
             // 
             // tabHistory
             // 
@@ -403,90 +1086,6 @@
             menubarImages.Images.SetKeyName(5, "AddIncome.png");
             menubarImages.Images.SetKeyName(6, "AddExpenses.png");
             // 
-            // dgvIncome
-            // 
-            dgvIncome.AllowUserToAddRows = false;
-            dgvIncome.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle13.BackColor = SystemColors.ControlLight;
-            dataGridViewCellStyle13.Font = new Font("Calibri", 14.25F);
-            dataGridViewCellStyle13.NullValue = null;
-            dgvIncome.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
-            dgvIncome.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = SystemColors.Control;
-            dataGridViewCellStyle14.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
-            dataGridViewCellStyle14.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dgvIncome.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            dgvIncome.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvIncome.Columns.AddRange(new DataGridViewColumn[] { BankName, Comment });
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = SystemColors.Window;
-            dataGridViewCellStyle15.Font = new Font("Calibri", 14.25F);
-            dataGridViewCellStyle15.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
-            dgvIncome.DefaultCellStyle = dataGridViewCellStyle15;
-            dgvIncome.Location = new Point(157, 136);
-            dgvIncome.Name = "dgvIncome";
-            dgvIncome.Size = new Size(846, 549);
-            dgvIncome.TabIndex = 21;
-            // 
-            // BankName
-            // 
-            BankName.DataPropertyName = "BankName";
-            BankName.HeaderText = "BankName";
-            BankName.Name = "BankName";
-            // 
-            // Comment
-            // 
-            Comment.DataPropertyName = "Comment";
-            Comment.HeaderText = "Comment";
-            Comment.Name = "Comment";
-            // 
-            // btnSave
-            // 
-            btnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnSave.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnSave.Depth = 0;
-            btnSave.HighEmphasis = true;
-            btnSave.Icon = null;
-            btnSave.Location = new Point(502, 694);
-            btnSave.Margin = new Padding(4, 6, 4, 6);
-            btnSave.MouseState = MaterialSkin.MouseState.HOVER;
-            btnSave.Name = "btnSave";
-            btnSave.NoAccentTextColor = Color.Empty;
-            btnSave.Size = new Size(64, 36);
-            btnSave.TabIndex = 23;
-            btnSave.Text = "Save";
-            btnSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnSave.UseAccentColor = false;
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnSave_Click;
-            // 
-            // btnDelete
-            // 
-            btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnDelete.Depth = 0;
-            btnDelete.HighEmphasis = true;
-            btnDelete.Icon = null;
-            btnDelete.Location = new Point(584, 694);
-            btnDelete.Margin = new Padding(4, 6, 4, 6);
-            btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
-            btnDelete.Name = "btnDelete";
-            btnDelete.NoAccentTextColor = Color.Empty;
-            btnDelete.Size = new Size(73, 36);
-            btnDelete.TabIndex = 24;
-            btnDelete.Text = "Delete";
-            btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnDelete.UseAccentColor = false;
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
             // Index
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -507,6 +1106,12 @@
             tabAddIncome.ResumeLayout(false);
             tabAddIncome.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvIncome).EndInit();
+            tabAddTransactions.ResumeLayout(false);
+            tabAddTransactions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvExpenses).EndInit();
+            tabViewTransactions.ResumeLayout(false);
+            tabViewTransactions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFilter).EndInit();
             ResumeLayout(false);
         }
 
@@ -516,7 +1121,6 @@
         private TabPage tabAddIncome;
         private TabPage tabAddTransactions;
         private ImageList menubarImages;
-        private TabPage tabViewInomce;
         private TabPage tabViewTransactions;
         private TabPage tabUserSetting;
         private TabPage tabDashboard;
@@ -542,5 +1146,46 @@
         private DataGridViewTextBoxColumn BankName;
         private DataGridViewTextBoxColumn Comment;
         private MaterialSkin.Controls.MaterialButton btnDelete;
+        private MaterialSkin.Controls.MaterialComboBox cmbATBank;
+        private MaterialSkin.Controls.MaterialComboBox cmbATnames;
+        private DateTimePicker datePickerAT;
+        private Label label1;
+        private Label label2;
+        private Label lblBDate;
+        private DataGridView dgvExpenses;
+        private DataGridViewTextBoxColumn Day;
+        private DataGridViewComboBoxColumn Category;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private MaterialSkin.Controls.MaterialButton btnATClear;
+        private MaterialSkin.Controls.MaterialButton btnATUpload;
+        private MaterialSkin.Controls.MaterialButton btnATSave;
+        private Label lblATError;
+        private ComboBox txtVTBank;
+        private Label label3;
+        private ComboBox cmbUsers;
+        private Label label4;
+        private TextBox txtComment;
+        private Label label5;
+        private TextBox txtVTAmount;
+        private Label label6;
+        private Label lblCategoryMain;
+        private Label lblSubCategory;
+        private DateTimePicker dateEnd;
+        private Label label7;
+        private DateTimePicker dateStart;
+        private Label lblDate;
+        private MaterialSkin.Controls.MaterialButton btnVTDelete;
+        private MaterialSkin.Controls.MaterialButton btnVTClear;
+        private MaterialSkin.Controls.MaterialButton btnVTSearch;
+        private MaterialSkin.Controls.MaterialComboBox cmbExpensesType;
+        private MaterialSkin.Controls.MaterialComboBox cmbCategory;
+        private MaterialSkin.Controls.MaterialComboBox cmbVTUser;
+        private MaterialSkin.Controls.MaterialComboBox cmbVTBanks;
+        private Label lblVTError;
+        private DataGridView dgvFilter;
+        private DataGridViewTextBoxColumn User;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn Balance;
     }
 }
