@@ -1,0 +1,122 @@
+﻿@model ExpenseTrackerWeb.Models.TransactionViewModel
+
+@{
+    ViewBag.Title = "Transactions";
+}
+
+<h1>@ViewBag.Title</h1>
+
+@using (Html.BeginForm("ViewExpense", "Home", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.StartDate, "Start Date")
+                    @Html.TextBoxFor(model => model.Filter.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.EndDate, "End Date")
+                    @Html.TextBoxFor(model => model.Filter.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.Amount, "Amount")
+                    @Html.TextBoxFor(model => model.Filter.Amount, "{0:0.00}", new { @class = "form-control", type = "number", step = "0.01" })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.SubCategoryId, "SubCategory")
+                    @Html.DropDownListFor(model => model.Filter.SubCategoryId, Model.SubCategories, "Select a SubCategory", new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.CategoryId, "Category")
+                    @Html.DropDownListFor(model => model.Filter.CategoryId, Model.Categories, "Select a Category", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.UserId, "User")
+                    @Html.DropDownListFor(model => model.Filter.UserId, Model.Users, "Select a User", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.BankId, "Bank")
+                    @Html.DropDownListFor(model => model.Filter.BankId, Model.Banks, "Select a Bank", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.Comment, "Comment")
+                    @Html.TextBoxFor(model => model.Filter.Comment, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <input type="submit" value="Filter" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+<hr />
+
+<h4>Transaction List</h4>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Bank Name</th>
+            <th>Amount</th>
+            <th>Comment</th>
+            <th>CategoryName</th>
+            <th>SubCategoryName</th>
+            <th>Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Transactions != null && Model.Transactions.Any())
+        {
+            foreach (var transaction in Model.Transactions)
+            {
+                <tr>
+                    <td>@transaction.Id.ToString()</td>
+                    <td>@transaction.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@transaction.BankName</td>
+                    <td>@transaction.Amount.ToString("C")</td>
+                    <td>@transaction.Comment</td>
+                    <td>@transaction.CategoryName</td>
+                    <td>@transaction.SubCategoryName</td>
+                    <td>@transaction.Balance</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No transactions found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
