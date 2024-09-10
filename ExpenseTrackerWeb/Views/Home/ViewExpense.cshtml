@@ -1,10 +1,7 @@
 ﻿@model ExpenseTrackerWeb.Models.TransactionViewModel
 
-@{
-    ViewBag.Title = "Transactions";
-}
-
-<h1>@ViewBag.Title</h1>
+<h4>Transactions</h4>
+<hr />
 
 @using (Html.BeginForm("ViewExpense", "Home", FormMethod.Post))
 {
@@ -68,7 +65,7 @@
                 </div>
             </div>
         </div>
-
+        <hr />
         <div class="form-group text-center">
             <input type="submit" value="Filter" class="btn btn-primary" />
         </div>
@@ -86,8 +83,8 @@
             <th>Bank Name</th>
             <th>Amount</th>
             <th>Comment</th>
-            <th>CategoryName</th>
-            <th>SubCategoryName</th>
+            <th>Category Name</th>
+            <th>SubCategory Name</th>
             <th>Balance</th>
         </tr>
     </thead>
@@ -111,7 +108,7 @@
         else
         {
             <tr>
-                <td colspan="4" class="text-center">No transactions found.</td>
+                <td colspan="8" class="text-center">No transactions found.</td>
             </tr>
         }
     </tbody>

@@ -1,107 +1,13 @@
 ﻿@model DashboardViewModel
 
-<h2>Yearly Transactions</h2>
-
-<style>
-    /* General Styles */
-    body {
-        font-family: Arial, sans-serif;
-        color: #333;
-        background-color: #f4f4f4;
-    }
-
-    /* Container for spacing */
-    .container {
-        margin-top: 20px;
-    }
-
-    /* Header styling */
-    h2 {
-        border-bottom: 2px solid #0056b3;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-        color: #0056b3;
-    }
-
-    /* Table Styles */
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #ffffff;
-        margin-bottom: 20px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-        .table th, .table td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        .table thead th {
-            background-color: #0056b3;
-            color: #ffffff;
-            font-weight: bold;
-        }
-
-        .table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .table tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        .table td, .table th {
-            vertical-align: middle;
-        }
-
-    /* Specific Styles for Main Grid */
-    #mainGrid {
-        border-radius: 4px;
-    }
-
-        #mainGrid th {
-            background-color: #0056b3;
-        }
-
-    /* Specific Styles for On Click Details Table */
-    #transactionGrid {
-        display: none;
-        border-radius: 4px;
-    }
-
-        #transactionGrid thead th {
-            background-color: #0056b3;
-            color: #ffffff;
-        }
-
-    /* Specific Styles for Bank Summary Table */
-    .table.table-striped {
-        border-radius: 4px;
-    }
-
-        .table.table-striped thead th {
-            background-color: #0056b3;
-            color: #ffffff;
-        }
-
-        .table.table-striped tbody tr:nth-child(odd) {
-            background-color: #f9f9f9;
-        }
-
-        .table.table-striped tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-
-</style>
-
+<h4>Yearly Transactions</h4>
+<hr />
 
 <table class="table table-striped" id="mainGrid">
     <thead>
         <tr>
             <th>Category Name</th>
-            <th>SubCategory Name</th>
+            <th>Sub Category Name</th>
             <th>January</th>
             <th>February</th>
             <th>March</th>
@@ -117,29 +23,39 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var transaction in Model.TransactionByYear)
+        @if (Model.TransactionByYear != null && Model.TransactionByYear.Any())
+        {
+            @foreach (var transaction in Model.TransactionByYear)
+            {
+                <tr>
+                    <td>@transaction.CategoryName</td>
+                    <td>@transaction.SubCategoryName</td>
+                    <td>@transaction.January.ToString("C")</td>
+                    <td>@transaction.February.ToString("C")</td>
+                    <td>@transaction.March.ToString("C")</td>
+                    <td>@transaction.April.ToString("C")</td>
+                    <td>@transaction.May.ToString("C")</td>
+                    <td>@transaction.June.ToString("C")</td>
+                    <td>@transaction.July.ToString("C")</td>
+                    <td>@transaction.August.ToString("C")</td>
+                    <td>@transaction.September.ToString("C")</td>
+                    <td>@transaction.October.ToString("C")</td>
+                    <td>@transaction.November.ToString("C")</td>
+                    <td>@transaction.December.ToString("C")</td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@transaction.CategoryName</td>
-                <td>@transaction.SubCategoryName</td>
-                <td>@transaction.January.ToString("C")</td>
-                <td>@transaction.February.ToString("C")</td>
-                <td>@transaction.March.ToString("C")</td>
-                <td>@transaction.April.ToString("C")</td>
-                <td>@transaction.May.ToString("C")</td>
-                <td>@transaction.June.ToString("C")</td>
-                <td>@transaction.July.ToString("C")</td>
-                <td>@transaction.August.ToString("C")</td>
-                <td>@transaction.September.ToString("C")</td>
-                <td>@transaction.October.ToString("C")</td>
-                <td>@transaction.November.ToString("C")</td>
-                <td>@transaction.December.ToString("C")</td>
+                <td colspan="14" class="text-center">No transactions found.</td>
             </tr>
         }
     </tbody>
 </table>
 
-<h2>Bank Summary</h2>
+<h4>Bank Summary</h4>
+<hr />
 
 <table class="table table-striped">
     <thead>
@@ -163,8 +79,6 @@
     </tbody>
 </table>
 
-<h2>On Click Details</h2>
-
 <table id="transactionGrid" class="table">
     <thead>
         <tr>
@@ -173,7 +87,7 @@
             <th>Comment</th>
             <th>Created Date</th>
             <th>Category Name</th>
-            <th>SubCategory Name</th>
+            <th>Sub Category Name</th>
         </tr>
     </thead>
     <tbody id="transactionBody">
@@ -214,13 +128,13 @@
 
                     $.each(response.data, function (index, item) {
                         var row = `<tr data-id="${item.Id}">
-                                                <td>${item.Amount}</td>
-                                                <td>${item.Bank}</td>
-                                                <td>${item.Comment}</td>
-                                                <td>${item.CreatedDate}</td>
-                                                <td>${item.CategoryName}</td>
-                                                <td>${item.SubCategoryName}</td>
-                                            </tr>`;
+                                                    <td>${item.Amount}</td>
+                                                    <td>${item.Bank}</td>
+                                                    <td>${item.Comment}</td>
+                                                    <td>${item.CreatedDate}</td>
+                                                    <td>${item.CategoryName}</td>
+                                                    <td>${item.SubCategoryName}</td>
+                                                </tr>`;
 
                         tableBody.append(row);
                     });

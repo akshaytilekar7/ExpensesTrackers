@@ -3,16 +3,216 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ExpenseTrackerWeb</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ExpenseTrackerWeb.styles.css" asp-append-version="true" />
+
+    <style>
+        /* Navbar styles */
+
+        .navbar {
+            background-color: #121212 !important; /* Force dark background for the navbar */
+        }
+
+        .nav-link {
+            color: #ffffff !important; /* Force white color for nav links */
+        }
+
+            .nav-link:hover {
+                color: #ff4c4c !important; /* Force red color for nav links on hover */
+            }
+
+
+
+        .navbar {
+            background-color: #121212; /* Dark background for the navbar */
+        }
+
+        .navbar-brand {
+            color: #ffffff; /* White color for the brand name */
+        }
+
+        .navbar-toggler {
+            border-color: #ffffff; /* White border for the toggler button */
+        }
+
+        .navbar-toggler-icon {
+            background-image: url('path-to-your-icon'); /* Ensure the icon is visible against the dark background */
+        }
+
+        .nav-link {
+            color: #ffffff; /* White color for navigation links */
+        }
+
+            .nav-link:hover {
+                color: #ff4c4c; /* Red color for navigation links on hover */
+            }
+
+        /* Override Bootstrap styles */
+        .navbar-light .navbar-nav .nav-link {
+            color: #ffffff; /* Ensure that nav links are white in light mode */
+        }
+
+            .navbar-light .navbar-nav .nav-link:hover {
+                color: #ff4c4c; /* Red color for nav links on hover */
+            }
+
+
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background for the entire page */
+            color: #e0e0e0; /* Light gray text for readability on dark background */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1f1f1f; /* Slightly lighter background for the container */
+            border-radius: 8px; /* Rounded corners for the container */
+        }
+
+        h1, h4 {
+            color: #ff4c4c; /* Red color for headers to match the theme */
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333; /* Dark border for form controls */
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #2a2a2a; /* Dark background for input fields */
+            color: #e0e0e0; /* Light text color for readability */
+        }
+
+            .form-control:focus {
+                border-color: #ff4c4c; /* Red border on focus for input fields */
+                outline: none;
+                box-shadow: 0 0 5px rgba(255, 76, 76, 0.5); /* Red glow on focus */
+            }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #e0e0e0; /* Light color for labels */
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #fff; /* White text on buttons */
+        }
+
+        .btn-primary {
+            background-color: #ff4c4c; /* Red color for primary button */
+        }
+
+            .btn-primary:hover {
+                background-color: #cc0000; /* Darker red on hover */
+            }
+
+        .btn-secondary {
+            background-color: #333; /* Dark color for secondary button */
+        }
+
+            .btn-secondary:hover {
+                background-color: #444; /* Slightly lighter dark color on hover */
+            }
+
+        /* Table Styles */
+        .table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                padding: 10px;
+                border: 1px solid #444; /* Dark border for table cells */
+                text-align: left;
+            }
+
+            .table th {
+                background-color: #1f1f1f; /* Dark background for table headers */
+                color: #ff4c4c; /* Red color for header text */
+            }
+
+            .table tr:nth-child(even) {
+                background-color: #2a2a2a; /* Dark grey for even rows */
+            }
+
+            .table tr:hover {
+                background-color: #333; /* Slightly lighter grey for hover effect */
+            }
+
+        /* Additional Styles */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-danger {
+            color: #ff4c4c; /* Red color for error messages */
+        }
+
+        /* General text color */
+        body {
+            color: #ffffff; /* White color for all text */
+        }
+
+        h1, h4 {
+            color: #ff4c4c; /* Red color for headers to maintain visibility */
+        }
+
+        .form-control {
+            color: #ffffff; /* White text color for form controls */
+        }
+
+        label {
+            color: #ffffff; /* White color for labels */
+        }
+
+        .table th, .table td {
+            color: #ffffff; /* White color for table text */
+        }
+
+        .table th {
+            color: #ff4c4c; /* Red color for table header text */
+        }
+
+        .btn {
+            color: #ffffff; /* White text color for buttons */
+        }
+
+        .text-center {
+            color: #ffffff; /* White color for centered text */
+        }
+
+    </style>
+
+    <title>Expense Tracker</title>
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ExpenseTrackerWeb</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Expense Tracker</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,13 +220,20 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                                 <i class="bi bi-house" style="margin-right: 8px;"></i> Dashboard
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddIncome">Add Income</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddIncome">
+                                <i class="bi bi-plus-circle" style="margin-right: 8px;"></i> Add Income
+                                </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ViewExpense">View Expense</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ViewExpense">
+                                View Expense
+                                 <i class="bi bi-eye" style="margin-right: 8px;"></i> View Expenses
+                                </a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +248,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - ExpenseTrackerWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - Expense Tracker
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
