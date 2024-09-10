@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ExpenseTrackerWeb.styles.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 
     <style>
         /* Navbar styles */
@@ -331,7 +332,6 @@
             scroll-behavior: smooth;
         }
 
-
     </style>
 
     <title>Expense Tracker</title>
@@ -382,7 +382,22 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $.fn.dataTable.ext.errMode = 'none';
+
+        $(document).ready(function () {
+            $('.table').DataTable({
+                paging: true,           // Enable pagination
+                searching: true,        // Enable search
+                ordering: true,         // Enable sorting
+                responsive: true        // Enable responsive design for better mobile support
+            });
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
