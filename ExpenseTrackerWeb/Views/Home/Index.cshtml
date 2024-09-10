@@ -1,99 +1,107 @@
 ﻿@model DashboardViewModel
 
-<h4>Yearly Transactions</h4>
-<hr />
-
-<table class="table table-striped" id="mainGrid">
-    <thead>
-        <tr>
-            <th>Category Name</th>
-            <th>Sub Category Name</th>
-            <th>January</th>
-            <th>February</th>
-            <th>March</th>
-            <th>April</th>
-            <th>May</th>
-            <th>June</th>
-            <th>July</th>
-            <th>August</th>
-            <th>September</th>
-            <th>October</th>
-            <th>November</th>
-            <th>December</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.TransactionByYear != null && Model.TransactionByYear.Any())
-        {
-            @foreach (var transaction in Model.TransactionByYear)
+<div class="tile">
+    <h4>Yearly Transactions</h4>
+    <hr />
+    <table class="table table-striped" id="mainGrid">
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Sub Category Name</th>
+                <th>January</th>
+                <th>February</th>
+                <th>March</th>
+                <th>April</th>
+                <th>May</th>
+                <th>June</th>
+                <th>July</th>
+                <th>August</th>
+                <th>September</th>
+                <th>October</th>
+                <th>November</th>
+                <th>December</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.TransactionByYear != null && Model.TransactionByYear.Any())
+            {
+                @foreach (var transaction in Model.TransactionByYear)
+                {
+                    <tr>
+                        <td>@transaction.CategoryName</td>
+                        <td>@transaction.SubCategoryName</td>
+                        <td>@transaction.January.ToString("C")</td>
+                        <td>@transaction.February.ToString("C")</td>
+                        <td>@transaction.March.ToString("C")</td>
+                        <td>@transaction.April.ToString("C")</td>
+                        <td>@transaction.May.ToString("C")</td>
+                        <td>@transaction.June.ToString("C")</td>
+                        <td>@transaction.July.ToString("C")</td>
+                        <td>@transaction.August.ToString("C")</td>
+                        <td>@transaction.September.ToString("C")</td>
+                        <td>@transaction.October.ToString("C")</td>
+                        <td>@transaction.November.ToString("C")</td>
+                        <td>@transaction.December.ToString("C")</td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>@transaction.CategoryName</td>
-                    <td>@transaction.SubCategoryName</td>
-                    <td>@transaction.January.ToString("C")</td>
-                    <td>@transaction.February.ToString("C")</td>
-                    <td>@transaction.March.ToString("C")</td>
-                    <td>@transaction.April.ToString("C")</td>
-                    <td>@transaction.May.ToString("C")</td>
-                    <td>@transaction.June.ToString("C")</td>
-                    <td>@transaction.July.ToString("C")</td>
-                    <td>@transaction.August.ToString("C")</td>
-                    <td>@transaction.September.ToString("C")</td>
-                    <td>@transaction.October.ToString("C")</td>
-                    <td>@transaction.November.ToString("C")</td>
-                    <td>@transaction.December.ToString("C")</td>
+                    <td colspan="14" class="text-center">No transactions found.</td>
                 </tr>
             }
-        }
-        else
-        {
+        </tbody>
+    </table>
+</div>
+
+<div class="tile">
+    <h4>Bank Summary</h4>
+    <hr />
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td colspan="14" class="text-center">No transactions found.</td>
+                <th>Bank Name</th>
+                <th>Total Income</th>
+                <th>Total Expense</th>
+                <th>Balance</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var bank in Model.BankByYear)
+            {
+                <tr>
+                    <td>@bank.BankName</td>
+                    <td>@bank.TotalIncome.ToString("C")</td>
+                    <td>@bank.TotalExpense.ToString("C")</td>
+                    <td>@bank.Balance.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-<h4>Bank Summary</h4>
-<hr />
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Bank Name</th>
-            <th>Total Income</th>
-            <th>Total Expense</th>
-            <th>Balance</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var bank in Model.BankByYear)
-        {
+<div class="tile">
+    <h4>Transactions</h4>
+    <hr />
+    <table id="transactionGrid" class="table">
+        <thead>
             <tr>
-                <td>@bank.BankName</td>
-                <td>@bank.TotalIncome.ToString("C")</td>
-                <td>@bank.TotalExpense.ToString("C")</td>
-                <td>@bank.Balance.ToString("C")</td>
+                <th>Amount</th>
+                <th>Bank</th>
+                <th>Comment</th>
+                <th>Created Date</th>
+                <th>Category Name</th>
+                <th>Sub Category Name</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody id="transactionBody">
+            <tr><td colspan="14" class="text-center">No transactions found.</td></tr>
+            <!-- Rows will be added here dynamically -->
+        </tbody>
+    </table>
+</div>
 
-<table id="transactionGrid" class="table">
-    <thead>
-        <tr>
-            <th>Amount</th>
-            <th>Bank</th>
-            <th>Comment</th>
-            <th>Created Date</th>
-            <th>Category Name</th>
-            <th>Sub Category Name</th>
-        </tr>
-    </thead>
-    <tbody id="transactionBody">
-        <!-- Rows will be added here dynamically -->
-    </tbody>
-</table>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -126,18 +134,23 @@
                     var tableBody = $('#transactionBody');
                     tableBody.empty(); // Clear existing content
 
-                    $.each(response.data, function (index, item) {
-                        var row = `<tr data-id="${item.Id}">
-                                                    <td>${item.Amount}</td>
-                                                    <td>${item.Bank}</td>
-                                                    <td>${item.Comment}</td>
-                                                    <td>${item.CreatedDate}</td>
-                                                    <td>${item.CategoryName}</td>
-                                                    <td>${item.SubCategoryName}</td>
-                                                </tr>`;
+                    if (response.data) {
+                        $.each(response.data, function (index, item) {
+                            var row = `<tr data-id="${item.Id}">
+                                                                            <td>${item.Amount}</td>
+                                                                            <td>${item.Bank}</td>
+                                                                            <td>${item.Comment}</td>
+                                                                            <td>${item.CreatedDate}</td>
+                                                                            <td>${item.CategoryName}</td>
+                                                                            <td>${item.SubCategoryName}</td>
+                                                                        </tr>`;
 
+                            tableBody.append(row);
+                        });
+                    } else {
+                        var row = `<tr><td colspan="14" class="text-center">No transactions found.</td></tr>`
                         tableBody.append(row);
-                    });
+                    }
 
                     console.log(response);
                 },
